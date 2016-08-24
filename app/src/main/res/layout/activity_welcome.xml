@@ -26,9 +26,9 @@
         android:layout_height="wrap_content"
         android:textAllCaps="false"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="175dp"
         android:layout_alignParentLeft="true"
-        android:layout_marginLeft="20dp"
+        android:layout_marginLeft="15dp"
         android:text="@string/SignUp"
         android:background="@drawable/backgroundbutton"
         android:textColor="@android:color/holo_blue_light" />
@@ -38,11 +38,11 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
+        android:layout_marginBottom="175dp"
         android:textAllCaps="false"
         android:textSize="20sp"
         android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
+        android:layout_marginRight="15dp"
         android:text="@string/SignIn"
         android:background="@drawable/backgroundbutton"
         android:textColor="@android:color/holo_blue_light" />
@@ -63,18 +63,18 @@
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
         <Button
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:background="@drawable/fb"/>
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:background="@mipmap/fb"/>
         <Button
-            android:layout_width="64dp"
-            android:layout_height="64dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="10dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
             android:background="@drawable/twetter"/>
         <Button
-            android:layout_width="64dp"
-            android:layout_height="64dp"
+            android:layout_width="45dp"
+            android:layout_height="45dp"
             android:background="@drawable/g"/>
     </LinearLayout>
 
