@@ -6,7 +6,7 @@
     <string name="start">GOT IT</string>
 
     <string name="slide_1_title">Hello Food!</string>
-    <string name="slide_1_desc">The easiest way to order food from your favourite restaurant!</string>
+    <string name="slide_1_desc">Welcome to the first specialxed maketplace and cominunity for free</string>
 
     <string name="slide_2_title">Movie Tickets</string>
     <string name="slide_2_desc">Book movie tickets for your family and friends!</string>
@@ -20,8 +20,8 @@
     <string name="play_again_desc">To see the welcome slider again, goto Settings -> apps -> welcome slider -> clear data</string>
     <string name="play_again">Play Again</string>
     <string name="SignInWith">Sign in with</string>
-    <string name="SignUp">Sign Up</string>
-    <string name="SignIn">Sign In</string>
+    <string name="SignUp">Sign up</string>
+    <string name="SignIn">Sign in</string>
     <string name="forgotpassword">Forgot Password</string>
     <string name="youforgotpassword">Forgot Your Password ?</string>
     <string name="labelemail">Enter Your Email to Find Password</string>

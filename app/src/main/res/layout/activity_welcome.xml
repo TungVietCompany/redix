@@ -20,20 +20,6 @@
         android:orientation="horizontal"/>
 
     <Button
-        android:id="@+id/btn_sigup_wellcome"
-        android:layout_width="140dp"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginBottom="200dp"
-        android:textAllCaps="false"
-        android:textSize="20sp"
-        android:layout_alignParentRight="true"
-        android:layout_marginRight="20dp"
-        android:text="@string/SignUp"
-        android:background="@drawable/backgroundbutton"
-        android:textColor="@android:color/holo_blue_light" />
-
-    <Button
         android:id="@+id/btn_sigin_wellcome"
         android:layout_width="140dp"
         android:textSize="20sp"
@@ -43,6 +29,20 @@
         android:layout_marginBottom="200dp"
         android:layout_alignParentLeft="true"
         android:layout_marginLeft="20dp"
+        android:text="@string/SignUp"
+        android:background="@drawable/backgroundbutton"
+        android:textColor="@android:color/holo_blue_light" />
+
+    <Button
+        android:id="@+id/btn_sigup_wellcome"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="200dp"
+        android:textAllCaps="false"
+        android:textSize="20sp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
         android:text="@string/SignIn"
         android:background="@drawable/backgroundbutton"
         android:textColor="@android:color/holo_blue_light" />
@@ -65,17 +65,17 @@
         <Button
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:background="@drawable/gmail"/>
+            android:background="@drawable/fb"/>
         <Button
             android:layout_width="64dp"
             android:layout_height="64dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
-            android:background="@drawable/facebook"/>
+            android:background="@drawable/twetter"/>
         <Button
             android:layout_width="64dp"
             android:layout_height="64dp"
-            android:background="@drawable/google"/>
+            android:background="@drawable/g"/>
     </LinearLayout>
 
 </RelativeLayout>
