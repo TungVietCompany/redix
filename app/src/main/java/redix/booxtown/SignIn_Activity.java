@@ -5,19 +5,21 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 
 public class SignIn_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonForgotPass;
     Button mButtonBackSignIn;
+    Button mButtonBack;
     Button mButtonSigin;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
         mButtonForgotPass = (Button) findViewById(R.id.btn_forgotpass);
-        mButtonBackSignIn = (Button) findViewById(R.id.btn_back_sigin);
+        mButtonBack = (Button) findViewById(R.id.btn_back_sigin);
         mButtonBackSignIn = (Button) findViewById(R.id.btn_sigin);
-        mButtonBackSignIn.setOnClickListener(this);
+        mButtonBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
         mButtonForgotPass.setOnClickListener(this);
     }

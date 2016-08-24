@@ -10,9 +10,9 @@
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_back_sigin"
-            android:layout_width="50dp"
+            android:layout_width="29dp"
             android:layout_height="wrap_content"
-            android:background="@drawable/left"
+            android:background="@drawable/back"
             android:textSize="20sp"
             android:textColor="@android:color/holo_red_light"/>
         <ImageView
