@@ -20,7 +20,7 @@
         android:orientation="horizontal"/>
 
     <Button
-        android:id="@+id/btn_sigin_wellcome"
+        android:id="@+id/btn_sigup_wellcome"
         android:layout_width="140dp"
         android:textSize="20sp"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         android:textColor="@android:color/holo_blue_light" />
 
     <Button
-        android:id="@+id/btn_sigup_wellcome"
+        android:id="@+id/btn_sigin_wellcome"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
