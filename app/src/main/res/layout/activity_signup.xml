@@ -34,14 +34,18 @@
             android:layout_weight="1"
             android:layout_height="wrap_content"
             android:hint="Full name"
-
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"
             />
 
         <EditText
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Last name"/>
+            android:hint="Last name"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"
+            />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,27 +54,39 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"/>
+            android:hint="Username"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Email"/>
+            android:hint="Email"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Birthday"/>
+            android:hint="Birthday"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Phone"/>
+            android:hint="Phone"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"/>
+            android:hint="Confirm Password"
+            android:fontFamily="sans-serif-light"
+            android:textColorHint="@color/color_text_hint"/>
         <Button
             android:layout_width="300dp"
             android:layout_height="wrap_content"
@@ -92,13 +108,18 @@
             android:layout_height="wrap_content"
             android:textSize="20sp"
             android:buttonTint="@color/colorAccent"
-            android:text="I Agree"/>
+            android:text="I Agree"
+            android:fontFamily="sans-serif-light"
+            />
         <TextView
             android:layout_width="wrap_content"
             android:textSize="20sp"
             android:layout_height="wrap_content"
             android:textColor="@android:color/holo_red_light"
-            android:text="Terms and conditions"/>
+            android:text="Terms and conditions"
+            android:fontFamily="sans-serif-light"
+
+            />
     </LinearLayout>
 
 </LinearLayout>

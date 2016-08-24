@@ -71,11 +71,11 @@
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@drawable/twetter"/>
+            android:background="@mipmap/twetter"/>
         <Button
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@drawable/g"/>
+            android:background="@mipmap/g"/>
     </LinearLayout>
 
 </RelativeLayout>
