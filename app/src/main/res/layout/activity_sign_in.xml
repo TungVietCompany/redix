@@ -17,7 +17,7 @@
             android:textColor="@android:color/holo_red_light"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:src="@drawable/icon_booxtown" />
     </LinearLayout>
     <LinearLayout
@@ -34,14 +34,12 @@
             android:hint="Password"/>
         <Button
             android:id="@+id/btn_sigin"
-            android:layout_width="300dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:textSize="26sp"
             android:textColor="@android:color/white"
-            android:text="@string/SignIn"
-            android:background="@drawable/backgroundbuttonsigup"/>
+            android:background="@drawable/icon_sigin2"/>
     </LinearLayout>
     <LinearLayout
         android:layout_width="300dp"
@@ -54,8 +52,7 @@
             android:textAllCaps="false"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/forgotpassword"
-            android:textColor="#fcfafa" />
+            android:text="@string/forgotpassword" />
     </LinearLayout>
 
 </LinearLayout>
