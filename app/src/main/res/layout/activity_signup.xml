@@ -1,17 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/layout_parent_left"
+    android:layout_marginTop="@dimen/layout_parent_top"
+    android:layout_marginRight="@dimen/layout_parent_right"
+    android:layout_marginBottom="@dimen/layout_parent_bottom"
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="67dp"
         android:layout_marginBottom="30dp"
         android:orientation="horizontal">
         <Button
             android:id="@+id/btn_back_sigup"
-            android:layout_width="40dp"
-            android:layout_height="60dp"
-            android:background="@drawable/left"
+            android:layout_width="25dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/back"
             android:textSize="20sp"
             android:textColor="@android:color/holo_red_light"/>
         <ImageView
@@ -28,7 +33,9 @@
             android:layout_width="match_parent"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Full name"/>
+            android:hint="Full name"
+
+            />
 
         <EditText
             android:layout_width="match_parent"
@@ -78,7 +85,9 @@
         android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+
+        >
         <android.support.v7.widget.AppCompatCheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
