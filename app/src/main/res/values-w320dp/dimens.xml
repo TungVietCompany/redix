@@ -16,9 +16,9 @@
 
 
     <!--Set margin layout parent-->
-    <dimen name="layout_parent_left">5dp</dimen>
-    <dimen name="layout_parent_right">5dp</dimen>
-    <dimen name="layout_parent_top">5dp</dimen>
-    <dimen name="layout_parent_bottom">5dp</dimen>
+    <dimen name="layout_parent_left">8dp</dimen>
+    <dimen name="layout_parent_right">8dp</dimen>
+    <dimen name="layout_parent_top">8dp</dimen>
+    <dimen name="layout_parent_bottom">8dp</dimen>
 
 </resources>
