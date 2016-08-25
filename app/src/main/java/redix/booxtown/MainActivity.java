@@ -64,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onMenuItemSelected(int itemId) {
                 switch (itemId) {
-                    case R.id.recent_item:
+                    case R.id.location_item:
                         //Snackbar.make(coordinatorLayout, "Recent Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
-                    case R.id.favorite_item:
+                    case R.id.message_item:
                         //Snackbar.make(coordinatorLayout, "Favorite Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
-                    case R.id.location_item:
+                    case R.id.camera_item:
                         //Snackbar.make(coordinatorLayout, "Location Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
 

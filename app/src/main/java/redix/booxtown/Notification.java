@@ -23,6 +23,7 @@ public class Notification extends AppCompatActivity {
     ListView lv1;
     Context context;
     RelativeLayout relativeLayout1;
+    BottomBar bottomBar;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
 
@@ -44,28 +45,34 @@ public class Notification extends AppCompatActivity {
         icon_menu_right.setVisibility(View.GONE);
 
         //bottom menu
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
 
-        final BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+        bottomBar = BottomBar.attach(this, savedInstanceState);
+        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
         bottomBar.setItemsFromMenu(R.menu.three_buttons_menu, new OnMenuTabSelectedListener() {
             @Override
             public void onMenuItemSelected(int itemId) {
                 switch (itemId) {
-                    case R.id.recent_item:
-                        //Snackbar.make(coordinatorLayout, "Recent Item Selected", Snackbar.LENGTH_LONG).show();
-                        break;
-                    case R.id.favorite_item:
-                        //Snackbar.make(coordinatorLayout, "Favorite Item Selected", Snackbar.LENGTH_LONG).show();
-                        break;
                     case R.id.location_item:
-                        //Snackbar.make(coordinatorLayout, "Location Item Selected", Snackbar.LENGTH_LONG).show();
+
+                        break;
+                    case R.id.message_item:
+
+                        break;
+                    case R.id.camera_item:
+
                         break;
 
                 }
             }
         });
+
+        bottomBar.mapColorForTab(0,0xFF5D4037);
+        bottomBar.mapColorForTab(1, 0xFF5D4037);
+        bottomBar.mapColorForTab(2, "#7B1FA2");
+        bottomBar.mapColorForTab(3, "#FF5252");
+        bottomBar.mapColorForTab(4, "#FF9800");
         // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        bottomBar.setActiveTabColor("#C2185B");
+        //bottomBar.setActiveTabColor("#C2185B");
         //end
 
         ImageView menubar = (ImageView)findViewById(R.id.imageView6);
