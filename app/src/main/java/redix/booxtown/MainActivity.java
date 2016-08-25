@@ -79,7 +79,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        bottomBar.setActiveTabColor("#C2185B");
+        bottomBar.mapColorForTab(0,0xFF5D4037);
+        bottomBar.mapColorForTab(1, 0xFF5D4037);
+        bottomBar.mapColorForTab(2, "#7B1FA2");
+        bottomBar.mapColorForTab(3, "#FF5252");
+        bottomBar.mapColorForTab(4, "#FF9800");
+
+        //bottomBar.setActiveTabColor("#C2185B");
 
         //show list menu
         ImageView menubar = (ImageView)findViewById(R.id.imageView6);
