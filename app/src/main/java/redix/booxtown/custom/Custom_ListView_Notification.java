@@ -1,4 +1,4 @@
-package redix.booxtown;
+package redix.booxtown.custom;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -9,18 +9,21 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import redix.booxtown.Notification;
+import redix.booxtown.R;
+
 /**
- * Created by thuyetpham94 on 24/08/2016.
+ * Created by thuyetpham94 on 25/08/2016.
  */
-public class CustomAdapter extends BaseAdapter {
+public class Custom_ListView_Notification extends BaseAdapter {
     String [] result;
     Context context;
-    int [] imageId;
+    String [] imageId;
     private static LayoutInflater inflater=null;
-    public CustomAdapter(Context context, String[] prgmNameList, int[] prgmImages) {
+    public Custom_ListView_Notification(Notification mainActivity, String[] prgmNameList, String[] prgmImages) {
         // TODO Auto-generated constructor stub
         result=prgmNameList;
-        this.context=context;
+        context=mainActivity;
         imageId=prgmImages;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -46,19 +49,18 @@ public class CustomAdapter extends BaseAdapter {
     public class Holder
     {
         TextView tv;
-        ImageView img;
+        TextView tv_content;
     }
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         Holder holder=new Holder();
         View rowView;
-        rowView = inflater.inflate(R.layout.program_list, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.textView1);
-        holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
+        rowView = inflater.inflate(R.layout.custom_listview_notification, null);
+        holder.tv=(TextView) rowView.findViewById(R.id.txt_title_notification);
+        holder.tv_content=(TextView) rowView.findViewById(R.id.txt_content_notification);
         holder.tv.setText(result[position]);
-        holder.img.setImageResource(imageId[position]);
+        holder.tv_content.setText(result[position]);
         return rowView;
     }
-
 }

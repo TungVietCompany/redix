@@ -69,17 +69,6 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/cross1"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:src="@drawable/cross1"
-            android:layout_alignParentTop="true" />
-
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/cross2"
             android:layout_alignParentBottom="true"
             android:background="@drawable/cross1" />

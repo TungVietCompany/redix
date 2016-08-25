@@ -10,8 +10,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,7 +25,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabSelectedListener;
 
-import java.util.ArrayList;
+import redix.booxtown.custom.CustomAdapter;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private CoordinatorLayout coordinatorLayout;
@@ -37,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ListView lv;
     Context context;
     ImageView close_menu;
-
+    BottomBar bottomBar;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
 
@@ -59,7 +57,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
 
-        final BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+        bottomBar = BottomBar.attach(this, savedInstanceState);
         bottomBar.setItemsFromMenu(R.menu.three_buttons_menu, new OnMenuTabSelectedListener() {
             @Override
             public void onMenuItemSelected(int itemId) {
@@ -105,9 +103,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 close_menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        getSupportActionBar().show();
-                        bottomBar.show();
-                        setContentView(R.layout.activity_main);
+                        Intent itent = new Intent(MainActivity.this,MainActivity.class);
+                        startActivity(itent);
                     }
                 });
 
@@ -118,8 +115,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         switch (i){
                             case 0:
-                                getSupportActionBar().show();
-                                bottomBar.show();
+                                Intent itent1 = new Intent(MainActivity.this,MainActivity.class);
+                                startActivity(itent1);
                                 break;
                             case 1:
                                 Intent itent = new Intent(MainActivity.this,Notification.class);

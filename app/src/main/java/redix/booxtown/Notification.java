@@ -12,12 +12,12 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabSelectedListener;
 
-import java.util.ArrayList;
+import redix.booxtown.custom.CustomAdapter;
+import redix.booxtown.custom.Custom_ListView_Notification;
 
 public class Notification extends AppCompatActivity {
     ListView lv1;
@@ -44,6 +44,10 @@ public class Notification extends AppCompatActivity {
         ImageView icon_menu_right = (ImageView)findViewById(R.id.imv_menu_right);
         icon_menu_right.setVisibility(View.GONE);
 
+        //listview content notification
+        final ListView list_notification = (ListView)findViewById(R.id.lv_content_notification) ;
+        list_notification.setAdapter(new Custom_ListView_Notification(Notification.this, prgmNameList,prgmNameList));
+        //end
         //bottom menu
 
         bottomBar = BottomBar.attach(this, savedInstanceState);
@@ -81,32 +85,31 @@ public class Notification extends AppCompatActivity {
             public void onClick(View view) {
 
                 setContentView(R.layout.menu);
-                ListView lv=(ListView) findViewById(R.id.listViewa);
+                lv1=(ListView) findViewById(R.id.listViewa);
                 getSupportActionBar().hide();
                 bottomBar.hide();
                 // cross.setVisibility(View.GONE);
-                lv.setAdapter(new CustomAdapter(Notification.this, prgmNameList,prgmImages));
+                lv1.setAdapter(new CustomAdapter(Notification.this, prgmNameList,prgmImages));
 
                 ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
                 //hide menu
                 close_menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        getSupportActionBar().show();
-                        bottomBar.show();
-                        setContentView(R.layout.activity_notification);
+                        Intent itent = new Intent(Notification.this,Notification.class);
+                        startActivity(itent);
                     }
                 });
 
 
 
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                         switch (i){
                             case 0:
-                                getSupportActionBar().show();
-                                bottomBar.show();
+                                Intent itent1 = new Intent(Notification.this,MainActivity.class);
+                                startActivity(itent1);
                                 break;
                             case 1:
                                 Intent itent = new Intent(Notification.this,Notification.class);
