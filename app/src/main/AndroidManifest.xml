@@ -48,7 +48,7 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait"
-            android:theme="@style/CustomTheme" />
+            />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -66,8 +66,7 @@
         <activity
             android:name=".Invite_friend"
             android:theme="@style/CustomTheme" />
-        <activity android:name=".Rate"
-            android:theme="@style/CustomTheme" ></activity>
+        <activity android:name=".Rate"></activity>
     </application>
 
 </manifest>

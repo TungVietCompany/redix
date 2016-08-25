@@ -48,10 +48,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
-        View view =getSupportActionBar().getCustomView();
+//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+//        getSupportActionBar().setDisplayShowCustomEnabled(true);
+//        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
+//        View view =getSupportActionBar().getCustomView();
 
 
 
@@ -86,59 +86,59 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         //bottomBar.setActiveTabColor("#C2185B");
 
         //show list menu
-        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
-        menubar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
-                setContentView(R.layout.menu);
-                lv=(ListView) findViewById(R.id.listViewa);
-                getSupportActionBar().hide();
-                bottomBar.hide();
-               // cross.setVisibility(View.GONE);
-                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
-
-                close_menu = (ImageView)findViewById(R.id.imgv_close);
-                //hide menu
-                close_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent itent = new Intent(MainActivity.this,MainActivity.class);
-                        startActivity(itent);
-                    }
-                });
-
-
-
-                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        switch (i){
-                            case 0:
-                                Intent itent1 = new Intent(MainActivity.this,MainActivity.class);
-                                startActivity(itent1);
-                                break;
-                            case 1:
-                                Intent itent = new Intent(MainActivity.this,Notification.class);
-                                startActivity(itent);
-                                break;
-                            case 2:
-                                Intent itent2 = new Intent(MainActivity.this,faq_activity.class);
-                                startActivity(itent2);
-                                break;
-                            case 3:
-                                Intent itent3 = new Intent(MainActivity.this,Invite_friend.class);
-                                startActivity(itent3);
-                                break;
-                            case 4:
-                                Intent itent4 = new Intent(MainActivity.this,Rate.class);
-                                startActivity(itent4);
-                                break;
-                        }
-                    }
-                });
-            }
-        });
+//        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
+//        menubar.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//                setContentView(R.layout.menu);
+//                lv=(ListView) findViewById(R.id.listViewa);
+//                getSupportActionBar().hide();
+//                bottomBar.hide();
+//               // cross.setVisibility(View.GONE);
+//                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
+//
+//                close_menu = (ImageView)findViewById(R.id.imgv_close);
+//                //hide menu
+//                close_menu.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View view) {
+//                        Intent itent = new Intent(MainActivity.this,MainActivity.class);
+//                        startActivity(itent);
+//                    }
+//                });
+//
+//
+//
+//                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//                    @Override
+//                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+//                        switch (i){
+//                            case 0:
+//                                Intent itent1 = new Intent(MainActivity.this,MainActivity.class);
+//                                startActivity(itent1);
+//                                break;
+//                            case 1:
+//                                Intent itent = new Intent(MainActivity.this,Notification.class);
+//                                startActivity(itent);
+//                                break;
+//                            case 2:
+//                                Intent itent2 = new Intent(MainActivity.this,faq_activity.class);
+//                                startActivity(itent2);
+//                                break;
+//                            case 3:
+//                                Intent itent3 = new Intent(MainActivity.this,Invite_friend.class);
+//                                startActivity(itent3);
+//                                break;
+//                            case 4:
+//                                Intent itent4 = new Intent(MainActivity.this,Rate.class);
+//                                startActivity(itent4);
+//                                break;
+//                        }
+//                    }
+//                });
+//            }
+//        });
     }
 
     @Override

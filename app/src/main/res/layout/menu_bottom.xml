@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="5dp"
+
+    >
+
+
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2dp"
+        android:background="#f06667"
+
+        android:id="@+id/view"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="54dp" />
+
+    <TableRow
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/view">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_menu"
+            android:src="@drawable/menu"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView16"
+            android:src="@drawable/menu"
+            android:padding="10dp"
+            android:layout_alignParentBottom="true"
+            android:layout_weight="1"
+            android:layout_toLeftOf="@+id/imageView15"
+            android:layout_toStartOf="@+id/imageView15"
+            android:layout_gravity="bottom" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/img_menu_component"
+            android:src="@drawable/back"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_alignTop="@+id/view"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_gravity="bottom" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView17"
+            android:src="@drawable/menu"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_alignParentBottom="true"
+            android:layout_toRightOf="@+id/imageView15"
+            android:layout_toEndOf="@+id/imageView15"
+            android:layout_gravity="bottom" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView15"
+            android:src="@drawable/menu"
+            android:padding="10dp"
+            android:layout_weight="1"
+            android:layout_gravity="bottom"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true" />
+
+    </TableRow>
+
+
+
+</RelativeLayout>

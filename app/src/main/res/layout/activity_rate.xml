@@ -4,13 +4,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="redix.booxtown.Rate">
-
-
+    <include layout="@layout/menu_top" />
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView12"
         android:src="@drawable/icon_rate"
+        android:layout_marginTop="63dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
@@ -48,7 +48,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/relativeLayout4"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true">
+        android:layout_alignParentStart="true"
+        android:id="@+id/relativeLayout5">
 
         <ImageView
             android:layout_width="200dp"
@@ -72,4 +73,8 @@
             android:layout_toRightOf="@+id/imageView13"
             android:layout_toEndOf="@+id/imageView13" />
     </RelativeLayout>
+    <include layout="@layout/menu_bottom"
+       />
+
+
 </RelativeLayout>
