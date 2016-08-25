@@ -75,38 +75,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:src="@drawable/cross1"
-            android:layout_alignBottom="@+id/relative_menu"
             android:layout_alignParentTop="true" />
-
-        <RelativeLayout
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:visibility="gone"
-            android:background="#d45959"
-            android:id="@+id/relative_menu">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/imv_close_menu_noti"
-                android:layout_alignParentTop="true"
-                android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
-                android:paddingTop="15dp"
-                android:paddingRight="15dp"
-                android:src="@drawable/close" />
-
-            <ListView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/listView_menu_home"
-                android:layout_below="@+id/imv_close_menu_noti"
-                android:layout_alignParentLeft="true"
-                android:layout_alignParentStart="true"
-                android:fastScrollAlwaysVisible="false" />
-        </RelativeLayout>
 
         <ImageView
             android:layout_width="wrap_content"
