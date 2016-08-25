@@ -5,14 +5,19 @@
     android:layout_height="match_parent"
     tools:context="redix.booxtown.Activity.About">
 
+    <include layout="@layout/menu_top" />
+    <include layout="@layout/menu_bottom" />
+
     <TextView
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:text="Create new project in your Eclipse IDE and fill all the details. File ⇒ New Project 2. If you notice the screen shots I designed listview with gradient background. To define gradient style create three new XML files under drawable folder and name them as gradient_bg.xml, list_selector.xml and gradient_bg_hover.xml and fill with following code. Also the thumbnail image has white background, for this I used image_bg.xml Right Click and drawable-hdpi ⇒ New ⇒ Android XML File"
         android:id="@+id/textView5"
         android:layout_alignParentLeft="true"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="50dp"
+        android:layout_marginBottom="45dp" />
 </RelativeLayout>

@@ -29,14 +29,6 @@
             android:layout_alignBottom="@+id/imageView10"
             android:textColor="#eb5656" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView11"
-            android:src="@drawable/cross1"
-            android:layout_below="@+id/imageView10"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
     </RelativeLayout>
 
     <RelativeLayout

@@ -15,7 +15,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="70dp"
+            android:layout_height="60dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
@@ -24,38 +24,44 @@
             android:id="@+id/relativeLayout">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:id="@+id/editText"
                 android:background="#ffffff"
                 android:layout_centerVertical="true"
-                android:layout_alignParentLeft="true"
+                android:layout_alignParentLeft="false"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="20dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="10dp"
                 android:layout_alignRight="@+id/button2"
                 android:layout_alignEnd="@+id/button2"
-                android:hint="Search" />
+                android:hint="Search"
+                android:enabled="false"
+                android:layout_alignParentTop="false" />
 
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button"
-                android:background="@drawable/icon_search_ranger"
+                android:background="@drawable/filter"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true"
+                android:layout_alignParentEnd="false"
                 android:layout_alignTop="@+id/editText"
-                android:layout_alignBottom="@+id/editText" />
+                android:layout_alignBottom="@+id/editText"
+                android:layout_marginRight="10dp"
+                android:adjustViewBounds="true" />
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="wrap_content"
+                android:layout_width="25dp"
+                android:layout_height="match_parent"
                 android:id="@+id/button2"
                 android:layout_toLeftOf="@+id/button"
                 android:background="@drawable/icon_search"
                 android:layout_alignTop="@+id/editText"
-                android:layout_alignBottom="@+id/editText" />
+                android:layout_alignBottom="@+id/editText"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp" />
 
         </RelativeLayout>
 

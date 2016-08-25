@@ -48,6 +48,24 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
 
+        ImageView menu =
+                (ImageView)findViewById(R.id.img_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                setContentView(R.layout.menu);
+                ListView lv=(ListView) findViewById(R.id.listViewa);
+                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
+                ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
+                close_menu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent itent = new Intent(MainActivity.this,Rate.class);
+                        startActivity(itent);
+                    }
+                });
+            }
+        });
     }
 
     @Override

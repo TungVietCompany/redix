@@ -55,14 +55,11 @@
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
         <activity
-            android:name=".Notification"
-            android:theme="@style/CustomTheme" />
+            android:name=".Notification" />
         <activity
-            android:name=".faq_activity"
-            android:theme="@style/CustomTheme" />
+            android:name=".faq_activity" />
         <activity
-            android:name=".Faq_content"
-            android:theme="@style/CustomTheme" />
+            android:name=".Faq_content" />
         <activity
             android:name=".Invite_friend"
             android:theme="@style/CustomTheme" />

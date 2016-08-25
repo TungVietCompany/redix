@@ -27,17 +27,6 @@ public class faq_activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
-        View view =getSupportActionBar().getCustomView();
-
-        TextView title_menu = (TextView)findViewById(R.id.txt_title_menu);
-        title_menu.setText("FAQ");
-
-        ImageView icon_menu_right = (ImageView)findViewById(R.id.imv_menu_right);
-        icon_menu_right.setVisibility(View.GONE);
-
         ListView listView_faq = (ListView)findViewById(R.id.lv_content_faq);
         listView_faq.setAdapter(new Custom_Listview_faq(faq_activity.this, prgmNameList));
 
@@ -52,74 +41,21 @@ public class faq_activity extends AppCompatActivity {
                 }
             }
         });
-        //bottom menu
 
-        bottomBar = BottomBar.attach(this, savedInstanceState);
-        CoordinatorLayout coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
-        bottomBar.setItemsFromMenu(R.menu.three_buttons_menu, new OnMenuTabSelectedListener() {
+        ImageView menu =
+                (ImageView)findViewById(R.id.img_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onMenuItemSelected(int itemId) {
-                switch (itemId) {
-                    case R.id.location_item:
-
-                        break;
-                    case R.id.message_item:
-
-                        break;
-                    case R.id.camera_item:
-
-                        break;
-
-                }
-            }
-        });
-
-        bottomBar.mapColorForTab(0,0xFF5D4037);
-        bottomBar.mapColorForTab(1, 0xFF5D4037);
-        bottomBar.mapColorForTab(2, "#7B1FA2");
-        bottomBar.mapColorForTab(3, "#FF5252");
-        bottomBar.mapColorForTab(4, "#FF9800");
-        // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        //bottomBar.setActiveTabColor("#C2185B");
-        //end
-
-        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
-        menubar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-
+            public void onClick(View v) {
                 setContentView(R.layout.menu);
-                ListView lv1=(ListView) findViewById(R.id.listViewa);
-                getSupportActionBar().hide();
-                bottomBar.hide();
-                // cross.setVisibility(View.GONE);
-                lv1.setAdapter(new CustomAdapter(faq_activity.this, prgmNameList,prgmImages));
-
+                ListView lv=(ListView) findViewById(R.id.listViewa);
+                lv.setAdapter(new CustomAdapter(faq_activity.this, prgmNameList,prgmImages));
                 ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
-                //hide menu
                 close_menu.setOnClickListener(new View.OnClickListener() {
                     @Override
-                    public void onClick(View view) {
+                    public void onClick(View v) {
                         Intent itent = new Intent(faq_activity.this,faq_activity.class);
                         startActivity(itent);
-                    }
-                });
-
-
-
-                lv1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                        switch (i){
-                            case 0:
-                                Intent itent1 = new Intent(faq_activity.this,MainActivity.class);
-                                startActivity(itent1);
-                                break;
-                            case 1:
-                                Intent itent = new Intent(faq_activity.this,Notification.class);
-                                startActivity(itent);
-                                break;
-                        }
                     }
                 });
             }
