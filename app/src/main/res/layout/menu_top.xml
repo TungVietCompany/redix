@@ -17,7 +17,7 @@
             android:text="Explore"
             android:gravity="center_vertical"
             android:id="@+id/txt_title"
-
+            android:textColor="@color/color_text"
             android:layout_alignBottom="@+id/img_menu_component"
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true" />
@@ -25,11 +25,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/img_menu_component"
-            android:src="@drawable/menus"
+            android:src="@drawable/icon_comeback_location"
             android:padding="15dp"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true" />
+            android:layout_alignParentEnd="true"
+            android:layout_above="@+id/view2" />
 
     <View
         android:layout_width="fill_parent"
@@ -37,5 +38,6 @@
         android:background="#f06667"
         android:layout_below="@+id/img_menu"
         android:layout_alignRight="@+id/img_menu_component"
-        android:layout_alignEnd="@+id/img_menu_component" />
+        android:layout_alignEnd="@+id/img_menu_component"
+        android:id="@+id/view2" />
 </RelativeLayout>
