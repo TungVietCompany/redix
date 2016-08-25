@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/three_buttons_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
-
+    <include layout="@layout/menu_top" />
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" >
+        android:layout_height="match_parent"
+        android:layout_marginTop="63dp"
+        android:layout_alignParentBottom="true">
 
         <RelativeLayout
             android:layout_width="match_parent"
@@ -17,6 +19,7 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:background="#f8f3f3"
+
             android:id="@+id/relativeLayout">
 
             <EditText
@@ -63,15 +66,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             tools:context=".ThreeButtonsActivity"
-            android:layout_below="@+id/relativeLayout"
-            android:layout_above="@+id/cross2" />
+            android:layout_below="@+id/relativeLayout" />
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/cross2"
-            android:layout_alignParentBottom="true"
-            android:background="@drawable/cross1" />
     </RelativeLayout>
-
-</android.support.design.widget.CoordinatorLayout>
+    <include layout="@layout/menu_bottom" />
+</RelativeLayout>
