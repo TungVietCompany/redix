@@ -122,6 +122,14 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                 Intent itent = new Intent(MainActivity.this,Notification.class);
                                 startActivity(itent);
                                 break;
+                            case 2:
+                                Intent itent2 = new Intent(MainActivity.this,faq_activity.class);
+                                startActivity(itent2);
+                                break;
+                            case 3:
+                                Intent itent3 = new Intent(MainActivity.this,Invite_friend.class);
+                                startActivity(itent3);
+                                break;
                         }
                     }
                 });

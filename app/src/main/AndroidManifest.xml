@@ -3,12 +3,15 @@
     package="redix.booxtown">
 
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <supports-screens android:smallScreens="true"
-        android:normalScreens="true"
-        android:largeScreens="true"
-        android:xlargeScreens="true"
+
+    <supports-screens
         android:anyDensity="true"
-        android:resizeable="true"/>
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:resizeable="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/icon_sell"
@@ -51,8 +54,18 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
-        <activity android:name=".Notification"
-            android:theme="@style/CustomTheme"></activity>
+        <activity
+            android:name=".Notification"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".faq_activity"
+            android:theme="@style/CustomTheme" />
+        <activity
+            android:name=".Faq_content"
+            android:theme="@style/CustomTheme" />
+        <activity android:name=".Invite_friend"
+            android:theme="@style/CustomTheme"
+            ></activity>
     </application>
 
 </manifest>
