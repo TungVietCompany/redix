@@ -8,7 +8,6 @@
             android:layout_height="wrap_content"
             android:id="@+id/img_menu"
             android:src="@drawable/menus"
-
             android:padding="15dp"
 
             />
