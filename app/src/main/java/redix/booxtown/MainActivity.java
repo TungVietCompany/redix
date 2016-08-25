@@ -33,13 +33,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private CoordinatorLayout coordinatorLayout;
     private GoogleMap mMap;
     final int RQS_GooglePlayServices = 1;
-    TableLayout tableLayout1;
-    RelativeLayout relativeLayout;
 
     ListView lv;
     Context context;
+    ImageView close_menu;
 
-    ArrayList prgmName;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
 
@@ -47,9 +45,6 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        tableLayout1 = (TableLayout) findViewById(R.id.tablelayout2);
-        relativeLayout = (RelativeLayout)findViewById(R.id.relative_menu);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -69,13 +64,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             @Override
             public void onMenuItemSelected(int itemId) {
                 switch (itemId) {
-                    case R.id.recent_item:
+                    case R.id.location_item:
                         //Snackbar.make(coordinatorLayout, "Recent Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
-                    case R.id.favorite_item:
+                    case R.id.message_item:
                         //Snackbar.make(coordinatorLayout, "Favorite Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
-                    case R.id.location_item:
+                    case R.id.camera_item:
                         //Snackbar.make(coordinatorLayout, "Location Item Selected", Snackbar.LENGTH_LONG).show();
                         break;
 
@@ -84,60 +79,57 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
 
         // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        bottomBar.setActiveTabColor("#C2185B");
-        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
-        context=this;
+        bottomBar.mapColorForTab(0,0xFF5D4037);
+        bottomBar.mapColorForTab(1, 0xFF5D4037);
+        bottomBar.mapColorForTab(2, "#7B1FA2");
+        bottomBar.mapColorForTab(3, "#FF5252");
+        bottomBar.mapColorForTab(4, "#FF9800");
+
+        //bottomBar.setActiveTabColor("#C2185B");
+
         //show list menu
-        lv=(ListView) findViewById(R.id.listView_menu_home);
-        final ImageView cross = (ImageView)findViewById(R.id.cross2);
+        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
         menubar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim);
-//                animation.setDuration(200);
-//                relativeLayout.setAnimation(animation);
-//                relativeLayout.animate();
-//                animation.start();
-                relativeLayout.setVisibility(View.VISIBLE);
 
+                setContentView(R.layout.menu);
+                lv=(ListView) findViewById(R.id.listViewa);
                 getSupportActionBar().hide();
                 bottomBar.hide();
-                cross.setVisibility(View.GONE);
+               // cross.setVisibility(View.GONE);
                 lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
-            }
-        });
 
-        //hide menu
-        ImageView close_menu = (ImageView)findViewById(R.id.imv_close_menu_noti);
-        close_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                getSupportActionBar().show();
-                bottomBar.show();
-                cross.setVisibility(View.VISIBLE);
-                relativeLayout.setVisibility(View.GONE);
-
-            }
-        });
-
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
+                close_menu = (ImageView)findViewById(R.id.imgv_close);
+                //hide menu
+                close_menu.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
                         getSupportActionBar().show();
                         bottomBar.show();
-                        cross.setVisibility(View.VISIBLE);
-                        relativeLayout.setVisibility(View.GONE);
-                        break;
-                    case 1:
-                        Intent itent = new Intent(MainActivity.this,Notification.class);
-                        startActivity(itent);
-                        break;
-                }
+                        setContentView(R.layout.activity_main);
+                    }
+                });
+
+
+
+                lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                        switch (i){
+                            case 0:
+                                getSupportActionBar().show();
+                                bottomBar.show();
+                                break;
+                            case 1:
+                                Intent itent = new Intent(MainActivity.this,Notification.class);
+                                startActivity(itent);
+                                break;
+                        }
+                    }
+                });
             }
         });
-
     }
 
     @Override
