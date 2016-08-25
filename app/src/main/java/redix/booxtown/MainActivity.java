@@ -1,12 +1,17 @@
 package redix.booxtown;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.TableLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,14 +27,29 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabSelectedListener;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private CoordinatorLayout coordinatorLayout;
     private GoogleMap mMap;
     final int RQS_GooglePlayServices = 1;
+    TableLayout tableLayout1;
+    RelativeLayout relativeLayout;
+
+    ListView lv;
+    Context context;
+
+    ArrayList prgmName;
+    public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
+    public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        tableLayout1 = (TableLayout) findViewById(R.id.tablelayout2);
+        relativeLayout = (RelativeLayout)findViewById(R.id.relative_menu);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
@@ -40,9 +60,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
         View view =getSupportActionBar().getCustomView();
 
+
+
         coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
 
-        BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
+        final BottomBar bottomBar = BottomBar.attach(this, savedInstanceState);
         bottomBar.setItemsFromMenu(R.menu.three_buttons_menu, new OnMenuTabSelectedListener() {
             @Override
             public void onMenuItemSelected(int itemId) {
@@ -63,7 +85,58 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
         bottomBar.setActiveTabColor("#C2185B");
-        
+        ImageView menubar = (ImageView)findViewById(R.id.imageView6);
+        context=this;
+        //show list menu
+        lv=(ListView) findViewById(R.id.listView_menu_home);
+        final ImageView cross = (ImageView)findViewById(R.id.cross2);
+        menubar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                Animation animation = AnimationUtils.loadAnimation(MainActivity.this, R.anim.anim);
+//                animation.setDuration(200);
+//                relativeLayout.setAnimation(animation);
+//                relativeLayout.animate();
+//                animation.start();
+                relativeLayout.setVisibility(View.VISIBLE);
+
+                getSupportActionBar().hide();
+                bottomBar.hide();
+                cross.setVisibility(View.GONE);
+                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
+            }
+        });
+
+        //hide menu
+        ImageView close_menu = (ImageView)findViewById(R.id.imv_close_menu_noti);
+        close_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                getSupportActionBar().show();
+                bottomBar.show();
+                cross.setVisibility(View.VISIBLE);
+                relativeLayout.setVisibility(View.GONE);
+
+            }
+        });
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                switch (i){
+                    case 0:
+                        getSupportActionBar().show();
+                        bottomBar.show();
+                        cross.setVisibility(View.VISIBLE);
+                        relativeLayout.setVisibility(View.GONE);
+                        break;
+                    case 1:
+                        Intent itent = new Intent(MainActivity.this,Notification.class);
+                        startActivity(itent);
+                        break;
+                }
+            }
+        });
 
     }
 
@@ -104,13 +177,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         double latitude = 17.385044;
         double longitude = 78.486671;
 
-// create marker
+        // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
-// Changing marker icon
+        // Changing marker icon
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
 
-// adding marker
+        // adding marker
         mMap.addMarker(marker);
 
 

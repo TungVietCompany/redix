@@ -21,7 +21,7 @@ Button mButtonForgotPass;
         mButtonBackSignIn = (Button) findViewById(R.id.btn_sigin);
         mButtonBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
-        mButtonForgotPass.setOnClickListener(this);
+        //mButtonForgotPass.setOnClickListener(this);
     }
 
     @Override

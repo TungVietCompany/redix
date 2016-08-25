@@ -2,6 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_marginLeft="@dimen/layout_parent_left"
+    android:layout_marginTop="@dimen/layout_parent_top"
+    android:layout_marginRight="@dimen/layout_parent_right"
+    android:layout_marginBottom="@dimen/layout_parent_bottom"
     android:background="@android:color/transparent">
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,7 +21,7 @@
             android:textColor="@android:color/holo_red_light"/>
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:src="@drawable/icon_booxtown" />
     </LinearLayout>
     <LinearLayout
