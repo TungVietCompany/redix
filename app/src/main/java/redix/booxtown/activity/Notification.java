@@ -9,7 +9,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 
+<<<<<<< HEAD:app/src/main/java/redix/booxtown/Notification.java
+=======
 import com.roughike.bottombar.BottomBar;
+>>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/Notification.java
 
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
@@ -19,7 +22,6 @@ public class Notification extends AppCompatActivity {
     ListView lv1;
     Context context;
     RelativeLayout relativeLayout1;
-    BottomBar bottomBar;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
 

@@ -8,7 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
+<<<<<<< HEAD:app/src/main/java/redix/booxtown/faq_activity.java
+=======
 import com.roughike.bottombar.BottomBar;
+>>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/faq_activity.java
 
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
@@ -18,7 +21,6 @@ public class faq_activity extends AppCompatActivity {
 
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
-    BottomBar bottomBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

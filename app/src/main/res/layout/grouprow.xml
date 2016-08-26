@@ -7,7 +7,7 @@
     android:drawableRight="@drawable/plusminus"
     android:gravity="center_vertical"
     android:text="hello"
-    android:textColor="#4cf0bf"
+    android:textColor="#6cd1b3"
     android:padding="10dp"
     android:textSelectHandleLeft="@string/title_loacte"
     android:textSize="14sp"

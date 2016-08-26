@@ -7,16 +7,12 @@ import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
 import android.widget.ExpandableListView;
 
-import com.roughike.bottombar.BottomBar;
-import com.roughike.bottombar.OnMenuTabSelectedListener;
-
 import java.util.ArrayList;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.NewAdapter;
 
 public class Faq_content extends ExpandableListActivity {
-    BottomBar bottomBar;
     private CoordinatorLayout coordinatorLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,38 +33,6 @@ public class Faq_content extends ExpandableListActivity {
         expandableListView.setAdapter(mNewAdapter);
         //end
 
-//        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-//        getSupportActionBar().setDisplayShowCustomEnabled(true);
-//        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
-//        View view =getSupportActionBar().getCustomView();
-
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.three_buttons_activity);
-
-        bottomBar = BottomBar.attach(this, savedInstanceState);
-        bottomBar.setItemsFromMenu(R.menu.three_buttons_menu, new OnMenuTabSelectedListener() {
-            @Override
-            public void onMenuItemSelected(int itemId) {
-                switch (itemId) {
-                    case R.id.location_item:
-                        //Snackbar.make(coordinatorLayout, "Recent Item Selected", Snackbar.LENGTH_LONG).show();
-                        break;
-                    case R.id.message_item:
-                        //Snackbar.make(coordinatorLayout, "Favorite Item Selected", Snackbar.LENGTH_LONG).show();
-                        break;
-                    case R.id.camera_item:
-                        //Snackbar.make(coordinatorLayout, "Location Item Selected", Snackbar.LENGTH_LONG).show();
-                        break;
-
-                }
-            }
-        });
-
-        // Set the color for the active tab. Ignored on mobile when there are more than three tabs.
-        bottomBar.mapColorForTab(0,0xFF5D4037);
-        bottomBar.mapColorForTab(1, 0xFF5D4037);
-        bottomBar.mapColorForTab(2, "#7B1FA2");
-        bottomBar.mapColorForTab(3, "#FF5252");
-        bottomBar.mapColorForTab(4, "#FF9800");
     }
 
     public void setGroupData() {
@@ -86,26 +50,30 @@ public class Faq_content extends ExpandableListActivity {
          * Add Data For TecthNology
          */
         ArrayList<String> child = new ArrayList<String>();
-        child.add("Java");
+        child.add("Thanks for the code. Please from now on share code in your question by editing it, " +
+                "since it is not readable in comment. Also, please share your main layout");
         childItem.add(child);
 
         /**
          * Add Data For Mobile
          */
         child = new ArrayList<String>();
-        child.add("Android");
+        child.add("Thanks for the code. Please from now on share code in your question by editing it," +
+                " since it is not readable in comment. Also, please share your main layout");
         childItem.add(child);
         /**
          * Add Data For Manufacture
          */
         child = new ArrayList<String>();
-        child.add("HTC");
+        child.add("Thanks for the code. Please from now on share code in your question by editing it," +
+                " since it is not readable in comment. Also, please share your main layout");
         childItem.add(child);
         /**
          * Add Data For Extras
          */
         child = new ArrayList<String>();
-        child.add("Contact Us");
+        child.add("Thanks for the code. Please from now on share code in your question by editing it," +
+                " since it is not readable in comment. Also, please share your main layout");
         childItem.add(child);
     }
 }

@@ -3,12 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="redix.booxtown.Invite_friend">
-
+    <include layout="@layout/menu_top" />
+    <include layout="@layout/menu_bottom" />
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,17 +14,25 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="65dp"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:hint="Enter email ID" />
 
     <ImageView
-        android:layout_width="wrap_content"
+        android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:id="@+id/imv_search_invite"
         android:layout_alignBottom="@+id/editText2"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/icon_search"
-        android:layout_alignParentTop="true" />
+        android:src="@drawable/search_invite_friend"
+        android:layout_alignTop="@+id/editText2"
+        android:layout_marginBottom="10dp"
+        android:layout_marginRight="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -35,7 +40,8 @@
         android:id="@+id/imv_invite"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:src="@drawable/icon_invite" />
+        android:src="@drawable/icon_invite"
+        android:layout_marginBottom="55dp" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -44,5 +50,7 @@
         android:layout_below="@+id/editText2"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/imv_invite" />
+        android:layout_above="@+id/imv_invite"
+        android:layout_marginBottom="10dp"
+        android:padding="10dp" />
 </RelativeLayout>

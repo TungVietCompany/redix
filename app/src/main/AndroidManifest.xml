@@ -2,7 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="redix.booxtown">
 
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
 
     <supports-screens
         android:anyDensity="true"
@@ -19,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.Splash_Activity"
+            android:name=".Splash_Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +37,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.WelcomeActivity"
+            android:name=".WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.SigUp_Activity"
+            android:name=".SigUp_Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,13 +49,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".activity.SignIn_Activity"
+            android:name=".SignIn_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.ForgotPassword_Activity"
+            android:name=".ForgotPassword_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MainActivity"
+            android:name=".MainActivity"
             android:screenOrientation="portrait"
             />
 
@@ -55,19 +64,23 @@
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
         <activity
-            android:name=".activity.Notification" />
+            android:name=".Notification" />
         <activity
-            android:name=".activity.faq_activity" />
+            android:name=".faq_activity" />
         <activity
-            android:name=".activity.Faq_content" />
-        <!-- activity for Explore-->
+            android:name=".Faq_content" />
         <activity
-            android:name=".activity.ExploreActivity" />
-
-        <activity
-            android:name=".activity.Invite_friend"
-            android:theme="@style/CustomTheme" />
-        <activity android:name=".activity.Rate"></activity>
+            android:name=".Invite_friend" />
+        <activity android:name=".Rate">
+        </activity>
+        <activity android:name=".Activity.Contact">
+        </activity>
+        <activity android:name=".Activity.Setting">
+        </activity><!-- ATTENTION: This was auto-generated to add Google Play services to your project for
+     App Indexing.  See https://g.co/AppIndexing/AndroidStudio for more information. -->
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
