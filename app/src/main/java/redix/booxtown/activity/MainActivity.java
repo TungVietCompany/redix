@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +23,8 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
+import redix.booxtown.custom.CustomSearch;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private CoordinatorLayout coordinatorLayout;
@@ -38,6 +41,26 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        View view_top= (View) findViewById(R.id.explore_menu_top);
+        TextView txtTitle=(TextView) view_top.findViewById(R.id.txt_title);
+        txtTitle.setText("Locate");
+
+        ImageView img_component=(ImageView) view_top.findViewById(R.id.img_menu_component);
+        img_component.setImageResource(R.drawable.icon_explore);
+        img_component.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent itentsign = new Intent(MainActivity.this,ExploreActivity.class);
+                startActivity(itentsign);
+            }
+        });
+        // set onclick for menu bottom
+        RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
+        new MenuBottomCustom(menu_bottom,this);
+        // set for layout_search
+        View view= (View) findViewById(R.id.custom_search);
+        new CustomSearch(view,this);
 
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);

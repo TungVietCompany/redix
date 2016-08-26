@@ -27,7 +27,7 @@ public class MenuBottomCustom{
         btn_bag = (ImageView) view.findViewById(R.id.img_menu_bottom_bag);
         btn_user = (ImageView) view.findViewById(R.id.img_menu_bottom_user);
 
-
+        Toast.makeText(ct,"ahihi", Toast.LENGTH_LONG).show();
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -13,8 +13,7 @@
         android:src="@drawable/img_temp1"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:padding="5dp"
-        android:layout_marginTop="20dp" />
+        android:padding="5dp" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -120,7 +119,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="AED 1502"
+            android:text="AED 299"
             android:gravity="center_vertical"
             android:textColor="@color/color_title_book"
             android:textSize="12sp"
