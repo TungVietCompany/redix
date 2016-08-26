@@ -71,11 +71,10 @@
         <!-- activity for Explore-->
         <activity
             android:name=".activity.ExploreActivity" />
-
         <activity
-            android:name=".activity.Invite_friend"
-            android:theme="@style/CustomTheme" />
+            android:name=".activity.Invite_friend" />
         <activity android:name=".activity.Rate"></activity>
+        <activity android:name=".activity.Setting"></activity>
     </application>
 
 </manifest>
