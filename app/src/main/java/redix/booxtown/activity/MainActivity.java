@@ -20,11 +20,6 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
-<<<<<<< HEAD:app/src/main/java/redix/booxtown/MainActivity.java
-=======
-import com.roughike.bottombar.BottomBar;
->>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/MainActivity.java
-
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
 
@@ -60,7 +55,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 close_menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent itent = new Intent(MainActivity.this,Rate.class);
+                        Intent itent = new Intent(MainActivity.this, redix.booxtown.activity.Rate.class);
                         startActivity(itent);
                     }
                 });

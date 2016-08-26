@@ -1,5 +1,4 @@
 package redix.booxtown.activity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,12 +6,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
-
-<<<<<<< HEAD:app/src/main/java/redix/booxtown/faq_activity.java
-=======
-import com.roughike.bottombar.BottomBar;
->>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/faq_activity.java
-
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.Custom_Listview_faq;

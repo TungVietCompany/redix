@@ -8,9 +8,6 @@ import android.widget.Button;
 
 import redix.booxtown.R;
 
-import redix.booxtown.Activity.Contact;
-import redix.booxtown.Activity.Setting;
-
 public class SignIn_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonForgotPass;
     Button mButtonBackSignIn;
@@ -40,11 +37,7 @@ Button mButtonForgotPass;
                 startActivity(itentback);
                 break;
             case R.id.btn_sigin:
-<<<<<<< HEAD:app/src/main/java/redix/booxtown/SignIn_Activity.java
-                Intent itentsign = new Intent(SignIn_Activity.this,Setting.class);
-=======
                 Intent itentsign = new Intent(SignIn_Activity.this,ExploreActivity.class);
->>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/SignIn_Activity.java
                 startActivity(itentsign);
             default:
                 break;

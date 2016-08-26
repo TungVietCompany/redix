@@ -8,12 +8,6 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-
-<<<<<<< HEAD:app/src/main/java/redix/booxtown/Notification.java
-=======
-import com.roughike.bottombar.BottomBar;
->>>>>>> a1f16451bf929808b8ad80ae24d890dd3d684b75:app/src/main/java/redix/booxtown/activity/Notification.java
-
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.Custom_ListView_Notification;
