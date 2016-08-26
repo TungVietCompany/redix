@@ -75,6 +75,7 @@
             android:name=".activity.Invite_friend" />
         <activity android:name=".activity.Rate"></activity>
         <activity android:name=".activity.Setting"></activity>
+        <activity android:name=".activity.TestActivity"></activity>
     </application>
 
 </manifest>
