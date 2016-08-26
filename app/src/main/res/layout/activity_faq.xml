@@ -4,8 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="redix.booxtown.faq_activity">
-    <include layout="@layout/menu_top" />
-    <include layout="@layout/menu_bottom" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="50dp"
@@ -18,15 +17,6 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
-    <ListView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lv_content_faq"
-        android:layout_below="@+id/editText"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:paddingTop="15dp"
-        android:layout_marginBottom="45dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -37,5 +27,29 @@
         android:layout_alignEnd="@+id/editText"
         android:src="@drawable/icon_search"
         android:padding="15dp"
-        android:layout_above="@+id/lv_content_faq" />
+       />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_top"
+        android:layout_above="@+id/imageView"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/include2" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/lv_content_faq"
+        android:layout_below="@+id/editText"
+        android:layout_centerHorizontal="true" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
+
+
 </RelativeLayout>
