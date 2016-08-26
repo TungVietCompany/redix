@@ -3,7 +3,7 @@
     android:id="@+id/three_buttons_activity"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activity.MainActivity">
 
     <include
         android:layout_width="wrap_content"
@@ -11,27 +11,37 @@
         layout="@layout/menu_top"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/include3" />
+        android:id="@+id/menu_top_explore" />
 
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/layout_search"
-        android:layout_below="@+id/include3"
+        android:layout_below="@+id/menu_top_explore"
         android:layout_centerHorizontal="true"
         android:id="@+id/include4" />
 
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:numColumns="2"
+        android:gravity="center"
+        android:verticalSpacing="5dp"
+        android:horizontalSpacing="5dp"
+
         android:id="@+id/gridView"
         android:layout_below="@+id/include4"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/menu_bottom_explore"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp" />
 
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/menu_bottom_explore" />
 </RelativeLayout>

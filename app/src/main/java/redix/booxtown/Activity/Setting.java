@@ -1,4 +1,4 @@
-package redix.booxtown.Activity;
+package redix.booxtown.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

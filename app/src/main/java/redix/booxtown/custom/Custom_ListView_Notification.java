@@ -9,7 +9,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import redix.booxtown.Notification;
+import redix.booxtown.activity.Notification;
 import redix.booxtown.R;
 
 /**

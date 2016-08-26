@@ -1,9 +1,9 @@
-package redix.booxtown;
+package redix.booxtown.activity;
 
+import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -12,6 +12,7 @@ import android.widget.TextView;
 import com.roughike.bottombar.BottomBar;
 import com.roughike.bottombar.OnMenuTabSelectedListener;
 
+import redix.booxtown.R;
 import redix.booxtown.custom.Custom_invite;
 
 public class Invite_friend extends AppCompatActivity {

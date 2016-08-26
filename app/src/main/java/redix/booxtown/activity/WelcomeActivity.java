@@ -1,4 +1,4 @@
-package redix.booxtown;
+package redix.booxtown.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,6 +17,8 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import redix.booxtown.R;
 
 public class WelcomeActivity extends AppCompatActivity {
 

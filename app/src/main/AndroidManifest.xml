@@ -19,7 +19,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Splash_Activity"
+            android:name=".activity.Splash_Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -28,10 +28,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".WelcomeActivity"
+            android:name=".activity.WelcomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".SigUp_Activity"
+            android:name=".activity.SigUp_Activity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -40,13 +40,13 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".SignIn_Activity"
+            android:name=".activity.SignIn_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".ForgotPassword_Activity"
+            android:name=".activity.ForgotPassword_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.MainActivity"
             android:screenOrientation="portrait"
             />
 
@@ -55,15 +55,19 @@
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
         <activity
-            android:name=".Notification" />
+            android:name=".activity.Notification" />
         <activity
-            android:name=".faq_activity" />
+            android:name=".activity.faq_activity" />
         <activity
-            android:name=".Faq_content" />
+            android:name=".activity.Faq_content" />
+        <!-- activity for Explore-->
         <activity
-            android:name=".Invite_friend"
+            android:name=".activity.ExploreActivity" />
+
+        <activity
+            android:name=".activity.Invite_friend"
             android:theme="@style/CustomTheme" />
-        <activity android:name=".Rate"></activity>
+        <activity android:name=".activity.Rate"></activity>
     </application>
 
 </manifest>

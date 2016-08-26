@@ -1,9 +1,11 @@
-package redix.booxtown;
+package redix.booxtown.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+
+import redix.booxtown.R;
 
 public class Splash_Activity extends AppCompatActivity {
 

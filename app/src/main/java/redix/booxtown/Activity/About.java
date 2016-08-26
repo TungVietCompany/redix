@@ -1,13 +1,11 @@
-package redix.booxtown.Activity;
+package redix.booxtown.activity;
 
 import android.content.Intent;
-import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;

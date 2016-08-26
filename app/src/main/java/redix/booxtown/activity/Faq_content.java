@@ -1,13 +1,10 @@
-package redix.booxtown;
+package redix.booxtown.activity;
 
 import android.app.ExpandableListActivity;
 import android.content.Context;
-import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.widget.ExpandableListView;
 
 import com.roughike.bottombar.BottomBar;
@@ -15,6 +12,7 @@ import com.roughike.bottombar.OnMenuTabSelectedListener;
 
 import java.util.ArrayList;
 
+import redix.booxtown.R;
 import redix.booxtown.custom.NewAdapter;
 
 public class Faq_content extends ExpandableListActivity {

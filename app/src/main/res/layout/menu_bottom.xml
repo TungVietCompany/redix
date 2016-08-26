@@ -7,7 +7,7 @@
     >
     <View
         android:layout_width="fill_parent"
-        android:layout_height="2dp"
+        android:layout_height="1dp"
         android:background="#f06667"
         android:id="@+id/view"
         android:layout_alignParentTop="true"
@@ -25,7 +25,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/img_menu"
+            android:id="@+id/img_menu_bottom_location"
             android:src="@drawable/icon_menu_bottom_location"
             android:padding="5dp"
             android:layout_alignParentBottom="true"
@@ -38,7 +38,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView16"
+            android:id="@+id/img_menu_bottom_comment"
             android:src="@drawable/icon_menu_bottom_comment_not"
             android:padding="5dp"
             android:layout_alignParentBottom="true"
@@ -50,7 +50,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/img_menu_component"
+            android:id="@+id/img_menu_bottom_camera"
             android:src="@drawable/icon_menu_bottom_camera_not"
             android:padding="5dp"
             android:layout_weight="1"
@@ -62,7 +62,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView17"
+            android:id="@+id/img_menu_bottom_bag"
             android:src="@drawable/icon_menu_bottom_bag_not"
             android:padding="5dp"
             android:layout_weight="1"
@@ -74,7 +74,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView15"
+            android:id="@+id/img_menu_bottom_user"
             android:src="@drawable/icon_menu_bottom_user_not"
             android:padding="5dp"
             android:layout_weight="1"
