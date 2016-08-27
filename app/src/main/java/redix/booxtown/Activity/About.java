@@ -19,6 +19,9 @@ public class About extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
+
+
+
         ImageView menu =
                 (ImageView)findViewById(R.id.img_menu);
         menu.setOnClickListener(new View.OnClickListener() {
