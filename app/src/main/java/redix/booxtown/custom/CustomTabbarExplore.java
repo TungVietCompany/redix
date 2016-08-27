@@ -50,37 +50,7 @@ public class CustomTabbarExplore {
 
         imge_cart=(ImageView) view.findViewById(R.id.tab_cart);
         txt_cart_count=(TextView) view.findViewById(R.id.tab_cart_count);
-
         setDefault(1);
-
-        linear_all.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDefault(1);
-            }
-        });
-
-        linear_swap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDefault(2);
-            }
-        });
-
-        linear_free.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDefault(3);
-            }
-        });
-
-        linear_cart.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setDefault(4);
-            }
-        });
-
     }
 
 

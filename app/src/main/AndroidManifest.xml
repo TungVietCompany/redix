@@ -76,6 +76,7 @@
         <activity android:name=".activity.Rate"></activity>
         <activity android:name=".activity.Setting"></activity>
         <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.InteractActivity"></activity>
     </application>
 
 </manifest>

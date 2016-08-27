@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     ImageView close_menu;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
+    private MenuBottomCustom bottom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,7 +58,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         });
         // set onclick for menu bottom
         RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
-        new MenuBottomCustom(menu_bottom,this);
+        bottom=new MenuBottomCustom(menu_bottom,this,1);
+        bottom.setDefaut(1);
         // set for layout_search
         View view= (View) findViewById(R.id.custom_search);
         new CustomSearch(view,this);
@@ -171,6 +173,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             // TODO Auto-generated method stub
             return null;
         }
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
 
     }
 }

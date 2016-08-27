@@ -52,12 +52,15 @@ public class AdapterExplore extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
+        Explore ex= listExplore.get(position);
+
         if (convertView == null) {
 
             grid = new View(mContext);
             grid = inflater.inflate(R.layout.custom_gridview_explore, null);
             TextView txt_title_book = (TextView) grid.findViewById(R.id.txt_title_book);
             TextView txt_author_book = (TextView) grid.findViewById(R.id.txt_author_book);
+            TextView txt_price_book=(TextView) grid.findViewById(R.id.txt_pricebook);
 
             ImageView img_book = (ImageView)grid.findViewById(R.id.img_book);
             ImageView img_swap = (ImageView)grid.findViewById(R.id.img_explore_swap);
@@ -67,20 +70,37 @@ public class AdapterExplore extends BaseAdapter {
 
             if(position%2==0){
                 img_book.setImageResource((R.drawable.img_temp1));
-                img_swap.setImageResource((R.drawable.swap));
-                img_free.setImageResource((R.drawable.free_explore));
-                img_buy.setImageResource((R.drawable.cart));
                 txt_title_book.setText("The Las Painting of Sara de Vos");
                 txt_author_book.setText("buy Gandalf");
             }
             else
             {
                 img_book.setImageResource((R.drawable.img_temp1));
-                img_swap.setImageResource((R.drawable.swap));
-                img_free.setImageResource((R.drawable.free_explore));
-                img_buy.setImageResource((R.drawable.cart));
                 txt_title_book.setText("Gandalf the first");
                 txt_author_book.setText("buy Ptit");
+            }
+
+            if(ex.isSwap()){
+                img_swap.setImageResource((R.drawable.tab_book_explore_swap));
+            }
+            else{
+                img_swap.setImageResource((R.drawable.tab_book_explore_swap_not));
+            }
+
+            if(ex.isFree()){
+                img_free.setImageResource((R.drawable.tab_book_explore_free));
+            }
+            else{
+                img_free.setImageResource((R.drawable.tab_book_explore_free_not));
+            }
+
+            if(ex.isBuy()){
+                img_buy.setImageResource((R.drawable.tab_book_explore_cart));
+                txt_price_book.setVisibility(View.VISIBLE);
+                
+            }
+            else{
+                img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
             }
         } else {
             grid = (View) convertView;

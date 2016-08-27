@@ -120,6 +120,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:text="AED 299"
+            android:visibility="gone"
             android:gravity="center_vertical"
             android:textColor="@color/color_title_book"
             android:textSize="12sp"
