@@ -2,6 +2,7 @@ package redix.booxtown.custom;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.view.LayoutInflater;
@@ -14,6 +15,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.ActivityNotificationAccept;
+import redix.booxtown.activity.ActivityNotificationDominicAccept;
+import redix.booxtown.activity.NotificationSwapActivity;
 
 /**
  * Created by thuyetpham94 on 27/08/2016.
@@ -71,6 +75,15 @@ public class CustomListviewNotificationSwap extends BaseAdapter {
                 dialog.setContentView(R.layout.dialog_swap_listview_notification);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+
+                Button btn_notification_swapdialog_confirm = (Button)dialog.findViewById(R.id.btn_notification_swapdialog_confirm);
+                btn_notification_swapdialog_confirm.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(context, ActivityNotificationDominicAccept.class);
+                        context.startActivity(intent);
+                    }
+                });
 
                 ImageView imageView =(ImageView)dialog.findViewById(R.id.img_dialog_close_swap_listview_notification);
                 imageView.setOnClickListener(new View.OnClickListener() {

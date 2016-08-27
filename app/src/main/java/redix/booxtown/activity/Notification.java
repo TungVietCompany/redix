@@ -38,15 +38,17 @@ public class Notification extends AppCompatActivity {
                     Intent intent = new Intent(Notification.this,NotificationSwapActivity.class);
                     startActivity(intent);
                 }else if(i==1){
-
+                    Intent intent1 = new Intent(Notification.this,ActivityNotificationDominic.class);
+                    startActivity(intent1);
                 }else if(i==2){
-
+                    Intent intent2 = new Intent(Notification.this,NotificationSwapActivity.class);
+                    startActivity(intent2);
                 }
             }
         });
         //end
         RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
-        new MenuBottomCustom(menu_bottom,this);
+        new MenuBottomCustom(menu_bottom,this,0);
 
         ImageView menu =
                 (ImageView)findViewById(R.id.img_menu);
