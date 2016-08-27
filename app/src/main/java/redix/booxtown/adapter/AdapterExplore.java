@@ -63,6 +63,8 @@ public class AdapterExplore extends BaseAdapter {
             ImageView img_swap = (ImageView)grid.findViewById(R.id.img_explore_swap);
             ImageView img_free = (ImageView)grid.findViewById(R.id.img_explore_free);
             ImageView img_buy = (ImageView)grid.findViewById(R.id.img_explore_buy);
+
+
             if(position%2==0){
                 img_book.setImageResource((R.drawable.img_temp1));
                 img_swap.setImageResource((R.drawable.swap));
