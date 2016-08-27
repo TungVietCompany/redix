@@ -1,8 +1,13 @@
 package redix.booxtown.activity;
 
 import android.app.Dialog;
+import android.content.Context;
+import android.content.res.Resources;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,11 +16,19 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.BorderImage;
 import redix.booxtown.custom.CustomListviewNotificationSwap;
 
 public class NotificationSwapActivity extends AppCompatActivity {
+    private Context mContext;
+    private Resources mResources;
+    private RelativeLayout mRelativeLayout;
+    private Button mBTN;
+    private ImageView mImageView;
+    private Bitmap mBitmap;
 
     public static String [] prgmNameList={"Home","Notifications","FAQ"};
     @Override
@@ -45,6 +58,25 @@ public class NotificationSwapActivity extends AppCompatActivity {
                 });
             }
         });
+        mContext = getApplicationContext();
 
+        // Get the Resources
+        mResources = getResources();
+
+        // Get the widgets reference from XML layout
+       // mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
+        mImageView = (ImageView) findViewById(R.id.imv_menu_notification_infor1);
+
+        // Get the bitmap from drawable resources
+        mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
+
+        // Display the bitmap in ImageView
+        mImageView.setImageBitmap(mBitmap);
+
+        // Set an image for ImageView
+        mImageView.setImageBitmap(mBitmap);
+        BorderImage borderImage = new BorderImage();
+        RoundedBitmapDrawable drawable = borderImage.createRoundedBitmapDrawableWithBorder(mResources,mBitmap);
+        mImageView.setImageDrawable(drawable);
     }
 }

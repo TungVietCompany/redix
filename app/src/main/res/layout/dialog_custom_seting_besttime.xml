@@ -108,6 +108,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imv_close_dialog_submit"
-            android:src="@drawable/unsub" />
+            android:src="@drawable/close_popup" />
     </LinearLayout>
 </RelativeLayout>
