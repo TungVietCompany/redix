@@ -3,9 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="redix.booxtown.Notification">
+    tools:context="redix.booxtown.activity.Notification">
     <include layout="@layout/menu_top" />
-    <include layout="@layout/menu_bottom" />
+
     <ListView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,4 +16,12 @@
         android:layout_marginTop="55dp"
         android:layout_marginBottom="45dp"
         android:padding="10dp" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/explore_menu_bottom"
+        layout="@layout/menu_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>
