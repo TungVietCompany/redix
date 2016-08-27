@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -91,6 +92,6 @@ public class InteractActivity extends AppCompatActivity
     public void onBackPressed() {
         super.onBackPressed();
        // menu_bottom.setDefaut(1);
-        
+       finish();
     }
 }
