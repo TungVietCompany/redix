@@ -38,10 +38,10 @@ public class Notification extends AppCompatActivity {
                     Intent intent = new Intent(Notification.this,NotificationSwapActivity.class);
                     startActivity(intent);
                 }else if(i==1){
-                    Intent intent1 = new Intent(Notification.this,ActivityNotificationDominic.class);
+                    Intent intent1 = new Intent(Notification.this,ActivityNotificationSell.class);
                     startActivity(intent1);
                 }else if(i==2){
-                    Intent intent2 = new Intent(Notification.this,NotificationSwapActivity.class);
+                    Intent intent2 = new Intent(Notification.this,NotificationDominicActivity.class);
                     startActivity(intent2);
                 }
             }

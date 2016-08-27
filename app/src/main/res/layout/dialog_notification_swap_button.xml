@@ -29,7 +29,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Yes"
-            android:id="@+id/button"
+            android:id="@+id/btn_dialog_notification_swap"
             android:background="@drawable/change_pass"
             android:textColor="#f76565"
             android:layout_below="@+id/textView35"

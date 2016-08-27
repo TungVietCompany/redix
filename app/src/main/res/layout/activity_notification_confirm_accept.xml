@@ -87,7 +87,8 @@
         android:text="genre:Basic"
         android:id="@+id/textView40"
         android:layout_below="@+id/textView39"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="10dp" />
 
     <include
         android:layout_width="wrap_content"

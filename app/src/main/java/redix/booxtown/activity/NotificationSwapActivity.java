@@ -2,6 +2,7 @@ package redix.booxtown.activity;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -48,6 +49,15 @@ public class NotificationSwapActivity extends AppCompatActivity {
                 dialog.setContentView(R.layout.dialog_notification_swap_button);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
+
+                Button btn_dialog_notification_swap = (Button)dialog.findViewById(R.id.btn_dialog_notification_swap);
+                btn_dialog_notification_swap.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Intent intent = new Intent(NotificationSwapActivity.this,Notification_Swap_Accept_Like.class);
+                        startActivity(intent);
+                    }
+                });
 
                 ImageView imageView =(ImageView)dialog.findViewById(R.id.imv_clode_dialog_not_like);
                 imageView.setOnClickListener(new View.OnClickListener() {

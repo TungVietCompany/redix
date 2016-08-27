@@ -26,6 +26,7 @@
     <color name="color_title_book">#38bfc3</color>
     <color name="color_topic_interact">#807b80</color>
     <color name="color_text_time_update_interact">#b4b4b4</color>
+    <color name="color_txt_menu_notification_title2">#FF4FE59C</color>
 
     <array name="array_dot_active">
         <item>@color/dot_light_screen1</item>

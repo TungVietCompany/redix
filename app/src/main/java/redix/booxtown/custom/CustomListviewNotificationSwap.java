@@ -15,9 +15,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
-import redix.booxtown.activity.ActivityNotificationAccept;
-import redix.booxtown.activity.ActivityNotificationDominicAccept;
-import redix.booxtown.activity.NotificationSwapActivity;
+import redix.booxtown.activity.ActivityNotificationReject;
 
 /**
  * Created by thuyetpham94 on 27/08/2016.
@@ -80,7 +78,7 @@ public class CustomListviewNotificationSwap extends BaseAdapter {
                 btn_notification_swapdialog_confirm.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(context, ActivityNotificationDominicAccept.class);
+                        Intent intent = new Intent(context, ActivityNotificationReject.class);
                         context.startActivity(intent);
                     }
                 });
