@@ -3,21 +3,24 @@
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:weightSum="4">
+   >
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
-        android:layout_weight="1"
+        android:layout_height="match_parent"
+        android:layout_weight="1.5"
         android:gravity="center_horizontal"
         android:background="#ee7272"
         android:orientation="horizontal"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        android:id="@+id/linear_all">
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
             android:text="All"
+            android:textSize="20sp"
+            android:id="@+id/tab_all"
             />
 
         <TextView
@@ -25,47 +28,62 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="(20)"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
             android:textColor="@android:color/white"
+            android:id="@+id/tab_all_count"
             />
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:background="#ee7272"
         android:orientation="horizontal"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        android:id="@+id/linear_swap">
         <ImageView
             android:layout_width="35dp"
             android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:layout_gravity="center_vertical"
             android:textColor="@android:color/white"
-            android:src="@drawable/icon_explore_buy" />
+            android:src="@drawable/tab_swap_not"
+            android:id="@+id/tab_swap"
+            />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="(20)"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
+            android:id="@+id/tab_swap_count"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:layout_weight="1"
         android:gravity="center_horizontal"
         android:background="#ee7272"
         android:orientation="horizontal"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        android:id="@+id/linear_free">
         <ImageView
             android:layout_width="35dp"
             android:layout_height="30dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/icon_explore_buy"
+            android:src="@drawable/tab_free_not"
+            android:id="@+id/tab_free"
             />
 
         <TextView
@@ -73,23 +91,30 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="(20)"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
             android:textColor="@android:color/white"
+            android:id="@+id/tab_free_count"
             />
     </LinearLayout>
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="50dp"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:background="#ee7272"
         android:layout_weight="1"
         android:orientation="horizontal"
-        android:layout_margin="1dp">
+        android:layout_margin="1dp"
+        android:id="@+id/linear_cart">
         <ImageView
             android:layout_width="35dp"
             android:layout_height="30dp"
-            android:src="@drawable/icon_explore_buy"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/tab_cart_not"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
+            android:id="@+id/tab_cart"
             />
 
         <TextView
@@ -97,7 +122,10 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="(20)"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
             android:textColor="@android:color/white"
+            android:id="@+id/tab_cart_count"
             />
     </LinearLayout>
 

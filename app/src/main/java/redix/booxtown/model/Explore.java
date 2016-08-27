@@ -10,17 +10,26 @@ public class Explore {
     private boolean swap;
     private boolean free;
     private boolean buy;
-
+    private float price_book;
     public Explore(){
 
     }
-    public Explore(String url_img_book, String title_book, String author_book, boolean swap, boolean free, boolean buy) {
+    public Explore(String url_img_book, String title_book, String author_book, boolean swap, boolean free, boolean buy, float price_book) {
         this.url_img_book = url_img_book;
         this.title_book = title_book;
         this.author_book = author_book;
         this.swap = swap;
         this.free = free;
         this.buy = buy;
+        this.price_book=price_book;
+    }
+
+    public float getPrice_book() {
+        return price_book;
+    }
+
+    public void setPrice_book(float price_book) {
+        this.price_book = price_book;
     }
 
     public void setUrl_img_book(String url_img_book) {
