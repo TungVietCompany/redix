@@ -21,10 +21,11 @@ public class MenuBottomCustom{
     private ImageView btn_bag;
     private ImageView btn_user;
     Context context;
-
+    private int type;
 
     public MenuBottomCustom(View view, Context ct, final int type) {
         this.context=ct;
+        this.type=type;
         btn_location = (ImageView) view.findViewById(R.id.img_menu_bottom_location);
         btn_commnet = (ImageView) view.findViewById(R.id.img_menu_bottom_comment);
         btn_camera = (ImageView) view.findViewById(R.id.img_menu_bottom_camera);
@@ -46,7 +47,6 @@ public class MenuBottomCustom{
                     Intent itent = new Intent(context, InteractActivity.class);
                     context.startActivity(itent);
                 }
-
                 setDefaut(2);
             }
         });

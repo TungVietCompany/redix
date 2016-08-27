@@ -46,7 +46,7 @@ public class Notification extends AppCompatActivity {
         });
         //end
         RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
-        new MenuBottomCustom(menu_bottom,this);
+        new MenuBottomCustom(menu_bottom,this,0);
 
         ImageView menu =
                 (ImageView)findViewById(R.id.img_menu);

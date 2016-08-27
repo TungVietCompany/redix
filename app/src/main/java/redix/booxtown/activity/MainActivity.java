@@ -181,4 +181,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         super.onBackPressed();
 
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottom.setDefaut(1);
+    }
 }
