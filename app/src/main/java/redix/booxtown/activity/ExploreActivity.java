@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.custom.CustomAdapter;
+import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Explore;
 
@@ -32,6 +33,11 @@ public class ExploreActivity extends AppCompatActivity
 
         RelativeLayout view = (RelativeLayout)findViewById(R.id.menu_bottom_explore);
         new MenuBottomCustom(view,this);
+
+        View view_tab=(View) findViewById(R.id.tab_explore);
+        new CustomTabbarExplore(view_tab,this);
+
+
         ArrayList<Explore> list= new ArrayList<>();
         Explore e1= new Explore();
         e1.setUrl_img_book("dsds");
