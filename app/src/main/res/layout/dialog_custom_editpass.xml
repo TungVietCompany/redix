@@ -9,7 +9,7 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:background="#f56767"
+        android:background="@drawable/customborder"
         android:layout_margin="12dp">
 
         <RelativeLayout

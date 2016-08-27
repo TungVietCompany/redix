@@ -55,27 +55,22 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".activity.MainActivity"
-            android:screenOrientation="portrait"
-            />
+            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
-        <activity
-            android:name=".activity.Notification" />
-        <activity
-            android:name=".activity.faq_activity" />
-        <activity
-            android:name=".activity.Faq_content" />
-        <!-- activity for Explore-->
-        <activity
-            android:name=".activity.ExploreActivity" />
-        <activity
-            android:name=".activity.Invite_friend" />
-        <activity android:name=".activity.Rate"></activity>
-        <activity android:name=".activity.Setting"></activity>
-        <activity android:name=".activity.TestActivity"></activity>
+        <activity android:name=".activity.Notification" />
+        <activity android:name=".activity.faq_activity" />
+        <activity android:name=".activity.Faq_content" />
+        <!-- activity for Explore -->
+        <activity android:name=".activity.ExploreActivity" />
+        <activity android:name=".activity.Invite_friend" />
+        <activity android:name=".activity.Rate" />
+        <activity android:name=".activity.Setting" />
+        <activity android:name=".activity.TestActivity" />
+        <activity android:name=".activity.NotificationSwapActivity"></activity>
     </application>
 
 </manifest>
