@@ -16,47 +16,26 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.SeekBar;
 
 import redix.booxtown.R;
-import redix.booxtown.custom.BorderImage;
+import redix.booxtown.custom.SeekBarWithTwoThumb.SeekBarChangeListener;
 
 /**
  * Created by thuyetpham94 on 26/08/2016.
  */
-public class TestActivity extends AppCompatActivity {
-    private Context mContext;
-    private Resources mResources;
-    private RelativeLayout mRelativeLayout;
-    private Button mBTN;
-    private ImageView mImageView;
-    private Bitmap mBitmap;
+public class TestActivity extends AppCompatActivity implements SeekBarChangeListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         // Request for window feature action bar
         requestWindowFeature(Window.FEATURE_ACTION_BAR);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.menu_notification_infor2);
-        // Get the application context
-        mContext = getApplicationContext();
+        setContentView(R.layout.dialog_filter_sort);
+    }
 
-        // Get the Resources
-        mResources = getResources();
+    @Override
+    public void SeekBarValueChanged(int Thumb1Value, int Thumb2Value) {
 
-        // Get the widgets reference from XML layout
-        mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
-        mImageView = (ImageView) findViewById(R.id.imv_menu_notification_infor2);
-
-        // Get the bitmap from drawable resources
-        mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-
-        // Display the bitmap in ImageView
-        mImageView.setImageBitmap(mBitmap);
-
-        // Set an image for ImageView
-        mImageView.setImageBitmap(mBitmap);
-        BorderImage borderImage = new BorderImage();
-        RoundedBitmapDrawable drawable = borderImage.createRoundedBitmapDrawableWithBorder(mResources,mBitmap);
-        mImageView.setImageDrawable(drawable);
     }
 }

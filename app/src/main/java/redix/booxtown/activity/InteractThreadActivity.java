@@ -1,9 +1,14 @@
 package redix.booxtown.activity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.view.Window;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -65,6 +70,37 @@ public class InteractThreadActivity extends AppCompatActivity
         menu_bottom.setDefaut(2);
         //---------------------------------------------------------------
 
+        //btn add thread
+        TextView btn_add_thread = (TextView) findViewById(R.id.btn_add_thread);
+        btn_add_thread.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                final Dialog dialog = new Dialog(InteractThreadActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_interact_addthread);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+
+                ImageView imv_dialog_interacr_close = (ImageView)dialog.findViewById(R.id.imv_dialog_interacr_close);
+                imv_dialog_interacr_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Button btn_dialog_interact_submit = (Button)dialog.findViewById(R.id.btn_dialog_interact_submit);
+                btn_dialog_interact_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        //submit dialog add thread
+                        dialog.dismiss();
+                    }
+                });
+                dialog.show();
+            }
+        });
+        //end
 
         InteractThread interact1= new InteractThread();
         interact1.setInteractThreadTitle("Thread one text");
