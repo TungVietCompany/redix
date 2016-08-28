@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="redix.booxtown.activity.MyProfileActivity">
+
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/include46">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="fill_vertical">
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/menu_myprofile"
+            android:id="@+id/menu_myprofile"
+            android:layout_alignParentLeft="false"
+            android:layout_alignParentStart="true" />
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/menu_personal_infor"
+            android:layout_below="@+id/menu_myprofile"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:id="@+id/include47" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Listing"
+            android:id="@+id/textView73"
+            android:layout_below="@+id/include47"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginLeft="10dp"
+            android:textColor="@color/color_text"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp" />
+
+        <include
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            layout="@layout/custom_tabbar"
+            android:layout_below="@+id/textView73"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignRight="@+id/textView73"
+            android:layout_alignEnd="@+id/textView73"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:id="@+id/include48" />
+
+        <GridView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/gridView2"
+            android:layout_below="@+id/include48"
+            android:layout_alignLeft="@+id/include48"
+            android:layout_alignStart="@+id/include48"
+            android:layout_alignRight="@+id/include48"
+            android:layout_alignEnd="@+id/include48"
+            android:layout_marginTop="5dp" />
+
+    </RelativeLayout>
+</ScrollView>
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_top"
+        android:id="@+id/include46"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true" />
+</RelativeLayout>

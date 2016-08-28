@@ -20,7 +20,7 @@
     <color name="dot_light_screen4">#ffffff</color>
 
     <!--Color Text Hint-->
-    <color name="color_text_hint">#C8C8C8</color>
+    <color name="color_text_hint">#b4b4b4</color>
     <color name="color_text">#f06667</color>
     <color name="color_bg_explore">#f06667</color>
     <color name="color_title_book">#38bfc3</color>
