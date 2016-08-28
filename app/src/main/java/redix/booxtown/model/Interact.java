@@ -1,9 +1,11 @@
 package redix.booxtown.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 27/08/2016.
  */
-public class Interact {
+public class Interact implements Serializable {
 
     private String interactTitle;
     private String interactCount;
