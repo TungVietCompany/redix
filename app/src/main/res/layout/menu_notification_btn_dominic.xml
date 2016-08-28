@@ -15,10 +15,11 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Accept"
-            android:id="@+id/button4"
+            android:id="@+id/btn_menu_notification_dominic_accept"
             android:gravity="center"
             android:background="@drawable/bg_buttom_red"
-            android:layout_margin="20dp" />
+            android:layout_margin="20dp"
+            android:textColor="@color/dot_light_screen2"/>
     </LinearLayout>
 
     <LinearLayout
@@ -32,8 +33,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="reject"
-            android:id="@+id/button5"
+            android:id="@+id/btn_menu_notification_dominic_reject"
             android:background="@drawable/bg_buttom_red"
-            android:layout_margin="20dp" />
+            android:layout_margin="20dp"
+            android:textColor="@color/dot_light_screen2"/>
     </LinearLayout>
 </LinearLayout>

@@ -14,8 +14,8 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 
 public class BorderImage  {
     public RoundedBitmapDrawable createRoundedBitmapDrawableWithBorder(Resources mResources,Bitmap bitmap){
-        int bitmapWidth = 100;
-        int bitmapHeight = 100;
+        int bitmapWidth = 120;
+        int bitmapHeight = 120;
         int borderWidthHalf = 0; // In pixels
         //Toast.makeText(mContext,""+bitmapWidth+"|"+bitmapHeight,Toast.LENGTH_SHORT).show();
 
