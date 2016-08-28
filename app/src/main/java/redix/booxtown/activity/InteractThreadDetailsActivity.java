@@ -61,11 +61,11 @@ public class InteractThreadDetailsActivity extends AppCompatActivity
         TextView txt_title_thread=(TextView) findViewById(R.id.txt_title_thread_detail);
         TextView txt_count_thread=(TextView) findViewById(R.id.txt_count_thread_detail);
         TextView txt_content_thread=(TextView) findViewById(R.id.txt_contern_thread_details);
-        TextView txt_datetime_thread=(TextView) findViewById(R.id.txt_author_interact_thread_detail);
+        TextView txt_author_thread=(TextView) findViewById(R.id.txt_author_interact_thread_detail);
         txt_title_thread.setText(interact.getInteractThreadTitle());
         txt_count_thread.setText("("+interact.getInteractThreadCount()+")");
         txt_content_thread.setText(interact.getInteractThreadContent());
-        txt_datetime_thread.setText(interact.getInteractThreadAddBy());
+        txt_author_thread.setText("Added by "+interact.getInteractThreadAddBy());
 
         //--------------------------------------------------
         View view_bottom = (View)findViewById(R.id.menu_bottom_threads);

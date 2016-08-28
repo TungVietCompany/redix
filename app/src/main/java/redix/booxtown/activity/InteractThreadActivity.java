@@ -75,17 +75,6 @@ public class InteractThreadActivity extends AppCompatActivity
         interact1.setStatus(true);
         interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         interact1.setInteractThreadAddBy("Derek Jarma");
-//
-//        ArrayList<InteractComment> lis1= new ArrayList<>();
-//        InteractComment interactComment1= new InteractComment(2,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
-//        InteractComment interactComment2= new InteractComment(3,true,true,true,"Gandalf3","If you want to buy best books order us2","June 12 at 5:14 pm");
-//        InteractComment interactComment3= new InteractComment(4,false,false,true,"Gandalf3","If you want to buy best books order us3","June 12 at 5:14 pm");
-//        InteractComment interactComment4= new InteractComment(5,true,false,false,"Gandalf4","If you want to buy best books order us4","June 12 at 5:14 pm");
-//        lis1.add(interactComment1);
-//        lis1.add(interactComment2);
-//        lis1.add(interactComment3);
-//        lis1.add(interactComment4);
-//        interact1.setListInteractThreadDetails(lis1);
 
 
         InteractThread interact2= new InteractThread();
@@ -95,16 +84,7 @@ public class InteractThreadActivity extends AppCompatActivity
         interact2.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         interact2.setInteractThreadAddBy("Richard D.Marshall");
 
-//        ArrayList<InteractComment> lis2= new ArrayList<>();
-//        InteractComment interactComment21= new InteractComment(1,true,false,true,"Gandalf","If you want to buy best books order us21","June 12 at 5:14 pm");
-//        InteractComment interactComment22= new InteractComment(2,true,true,true,"Gandalf22","If you want to buy best books order us22","June 12 at 5:14 pm");
-//        InteractComment interactComment23= new InteractComment(3,false,false,true,"Gandalf23","If you want to buy best books order us23","June 12 at 5:14 pm");
-//        InteractComment interactComment24= new InteractComment(4,true,false,false,"Gandalf24","If you want to buy best books order us24","June 12 at 5:14 pm");
-//        lis2.add(interactComment21);
-//        lis2.add(interactComment22);
-//        lis2.add(interactComment23);
-//        lis2.add(interactComment24);
-//        interact2.setListInteractThreadDetails(lis2);
+
 
         InteractThread interact3= new InteractThread();
         interact3.setInteractThreadTitle("Joan Mitchell, The Last Paintings");
@@ -113,17 +93,6 @@ public class InteractThreadActivity extends AppCompatActivity
         interact3.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         interact3.setInteractThreadAddBy("Derek Jarma");
 
-//        ArrayList<InteractComment> lis3= new ArrayList<>();
-//        InteractComment interactComment31= new InteractComment(1,true,false,true,"Gandalf31","If you want to buy best books order us31","June 12 at 5:14 pm");
-//        InteractComment interactComment32= new InteractComment(3,false,true,true,"Gandalf32","If you want to buy best books order us32","June 12 at 5:14 pm");
-//        InteractComment interactComment33= new InteractComment(2,false,false,true,"Gandalf33","If you want to buy best books order us33","June 12 at 5:14 pm");
-//        InteractComment interactComment34= new InteractComment(4,true,false,false,"Gandalf34","If you want to buy best books order us34","June 12 at 5:14 pm");
-//        lis3.add(interactComment31);
-//        lis3.add(interactComment32);
-//        lis3.add(interactComment33);
-//        lis3.add(interactComment34);
-//        interact3.setListInteractThreadDetails(lis3);
-
 
         InteractThread interact4= new InteractThread();
         interact4.setInteractThreadTitle("Ad Reinhardt: Last Paintings");
@@ -131,17 +100,6 @@ public class InteractThreadActivity extends AppCompatActivity
         interact4.setStatus(false);
         interact4.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
         interact4.setInteractThreadAddBy("heinz Liesbrock");
-
-//        ArrayList<InteractComment> lis4= new ArrayList<>();
-//        InteractComment interactComment41= new InteractComment(4,true,false,false,"Gandalf41","If you want to buy best books order us41","June 12 at 5:14 pm");
-//        InteractComment interactComment42= new InteractComment(3,false,true,false,"Gandalf42","If you want to buy best books order us42","June 12 at 5:14 pm");
-//        InteractComment interactComment43= new InteractComment(2,false,false,true,"Gandalf43","If you want to buy best books order us43","June 12 at 5:14 pm");
-//        InteractComment interactComment44= new InteractComment(5,true,false,false,"Gandalf44","If you want to buy best books order us44","June 12 at 5:14 pm");
-//        lis4.add(interactComment41);
-//        lis4.add(interactComment42);
-//        lis4.add(interactComment43);
-//        lis4.add(interactComment44);
-//        interact4.setListInteractThreadDetails(lis4);
 
 
         listInteractThreads.add(interact1);

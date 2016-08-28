@@ -45,7 +45,8 @@
         android:typeface="sans"
         android:layout_below="@+id/txt_title_thread_detail"
         android:layout_alignLeft="@+id/txt_title_thread_detail"
-        android:layout_alignStart="@+id/txt_title_thread_detail" />
+        android:layout_alignStart="@+id/txt_title_thread_detail"
+        android:paddingRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -65,7 +66,7 @@
         android:typeface="sans"
         android:fontFamily="sans-serif-light"
         android:id="@+id/textView67"
-        android:layout_marginTop="11dp"
+        android:layout_marginTop="8dp"
         android:layout_below="@+id/txt_author_interact_thread_detail"
         android:layout_alignLeft="@+id/txt_author_interact_thread_detail"
         android:layout_alignStart="@+id/txt_author_interact_thread_detail"
@@ -99,25 +100,30 @@
         android:id="@+id/editText"
         android:layout_alignLeft="@+id/view2"
         android:layout_alignStart="@+id/view2"
-        android:background="@drawable/interact_message"
-        android:layout_toLeftOf="@+id/imageView22"
-        android:layout_toStartOf="@+id/imageView22"
+        android:background="@drawable/message"
+        android:layout_toLeftOf="@+id/btn_send_comment_interact"
+        android:layout_toStartOf="@+id/btn_send_comment_interact"
         android:hint="Add Comments"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@color/color_text_hint"
         android:layout_above="@+id/menu_bottom_threads"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="5dp"
         android:paddingLeft="10dp"
-        android:paddingRight="10dp" />
+        android:paddingRight="10dp"
+        android:maxLines="2"
+        android:layout_marginLeft="-2dp"
+        android:textColor="@color/color_text_time_update_interact"
+        android:ellipsize="start" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView22"
+        android:id="@+id/btn_send_comment_interact"
         android:background="@drawable/interact_send_message"
         android:layout_alignTop="@+id/editText"
         android:layout_alignRight="@+id/view2"
-        android:layout_alignEnd="@+id/view2" />
+        android:layout_alignEnd="@+id/view2"
+        android:layout_alignBottom="@+id/editText" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -126,6 +132,9 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/view2"
         android:layout_above="@+id/editText"
-        android:layout_margin="10dp" />
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp" />
 
 </RelativeLayout>
