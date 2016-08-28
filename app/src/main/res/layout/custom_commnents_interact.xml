@@ -14,7 +14,7 @@
         android:src="@drawable/icon_test"
         app:siBorderColor="@color/dot_light_screen2"
         app:siBorderWidth="1dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="5dp" />
     <RatingBar
         android:theme="@style/RatingBar"
         android:id="@+id/myRatingBar"
@@ -38,19 +38,18 @@
         android:text="Username "
         android:id="@+id/txt_user_comment"
         android:textColor="@color/color_topic_interact"
+        android:textSize="20dp"
         android:layout_alignTop="@+id/icon_user"
-        android:layout_toRightOf="@+id/icon_user"
-        android:layout_toEndOf="@+id/icon_user"
-        android:layout_marginLeft="10dp"
-        android:layout_marginStart="18dp"
-        android:textSize="20dp" />
+        android:layout_toRightOf="@+id/myRatingBar"
+        android:layout_toEndOf="@+id/myRatingBar"
+        android:layout_marginLeft="2dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="If you want to buy best books order us"
         android:id="@+id/txt_content_thread_comments"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:inputType="textMultiLine"
         android:typeface="sans"
         android:layout_below="@+id/txt_user_comment"
@@ -65,7 +64,7 @@
         android:layout_below="@+id/txt_content_thread_comments"
         android:layout_alignLeft="@+id/txt_content_thread_comments"
         android:layout_alignStart="@+id/txt_content_thread_comments"
-        android:layout_marginTop="15dp"
+        android:layout_marginTop="8dp"
         android:textColor="@color/color_hint_interact"/>
     <View
         android:layout_width="fill_parent"
