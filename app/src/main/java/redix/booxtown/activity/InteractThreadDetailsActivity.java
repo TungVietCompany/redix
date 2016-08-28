@@ -74,14 +74,17 @@ public class InteractThreadDetailsActivity extends AppCompatActivity
         //---------------------------------------------------------------
 
         ArrayList<InteractComment> list= new ArrayList<>();
-        InteractComment interactComment1= new InteractComment(2,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
-        InteractComment interactComment2= new InteractComment(3,true,true,true,"Gandalf3","If you want to buy best books order us2","June 12 at 5:14 pm");
-        InteractComment interactComment3= new InteractComment(4,false,false,true,"Gandalf3","If you want to buy best books order us3","June 12 at 5:14 pm");
-        InteractComment interactComment4= new InteractComment(5,true,false,false,"Gandalf4","If you want to buy best books order us4","June 12 at 5:14 pm");
+        InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
+        InteractComment interactComment2= new InteractComment(3.0f,true,true,true,"Gandalf2","If you want to buy best books order us2","June 12 at 5:14 pm");
+        InteractComment interactComment3= new InteractComment(4.0f,false,false,true,"Gandalf3","If you want to buy best books order us3","June 12 at 5:14 pm");
+        InteractComment interactComment4= new InteractComment(3.5f,true,false,false,"Gandalf4","If you want to buy best books order us4","June 12 at 5:14 pm");
+        InteractComment interactComment5= new InteractComment(5.0f,true,false,false,"Gandalf5","If you want to buy best books order us5","June 12 at 5:14 pm");
+
         list.add(interactComment1);
         list.add(interactComment2);
         list.add(interactComment3);
         list.add(interactComment4);
+        list.add(interactComment5);
 
 
         //-----------------------------------------------------------

@@ -48,24 +48,21 @@ public class AdapterExplore extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        View grid;
+
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         Explore ex= listExplore.get(position);
 
-        if (convertView == null) {
+            convertView = inflater.inflate(R.layout.custom_gridview_explore, null);
+            TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book);
+            TextView txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book);
+            TextView txt_price_book=(TextView) convertView.findViewById(R.id.txt_pricebook);
 
-            grid = new View(mContext);
-            grid = inflater.inflate(R.layout.custom_gridview_explore, null);
-            TextView txt_title_book = (TextView) grid.findViewById(R.id.txt_title_book);
-            TextView txt_author_book = (TextView) grid.findViewById(R.id.txt_author_book);
-            TextView txt_price_book=(TextView) grid.findViewById(R.id.txt_pricebook);
-
-            ImageView img_book = (ImageView)grid.findViewById(R.id.img_book);
-            ImageView img_swap = (ImageView)grid.findViewById(R.id.img_explore_swap);
-            ImageView img_free = (ImageView)grid.findViewById(R.id.img_explore_free);
-            ImageView img_buy = (ImageView)grid.findViewById(R.id.img_explore_buy);
+            ImageView img_book = (ImageView)convertView.findViewById(R.id.img_book);
+            ImageView img_swap = (ImageView)convertView.findViewById(R.id.img_explore_swap);
+            ImageView img_free = (ImageView)convertView.findViewById(R.id.img_explore_free);
+            ImageView img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy);
 
 
             if(position%2==0){
@@ -102,10 +99,7 @@ public class AdapterExplore extends BaseAdapter {
             else{
                 img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
             }
-        } else {
-            grid = (View) convertView;
-        }
 
-        return grid;
+        return convertView;
     }
 }

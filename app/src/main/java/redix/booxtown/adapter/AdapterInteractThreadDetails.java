@@ -54,24 +54,20 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        View listView;
+
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        InteractComment interactComments= listInteractComments.get(position);
+            InteractComment interactComments= listInteractComments.get(position);
+        convertView = inflater.inflate(R.layout.custom_commnents_interact, null);
 
-        if (convertView == null) {
-
-            listView = new View(mContext);
-            listView = inflater.inflate(R.layout.custom_commnents_interact, null);
-
-            ImageView img_icon=(ImageView) listView.findViewById(R.id.icon_user);
-            ImageView img_rank_one=(ImageView) listView.findViewById(R.id.img_comment_rank1);
-            ImageView img_rank_two=(ImageView) listView.findViewById(R.id.img_comment_rank2);
-            ImageView img_rank_three=(ImageView) listView.findViewById(R.id.img_comment_rank3);
-            TextView txt_userName=(TextView) listView.findViewById(R.id.txt_user_comment);
-            TextView txt_contents=(TextView) listView.findViewById(R.id.txt_content_thread_comments);
-            TextView txt_datetime=(TextView) listView.findViewById(R.id.txt_date_thread_comment);
+            ImageView img_icon=(ImageView) convertView.findViewById(R.id.icon_user);
+            ImageView img_rank_one=(ImageView) convertView.findViewById(R.id.img_comment_rank1);
+            ImageView img_rank_two=(ImageView) convertView.findViewById(R.id.img_comment_rank2);
+            ImageView img_rank_three=(ImageView) convertView.findViewById(R.id.img_comment_rank3);
+            TextView txt_userName=(TextView) convertView.findViewById(R.id.txt_user_comment);
+            TextView txt_contents=(TextView) convertView.findViewById(R.id.txt_content_thread_comments);
+            TextView txt_datetime=(TextView) convertView.findViewById(R.id.txt_date_thread_comment);
 
 
             img_icon.setImageResource(R.drawable.icon_test);
@@ -105,10 +101,8 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
             txt_userName.setText(interactComments.getUser_name());
             txt_contents.setText(interactComments.getContent());
             txt_datetime.setText(interactComments.getDate_time());
-        } else {
-            listView = (View) convertView;
-        }
 
-        return listView;
+
+        return convertView;
     }
 }

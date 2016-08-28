@@ -48,34 +48,28 @@ public class AdapterInteract extends BaseAdapter {
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-        View listView;
+
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
         Interact interact= listInteract.get(position);
 
-        if (convertView == null) {
 
-            listView = new View(mContext);
-            listView = inflater.inflate(R.layout.custom_interact, null);
+        convertView = inflater.inflate(R.layout.custom_interact, null);
 
-            TextView txt_title_interact=(TextView) listView.findViewById(R.id.txt_title_interact);
-            TextView txt_count_interact=(TextView) listView.findViewById(R.id.txt_count_interact);
-            TextView txt_dateUpdate_interact=(TextView) listView.findViewById(R.id.txt_time_update_interact);
+            TextView txt_title_interact=(TextView) convertView.findViewById(R.id.txt_title_interact);
+            TextView txt_count_interact=(TextView) convertView.findViewById(R.id.txt_count_interact);
+            TextView txt_dateUpdate_interact=(TextView) convertView.findViewById(R.id.txt_time_update_interact);
 
             txt_title_interact.setText(interact.getInteractTitle());
 
             txt_count_interact.setText("("+interact.getInteractCount()+")");
             if(interact.isStatus()) {
-                txt_count_interact.setTextColor(listView.getResources().getColor(R.color.color_text));
+                txt_count_interact.setTextColor(convertView.getResources().getColor(R.color.color_text));
             }
 
             txt_dateUpdate_interact.setText("Last Updated on "+ interact.getInteractUpdatetime());
 
-        } else {
-            listView = (View) convertView;
-        }
-
-        return listView;
+        return convertView;
     }
 }
