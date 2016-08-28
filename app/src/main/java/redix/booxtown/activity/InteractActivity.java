@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -84,6 +85,17 @@ public class InteractActivity extends AppCompatActivity
         final AdapterInteract adapter = new AdapterInteract(InteractActivity.this,listInteract);
         listView=(ListView) findViewById(R.id.list_view_interact);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Interact item = (Interact) listInteract.get(position);
+                Intent intent = new Intent(InteractActivity.this,InteractThreadActivity.class);
+                intent.putExtra("thread",item);
+                //based on item add info to intent
+                startActivity(intent);
+            }
+        });
         //---------------------------------------------------------------
 
     }
