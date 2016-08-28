@@ -9,14 +9,14 @@
         layout="@layout/menu_top"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/include44" />
+        android:id="@+id/menu_interact_thread_detail" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Thread one text"
         android:id="@+id/txt_title_thread_detail"
-        android:layout_below="@+id/include44"
+        android:layout_below="@+id/menu_interact_thread_detail"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginLeft="10dp"
@@ -91,7 +91,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/include45" />
+        android:id="@+id/menu_bottom_threads" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -105,9 +105,10 @@
         android:hint="Add Comments"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@color/color_text_hint"
-        android:layout_above="@+id/include45"
+        android:layout_above="@+id/menu_bottom_threads"
         android:layout_marginBottom="10dp"
-        android:paddingLeft="10dp" />
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -117,5 +118,14 @@
         android:layout_alignTop="@+id/editText"
         android:layout_alignRight="@+id/view2"
         android:layout_alignEnd="@+id/view2" />
+
+    <ListView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_thread_details"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/view2"
+        android:layout_above="@+id/editText"
+        android:layout_margin="10dp" />
 
 </RelativeLayout>

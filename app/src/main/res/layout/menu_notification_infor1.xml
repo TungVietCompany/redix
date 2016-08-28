@@ -52,7 +52,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView16"
+            android:id="@+id/img_comment_rank1"
             android:layout_below="@+id/textView16"
             android:layout_toRightOf="@+id/myRatingBar"
             android:layout_toEndOf="@+id/myRatingBar"
@@ -62,20 +62,20 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView17"
+            android:id="@+id/img_comment_rank2"
             android:layout_below="@+id/textView16"
-            android:layout_toRightOf="@+id/imageView16"
-            android:layout_toEndOf="@+id/imageView16"
+            android:layout_toRightOf="@+id/img_comment_rank1"
+            android:layout_toEndOf="@+id/img_comment_rank1"
             android:src="@drawable/icon_notification_infor3"
             android:layout_marginRight="5dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView18"
+            android:id="@+id/img_comment_rank3"
             android:layout_below="@+id/textView16"
-            android:layout_toRightOf="@+id/imageView17"
-            android:layout_toEndOf="@+id/imageView17"
+            android:layout_toRightOf="@+id/img_comment_rank2"
+            android:layout_toEndOf="@+id/img_comment_rank2"
             android:src="@drawable/icon_notification_infor1"
             android:layout_marginRight="5dp" />
 

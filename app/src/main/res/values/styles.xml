@@ -26,4 +26,16 @@
         <item name="colorControlNormal">#C8C8C8</item>
         <!-- colorControlActivated & colorControlHighlight use the colorAccent color by default -->
     </style>
+
+    <style parent="@android:style/Widget.RatingBar" name="foodRatingBar">
+        <item name="android:progressDrawable">@drawable/ratingstars</item>
+
+        <item name="android:minHeight">11dp</item>
+        <item name="android:maxHeight">11dp</item>
+    </style>
+
+    <style name="RatingBar" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@color/color_star_not_select</item>
+        <item name="colorControlActivated">@color/color_star_select</item>
+    </style>
 </resources>

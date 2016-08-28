@@ -19,6 +19,7 @@ public class ActivityNotificationReject extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_activity_notification_reject);
+
         Resources mResources = getResources();
         ImageView mImageView = (ImageView) findViewById(R.id.imv_nitification_infor3_phone);
         Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);

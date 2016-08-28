@@ -77,6 +77,7 @@
         <activity android:name=".activity.TestActivity"></activity>
         <activity android:name=".activity.InteractActivity"></activity>
         <activity android:name=".activity.InteractThreadActivity"></activity>
+        <activity android:name=".activity.InteractThreadDetailsActivity"></activity>
 
         <!-- activity for Explore -->
         <activity android:name=".activity.NotificationSwapActivity" />
