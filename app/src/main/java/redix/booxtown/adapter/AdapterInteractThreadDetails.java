@@ -74,10 +74,12 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
             TextView txt_datetime=(TextView) listView.findViewById(R.id.txt_date_thread_comment);
 
 
-            Resources mResources = mContext.getResources();
-            Bitmap mBitmap = BitmapFactory.decodeResource(mResources, R.drawable.icon_test);
-            NotificationAccept notificationAccept = new NotificationAccept();
-            notificationAccept.accept(mContext, mResources, mBitmap, img_icon);
+            img_icon.setImageResource(R.drawable.icon_test);
+
+//            Resources mResources = mContext.getResources();
+//            Bitmap mBitmap = BitmapFactory.decodeResource(mResources, R.drawable.icon_test);
+//            NotificationAccept notificationAccept = new NotificationAccept();
+//            notificationAccept.accept(mContext, mResources, mBitmap, img_icon);
 
             if(interactComments.isRank_one()){
                 img_rank_one.setVisibility(View.VISIBLE);
