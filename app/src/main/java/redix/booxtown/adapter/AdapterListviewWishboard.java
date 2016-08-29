@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.RespondActivity;
 
 /**
  * Created by thuyetpham94 on 30/08/2016.
@@ -73,7 +74,8 @@ public class AdapterListviewWishboard  extends BaseAdapter {
         imgv_listview_respond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Intent intent new Intent()
+                Intent intent = new Intent(context, RespondActivity.class);
+                context.startActivity(intent);
             }
         });
 

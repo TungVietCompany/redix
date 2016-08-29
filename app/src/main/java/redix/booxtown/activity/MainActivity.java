@@ -217,15 +217,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         private final View myContentsView;
 
         MyInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
+            myContentsView = getLayoutInflater().inflate(R.layout.dialog_map_main, null);
         }
 
         @Override
         public View getInfoContents(Marker marker) {
-            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title_locate));
-            tvTitle.setText(marker.getTitle());
-            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet_locate));
-            tvSnippet.setText(marker.getSnippet());
+//            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title_locate));
+//            tvTitle.setText(marker.getTitle());
+//            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet_locate));
+//            tvSnippet.setText(marker.getSnippet());
 
             return myContentsView;
         }
