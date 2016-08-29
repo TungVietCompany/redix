@@ -18,11 +18,6 @@ public class Notification_Swap_Accept_NoLike extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_swap_accept_no_like);
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.imv_menu_notification_infor2);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(Notification_Swap_Accept_NoLike.this,mResources,mBitmap,mImageView);
 
         TextView txt_menu_notification_infor2_phone = (TextView)findViewById(R.id.txt_menu_notification_infor2_phone);
         txt_menu_notification_infor2_phone.setVisibility(View.GONE);

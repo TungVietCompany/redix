@@ -85,22 +85,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
 
-        ImageView menu =
-                (ImageView)findViewById(R.id.img_menu);
+        ImageView menu = (ImageView)findViewById(R.id.img_menu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.menu);
-                ListView lv=(ListView) findViewById(R.id.listViewa);
-                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
-                ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
-                close_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent itent = new Intent(MainActivity.this, redix.booxtown.activity.Rate.class);
-                        startActivity(itent);
-                    }
-                });
+                Intent intent = new Intent(MainActivity.this,MenuActivity.class);
+                startActivity(intent);
             }
         });
         filterSort();
@@ -156,13 +146,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                         dialog.dismiss();
                     }
                 });
-
                 Spinner spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
                 List<String> list = new ArrayList<String>();
                 list.add("Nearest distance");
                 list.add("list 2");
                 list.add("list 3");
-
                 ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this,
                         android.R.layout.simple_spinner_item, list);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -180,19 +168,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-
         if (resultCode == ConnectionResult.SUCCESS){
-//            Toast.makeText(getApplicationContext(),
-//                    "isGooglePlayServicesAvailable SUCCESS",
-//                    Toast.LENGTH_LONG).show();
         }else{
             GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
         }
@@ -201,42 +183,29 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // Add a marker in Sydney and move the camera
-
         // latitude and longitude
         double latitude = 17.385044;
         double longitude = 78.486671;
-
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
-
         // Changing marker icon
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
-
         // adding marker
         mMap.addMarker(marker);
-
-
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-
         mMap.getUiSettings().setAllGesturesEnabled(true);
-
         mMap.setTrafficEnabled(true);
-
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
         mMap.setOnInfoWindowClickListener(this);
     }
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
-
         private final View myContentsView;
-
         MyInfoWindowAdapter(){
             myContentsView = getLayoutInflater().inflate(R.layout.custom_info_contents, null);
         }
@@ -256,13 +225,11 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
             // TODO Auto-generated method stub
             return null;
         }
-
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
     }
 
     @Override

@@ -21,10 +21,22 @@ public class Notification_Swap_Accept_Like extends AppCompatActivity {
 
         TextView txt_notification_infor3_phone = (TextView)findViewById(R.id.txt_notification_infor3_phone);
         txt_notification_infor3_phone.setVisibility(View.GONE);
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.imv_nitification_infor3_phone);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(Notification_Swap_Accept_Like.this,mResources,mBitmap,mImageView);
+
+        //menu
+
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //end
+
     }
 }

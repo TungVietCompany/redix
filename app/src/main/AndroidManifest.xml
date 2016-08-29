@@ -11,6 +11,8 @@
          location permissions for the 'MyLocation' functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <supports-screens
         android:anyDensity="true"
@@ -61,35 +63,24 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyC8mAbcgv1w6wB96MC-POG2gADbSdESxeU" />
 
-        <activity android:name=".activity.Notification" />
-        <activity android:name=".activity.faq_activity" />
+        <activity android:name=".activity.NotificationActivity" />
+        <activity android:name=".activity.FaqActivity" />
         <activity android:name=".activity.Faq_content" />
         <!-- activity for Explore -->
         <activity android:name=".activity.ExploreActivity" />
-        <activity android:name=".activity.Invite_friend" />
+        <activity android:name=".activity.InviteFriendActivity" />
         <activity android:name=".activity.Rate" />
         <activity android:name=".activity.Setting" />
         <activity android:name=".activity.TestActivity" />
         <activity android:name=".activity.InteractActivity" />
         <activity android:name=".activity.InteractThreadActivity" />
         <activity android:name=".activity.InteractThreadDetailsActivity" />
-        <activity android:name=".activity.Notification" />
-        <activity android:name=".activity.faq_activity" />
-        <activity android:name=".activity.Faq_content" />
-        <!-- activity for Explore -->
-        <activity android:name=".activity.ExploreActivity" />
-        <activity android:name=".activity.Invite_friend" />
-        <activity android:name=".activity.Rate" />
-        <activity android:name=".activity.Setting" />
-        <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.InteractActivity" />
-        <activity android:name=".activity.InteractThreadActivity" />
 
         <!-- activity for Explore -->
         <activity android:name=".activity.NotificationSwapActivity" />
-        <activity android:name=".activity.ActivityNotificationAccept" />
-        <activity android:name=".activity.ActivityNotificationReject" />
-        <activity android:name=".activity.ActivityNotificationSell" />
+        <activity android:name=".activity.NotificationAcceptActivity" />
+        <activity android:name=".activity.NotificationRejectActivity" />
+        <activity android:name=".activity.NotificationSellActivity" />
         <activity android:name=".activity.Notification_Swap_Accept_NoLike" />
         <activity android:name=".activity.Notification_Swap_Accept_Like" />
         <activity android:name=".activity.NotificationSellAccept" />
@@ -103,7 +94,13 @@
         <activity android:name=".activity.NotificationDominicNoReject" />
         <activity android:name=".activity.MyProfileActivity" />
         <activity android:name=".activity.MyProfileDashboardActivity" />
-        <activity android:name=".activity.EditListingActivity"></activity>
+        <activity android:name=".activity.EditListingActivity" />
+        <activity android:name=".activity.DasgboardActivity" />
+        <activity android:name=".activity.DashboardStopActivity" />
+        <activity android:name=".activity.DashboardDeleteActivity" />
+        <activity android:name=".activity.MenuActivity"></activity>
+        <activity android:name=".activity.About"></activity>
+        <activity android:name=".activity.Contact"></activity>
     </application>
 
 </manifest>

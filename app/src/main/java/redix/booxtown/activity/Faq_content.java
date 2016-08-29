@@ -5,7 +5,10 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ExpandableListView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -32,7 +35,23 @@ public class Faq_content extends ExpandableListActivity {
                         this);
         expandableListView.setAdapter(mNewAdapter);
         //end
+        //image menu
+        //icon back
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
 
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("FAQ");
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
     }
 
     public void setGroupData() {

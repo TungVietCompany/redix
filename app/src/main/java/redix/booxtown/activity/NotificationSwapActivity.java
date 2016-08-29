@@ -56,6 +56,7 @@ public class NotificationSwapActivity extends AppCompatActivity {
                     public void onClick(View view) {
                         Intent intent = new Intent(NotificationSwapActivity.this,Notification_Swap_Accept_Like.class);
                         startActivity(intent);
+                        dialog.dismiss();
                     }
                 });
 
@@ -68,25 +69,18 @@ public class NotificationSwapActivity extends AppCompatActivity {
                 });
             }
         });
-        mContext = getApplicationContext();
 
-        // Get the Resources
-        mResources = getResources();
+        //menu
 
-        // Get the widgets reference from XML layout
-       // mRelativeLayout = (RelativeLayout) findViewById(R.id.rl);
-        mImageView = (ImageView) findViewById(R.id.imv_menu_notification_infor1);
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
 
-        // Get the bitmap from drawable resources
-        mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-
-        // Display the bitmap in ImageView
-        mImageView.setImageBitmap(mBitmap);
-
-        // Set an image for ImageView
-        mImageView.setImageBitmap(mBitmap);
-        BorderImage borderImage = new BorderImage();
-        RoundedBitmapDrawable drawable = borderImage.createRoundedBitmapDrawableWithBorder(mResources,mBitmap);
-        mImageView.setImageDrawable(drawable);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //end
     }
 }

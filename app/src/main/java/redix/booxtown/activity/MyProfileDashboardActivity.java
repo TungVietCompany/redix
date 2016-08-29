@@ -1,10 +1,13 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -31,5 +34,20 @@ public class MyProfileDashboardActivity extends AppCompatActivity {
         ListView lv_myprofile_dashboard = (ListView)findViewById(R.id.lv_myprofile_dashboard);
         lv_myprofile_dashboard.setAdapter(new AdapterProfileDashboard(MyProfileDashboardActivity.this,txtbook,imgoffer,imgstatus));
 
+        lv_myprofile_dashboard.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                if(i==0){
+                    Intent intent = new Intent(MyProfileDashboardActivity.this,DasgboardActivity.class);
+                    startActivity(intent);
+                }else if(i==1) {
+                    Intent intent = new Intent(MyProfileDashboardActivity.this,DashboardStopActivity.class);
+                    startActivity(intent);
+                }else if(i==2){
+                    Intent intent = new Intent(MyProfileDashboardActivity.this,DashboardDeleteActivity.class);
+                    startActivity(intent);
+                }
+            }
+        });
     }
 }

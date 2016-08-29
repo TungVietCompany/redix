@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
@@ -35,6 +36,22 @@ public class Rate extends AppCompatActivity {
                         startActivity(itent);
                     }
                 });
+            }
+        });
+
+        //icon back
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("Rate Booxtown");
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Rate.this,MenuActivity.class);
+                startActivity(intent);
             }
         });
     }

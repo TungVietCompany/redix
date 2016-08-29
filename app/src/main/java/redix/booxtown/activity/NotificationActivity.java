@@ -9,12 +9,14 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.Custom_ListView_Notification;
 import redix.booxtown.custom.MenuBottomCustom;
 
-public class Notification extends AppCompatActivity {
+public class NotificationActivity extends AppCompatActivity {
     ListView lv1;
     Context context;
     RelativeLayout relativeLayout1;
@@ -29,19 +31,19 @@ public class Notification extends AppCompatActivity {
 
         //listview content notification
         final ListView list_notification = (ListView)findViewById(R.id.lv_content_notification) ;
-        list_notification.setAdapter(new Custom_ListView_Notification(Notification.this, prgmNameList,prgmNameList));
+        list_notification.setAdapter(new Custom_ListView_Notification(NotificationActivity.this, prgmNameList,prgmNameList));
 
         list_notification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    Intent intent = new Intent(Notification.this,NotificationSwapActivity.class);
+                    Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
                     startActivity(intent);
                 }else if(i==1){
-                    Intent intent1 = new Intent(Notification.this,ActivityNotificationSell.class);
+                    Intent intent1 = new Intent(NotificationActivity.this,NotificationSellActivity.class);
                     startActivity(intent1);
                 }else if(i==2){
-                    Intent intent2 = new Intent(Notification.this,NotificationDominicActivity.class);
+                    Intent intent2 = new Intent(NotificationActivity.this,NotificationDominicActivity.class);
                     startActivity(intent2);
                 }
             }
@@ -57,16 +59,33 @@ public class Notification extends AppCompatActivity {
             public void onClick(View v) {
                 setContentView(R.layout.menu);
                 ListView lv=(ListView) findViewById(R.id.listViewa);
-                lv.setAdapter(new CustomAdapter(Notification.this, prgmNameList,prgmImages));
+                lv.setAdapter(new CustomAdapter(NotificationActivity.this, prgmNameList,prgmImages));
                 ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
                 close_menu.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        Intent itent = new Intent(Notification.this,Notification.class);
+                        Intent itent = new Intent(NotificationActivity.this,NotificationActivity.class);
                         startActivity(itent);
                     }
                 });
             }
         });
+
+        //menu
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("Notifications");
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
     }
 }

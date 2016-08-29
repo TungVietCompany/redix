@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -16,15 +17,20 @@ public class Contact extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact);
 
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
-        View view =getSupportActionBar().getCustomView();
+        //icon back
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
 
-        TextView title_menu = (TextView)findViewById(R.id.txt_title_menu);
-        title_menu.setText("About Booxtown");
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("Contact Booxtown");
 
-        ImageView icon_menu_right = (ImageView)findViewById(R.id.imv_menu_right);
-        icon_menu_right.setVisibility(View.GONE);
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Contact.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
     }
 }

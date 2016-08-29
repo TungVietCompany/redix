@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Dialog;
 import android.app.Fragment;
 import android.app.TimePickerDialog;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -19,6 +20,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -27,6 +29,7 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
@@ -65,6 +68,15 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_setting);
+
+        //chinh menu
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("Setting");
+        //end
+
 
         txt_setting_besttime= (TextView)findViewById(R.id.txt_setting_besttime);
         ImageView imv_setting_pass = (ImageView)findViewById(R.id.imv_setting_editpass);
@@ -179,10 +191,6 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
             }
         });
 
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
     }
 
     public String showTime(int hour, int min) {
@@ -241,6 +249,9 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        Location location;
+        Boolean isGPSEnabled=false;
+        Boolean isNetworkEnabled = false;
         mMap = googleMap;
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(Setting.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
@@ -248,28 +259,54 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
             return;
         }
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
-        Criteria criteria = new Criteria();
-        String provider = service.getBestProvider(criteria, false);
-        // Add a marker in Sydney and move the camera
-        Location location = service.getLastKnownLocation(provider);
+        // getting GPS status
+        isGPSEnabled = service
+                .isProviderEnabled(LocationManager.GPS_PROVIDER);
+
+        isNetworkEnabled = service
+                .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+
+
+        System.out.print("GPS:"+isGPSEnabled);
+        System.out.print("net:"+isNetworkEnabled);
+        if(isGPSEnabled){
+            location = service
+                    .getLastKnownLocation(LocationManager.GPS_PROVIDER);
+            if (location != null) {
+                addMaker(location);
+            }
+
+        }
+        if(isNetworkEnabled){
+            location = service
+                    .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location != null) {
+                addMaker(location);
+            }
+        }
+        //menu
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Setting.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+    }
+    public void addMaker(Location location){
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
-
         // Changing marker icon
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
-
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-
         mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
-
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-
         mMap.getUiSettings().setAllGesturesEnabled(true);
-
         mMap.setTrafficEnabled(true);
     }
 }

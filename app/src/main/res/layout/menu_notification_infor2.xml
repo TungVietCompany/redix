@@ -19,7 +19,7 @@
         android:paddingTop="10dp"
         android:paddingBottom="10dp" />
 
-    <ImageView
+    <com.github.siyamed.shapeimageview.CircularImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imv_menu_notification_infor2"
