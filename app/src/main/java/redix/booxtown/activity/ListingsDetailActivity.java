@@ -51,8 +51,6 @@ public class ListingsDetailActivity extends AppCompatActivity
 
 
 
-
-
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
