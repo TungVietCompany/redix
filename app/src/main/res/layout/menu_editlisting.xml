@@ -274,7 +274,16 @@
         android:layout_alignLeft="@+id/textView115"
         android:layout_alignStart="@+id/textView115"
         android:layout_marginTop="5dp" />
-
+<RadioGroup
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:id="@+id/groupradio"
+    android:layout_below="@+id/textView116"
+    android:layout_alignRight="@+id/textView115"
+    android:layout_alignEnd="@+id/textView115"
+    android:layout_alignLeft="@+id/textView116"
+    android:layout_alignStart="@+id/textView116"
+    android:orientation="horizontal">
     <RadioButton
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -290,21 +299,19 @@
         android:layout_height="wrap_content"
         android:text="choose another"
         android:id="@+id/radioButton2"
-        android:layout_below="@+id/textView116"
-        android:layout_alignRight="@+id/textView115"
-        android:layout_alignEnd="@+id/textView115"
-        android:checked="false" />
 
+        android:checked="false" />
+</RadioGroup>
     <fragment
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="120dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/fragment_map_editlisting"
-        android:layout_below="@+id/radioButton"
-        android:layout_alignLeft="@+id/radioButton"
-        android:layout_alignStart="@+id/radioButton"
-        android:layout_alignRight="@+id/radioButton2"
-        android:layout_alignEnd="@+id/radioButton2"
+        android:layout_below="@+id/groupradio"
+        android:layout_alignLeft="@+id/groupradio"
+        android:layout_alignStart="@+id/groupradio"
+        android:layout_alignRight="@+id/groupradio"
+        android:layout_alignEnd="@+id/groupradio"
         android:layout_marginTop="5dp" />
 
     <CheckBox
@@ -321,17 +328,17 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sell"
-        android:id="@+id/checkBox2"
+        android:id="@+id/ck_sell_editlisting"
         android:layout_alignTop="@+id/checkBox"
         android:layout_centerHorizontal="true"
-        android:checked="true" />
+        />
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Free"
         android:id="@+id/checkBox3"
-        android:layout_alignTop="@+id/checkBox2"
+        android:layout_alignTop="@+id/ck_sell_editlisting"
         android:layout_alignRight="@+id/fragment_map_editlisting"
         android:layout_alignEnd="@+id/fragment_map_editlisting"
         android:checked="false" />
@@ -339,35 +346,37 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText11"
+        android:id="@+id/edt_editlisting_sell"
         android:layout_below="@+id/checkBox"
         android:layout_alignLeft="@+id/checkBox"
         android:layout_alignStart="@+id/checkBox"
         android:layout_alignRight="@+id/checkBox3"
         android:layout_alignEnd="@+id/checkBox3"
-        android:visibility="visible"/>
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete book"
         android:id="@+id/btn_menu_editlist_delete"
-        android:layout_below="@+id/editText11"
-        android:layout_alignLeft="@+id/editText11"
-        android:layout_alignStart="@+id/editText11"
+        android:layout_below="@+id/edt_editlisting_sell"
+        android:layout_alignLeft="@+id/edt_editlisting_sell"
+        android:layout_alignStart="@+id/edt_editlisting_sell"
         android:background="@drawable/bg_button_listing"
         android:layout_marginLeft="10dp"
-        android:textColor="@color/dot_light_screen1"/>
+        android:textColor="@color/dot_light_screen1"
+        android:layout_marginTop="10dp" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update"
         android:id="@+id/btn_menu_editlisting_update"
-        android:layout_below="@+id/editText11"
+        android:layout_below="@+id/edt_editlisting_sell"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:background="@drawable/bg_button_listing"
         android:layout_marginRight="10dp"
-        android:textColor="@color/dot_light_screen1"/>
+        android:textColor="@color/dot_light_screen1"
+        android:layout_marginTop="10dp" />
 </RelativeLayout>

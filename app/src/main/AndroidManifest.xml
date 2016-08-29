@@ -105,6 +105,7 @@
         <activity android:name=".activity.RespondActivity"></activity>
         <activity android:name=".activity.About"></activity>
         <activity android:name=".activity.Contact"></activity>
+        <activity android:name=".activity.WishboardActivity"></activity>
     </application>
 
 </manifest>

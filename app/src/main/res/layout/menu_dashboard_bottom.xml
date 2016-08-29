@@ -9,10 +9,10 @@
         android:layout_height="wrap_content"
         android:text="Status"
         android:id="@+id/textView119"
-        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_alignBottom="@+id/img_menu_dashboard_bottom_status"
-        android:gravity="center" />
+        android:layout_alignTop="@+id/img_menu_dashboard_bottom_status"
+        android:gravity="center_vertical" />
 
     <ImageView
         android:layout_width="wrap_content"
@@ -22,7 +22,8 @@
         android:layout_toRightOf="@+id/textView119"
         android:layout_toEndOf="@+id/textView119"
         android:src="@drawable/icon_status_profile"
-        android:layout_marginLeft="5dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="5dp" />
 
     <Button
         android:layout_width="wrap_content"

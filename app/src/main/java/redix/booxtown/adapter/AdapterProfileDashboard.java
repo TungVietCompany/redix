@@ -2,6 +2,7 @@ package redix.booxtown.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -70,11 +71,11 @@ public class AdapterProfileDashboard extends BaseAdapter {
         holder.img_offer.setImageResource(imageoffer[position]);
         holder.img_status.setImageResource(imagestatus[position]);
 
-//        if(position %2==0){
-//            rowView.setBackgroundColor(Color.parseColor());
-//        }else{
-//
-//        }
+        if(position %2==0){
+            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_text_hint));
+        }else{
+            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.dot_light_screen1));
+        }
         return rowView;
     }
 }

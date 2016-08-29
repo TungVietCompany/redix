@@ -13,6 +13,7 @@ import redix.booxtown.activity.InteractActivity;
 import redix.booxtown.activity.ListingsActivity;
 import redix.booxtown.activity.MainActivity;
 import redix.booxtown.activity.MyProfileActivity;
+import redix.booxtown.activity.WishboardActivity;
 
 /**
  * Created by Administrator on 26/08/2016.
@@ -72,7 +73,10 @@ public class MenuBottomCustom{
         btn_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(type!=4){
+                    Intent itent = new Intent(context, WishboardActivity.class);
+                    context.startActivity(itent);
+                }
                 setDefaut(4);
 
             }

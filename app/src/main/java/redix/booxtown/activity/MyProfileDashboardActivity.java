@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterProfileDashboard;
@@ -44,5 +45,26 @@ public class MyProfileDashboardActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //menu
+
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("My Profile");
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+
+        //end
     }
 }

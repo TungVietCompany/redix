@@ -171,7 +171,8 @@
         android:layout_alignRight="@+id/textView86"
         android:layout_alignEnd="@+id/textView86"
         android:src="@drawable/next"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"

@@ -10,13 +10,13 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:src="@drawable/img_temp1"
-        android:layout_marginTop="5dp"/>
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Mabrook"
         android:id="@+id/textView117"
         android:layout_below="@+id/img_menu_dashboard_middle"
         android:layout_centerHorizontal="true"
@@ -68,6 +68,7 @@
         android:id="@+id/textView118"
         android:layout_below="@+id/ratingBar"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="10dp" />
 
 </RelativeLayout>
