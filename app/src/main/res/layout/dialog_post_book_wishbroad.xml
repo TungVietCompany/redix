@@ -12,7 +12,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Post a book to Wishbroad"
+            android:text="Post a book to Wishboard"
             android:id="@+id/textView138"
             android:gravity="center"
             android:layout_margin="20dp"
@@ -56,7 +56,7 @@
             android:layout_height="wrap_content"
             android:text="Submit"
             android:background="@drawable/change_pass"
-            android:id="@+id/textView139"
+            android:id="@+id/btn_submit_dialog_post_book_wishbroad"
             android:gravity="center_vertical|center"
             android:layout_below="@+id/editText13"
             android:layout_centerHorizontal="true"
@@ -72,7 +72,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView42"
+            android:id="@+id/img_close_dialog_post_book_wishbroad"
             android:src="@drawable/close_popup"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
