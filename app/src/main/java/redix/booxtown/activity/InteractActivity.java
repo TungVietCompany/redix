@@ -106,4 +106,10 @@ public class InteractActivity extends AppCompatActivity
        // menu_bottom.setDefaut(1);
        finish();
     }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(2);
+    }
 }

@@ -55,8 +55,8 @@ public class AdapterExplore extends BaseAdapter {
         Explore ex= listExplore.get(position);
 
             convertView = inflater.inflate(R.layout.custom_gridview_explore, null);
-            TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book);
-            TextView txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book);
+            TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
+            TextView txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book_listings);
             TextView txt_price_book=(TextView) convertView.findViewById(R.id.txt_pricebook);
 
             ImageView img_book = (ImageView)convertView.findViewById(R.id.img_book);
@@ -72,7 +72,7 @@ public class AdapterExplore extends BaseAdapter {
             }
             else
             {
-                img_book.setImageResource((R.drawable.img_temp1));
+                img_book.setImageResource((R.drawable.img_temp2));
                 txt_title_book.setText("Gandalf the first");
                 txt_author_book.setText("buy Ptit");
             }

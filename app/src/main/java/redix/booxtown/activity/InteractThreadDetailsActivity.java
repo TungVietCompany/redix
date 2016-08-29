@@ -11,10 +11,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.adapter.AdapterInteractThread;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.custom.MenuBottomCustom;
-import redix.booxtown.model.Interact;
 import redix.booxtown.model.InteractComment;
 import redix.booxtown.model.InteractThread;
 
@@ -89,7 +87,7 @@ public class InteractThreadDetailsActivity extends AppCompatActivity
 
         //-----------------------------------------------------------
         final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(InteractThreadDetailsActivity.this,list);
-        listView=(ListView) findViewById(R.id.listView_thread_details);
+        listView=(ListView) findViewById(R.id.listview_comments);
         listView.setDivider(null);
         listView.setAdapter(adapter);
         //---------------------------------------------------------------

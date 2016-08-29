@@ -10,6 +10,8 @@ import android.widget.Toast;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.InteractActivity;
+import redix.booxtown.activity.ListingsActivity;
+import redix.booxtown.activity.MainActivity;
 
 /**
  * Created by Administrator on 26/08/2016.
@@ -36,6 +38,10 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
                 btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
+                if(type!=1){
+                    Intent itent = new Intent(context, MainActivity.class);
+                    context.startActivity(itent);
+                }
                 setDefaut(1);
             }
         });
@@ -55,6 +61,10 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
 
+                if(type!=3){
+                    Intent itent = new Intent(context, ListingsActivity.class);
+                    context.startActivity(itent);
+                }
                 setDefaut(3);
             }
         });
@@ -80,7 +90,14 @@ public class MenuBottomCustom{
 
     public void setDefaut(int i){
             //set icon tab
-            if(i==1) {
+            if(i==0) {
+                btn_location.setImageResource(R.drawable.icon_menu_bottom_location_not);
+                btn_commnet.setImageResource(R.drawable.icon_menu_bottom_comment_not);
+                btn_camera.setImageResource(R.drawable.icon_menu_bottom_camera_not);
+                btn_bag.setImageResource(R.drawable.icon_menu_bottom_bag_not);
+                btn_user.setImageResource(R.drawable.icon_menu_bottom_user_not);
+            }
+            else if(i==1) {
                 btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
                 btn_commnet.setImageResource(R.drawable.icon_menu_bottom_comment_not);
                 btn_camera.setImageResource(R.drawable.icon_menu_bottom_camera_not);

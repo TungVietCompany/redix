@@ -1,9 +1,7 @@
 package redix.booxtown.adapter;
 
 import android.content.Context;
-import android.content.res.Resources;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,10 +12,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.activity.NotificationDominicAccept;
-import redix.booxtown.custom.NotificationAccept;
+import redix.booxtown.activity.UserProfileActivity;
 import redix.booxtown.model.InteractComment;
-import redix.booxtown.model.InteractThread;
 
 /**
  * Created by Administrator on 28/08/2016.
@@ -61,7 +57,7 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
             InteractComment interactComments= listInteractComments.get(position);
         convertView = inflater.inflate(R.layout.custom_commnents_interact, null);
 
-            ImageView img_icon=(ImageView) convertView.findViewById(R.id.icon_user);
+            ImageView img_icon=(ImageView) convertView.findViewById(R.id.icon_user_listing_detail);
             ImageView img_rank_one=(ImageView) convertView.findViewById(R.id.img_comment_rank1);
             ImageView img_rank_two=(ImageView) convertView.findViewById(R.id.img_comment_rank2);
             ImageView img_rank_three=(ImageView) convertView.findViewById(R.id.img_comment_rank3);
@@ -71,6 +67,13 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 
 
             img_icon.setImageResource(R.drawable.icon_test);
+            img_icon.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent=new Intent(mContext,UserProfileActivity.class);
+                    mContext.startActivity(intent);
+                }
+            });
 
 //            Resources mResources = mContext.getResources();
 //            Bitmap mBitmap = BitmapFactory.decodeResource(mResources, R.drawable.icon_test);

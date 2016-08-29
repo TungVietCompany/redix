@@ -73,18 +73,9 @@
         <activity android:name=".activity.InteractActivity" />
         <activity android:name=".activity.InteractThreadActivity" />
         <activity android:name=".activity.InteractThreadDetailsActivity" />
-        <activity android:name=".activity.Notification" />
-        <activity android:name=".activity.faq_activity" />
-        <activity android:name=".activity.Faq_content" />
-        <!-- activity for Explore -->
-        <activity android:name=".activity.ExploreActivity" />
-        <activity android:name=".activity.Invite_friend" />
-        <activity android:name=".activity.Rate" />
-        <activity android:name=".activity.Setting" />
-        <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.InteractActivity" />
-        <activity android:name=".activity.InteractThreadActivity" />
-
+        <activity android:name=".activity.UserProfileActivity" />
+        <activity android:name=".activity.ListingsActivity" />
+        <activity android:name=".activity.ListingsDetailActivity" />
         <!-- activity for Explore -->
         <activity android:name=".activity.NotificationSwapActivity" />
         <activity android:name=".activity.ActivityNotificationAccept" />

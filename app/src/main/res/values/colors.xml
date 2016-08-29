@@ -29,7 +29,8 @@
     <color name="color_txt_menu_notification_title2">#FF4FE59C</color>
     <color name="color_star_select">#f7b600</color>
     <color name="color_star_not_select">#999799</color>
-    <color name="color_hint_interact">#cacaca</color>
+    <color name="color_hint_interact">#ebebeb</color>
+    <color name="color_bg_listings_detail">#f7f8f8</color>
 
 
     <array name="array_dot_active">
