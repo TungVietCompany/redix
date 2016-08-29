@@ -44,17 +44,19 @@ public class ListingsActivity extends AppCompatActivity
         //------------------------------------------------------------
         Explore e1= new Explore();
         e1.setPrice_book(152.0f);
+        e1.setBuy(true);
 
         Explore e2= new Explore();
         e2.setPrice_book(153.0f);
+        e2.setBuy(true);
 
         Explore e3= new Explore();
         e3.setPrice_book(154.0f);
-
+        e3.setBuy(true);
 
         Explore e4= new Explore();
         e4.setPrice_book(155.0f);
-
+        e4.setBuy(true);
 
         listEx.add(e1);
         listEx.add(e2);
