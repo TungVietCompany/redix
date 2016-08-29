@@ -1,6 +1,7 @@
 package redix.booxtown.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.model.Explore;
 
 /**
@@ -99,6 +101,15 @@ public class AdapterExplore extends BaseAdapter {
             else{
                 img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
             }
+
+            img_buy.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent= new Intent(mContext, ListingsDetailActivity.class);
+                    intent.putExtra("type",2);
+                    mContext.startActivity(intent);
+                }
+            });
 
         return convertView;
     }

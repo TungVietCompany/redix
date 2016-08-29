@@ -4,10 +4,14 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.TableRow;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.viewpagerindicator.CirclePageIndicator;
 
@@ -19,6 +23,7 @@ import redix.booxtown.adapter.CustomPagerAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.InteractComment;
+import redix.booxtown.model.InteractThread;
 
 /**
  * Created by Administrator on 29/08/2016.
@@ -37,10 +42,16 @@ public class ListingsDetailActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings_detail);
 
+        int type = (int) getIntent().getSerializableExtra("type");
+
         ProgressBar progressBar=(ProgressBar) findViewById(R.id.progressBar);
         progressBar.setProgress(40);
 
         View view=(View) findViewById(R.id.layout_details);
+
+
+
+
 
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.pager);
@@ -69,7 +80,15 @@ public class ListingsDetailActivity extends AppCompatActivity
         listView.setDivider(null);
         listView.setAdapter(adapter);
         //---------------------------------------------------------------
+        EditText edit=(EditText) view.findViewById(R.id.edit_message);
+        ImageView img_send=(ImageView) view.findViewById(R.id.btn_send_comment_interact);
+        ImageView imgFree=(ImageView) view.findViewById(R.id.imageView17);
+        if(type!=1){
 
+            edit.setVisibility(View.GONE);
+            img_send.setVisibility(View.GONE);
+            imgFree.setVisibility(View.INVISIBLE);
+        }
 
 //        //------------------------------------------------------------
 //        View view=(View) findViewById(R.id.menu_top_listings);

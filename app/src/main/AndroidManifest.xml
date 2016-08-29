@@ -102,6 +102,7 @@
         <activity android:name=".activity.DashboardStopActivity" />
         <activity android:name=".activity.DashboardDeleteActivity" />
         <activity android:name=".activity.MenuActivity"></activity>
+        <activity android:name=".activity.RespondActivity"></activity>
         <activity android:name=".activity.About"></activity>
         <activity android:name=".activity.Contact"></activity>
     </application>

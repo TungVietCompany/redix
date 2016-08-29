@@ -32,7 +32,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/edit_message"
         android:background="@drawable/message"
         android:hint="Add Comments"
         android:fontFamily="sans-serif-light"
@@ -62,7 +62,7 @@
         android:id="@+id/listview_comments"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/view2"
-        android:layout_above="@+id/editText"
+        android:layout_above="@+id/edit_message"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"

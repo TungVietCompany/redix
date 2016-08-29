@@ -73,7 +73,7 @@
 
         <GridView
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_height="wrap_content"
             android:id="@+id/grid_myprofile"
             android:layout_alignLeft="@+id/textView73"
             android:layout_alignStart="@+id/textView73"
