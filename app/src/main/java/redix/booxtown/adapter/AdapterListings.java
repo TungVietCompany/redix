@@ -79,8 +79,9 @@ public class AdapterListings extends BaseAdapter {
             txt_title_book.setText("Gandalf the first");
             txt_author_book.setText("buy Ptit");
         }
-        txt_price_book.setText("AED"+ex.getPrice_book());
-
+        if(!ex.isBuy()) {
+            txt_price_book.setVisibility(View.INVISIBLE);
+        }
         if(ex.isSwap()){
             img_buy.setImageResource((R.drawable.tab_book_explore_swap));
         }

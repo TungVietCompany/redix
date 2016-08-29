@@ -38,6 +38,8 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
         mMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map_editlisting));
         mMapFragment.getMapAsync(EditListingActivity.this);
         btnDelete();
+
+
     }
 
     public void btnDelete(){
