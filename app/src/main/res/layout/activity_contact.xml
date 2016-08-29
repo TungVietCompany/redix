@@ -6,8 +6,13 @@
     tools:context="redix.booxtown.activity.Contact">
 
 
-    <include layout="@layout/menu_top" />
-    <include layout="@layout/menu_bottom" />
+    <include layout="@layout/menu_top"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <include layout="@layout/menu_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true" />
 
     <TextView
         android:layout_width="wrap_content"

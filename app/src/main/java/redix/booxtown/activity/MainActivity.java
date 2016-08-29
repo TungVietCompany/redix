@@ -85,22 +85,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
 
-        ImageView menu =
-                (ImageView)findViewById(R.id.img_menu);
+        ImageView menu = (ImageView)findViewById(R.id.img_menu);
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.menu);
-                ListView lv=(ListView) findViewById(R.id.listViewa);
-                lv.setAdapter(new CustomAdapter(MainActivity.this, prgmNameList,prgmImages));
-                ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
-                close_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent itent = new Intent(MainActivity.this, redix.booxtown.activity.Rate.class);
-                        startActivity(itent);
-                    }
-                });
+                Intent intent = new Intent(MainActivity.this,MenuActivity.class);
+                startActivity(intent);
             }
         });
         filterSort();
@@ -111,62 +101,60 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                final Dialog dialog = new Dialog(MainActivity.this);
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-//                dialog.setContentView(R.layout.dialog_filter_sort);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//                dialog.show();
-//
-//                ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
-//                lv_dialog_filter.setAdapter(new AdapterFilter(MainActivity.this,prgmNameList1));
-//
-//                final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
-//                final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
-//                final TextView tvMax = (TextView) dialog.findViewById(R.id.txt_filter_rangemax);
-//
-//                rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
-//                    @Override
-//                    public void valueChanged(Number minValue, Number maxValue) {
-//                        tvMin.setText(String.valueOf(minValue));
-//                        tvMax.setText(String.valueOf(maxValue));
-//                    }
-//                });
-//
-//                final TextView txt_filter_proximity = (TextView)dialog.findViewById(R.id.txt_filter_proximity);
-//                final CrystalSeekbar seekbar = (CrystalSeekbar) dialog.findViewById(R.id.rangeSeekbar8);
-//                seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
-//                    @Override
-//                    public void valueChanged(Number minValue) {
-//                        txt_filter_proximity.setText(String.valueOf(minValue)+" KM");
-//                    }
-//                });
-//
-//                ImageView imv_dialog_filter_close = (ImageView)dialog.findViewById(R.id.imv_dialog_filter_close);
-//                imv_dialog_filter_close.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                Button btn_dialog_filter_submit = (Button)dialog.findViewById(R.id.btn_dialog_filter_submit);
-//                btn_dialog_filter_submit.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View view) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-//                Spinner spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
-//                List<String> list = new ArrayList<String>();
-//                list.add("Nearest distance");
-//                list.add("list 2");
-//                list.add("list 3");
-//
-//                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this,
-//                        android.R.layout.simple_spinner_item, list);
-//                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//                spinner2.setAdapter(dataAdapter);
+                final Dialog dialog = new Dialog(MainActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_filter_sort);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
+                lv_dialog_filter.setAdapter(new AdapterFilter(MainActivity.this,prgmNameList1));
+
+                final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
+                final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
+                final TextView tvMax = (TextView) dialog.findViewById(R.id.txt_filter_rangemax);
+
+                rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
+                    @Override
+                    public void valueChanged(Number minValue, Number maxValue) {
+                        tvMin.setText(String.valueOf(minValue));
+                        tvMax.setText(String.valueOf(maxValue));
+                    }
+                });
+
+                final TextView txt_filter_proximity = (TextView)dialog.findViewById(R.id.txt_filter_proximity);
+                final CrystalSeekbar seekbar = (CrystalSeekbar) dialog.findViewById(R.id.rangeSeekbar8);
+                seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
+                    @Override
+                    public void valueChanged(Number minValue) {
+                        txt_filter_proximity.setText(String.valueOf(minValue)+" KM");
+                    }
+                });
+
+                ImageView imv_dialog_filter_close = (ImageView)dialog.findViewById(R.id.imv_dialog_filter_close);
+                imv_dialog_filter_close.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                Button btn_dialog_filter_submit = (Button)dialog.findViewById(R.id.btn_dialog_filter_submit);
+                btn_dialog_filter_submit.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                Spinner spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
+                List<String> list = new ArrayList<String>();
+                list.add("Nearest distance");
+                list.add("list 2");
+                list.add("list 3");
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this,
+                        android.R.layout.simple_spinner_item, list);
+                dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+                spinner2.setAdapter(dataAdapter);
             }
         });
     }
@@ -180,19 +168,13 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onMapLongClick(LatLng latLng) {
-
     }
 
     @Override
     protected void onResume() {
         super.onResume();
-
         int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-
         if (resultCode == ConnectionResult.SUCCESS){
-//            Toast.makeText(getApplicationContext(),
-//                    "isGooglePlayServicesAvailable SUCCESS",
-//                    Toast.LENGTH_LONG).show();
         }else{
             GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
         }
@@ -201,13 +183,10 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
-
         // Add a marker in Sydney and move the camera
-
         // latitude and longitude
         double latitude = 17.385044;
         double longitude = 78.486671;
-
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 

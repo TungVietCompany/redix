@@ -14,7 +14,7 @@ import android.widget.TextView;
 import redix.booxtown.R;
 import redix.booxtown.custom.NotificationAccept;
 
-public class ActivityNotificationSell extends AppCompatActivity {
+public class NotificationSellActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,11 +23,6 @@ public class ActivityNotificationSell extends AppCompatActivity {
 
         TextView txt_notification_infor3_phone = (TextView)findViewById(R.id.txt_notification_infor3_phone);
         txt_notification_infor3_phone.setVisibility(View.GONE);
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.imv_nitification_infor3_phone);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(ActivityNotificationSell.this,mResources,mBitmap,mImageView);
 
         TextView txt_menu_notification_infor3_title = (TextView)findViewById(R.id.txt_menu_notification_infor3_title);
         txt_menu_notification_infor3_title.setText("wants to buy your book");
@@ -36,7 +31,7 @@ public class ActivityNotificationSell extends AppCompatActivity {
         btn_menu_notification_dominic_accept.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityNotificationSell.this,NotificationSellNoAccept.class);
+                Intent intent = new Intent(NotificationSellActivity.this,NotificationSellNoAccept.class);
                 startActivity(intent);
             }
         });
@@ -45,9 +40,25 @@ public class ActivityNotificationSell extends AppCompatActivity {
         btn_menu_notification_dominic_reject.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ActivityNotificationSell.this,NotificationSellNoReject.class);
+                Intent intent = new Intent(NotificationSellActivity.this,NotificationSellNoReject.class);
                 startActivity(intent);
             }
         });
+
+        //menu
+
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //end
     }
 }

@@ -299,7 +299,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:name="com.google.android.gms.maps.SupportMapFragment"
-        android:id="@+id/fragment2"
+        android:id="@+id/fragment_map_editlisting"
         android:layout_below="@+id/radioButton"
         android:layout_alignLeft="@+id/radioButton"
         android:layout_alignStart="@+id/radioButton"
@@ -312,9 +312,9 @@
         android:layout_height="wrap_content"
         android:text="Swap"
         android:id="@+id/checkBox"
-        android:layout_below="@+id/fragment2"
-        android:layout_alignLeft="@+id/fragment2"
-        android:layout_alignStart="@+id/fragment2"
+        android:layout_below="@+id/fragment_map_editlisting"
+        android:layout_alignLeft="@+id/fragment_map_editlisting"
+        android:layout_alignStart="@+id/fragment_map_editlisting"
         android:checked="false" />
 
     <CheckBox
@@ -332,8 +332,8 @@
         android:text="Free"
         android:id="@+id/checkBox3"
         android:layout_alignTop="@+id/checkBox2"
-        android:layout_alignRight="@+id/fragment2"
-        android:layout_alignEnd="@+id/fragment2"
+        android:layout_alignRight="@+id/fragment_map_editlisting"
+        android:layout_alignEnd="@+id/fragment_map_editlisting"
         android:checked="false" />
 
     <EditText
@@ -351,7 +351,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Delete book"
-        android:id="@+id/button"
+        android:id="@+id/btn_menu_editlist_delete"
         android:layout_below="@+id/editText11"
         android:layout_alignLeft="@+id/editText11"
         android:layout_alignStart="@+id/editText11"
@@ -363,7 +363,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Update"
-        android:id="@+id/button4"
+        android:id="@+id/btn_menu_editlisting_update"
         android:layout_below="@+id/editText11"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"

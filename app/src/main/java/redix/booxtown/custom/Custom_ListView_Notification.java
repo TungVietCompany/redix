@@ -5,11 +5,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import redix.booxtown.activity.Notification;
+import redix.booxtown.activity.NotificationActivity;
 import redix.booxtown.R;
 
 /**
@@ -20,7 +18,7 @@ public class Custom_ListView_Notification extends BaseAdapter {
     Context context;
     String [] imageId;
     private static LayoutInflater inflater=null;
-    public Custom_ListView_Notification(Notification mainActivity, String[] prgmNameList, String[] prgmImages) {
+    public Custom_ListView_Notification(NotificationActivity mainActivity, String[] prgmNameList, String[] prgmImages) {
         // TODO Auto-generated constructor stub
         result=prgmNameList;
         context=mainActivity;
