@@ -18,6 +18,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -77,6 +78,14 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
                         startActivity(intent);
                     }
                 });
+
+                ImageView imv_close_dialog_editlist = (ImageView)dialog.findViewById(R.id.imv_close_dialog_editlist);
+                imv_close_dialog_editlist.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
             }
         });
 
@@ -88,7 +97,21 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
             }
         });
 
+        //menu
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
 
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("My Profile");
+
+        ImageView menu = (ImageView)findViewById(R.id.img_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(EditListingActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
         //end
     }
 
