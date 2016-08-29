@@ -42,12 +42,11 @@ public class MyProfileActivity extends AppCompatActivity {
         //menu
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back_interact);
-
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                onBackPressed();
+                Intent intent = new Intent(MyProfileActivity.this,MenuActivity.class);
+                startActivity(intent);
             }
         });
 

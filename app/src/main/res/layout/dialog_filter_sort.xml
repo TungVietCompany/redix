@@ -41,7 +41,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Filter by"
-                android:id="@+id/textView68"
+                android:id="@+id/txt_dialog_delete_editlisting1"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentLeft="true"
@@ -56,13 +56,13 @@
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="Price range"
                 android:id="@+id/textView127"
-                android:layout_below="@+id/textView68"
+                android:layout_below="@+id/txt_dialog_delete_editlisting1"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="false"
                 android:layout_alignParentStart="true"
                 android:layout_marginLeft="5dp"
-                android:layout_alignRight="@+id/textView68"
-                android:layout_alignEnd="@+id/textView68" />
+                android:layout_alignRight="@+id/txt_dialog_delete_editlisting1"
+                android:layout_alignEnd="@+id/txt_dialog_delete_editlisting1" />
             <com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar
                 android:id="@+id/rangeSeekbar3"
                 android:layout_width="match_parent"

@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_margin="12dp"
+        android:layout_margin="11dp"
         android:weightSum="4"
         android:background="@drawable/customborder">
         <LinearLayout
@@ -80,13 +80,14 @@
                 android:paddingTop="5dp"
                 android:textColor="@color/dot_light_screen1"/>
 
-            <ImageView
+            <com.github.siyamed.shapeimageview.CircularImageView
                 android:layout_width="wrap_content"
-                android:layout_height="70dp"
+                android:layout_height="wrap_content"
                 android:id="@+id/imageView37"
                 android:src="@drawable/img_temp1"
                 android:layout_below="@+id/textView122"
-                android:layout_centerHorizontal="true" />
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -113,35 +114,45 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="dffhgjghj"/>
+                android:text="Promptness"
+                android:textColor="@color/dot_light_screen1" />
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:layout_gravity="center"/>
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:text="dffhgjghj"/>
+                android:text="Courtesy"
+                android:textColor="@color/dot_light_screen1" />
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:layout_gravity="center"/><TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="dffhgjghj"/>
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="Quality of Book"
+                android:textColor="@color/dot_light_screen1" />
             <RatingBar
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:numStars="5"
-                android:layout_gravity="center"/>
+                style="?android:attr/ratingBarStyleIndicator"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp" />
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/btn_rate"
+                android:id="@+id/btn_rate_dashboard_status"
                 android:layout_gravity="center"
                 android:background="@drawable/change_pass"
                 android:text="Rate now"
@@ -161,7 +172,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView18"
+            android:id="@+id/imv_close_dialog_dashboard_status"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
