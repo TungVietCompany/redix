@@ -12,6 +12,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.EditListingActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.model.Explore;
 
@@ -79,15 +80,38 @@ public class AdapterListings extends BaseAdapter {
             txt_author_book.setText("buy Ptit");
         }
         txt_price_book.setText("AED"+ex.getPrice_book());
-        img_swap.setImageResource((R.drawable.tab_book_explore_swap_not));
-        img_free.setImageResource((R.drawable.tab_book_explore_free_not));
-        img_buy.setImageResource((R.drawable.tab_book_listings_cart));
+
+        if(ex.isSwap()){
+            img_buy.setImageResource((R.drawable.tab_book_explore_swap));
+        }
+        else {
+            img_swap.setImageResource((R.drawable.tab_book_explore_swap_not));
+        }
+        if(ex.isFree()){
+            img_buy.setImageResource((R.drawable.tab_book_explore_free));
+        }
+        else {
+            img_free.setImageResource((R.drawable.tab_book_explore_free_not));
+        }
+        if(ex.isBuy()){
+            img_buy.setImageResource((R.drawable.tab_book_listings_cart));
+        }
+        else {
+            img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
+        }
         img_edit.setImageResource((R.drawable.tab_book_listings_edit));
 
         img_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(mContext, ListingsDetailActivity.class);
+                mContext.startActivity(intent);
+            }
+        });
+        img_edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent= new Intent(mContext, EditListingActivity.class);
                 mContext.startActivity(intent);
             }
         });
