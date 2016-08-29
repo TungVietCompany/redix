@@ -93,7 +93,7 @@ public class UserProfileActivity extends AppCompatActivity
             @Override
             public void onClick(View v) {
                 final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(1));
-                grid=(GridView)findViewById(R.id.gridView);
+                grid=(GridView)findViewById(R.id.grid_view_profile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
             }

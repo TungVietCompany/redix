@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -29,12 +30,6 @@ public class MyProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile);
 
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.imv_menu_profile);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(MyProfileActivity.this,mResources,mBitmap,mImageView);
-
         ImageView img_menu_personal_dashboard = (ImageView)findViewById(R.id.img_menu_personal_dashboard);
         img_menu_personal_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -44,6 +39,23 @@ public class MyProfileActivity extends AppCompatActivity {
             }
         });
 
+        //menu
 
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("My Profile");
+        //end
     }
 }

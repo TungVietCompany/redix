@@ -31,11 +31,5 @@ public class DashboardStopActivity extends AppCompatActivity {
 
         ImageView img_menu_dashboard_bottom_status = (ImageView)findViewById(R.id.img_menu_dashboard_bottom_status);
         img_menu_dashboard_bottom_status.setImageResource(R.drawable.icon_stop_profile);
-
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.img_menu_dashboard_middle);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(DashboardStopActivity.this,mResources,mBitmap,mImageView);
     }
 }

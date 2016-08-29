@@ -1,6 +1,7 @@
 package redix.booxtown.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,6 +58,8 @@ public class AdapterProfileDashboard extends BaseAdapter {
     @Override
     public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
+
+
         Holder holder=new Holder();
         View rowView;
         rowView = inflater.inflate(R.layout.custom_listview_profile_dashboard, null);
@@ -66,6 +69,12 @@ public class AdapterProfileDashboard extends BaseAdapter {
         holder.tv.setText(result[position]);
         holder.img_offer.setImageResource(imageoffer[position]);
         holder.img_status.setImageResource(imagestatus[position]);
+
+//        if(position %2==0){
+//            rowView.setBackgroundColor(Color.parseColor());
+//        }else{
+//
+//        }
         return rowView;
     }
 }
