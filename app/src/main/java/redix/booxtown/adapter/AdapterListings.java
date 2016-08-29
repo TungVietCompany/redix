@@ -106,6 +106,7 @@ public class AdapterListings extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(mContext, ListingsDetailActivity.class);
+                intent.putExtra("type",1);
                 mContext.startActivity(intent);
             }
         });

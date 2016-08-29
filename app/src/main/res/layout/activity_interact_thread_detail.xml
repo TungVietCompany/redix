@@ -97,7 +97,7 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/editText"
+        android:id="@+id/edit_message"
         android:layout_alignLeft="@+id/view2"
         android:layout_alignStart="@+id/view2"
         android:background="@drawable/message"
@@ -120,10 +120,10 @@
         android:layout_height="wrap_content"
         android:id="@+id/btn_send_comment_interact"
         android:background="@drawable/interact_send_message"
-        android:layout_alignTop="@+id/editText"
+        android:layout_alignTop="@+id/edit_message"
         android:layout_alignRight="@+id/view2"
         android:layout_alignEnd="@+id/view2"
-        android:layout_alignBottom="@+id/editText" />
+        android:layout_alignBottom="@+id/edit_message" />
 
     <ListView
         android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
         android:id="@+id/listview_comments"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/view2"
-        android:layout_above="@+id/editText"
+        android:layout_above="@+id/edit_message"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginTop="5dp"

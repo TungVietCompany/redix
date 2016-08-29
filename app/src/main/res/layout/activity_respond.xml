@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_top"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/menu_top_respond" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wish posted by "
+        android:id="@+id/textView2"
+        android:layout_below="@+id/menu_top_respond"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="10dp"
+        android:textColor="@color/color_text"
+        android:textSize="20sp" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/custom_respond"
+        android:layout_below="@+id/textView2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/include48" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Book: The Last Painting of Sara de Vos"
+        android:id="@+id/txt_title_book_respond"
+        android:gravity="center"
+        android:layout_below="@+id/include48"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@color/color_title_book"
+        android:textColor="@color/dot_light_screen1"
+        android:padding="5dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Author: Gandalf"
+        android:id="@+id/textView129"
+        android:layout_below="@+id/txt_title_book_respond"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/color_title_book"
+        android:textColor="@color/color_hint_interact"
+        android:padding="5dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="&quot;I am looking for this book please help me find it!&quot;"
+        android:id="@+id/textView130"
+        android:layout_below="@+id/textView129"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:background="@color/color_title_book"
+        android:textColor="@color/dot_light_screen1"
+        android:padding="5dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a book"
+        android:id="@+id/txt_add_book_respond"
+        android:background="@drawable/btn_respond"
+        android:layout_below="@+id/textView130"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textColor="@color/dot_light_screen1" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Check out my listing"
+        android:id="@+id/txt_checkout_respond"
+        android:layout_below="@+id/txt_add_book_respond"
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/dot_light_screen1"
+        android:background="@drawable/btn_respond"
+        android:gravity="center"
+        android:layout_marginTop="5dp" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/layout_comments"
+        android:layout_below="@+id/txt_checkout_respond"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_above="@+id/menu_bottom_respond"
+        android:id="@+id/gridview_comments_respond" />
+
+    <include
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        layout="@layout/menu_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/menu_bottom_respond" />
+
+</RelativeLayout>

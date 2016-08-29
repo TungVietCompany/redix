@@ -7,7 +7,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="130dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -247,7 +247,7 @@
 
     <fragment
         android:layout_width="wrap_content"
-        android:layout_height="120dp"
+        android:layout_height="100dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_below="@+id/view4"
         android:layout_alignLeft="@+id/view4"
@@ -263,7 +263,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/fragment3"
         android:layout_centerHorizontal="true"
-        android:id="@+id/tableRow5"
+        android:id="@+id/row_type_book"
         android:weightSum="1"
         android:layout_margin="5dp">
 
@@ -295,10 +295,15 @@
         layout="@layout/layout_comments"
         android:layout_marginLeft="-10dp"
         android:layout_marginRight="-10dp"
-        android:layout_below="@+id/tableRow5"
         android:layout_alignRight="@+id/fragment3"
         android:layout_alignEnd="@+id/fragment3"
         android:layout_alignLeft="@+id/fragment3"
-        android:layout_alignStart="@+id/fragment3" />
+        android:layout_alignStart="@+id/fragment3"
+
+        android:id="@+id/include62"
+        android:layout_below="@+id/row_type_book"
+       />
+
+
 
 </RelativeLayout>
