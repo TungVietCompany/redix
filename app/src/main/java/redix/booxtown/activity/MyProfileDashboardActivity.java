@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -24,12 +25,6 @@ public class MyProfileDashboardActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_my_profile_dashboard);
-
-        Resources mResources = getResources();
-        ImageView mImageView = (ImageView) findViewById(R.id.imv_menu_profile);
-        Bitmap mBitmap = BitmapFactory.decodeResource(mResources,R.drawable.img_temp1);
-        NotificationAccept notificationAccept = new NotificationAccept();
-        notificationAccept.accept(MyProfileDashboardActivity.this,mResources,mBitmap,mImageView);
 
         ListView lv_myprofile_dashboard = (ListView)findViewById(R.id.lv_myprofile_dashboard);
         lv_myprofile_dashboard.setAdapter(new AdapterProfileDashboard(MyProfileDashboardActivity.this,txtbook,imgoffer,imgstatus));

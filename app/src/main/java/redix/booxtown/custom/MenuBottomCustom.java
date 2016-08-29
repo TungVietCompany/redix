@@ -12,6 +12,7 @@ import redix.booxtown.R;
 import redix.booxtown.activity.InteractActivity;
 import redix.booxtown.activity.ListingsActivity;
 import redix.booxtown.activity.MainActivity;
+import redix.booxtown.activity.MyProfileActivity;
 
 /**
  * Created by Administrator on 26/08/2016.
@@ -79,7 +80,10 @@ public class MenuBottomCustom{
         btn_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(type!=5){
+                    Intent itent = new Intent(context, MyProfileActivity.class);
+                    context.startActivity(itent);
+                }
                 setDefaut(5);
             }
         });

@@ -37,5 +37,18 @@ public class NotificationSellReject extends AppCompatActivity {
         TextView txt_notification_dominic_time = (TextView)findViewById(R.id.txt_notification_dominic_time);
         txt_notification_dominic_time.setVisibility(View.GONE);
 
+        //menu
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+        //end
+
     }
 }
