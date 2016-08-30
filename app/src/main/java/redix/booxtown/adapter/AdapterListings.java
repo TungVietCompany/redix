@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import redix.booxtown.R;
 import redix.booxtown.activity.EditListingActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
+import redix.booxtown.activity.UserProfileActivity;
 import redix.booxtown.model.Explore;
 
 /**
@@ -67,6 +69,8 @@ public class AdapterListings extends BaseAdapter {
         ImageView img_free = (ImageView)convertView.findViewById(R.id.img_explore_free_listings);
         ImageView img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         ImageView img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
+
+
 
         if(position%2==0){
             img_book.setImageResource((R.drawable.img_temp1));

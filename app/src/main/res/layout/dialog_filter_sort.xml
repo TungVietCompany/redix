@@ -36,7 +36,7 @@
             android:background="@color/dot_light_screen2"
             android:layout_marginLeft="5dp"
             android:layout_marginRight="5dp"
-            android:id="@+id/relativeLayout7">
+            android:id="@+id/layout_user">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -182,11 +182,11 @@
             android:layout_height="wrap_content"
             android:text="Sort by"
             android:id="@+id/textView72"
-            android:layout_below="@+id/relativeLayout7"
-            android:layout_alignLeft="@+id/relativeLayout7"
-            android:layout_alignStart="@+id/relativeLayout7"
-            android:layout_alignRight="@+id/relativeLayout7"
-            android:layout_alignEnd="@+id/relativeLayout7"
+            android:layout_below="@+id/layout_user"
+            android:layout_alignLeft="@+id/layout_user"
+            android:layout_alignStart="@+id/layout_user"
+            android:layout_alignRight="@+id/layout_user"
+            android:layout_alignEnd="@+id/layout_user"
             android:padding="5dp"
             android:textColor="@color/color_text"
             android:background="@color/color_text_hint"

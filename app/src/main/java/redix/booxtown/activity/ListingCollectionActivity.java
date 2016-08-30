@@ -67,10 +67,10 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
 
         //end
         //spinner
-        Spinner spinner_menu_editlist = (Spinner)findViewById(R.id.spinner_menu_editlist);
-        spinner_menu_editlist.setOnTouchListener(new View.OnTouchListener() {
+        ImageView imageView=(ImageView) findViewById(R.id.img_menu_genre);
+        imageView.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onTouch(View view, MotionEvent motionEvent) {
+            public void onClick(View v) {
                 final Dialog dialog = new Dialog(ListingCollectionActivity.this);
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
@@ -95,7 +95,37 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
                         dialog.dismiss();
                     }
                 });
-                return false;
+            }
+        });
+        TextView txt_view = (TextView) findViewById(R.id.txt_menu_genre1);
+        txt_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(ListingCollectionActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(ListingCollectionActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 

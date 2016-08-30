@@ -98,7 +98,7 @@ public class MyProfileActivity extends AppCompatActivity {
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(1));
+                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(1),1);
                 grid=(GridView)findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -108,7 +108,7 @@ public class MyProfileActivity extends AppCompatActivity {
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(2));
+                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(2),1);
                 grid=(GridView)findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
 
@@ -119,7 +119,7 @@ public class MyProfileActivity extends AppCompatActivity {
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(3));
+                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(3),1);
                 grid=(GridView)findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -130,7 +130,7 @@ public class MyProfileActivity extends AppCompatActivity {
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(4));
+                final AdapterExplore adapter = new AdapterExplore(MyProfileActivity.this,filterExplore(4),1);
                 grid=(GridView)findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);

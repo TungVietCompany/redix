@@ -16,6 +16,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
@@ -68,6 +69,16 @@ public class ListingsDetailActivity extends AppCompatActivity
                 }
             });
         }
+
+        RelativeLayout layout_user=(RelativeLayout) findViewById(R.id.layout_user);
+        layout_user.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(ListingsDetailActivity.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //------------------------------------------------------------
         View view_bottom=(View) findViewById(R.id.menu_bottom_listing_detail);
         bottomListings=new MenuBottomCustom(view_bottom,this,3);

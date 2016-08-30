@@ -22,9 +22,9 @@ import redix.booxtown.model.Explore;
 public class AdapterExplore extends BaseAdapter {
     private Context mContext;
     private ArrayList<Explore> listExplore;
+    private int type;
 
-
-    public AdapterExplore(Context c, ArrayList<Explore> list_explores) {
+    public AdapterExplore(Context c, ArrayList<Explore> list_explores,int type) {
         mContext = c;
         this.listExplore = list_explores;
 
@@ -106,7 +106,7 @@ public class AdapterExplore extends BaseAdapter {
             img_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ex.isBuy()) {
+                    if(ex.isBuy()&& type!=0) {
                         Intent intent = new Intent(mContext, ListingsDetailActivity.class);
                         intent.putExtra("type", 3);
                         mContext.startActivity(intent);
@@ -117,7 +117,7 @@ public class AdapterExplore extends BaseAdapter {
             img_swap.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if(ex.isSwap()) {
+                    if(ex.isSwap()&& type!=0) {
                         Intent intent = new Intent(mContext, SwapActivity.class);
                         mContext.startActivity(intent);
                     }

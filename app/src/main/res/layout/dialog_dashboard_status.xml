@@ -67,7 +67,7 @@
             android:layout_height="wrap_content"
             android:background="#d24040"
             android:layout_weight="1"
-            android:id="@+id/relativeLayout7">
+            android:id="@+id/layout_user">
 
             <TextView
                 android:layout_width="wrap_content"

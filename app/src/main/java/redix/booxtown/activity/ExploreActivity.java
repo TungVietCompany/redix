@@ -54,7 +54,7 @@ public class ExploreActivity extends AppCompatActivity
         });
 
         //-----------------------------------------------------------
-        final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,listEx);
+        final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,listEx,1);
         grid=(GridView)findViewById(R.id.gridView);
         grid.setAdapter(adapter);
         //---------------------------------------------------------------
@@ -101,7 +101,7 @@ public class ExploreActivity extends AppCompatActivity
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(1));
+                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(1),1);
                 grid=(GridView)findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -111,7 +111,7 @@ public class ExploreActivity extends AppCompatActivity
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(2));
+                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(2),1);
                 grid=(GridView)findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
 
@@ -122,7 +122,7 @@ public class ExploreActivity extends AppCompatActivity
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(3));
+                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(3),1);
                 grid=(GridView)findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -133,7 +133,7 @@ public class ExploreActivity extends AppCompatActivity
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(4));
+                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(4),1);
                 grid=(GridView)findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);

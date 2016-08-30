@@ -88,6 +88,9 @@
         android:layout_alignRight="@+id/textView105"
         android:layout_alignEnd="@+id/textView105"
         android:hint="The last paiting"
+        android:background="@color/dot_light_screen2"
+        android:fontFamily="sans-serif-thin"
+        android:textColorHint="@color/color_text_hint"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -114,7 +117,10 @@
         android:layout_alignStart="@+id/textView106"
         android:layout_alignRight="@+id/textView106"
         android:layout_alignEnd="@+id/textView106"
+        android:fontFamily="sans-serif-thin"
+        android:textColorHint="@color/color_text_hint"
         android:hint="Thuyết"
+        android:background="@color/dot_light_screen2"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -130,23 +136,27 @@
         android:background="@color/color_text_hint"
         android:layout_marginTop="5dp" />
 
-    <Spinner
-        android:layout_width="match_parent"
+    <TextView
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner_menu_editlist"
+        android:id="@+id/txt_menu_genre1"
         android:layout_below="@+id/textView107"
         android:layout_alignLeft="@+id/textView107"
         android:layout_alignStart="@+id/textView107"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:text="Genre"
+        android:paddingLeft="10dp"
+        android:layout_toLeftOf="@+id/img_menu_genre"
+        android:layout_toStartOf="@+id/img_menu_genre" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:text="New Text"
         android:id="@+id/textView108"
-        android:layout_below="@+id/spinner_menu_editlist"
-        android:layout_alignLeft="@+id/spinner_menu_editlist"
-        android:layout_alignStart="@+id/spinner_menu_editlist"
+        android:layout_below="@+id/txt_menu_genre1"
+        android:layout_alignLeft="@+id/txt_menu_genre1"
+        android:layout_alignStart="@+id/txt_menu_genre1"
         android:layout_alignRight="@+id/textView107"
         android:layout_alignEnd="@+id/textView107"
         android:background="@color/color_text_hint"
@@ -395,5 +405,16 @@
         android:layout_below="@+id/edt_editlisting_sell"
         android:visibility="gone"
         />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/img_menu_genre"
+        android:layout_alignTop="@+id/textView107"
+        android:src="@drawable/icon_spin"
+        android:longClickable="true"
+        android:layout_alignBottom="@+id/txt_menu_genre1"
+        android:layout_alignRight="@+id/textView107"
+        android:layout_alignEnd="@+id/textView107" />
 
 </RelativeLayout>
