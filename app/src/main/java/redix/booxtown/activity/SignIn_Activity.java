@@ -37,7 +37,7 @@ Button mButtonForgotPass;
                 startActivity(itentback);
                 break;
             case R.id.btn_sigin:
-                Intent itentsign = new Intent(SignIn_Activity.this,ListingCollectionActivity.class);
+                Intent itentsign = new Intent(SignIn_Activity.this,MainActivity.class);
                 startActivity(itentsign);
             default:
                 break;

@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 
 /**
  * Created by Administrator on 30/08/2016.
@@ -39,6 +40,7 @@ import redix.booxtown.R;
 public class AddbookActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
+    private MenuBottomCustom bottomCustom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +49,13 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
         //------------------------------------------------------------
         View view_menu_top = (View) findViewById(R.id.menu_top_add_book_with_swap);
         TextView txtTitle = (TextView) view_menu_top.findViewById(R.id.txt_title);
-        txtTitle.setText("Swap");
+        txtTitle.setText("Add book");
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
         ImageView img_component = (ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
         ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
         imageView_back.setImageResource(R.drawable.back_interact);
+
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -60,6 +63,9 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
             }
         });
         //------------------------------------------------------------
+        View view=(View) findViewById(R.id.menu_bottom_add_book_swap);
+        bottomCustom=new MenuBottomCustom(view,this,3);
+        bottomCustom.setDefaut(3);
 
         mMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map_editlisting));
         mMapFragment.getMapAsync(AddbookActivity.this);
@@ -80,25 +86,16 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
             }
         });
 
-        //Button btn_menu_editlist_addbook = (Button)findViewById(R.id.btn_menu_);
-
-
-        //menu
-        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
-        img_menu_component.setVisibility(View.GONE);
-
-        TextView title_menu = (TextView)findViewById(R.id.txt_title);
-        title_menu.setText("My Profile");
-
-        ImageView menu = (ImageView)findViewById(R.id.img_menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+        Button btn_menu_editlist_addbook = (Button)findViewById(R.id.btn_menu_listing_addbook);
+        btn_menu_editlist_addbook.setVisibility(View.VISIBLE);
+        btn_menu_editlist_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AddbookActivity.this,MenuActivity.class);
-                startActivity(intent);
+                onBackPressed();
             }
         });
-        //end
+
+
     }
 
     public void btnDelete(){
@@ -197,5 +194,10 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.setTrafficEnabled(true);
+    }
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomCustom.setDefaut(3);
     }
 }
