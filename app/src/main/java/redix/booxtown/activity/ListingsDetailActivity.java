@@ -58,9 +58,20 @@ public class ListingsDetailActivity extends AppCompatActivity
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
+        if(type!=1){
+            ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
+            imageView_back.setImageResource(R.drawable.back_interact);
+            imageView_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    onBackPressed();
+                }
+            });
+        }
         //------------------------------------------------------------
         View view_bottom=(View) findViewById(R.id.menu_bottom_listing_detail);
         bottomListings=new MenuBottomCustom(view_bottom,this,3);
+        bottomListings.setDefaut(3);
         //------------------------------------------------------------
         View view=(View) findViewById(R.id.layout_details);
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
