@@ -20,6 +20,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -32,6 +33,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
 
 /**
@@ -41,6 +43,9 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     private MenuBottomCustom bottomCustom;
+    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+            "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,6 +97,68 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
             @Override
             public void onClick(View v) {
                 onBackPressed();
+            }
+        });
+
+        ImageView imageView=(ImageView) findViewById(R.id.img_menu_genre);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(AddbookActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(AddbookActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        TextView txt_view = (TextView) findViewById(R.id.txt_menu_genre1);
+        txt_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(AddbookActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(AddbookActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
             }
         });
 
