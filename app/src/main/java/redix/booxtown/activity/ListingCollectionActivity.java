@@ -130,7 +130,7 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
 
             }
         });
-
+        //end
         //show edittext when check to sell
         final CheckBox checkBox = (CheckBox)findViewById(R.id.ck_sell_editlisting);
         final EditText edt_editlisting_sell = (EditText)findViewById(R.id.edt_editlisting_sell);
