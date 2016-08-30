@@ -19,6 +19,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,12 +32,19 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
 
 public class EditListingActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     private MenuBottomCustom menu_bottom;
+
+    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+            "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
+            ,"Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
+    };
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -106,17 +114,85 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
         img_menu_component.setVisibility(View.GONE);
 
         TextView title_menu = (TextView)findViewById(R.id.txt_title);
-        title_menu.setText("My Profile");
+        title_menu.setText("Edit Listing");
 
         ImageView menu = (ImageView)findViewById(R.id.img_menu);
-        menu.setOnClickListener(new View.OnClickListener() {
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditListingActivity.this,MenuActivity.class);
-                startActivity(intent);
+            public void onClick(View view) {
+                onBackPressed();
             }
         });
         //end
+
+        //spinner
+        ImageView imageView=(ImageView) findViewById(R.id.img_menu_genre);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(EditListingActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(EditListingActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+            }
+        });
+        TextView txt_view = (TextView) findViewById(R.id.txt_menu_genre1);
+        txt_view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                final Dialog dialog = new Dialog(EditListingActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(EditListingActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+            }
+        });
+        //end
+
         //--------------------------------------------------
         View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
         menu_bottom=new MenuBottomCustom(view_bottom,this,0);
