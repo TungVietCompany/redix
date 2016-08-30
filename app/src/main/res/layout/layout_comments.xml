@@ -18,8 +18,8 @@
         android:ellipsize="start"
         android:id="@+id/editText11"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/imageView16"
-        android:layout_toStartOf="@+id/imageView16"
+        android:layout_toLeftOf="@+id/img_close_dialog_unsubcribe"
+        android:layout_toStartOf="@+id/img_close_dialog_unsubcribe"
         android:layout_marginLeft="10dp" />
 
     <ImageView
@@ -30,7 +30,7 @@
         android:layout_alignTop="@+id/editText11"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:id="@+id/imageView16"
+        android:id="@+id/img_close_dialog_unsubcribe"
         android:layout_marginRight="10dp" />
 
     <ListView

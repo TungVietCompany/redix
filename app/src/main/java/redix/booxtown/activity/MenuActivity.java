@@ -1,10 +1,15 @@
 package redix.booxtown.activity;
 
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
@@ -71,8 +76,27 @@ public class MenuActivity extends AppCompatActivity {
                     startActivity(intent);
                     finish();
                 }else if(i==9){
-                    //Intent intent= new Intent(MenuActivity.this,.class);
-                    //startActivity(intent);
+                    final Dialog dialog = new Dialog(MenuActivity.this);
+                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                    dialog.setContentView(R.layout.dialog_unsubcribe);
+                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    dialog.show();
+
+                    ImageView img_close_dialog_unsubcribe = (ImageView)dialog.findViewById(R.id.img_close_dialog_unsubcribe);
+                    img_close_dialog_unsubcribe.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
+
+                    Button btn_unsubcribe = (Button)dialog.findViewById(R.id.btn_unsubcribe);
+                    btn_unsubcribe.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            dialog.dismiss();
+                        }
+                    });
                 }
             }
         });

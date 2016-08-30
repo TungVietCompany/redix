@@ -13,7 +13,7 @@
         android:checked="false"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="5dp"
-        android:buttonTint="@color/dot_light_screen1" />
+        android:button="@drawable/custom_checkbox"/>
 
     <TextView
         android:layout_width="wrap_content"
