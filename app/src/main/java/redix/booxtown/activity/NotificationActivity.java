@@ -11,10 +11,13 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.Custom_ListView_Notification;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.InteractThread;
 
 public class NotificationActivity extends AppCompatActivity {
     ListView lv1;
@@ -23,6 +26,7 @@ public class NotificationActivity extends AppCompatActivity {
     public static String [] prgmNameList={"Unread","Dominic send a swap request","Dominic want to your book","Dominic reject your swap request"};
     private MenuBottomCustom bottomListings;
     public boolean flag=true;
+    ArrayList<InteractThread> listInteractThreads= new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,7 +40,17 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
+                    InteractThread interact1= new InteractThread();
+                    interact1.setInteractThreadTitle("Thread one text");
+                    interact1.setInteractThreadCount("20");
+                    interact1.setStatus(true);
+                    interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+                    interact1.setInteractThreadAddBy("Derek Jarma");
+
+                    listInteractThreads.add(interact1);
+                    InteractThread item = (InteractThread) listInteractThreads.get(0);
                     Intent intent = new Intent(NotificationActivity.this,InteractThreadDetailsActivity.class);
+                    intent.putExtra("threadDetail",item);
                     startActivity(intent);
                 }else if(i==1){
                     Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
