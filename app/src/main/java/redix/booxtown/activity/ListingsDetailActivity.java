@@ -108,7 +108,7 @@ public class ListingsDetailActivity extends AppCompatActivity
 
         //-----------------------------------------------------------
         final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(ListingsDetailActivity.this,list);
-        listView=(ListView) view.findViewById(R.id.listview_comments);
+        listView=(ListView) view.findViewById(R.id.listView_comment);
         listView.setDivider(null);
         listView.setAdapter(adapter);
         //---------------------------------------------------------------
