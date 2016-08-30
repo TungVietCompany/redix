@@ -79,7 +79,7 @@ public class RespondActivity extends AppCompatActivity
 
         //-----------------------------------------------------------
         View view_comment= (View) findViewById(R.id.gridview_comments_respond);
-        ListView listView= (ListView) view_comment.findViewById(R.id.listview_comments);
+        ListView listView= (ListView) view_comment.findViewById(R.id.listView_comment);
         final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(RespondActivity.this,list);
 
         listView.setDivider(null);

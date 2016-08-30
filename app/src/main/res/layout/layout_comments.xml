@@ -2,37 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
-    <TextView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="Comments"
-        android:typeface="sans"
-        android:fontFamily="sans-serif-light"
-        android:id="@+id/textView67"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/listview_comments"
-        android:layout_alignStart="@+id/listview_comments"
-        android:textSize="16sp" />
-    <View
-        android:layout_width="fill_parent"
-        android:layout_height="1dp"
-        android:background="@color/color_text_hint"
-        android:id="@+id/view2"
-        android:layout_alignLeft="@+id/textView67"
-        android:layout_alignStart="@+id/textView67"
-        android:layout_below="@+id/textView67"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
-
-
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/edit_message"
+
         android:background="@drawable/message"
         android:hint="Add Comments"
         android:fontFamily="sans-serif-light"
@@ -42,29 +16,54 @@
         android:maxLines="2"
         android:textColor="@color/color_text_time_update_interact"
         android:ellipsize="start"
+        android:id="@+id/edittext_comment"
         android:layout_alignParentBottom="true"
-        android:layout_toLeftOf="@+id/btn_send_comment_interact"
-        android:layout_alignLeft="@+id/listview_comments"
-        android:layout_alignStart="@+id/listview_comments" />
+        android:layout_toLeftOf="@+id/btn_sent_comment"
+        android:layout_toStartOf="@+id/btn_sent_comment" />
 
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/btn_send_comment_interact"
+
         android:background="@drawable/interact_send_message"
-        android:layout_below="@+id/listview_comments"
-        android:layout_alignRight="@+id/listview_comments"
-        android:layout_alignEnd="@+id/listview_comments" />
+        android:layout_alignTop="@+id/edittext_comment"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btn_sent_comment" />
 
     <ListView
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:id="@+id/listview_comments"
+        android:layout_height="wrap_content"
+        android:id="@+id/listView_comment"
+        android:layout_above="@+id/edittext_comment"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/view2"
-        android:layout_above="@+id/edit_message"
-        android:layout_marginLeft="10dp"
+        android:layout_below="@+id/view6" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
+        android:background="@color/color_text_hint"
+
+        android:layout_alignLeft="@+id/textView67"
+        android:layout_alignStart="@+id/textView67"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_marginBottom="5dp"
+        android:id="@+id/view6"
+        android:layout_below="@+id/textView141" />
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Comments"
+        android:typeface="sans"
+        android:fontFamily="sans-serif-light"
+
+        android:textSize="20sp"
+        android:id="@+id/textView141"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
