@@ -14,7 +14,7 @@ Button mButtonBackForgot;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_forgot_password);
-mButtonBackForgot = (Button) findViewById(R.id.btn_back_forgot);
+        mButtonBackForgot = (Button) findViewById(R.id.btn_back_forgot);
         mButtonBackForgot.setOnClickListener(this);
 
     }
@@ -23,8 +23,7 @@ mButtonBackForgot = (Button) findViewById(R.id.btn_back_forgot);
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.btn_back_forgot:
-                Intent intent = new Intent(ForgotPassword_Activity.this,SignIn_Activity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
         }
     }

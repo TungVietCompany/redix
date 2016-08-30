@@ -31,11 +31,17 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Username"/>
+            android:hint="Username"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
+            android:backgroundTint="@color/color_hint_interact" />
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Password"/>
+            android:hint="Password"
+            android:fontFamily="sans-serif-thin"
+            android:textColorHint="@color/color_text_hint"
+            android:backgroundTint="@color/color_hint_interact" />
         <Button
             android:id="@+id/btn_sigin"
             android:layout_width="wrap_content"
@@ -56,7 +62,9 @@
             android:textAllCaps="false"
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
-            android:text="@string/forgotpassword" />
+            android:text="@string/forgotpassword"
+            android:textColor="@color/color_text_hint"
+            android:textSize="18sp" />
     </LinearLayout>
 
 </LinearLayout>
