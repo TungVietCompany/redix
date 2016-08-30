@@ -11,9 +11,11 @@ import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.Custom_invite;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class InviteFriendActivity extends AppCompatActivity {
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
+    private MenuBottomCustom bottomListings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -38,5 +40,18 @@ public class InviteFriendActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        //bottom
+        //--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_invitefriend);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 }

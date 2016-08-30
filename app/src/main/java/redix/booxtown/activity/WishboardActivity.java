@@ -14,12 +14,15 @@ import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterListviewWishboard;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class WishboardActivity extends AppCompatActivity {
 
     public static String [] title={"The last painting of Sara","Never of Dull moment","The nation of Brink"};
     public static String [] name={"Sara","Thuye","The nation"};
     public static String [] date={"22-08-1994","11-08-1994","10-08-1994"};
+    private MenuBottomCustom menu_bottom;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,5 +74,20 @@ public class WishboardActivity extends AppCompatActivity {
             }
         });
         //end
+
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_wishboard);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,4);
+        menu_bottom.setDefaut(4);
+        //---------------------------------------------------------------
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        menu_bottom.setDefaut(4);
     }
 }

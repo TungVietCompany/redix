@@ -22,7 +22,7 @@ public class NotificationActivity extends AppCompatActivity {
     RelativeLayout relativeLayout1;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
-
+    private MenuBottomCustom bottomListings;
     public boolean flag=true;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,8 +49,6 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
         //end
-        RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
-        new MenuBottomCustom(menu_bottom,this,0);
 
         ImageView menu =
                 (ImageView)findViewById(R.id.img_menu);
@@ -87,5 +85,18 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
         //end
+
+        //bottom
+        //--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_notification);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 }

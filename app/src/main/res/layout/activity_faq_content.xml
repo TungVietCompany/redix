@@ -98,6 +98,6 @@
         android:layout_alignParentEnd="false"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/include60" />
+        android:id="@+id/menu_bottom_faq_content" />
 
 </RelativeLayout>

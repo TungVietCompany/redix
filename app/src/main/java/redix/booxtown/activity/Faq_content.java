@@ -13,10 +13,12 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.custom.NewAdapter;
 
 public class Faq_content extends ExpandableListActivity {
     private CoordinatorLayout coordinatorLayout;
+    private MenuBottomCustom bottomListings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +54,19 @@ public class Faq_content extends ExpandableListActivity {
                 onBackPressed();
             }
         });
+
+        //bottom
+        //--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_faq_content);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 
     public void setGroupData() {

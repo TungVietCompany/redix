@@ -22,7 +22,8 @@ public class Notification_Swap_Accept_NoLike extends AppCompatActivity {
 
         TextView txt_menu_notification_infor2_phone = (TextView)findViewById(R.id.txt_menu_notification_infor2_phone);
         txt_menu_notification_infor2_phone.setVisibility(View.GONE);
-
+        TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+        txtTitle.setText("Notifications");
         //infor
         ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_menu_notification_infor2);
         imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {

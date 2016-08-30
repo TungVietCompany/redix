@@ -18,6 +18,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.BorderImage;
@@ -82,6 +83,11 @@ public class NotificationSwapActivity extends AppCompatActivity {
         //end
 
         //menu
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+        txtTitle.setText("Notifications");
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
         img_menu.setImageResource(R.drawable.back_interact);

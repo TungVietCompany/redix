@@ -3,9 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="redix.booxtown.Invite_friend">
+    tools:context="redix.booxtown.activity.InviteFriendActivity">
     <include layout="@layout/menu_top" />
     <include layout="@layout/menu_bottom"
+        android:id="@+id/menu_bottom_invitefriend"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true" />

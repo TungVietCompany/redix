@@ -48,6 +48,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.Calendar;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class Setting extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
 
@@ -63,7 +64,7 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
      * See https://g.co/AppIndexing/AndroidStudio for more information.
      */
     private GoogleApiClient client;
-
+    private MenuBottomCustom bottomListings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -190,7 +191,17 @@ public class Setting extends AppCompatActivity implements LocationListener,OnMap
                 }
             }
         });
+//--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_setting);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 
     public String showTime(int hour, int min) {

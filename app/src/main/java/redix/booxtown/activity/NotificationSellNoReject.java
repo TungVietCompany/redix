@@ -43,6 +43,9 @@ public class NotificationSellNoReject extends AppCompatActivity {
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
         img_menu_component.setVisibility(View.GONE);
 
+        TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+        txtTitle.setText("Notifications");
+
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
         img_menu.setImageResource(R.drawable.back_interact);
 
