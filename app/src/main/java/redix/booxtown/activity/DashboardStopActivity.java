@@ -16,13 +16,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.custom.NotificationAccept;
 
 /**
  * Created by thuyetpham94 on 29/08/2016.
  */
 public class DashboardStopActivity extends AppCompatActivity {
-
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -75,5 +76,16 @@ public class DashboardStopActivity extends AppCompatActivity {
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
         img_menu_component.setVisibility(View.GONE);
         //end
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
+        menu_bottom.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(0);
     }
 }

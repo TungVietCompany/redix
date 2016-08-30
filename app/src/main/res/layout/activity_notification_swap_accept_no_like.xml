@@ -84,7 +84,7 @@
         layout="@layout/menu_notification_infor2"
         android:layout_below="@+id/textView62"
         android:layout_centerHorizontal="true"
-        android:layout_above="@+id/include29" />
+        android:layout_above="@+id/menu_bottom_swapnolike" />
 
     <include
         android:layout_width="wrap_content"
@@ -92,5 +92,5 @@
         layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/include29" />
+        android:id="@+id/menu_bottom_swapnolike" />
 </RelativeLayout>

@@ -58,7 +58,7 @@
         android:layout_below="@+id/textView66"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_above="@+id/include43" />
+        android:layout_above="@+id/menu_bottom_noti_dominic" />
 
     <include
         android:layout_width="wrap_content"
@@ -67,6 +67,6 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/include43" />
+        android:id="@+id/menu_bottom_noti_dominic" />
 
 </RelativeLayout>

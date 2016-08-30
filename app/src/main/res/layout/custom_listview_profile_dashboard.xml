@@ -90,6 +90,8 @@
             android:id="@+id/ratingBar4"
             style="?android:attr/ratingBarStyleSmall"
             android:numStars="5"
+            android:theme="@style/RatingBar"
+            android:rating="2.5"
             android:padding="5dp" />
 
         <TextView

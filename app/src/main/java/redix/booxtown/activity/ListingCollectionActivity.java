@@ -45,6 +45,7 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
     String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -180,7 +181,21 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
                 finish();
             }
         });
-        //end
+
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_listing_collec);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,3);
+        menu_bottom.setDefaut(3);
+        //---------------------------------------------------------------
+
+
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+
+        menu_bottom.setDefaut(3);
     }
 
     @Override

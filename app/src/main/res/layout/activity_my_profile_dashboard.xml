@@ -28,7 +28,7 @@
         android:layout_height="wrap_content"
         layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"
-        android:id="@+id/include51" />
+        android:id="@+id/menu_bottom_myprofile" />
 
     <TextView
         android:layout_width="wrap_content"

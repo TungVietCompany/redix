@@ -12,9 +12,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class DasgboardActivity extends AppCompatActivity {
-
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,5 +73,18 @@ public class DasgboardActivity extends AppCompatActivity {
 
             }
         });
+
+        //end
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
+        menu_bottom.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(0);
     }
 }

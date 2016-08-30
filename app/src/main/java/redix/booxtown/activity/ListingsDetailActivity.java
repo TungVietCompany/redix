@@ -59,7 +59,7 @@ public class ListingsDetailActivity extends AppCompatActivity
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
-        if(type!=1){
+
             ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
             imageView_back.setImageResource(R.drawable.back_interact);
             imageView_back.setOnClickListener(new View.OnClickListener() {
@@ -68,7 +68,7 @@ public class ListingsDetailActivity extends AppCompatActivity
                     onBackPressed();
                 }
             });
-        }
+
 
         RelativeLayout layout_user=(RelativeLayout) findViewById(R.id.layout_user);
         layout_user.setOnClickListener(new View.OnClickListener() {

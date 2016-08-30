@@ -31,10 +31,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class EditListingActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,6 +117,17 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
             }
         });
         //end
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
+        menu_bottom.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(0);
     }
 
     public void btnDelete(){
