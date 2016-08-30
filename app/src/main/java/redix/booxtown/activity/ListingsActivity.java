@@ -9,6 +9,7 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -50,6 +51,7 @@ public class ListingsActivity extends AppCompatActivity
             public void onClick(View view) {
                 Intent intent = new Intent(ListingsActivity.this,ListingCollectionActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
         //
@@ -84,17 +86,15 @@ public class ListingsActivity extends AppCompatActivity
         bottomListings.setDefaut(3);
         //---------------------------------------------------------------
 
-        txt_my_book=(TextView) findViewById(R.id.txt_my_listings);
-        txt_add_book=(TextView) findViewById(R.id.txt_add_book);
+        //change color tab
 
-        txt_my_book.setBackgroundColor(getResources().getColor(R.color.dot_light_screen2));
+        TextView txt_my_listings = (TextView)findViewById(R.id.txt_my_listings);
+        txt_my_listings.setTextColor(getResources().getColor(R.color.color_text));
+        txt_my_listings.setBackgroundColor(getResources().getColor(R.color.dot_light_screen1));
 
-        txt_add_book.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
+        txt_add_book.setTextColor(getResources().getColor(R.color.dot_light_screen1));
+        txt_add_book.setBackgroundColor(getResources().getColor(R.color.color_text));
+        //end
     }
 
     @Override

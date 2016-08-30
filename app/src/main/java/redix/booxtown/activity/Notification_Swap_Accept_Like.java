@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -37,6 +38,15 @@ public class Notification_Swap_Accept_Like extends AppCompatActivity {
             }
         });
         //end
-
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Notification_Swap_Accept_Like.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
     }
 }
