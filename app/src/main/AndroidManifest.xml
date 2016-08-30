@@ -106,6 +106,8 @@
         <activity android:name=".activity.About"></activity>
         <activity android:name=".activity.Contact"></activity>
         <activity android:name=".activity.WishboardActivity"></activity>
+        <activity android:name=".activity.SwapActivity"></activity>
+        <activity android:name=".activity.AddbookActivity"></activity>
     </application>
 
 </manifest>

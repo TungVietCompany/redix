@@ -47,7 +47,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Confirm"
-            android:id="@+id/textView137"
+            android:id="@+id/btn_confirm_buy_listing"
             android:layout_marginTop="30dp"
             android:layout_below="@+id/textView136"
             android:layout_centerHorizontal="true"
@@ -67,7 +67,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView41"
+            android:id="@+id/close_buy_listings"
             android:src="@drawable/close_popup"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"

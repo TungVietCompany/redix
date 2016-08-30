@@ -43,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Back to home"
-            android:id="@+id/textView132"
+            android:id="@+id/btn_back_home"
 
             android:layout_marginTop="40dp"
             android:background="@drawable/change_pass"
@@ -62,7 +62,7 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView40"
+            android:id="@+id/close_sent_request_lising"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
