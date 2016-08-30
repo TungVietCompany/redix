@@ -40,6 +40,7 @@ import redix.booxtown.custom.MenuBottomCustom;
 
 public class ListingCollectionActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener  {
     private GoogleMap mMap;
+    private MenuBottomCustom menu_bottom;
     private SupportMapFragment mMapFragment;
     String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
@@ -69,7 +70,10 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
 
         //end
 
-
+        //--------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_listing_addbook);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,3);
+        menu_bottom.setDefaut(3);
         //---------------------------------------------------------------
         //spinner
         ImageView imageView=(ImageView) findViewById(R.id.img_menu_genre);
@@ -277,5 +281,11 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.setTrafficEnabled(true);
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(3);
     }
 }

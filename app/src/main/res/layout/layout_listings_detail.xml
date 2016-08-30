@@ -293,16 +293,12 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         layout="@layout/layout_comments"
-        android:layout_marginLeft="-10dp"
-        android:layout_marginRight="-10dp"
-        android:layout_alignRight="@+id/fragment3"
-        android:layout_alignEnd="@+id/fragment3"
-        android:layout_alignLeft="@+id/fragment3"
-        android:layout_alignStart="@+id/fragment3"
 
         android:id="@+id/include62"
-        android:layout_below="@+id/row_type_book"
-       />
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_below="@+id/row_type_book" />
 
 
 
