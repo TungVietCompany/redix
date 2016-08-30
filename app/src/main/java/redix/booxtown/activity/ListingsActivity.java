@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -42,6 +43,16 @@ public class ListingsActivity extends AppCompatActivity
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
         //------------------------------------------------------------
+        //add book
+        TextView txt_add_book = (TextView)findViewById(R.id.txt_add_book);
+        txt_add_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListingsActivity.this,ListingCollectionActivity.class);
+                startActivity(intent);
+            }
+        });
+        //
         Explore e1= new Explore();
         e1.setPrice_book(152.0f);
         e1.setBuy(true);

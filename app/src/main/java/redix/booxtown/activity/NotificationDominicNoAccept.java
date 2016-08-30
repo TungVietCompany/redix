@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -30,5 +31,15 @@ public class NotificationDominicNoAccept extends AppCompatActivity {
         TextView txt_notification_sell_accept_money = (TextView)findViewById(R.id.txt_notification_sell_accept_money);
         txt_notification_sell_accept_money.setVisibility(View.GONE);
 
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationDominicNoAccept.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
     }
 }

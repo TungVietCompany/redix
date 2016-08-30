@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -35,6 +36,17 @@ public class NotificationRejectActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 onBackPressed();
+            }
+        });
+        //end
+
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationRejectActivity.this,UserProfileActivity.class);
+                startActivity(intent);
             }
         });
         //end

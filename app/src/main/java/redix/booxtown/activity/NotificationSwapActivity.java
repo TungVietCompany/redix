@@ -70,6 +70,17 @@ public class NotificationSwapActivity extends AppCompatActivity {
             }
         });
 
+        //infor
+        ImageView imv_menu_notification_infor1 = (ImageView)findViewById(R.id.imv_menu_notification_infor1);
+        imv_menu_notification_infor1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationSwapActivity.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
+
         //menu
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
