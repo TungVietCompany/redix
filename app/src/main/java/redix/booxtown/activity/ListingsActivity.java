@@ -43,6 +43,15 @@ public class ListingsActivity extends AppCompatActivity
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListingsActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
         //------------------------------------------------------------
         //add book
         TextView txt_add_book = (TextView)findViewById(R.id.txt_add_book);

@@ -42,6 +42,22 @@ public class NotificationDominicReject extends AppCompatActivity {
         txt_notification_sell_accept_money.setVisibility(View.GONE);
 
         //infor
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+
+        TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+        txtTitle.setText("Notifications");
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back_interact);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
+
         ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
         imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
             @Override

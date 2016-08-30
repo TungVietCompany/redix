@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.NotificationAccept;
@@ -23,6 +24,12 @@ public class NotificationAcceptActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification_confirm_accept);
 
         //infor
+        TextView txt_menu_notification_infor2_phone = (TextView)findViewById(R.id.txt_menu_notification_infor2_phone);
+        txt_menu_notification_infor2_phone.setVisibility(View.GONE);
+        TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+        txtTitle.setText("Notifications");
+        //infor
+
         ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_menu_notification_infor2);
         imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
             @Override

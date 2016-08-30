@@ -50,7 +50,14 @@ public class MyProfileActivity extends AppCompatActivity {
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
-
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyProfileActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
         //--------------------------------------------------
         View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
         MenuBottomCustom menu_bottom=new MenuBottomCustom(view_bottom,this,5);

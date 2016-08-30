@@ -20,7 +20,7 @@
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/explore_menu_bottom"
+        android:id="@+id/menu_bottom_notification"
         layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true" />
