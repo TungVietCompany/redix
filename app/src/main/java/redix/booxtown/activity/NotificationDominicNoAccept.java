@@ -11,12 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.custom.NotificationAccept;
 
 /**
  * Created by thuyetpham94 on 28/08/2016.
  */
 public class NotificationDominicNoAccept extends AppCompatActivity {
+    private MenuBottomCustom bottomListings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -56,6 +58,17 @@ public class NotificationDominicNoAccept extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        //end
+        //bottom
+        //--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_noti_sell_accept2);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 }

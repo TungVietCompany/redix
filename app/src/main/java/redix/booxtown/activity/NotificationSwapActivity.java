@@ -23,6 +23,7 @@ import android.widget.TextView;
 import redix.booxtown.R;
 import redix.booxtown.custom.BorderImage;
 import redix.booxtown.custom.CustomListviewNotificationSwap;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class NotificationSwapActivity extends AppCompatActivity {
     private Context mContext;
@@ -31,7 +32,7 @@ public class NotificationSwapActivity extends AppCompatActivity {
     private Button mBTN;
     private ImageView mImageView;
     private Bitmap mBitmap;
-
+    private MenuBottomCustom bottomListings;
     public static String [] prgmNameList={"Home","Notifications","FAQ"};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -99,5 +100,18 @@ public class NotificationSwapActivity extends AppCompatActivity {
             }
         });
         //end
+
+        //bottom
+        //--------------------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom_noti_swap);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 }

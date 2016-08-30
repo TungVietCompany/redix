@@ -95,6 +95,7 @@
             layout="@layout/menu_bottom"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true" />
+            android:layout_alignParentStart="true"
+            android:id="@+id/menu_bottom_noti_reject"/>
     </RelativeLayout>
 </RelativeLayout>

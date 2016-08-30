@@ -60,6 +60,8 @@
                 android:id="@+id/rating_bar_comment_interact"
                 style="?android:attr/ratingBarStyleSmall"
                 android:numStars="5"
+                android:theme="@style/RatingBar"
+                android:rating="2.5"
                 android:layout_gravity="right"
                 android:mirrorForRtl="false"
                 android:nestedScrollingEnabled="false" />

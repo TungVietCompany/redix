@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterProfileDashboard;
+import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.custom.NotificationAccept;
 
 public class MyProfileDashboardActivity extends AppCompatActivity {
@@ -22,6 +23,7 @@ public class MyProfileDashboardActivity extends AppCompatActivity {
     public static int [] imgoffer={R.drawable.icon_sell_blue,R.drawable.icon_free_blue,R.drawable.icon_swap_blue,R.drawable.icon_swap_blue};
     public static int [] imgstatus={R.drawable.icon_status_profile,R.drawable.icon_stop_profile,R.drawable.icon_delete_profile,R.drawable.icon_delete_profile};
     public static String [] txtbook={"Nearest distance","Price low to high","Price high to low","Price high to low"};
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,5 +68,16 @@ public class MyProfileDashboardActivity extends AppCompatActivity {
 
 
         //end
+        //--------------------------------------------------
+        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
+        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
+        menu_bottom.setDefaut(0);
+        //---------------------------------------------------------------
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(0);
     }
 }

@@ -74,7 +74,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:id="@+id/include39" />
+        android:id="@+id/menu_bottom_noti_sell_accept2" />
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -82,7 +82,7 @@
         android:layout_below="@+id/txt_notification_sell_accept_money"
         android:layout_alignLeft="@+id/include38"
         android:layout_alignStart="@+id/include38"
-        android:layout_above="@+id/include39"
+        android:layout_above="@+id/menu_bottom_noti_sell_accept2"
         android:background="@color/dot_light_screen2">
 
         <TextView
