@@ -15,7 +15,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:layout_above="@+id/include60"
         android:layout_below="@+id/menu_top">
         <RelativeLayout
             android:layout_width="fill_parent"
@@ -50,8 +49,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="40dp"
                 android:id="@+id/editSearch"
-                android:background="#ffffff"
-                android:layout_marginTop="10dp"
+                android:background="@color/color_hint_interact"
+                android:layout_marginTop="5dp"
                 android:hint="Search"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
@@ -79,7 +78,7 @@
             android:layout_alignLeft="@+id/relativeLayout3"
             android:layout_alignStart="@+id/relativeLayout3"
             android:padding="10dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:clickable="false"
             android:contextClickable="false"
             android:fastScrollAlwaysVisible="false"
@@ -88,7 +87,8 @@
             android:focusableInTouchMode="false"
             android:longClickable="false"
             android:groupIndicator="@null"
-            android:layout_marginBottom="37dp" />
+            android:layout_marginBottom="36dp"
+            android:background="@color/dot_light_screen1"/>
     </RelativeLayout>
     <include layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"

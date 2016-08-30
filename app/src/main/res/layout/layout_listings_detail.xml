@@ -7,7 +7,7 @@
     <android.support.v4.view.ViewPager
         android:id="@+id/pager"
         android:layout_width="wrap_content"
-        android:layout_height="130dp"
+        android:layout_height="100dp"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
 
@@ -247,7 +247,7 @@
 
     <fragment
         android:layout_width="wrap_content"
-        android:layout_height="100dp"
+        android:layout_height="80dp"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_below="@+id/view4"
         android:layout_alignLeft="@+id/view4"

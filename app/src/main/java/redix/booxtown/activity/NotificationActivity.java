@@ -20,8 +20,7 @@ public class NotificationActivity extends AppCompatActivity {
     ListView lv1;
     Context context;
     RelativeLayout relativeLayout1;
-    public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
-    public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
+    public static String [] prgmNameList={"Unread","Notifications","FAQ","Invite friends"};
     private MenuBottomCustom bottomListings;
     public boolean flag=true;
     @Override
@@ -49,26 +48,6 @@ public class NotificationActivity extends AppCompatActivity {
             }
         });
         //end
-
-        ImageView menu =
-                (ImageView)findViewById(R.id.img_menu);
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                setContentView(R.layout.menu);
-                ListView lv=(ListView) findViewById(R.id.listViewa);
-                lv.setAdapter(new CustomAdapter(NotificationActivity.this, prgmNameList,prgmImages));
-                ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
-                close_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent itent = new Intent(NotificationActivity.this,NotificationActivity.class);
-                        startActivity(itent);
-                    }
-                });
-            }
-        });
-
         //menu
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
         img_menu_component.setVisibility(View.GONE);
