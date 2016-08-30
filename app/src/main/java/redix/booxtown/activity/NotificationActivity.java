@@ -20,7 +20,7 @@ public class NotificationActivity extends AppCompatActivity {
     ListView lv1;
     Context context;
     RelativeLayout relativeLayout1;
-    public static String [] prgmNameList={"Unread","Notifications","FAQ","Invite friends"};
+    public static String [] prgmNameList={"Unread","Dominic send a swap request","Dominic want to your book","Dominic reject your swap request"};
     private MenuBottomCustom bottomListings;
     public boolean flag=true;
     @Override
@@ -36,12 +36,15 @@ public class NotificationActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i==0){
-                    Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
+                    Intent intent = new Intent(NotificationActivity.this,InteractThreadDetailsActivity.class);
                     startActivity(intent);
                 }else if(i==1){
+                    Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
+                    startActivity(intent);
+                }else if(i==2){
                     Intent intent1 = new Intent(NotificationActivity.this,NotificationSellActivity.class);
                     startActivity(intent1);
-                }else if(i==2){
+                }else if(i==3){
                     Intent intent2 = new Intent(NotificationActivity.this,NotificationDominicActivity.class);
                     startActivity(intent2);
                 }
