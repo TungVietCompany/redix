@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.ListingsDetailActivity;
+import redix.booxtown.activity.SwapActivity;
 import redix.booxtown.model.Explore;
 
 /**
@@ -54,7 +55,7 @@ public class AdapterExplore extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
-        Explore ex= listExplore.get(position);
+        final Explore ex= listExplore.get(position);
 
             convertView = inflater.inflate(R.layout.custom_gridview_explore, null);
             TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
@@ -105,9 +106,21 @@ public class AdapterExplore extends BaseAdapter {
             img_buy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intent= new Intent(mContext, ListingsDetailActivity.class);
-                    intent.putExtra("type",3);
-                    mContext.startActivity(intent);
+                    if(ex.isBuy()) {
+                        Intent intent = new Intent(mContext, ListingsDetailActivity.class);
+                        intent.putExtra("type", 3);
+                        mContext.startActivity(intent);
+                    }
+                }
+            });
+
+            img_swap.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if(ex.isSwap()) {
+                        Intent intent = new Intent(mContext, SwapActivity.class);
+                        mContext.startActivity(intent);
+                    }
                 }
             });
 
