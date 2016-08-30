@@ -12,7 +12,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignLeft="@+id/listview_comments"
         android:layout_alignStart="@+id/listview_comments"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        android:layout_alignRight="@+id/listview_comments"
+        android:layout_alignEnd="@+id/listview_comments" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
@@ -61,10 +63,8 @@
         android:layout_height="match_parent"
         android:id="@+id/listview_comments"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/view2"
-        android:layout_above="@+id/edit_message"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp" />
+        android:layout_above="@+id/edit_message"
+        android:layout_below="@+id/view2" />
 </RelativeLayout>
