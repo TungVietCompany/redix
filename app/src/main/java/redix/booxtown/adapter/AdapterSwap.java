@@ -46,7 +46,7 @@ public class AdapterSwap  extends BaseAdapter {
         // TODO Auto-generated method stub
         return 0;
     }
-
+//-----------
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
