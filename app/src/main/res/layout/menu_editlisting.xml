@@ -131,9 +131,9 @@
         android:layout_marginTop="5dp" />
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/spinner"
+        android:id="@+id/spinner_menu_editlist"
         android:layout_below="@+id/textView107"
         android:layout_alignLeft="@+id/textView107"
         android:layout_alignStart="@+id/textView107"
@@ -144,9 +144,9 @@
         android:layout_height="1dp"
         android:text="New Text"
         android:id="@+id/textView108"
-        android:layout_below="@+id/spinner"
-        android:layout_alignLeft="@+id/spinner"
-        android:layout_alignStart="@+id/spinner"
+        android:layout_below="@+id/spinner_menu_editlist"
+        android:layout_alignLeft="@+id/spinner_menu_editlist"
+        android:layout_alignStart="@+id/spinner_menu_editlist"
         android:layout_alignRight="@+id/textView107"
         android:layout_alignEnd="@+id/textView107"
         android:background="@color/color_text_hint"
@@ -365,7 +365,8 @@
         android:background="@drawable/bg_button_listing"
         android:layout_marginLeft="10dp"
         android:textColor="@color/dot_light_screen1"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
 
     <Button
         android:layout_width="wrap_content"
@@ -378,5 +379,21 @@
         android:background="@drawable/bg_button_listing"
         android:layout_marginRight="10dp"
         android:textColor="@color/dot_light_screen1"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"
+        android:visibility="gone"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add a book"
+        android:id="@+id/btn_menu_listing_addbook"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_button_listing"
+        android:textColor="@color/dot_light_screen1"
+        android:layout_marginBottom="15dp"
+        android:layout_below="@+id/edt_editlisting_sell"
+        android:visibility="gone"
+        />
+
 </RelativeLayout>

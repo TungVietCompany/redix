@@ -60,5 +60,16 @@ public class NotificationSellActivity extends AppCompatActivity {
             }
         });
         //end
+
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationSellActivity.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
     }
 }

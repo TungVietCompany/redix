@@ -13,12 +13,15 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -31,17 +34,69 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.CustomListviewGenre;
 
-public class EditListingActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
+public class ListingCollectionActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener  {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
+    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+    "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
+    };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_edit_listing);
+        setContentView(R.layout.activity_listing_collection);
+//menu
         mMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map_editlisting));
-        mMapFragment.getMapAsync(EditListingActivity.this);
-        btnDelete();
+        mMapFragment.getMapAsync(ListingCollectionActivity.this);
+        TextView title_menu = (TextView)findViewById(R.id.txt_title);
+        title_menu.setText("Listings");
+
+        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
+        img_menu_component.setVisibility(View.GONE);
+        ImageView menu =
+                (ImageView)findViewById(R.id.img_menu);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListingCollectionActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //end
+        //spinner
+        Spinner spinner_menu_editlist = (Spinner)findViewById(R.id.spinner_menu_editlist);
+        spinner_menu_editlist.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent motionEvent) {
+                final Dialog dialog = new Dialog(ListingCollectionActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.dialog_genre);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
+                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                listView_genre.setAdapter(new CustomListviewGenre(ListingCollectionActivity.this,genre));
+                dialog.show();
+
+                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                button_spiner_genre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+
+                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        dialog.dismiss();
+                    }
+                });
+                return false;
+            }
+        });
 
         //show edittext when check to sell
         final CheckBox checkBox = (CheckBox)findViewById(R.id.ck_sell_editlisting);
@@ -57,78 +112,18 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
                 }
             }
         });
+        //end
+        Button btn_menu_listing_addbook = (Button)findViewById(R.id.btn_menu_listing_addbook);
+        btn_menu_listing_addbook.setVisibility(View.VISIBLE);
 
-        Button btn_menu_editlist_delete = (Button)findViewById(R.id.btn_menu_editlist_delete);
-        btn_menu_editlist_delete.setVisibility(View.VISIBLE);
-        btn_menu_editlist_delete.setOnClickListener(new View.OnClickListener() {
+        btn_menu_listing_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(EditListingActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_delete_editlisting);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
-                dialog.show();
-
-                //btn delete
-                Button btn_delete_editlisting = (Button)dialog.findViewById(R.id.btn_delete_editlisting);
-                btn_delete_editlisting.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        Intent intent = new Intent(EditListingActivity.this,MyProfileActivity.class);
-                        startActivity(intent);
-                    }
-                });
-
-                ImageView imv_close_dialog_editlist = (ImageView)dialog.findViewById(R.id.imv_close_dialog_editlist);
-                imv_close_dialog_editlist.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View view) {
-                        dialog.dismiss();
-                    }
-                });
-            }
-        });
-
-        Button btn_menu_editlisting_update = (Button)findViewById(R.id.btn_menu_editlisting_update);
-        btn_menu_editlisting_update.setVisibility(View.VISIBLE);
-        btn_menu_editlisting_update.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                onBackPressed();
-            }
-        });
-
-        //menu
-        ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
-        img_menu_component.setVisibility(View.GONE);
-
-        TextView title_menu = (TextView)findViewById(R.id.txt_title);
-        title_menu.setText("My Profile");
-
-        ImageView menu = (ImageView)findViewById(R.id.img_menu);
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(EditListingActivity.this,MenuActivity.class);
+                Intent intent = new Intent(ListingCollectionActivity.this,ListingsActivity.class);
                 startActivity(intent);
             }
         });
-        //end
-    }
 
-    public void btnDelete(){
-        Button btn_menu_editlist_delete = (Button)findViewById(R.id.btn_menu_editlist_delete);
-        btn_menu_editlist_delete.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                final Dialog dialog = new Dialog(EditListingActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.dialog_delete_editlisting);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                dialog.show();
-            }
-        });
     }
 
     @Override
@@ -168,8 +163,8 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
         Boolean isNetworkEnabled = false;
         mMap = googleMap;
         if (Build.VERSION.SDK_INT >= 23 &&
-                ContextCompat.checkSelfPermission(EditListingActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(EditListingActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+                ContextCompat.checkSelfPermission(ListingCollectionActivity.this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission(ListingCollectionActivity.this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
         LocationManager service = (LocationManager) getSystemService(LOCATION_SERVICE);
@@ -199,6 +194,7 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
             }
         }
     }
+
     public void addMaker(Location location){
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
