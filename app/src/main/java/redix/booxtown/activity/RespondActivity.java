@@ -54,7 +54,14 @@ public class RespondActivity extends AppCompatActivity
         menu_bottom=new MenuBottomCustom(view_bottom,this,4);
         menu_bottom.setDefaut(4);
         //---------------------------------------------------------------
-
+        TextView btn_add_book=(TextView) findViewById(R.id.txt_add_book_respond);
+        btn_add_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(RespondActivity.this,AddbookActivity.class);
+                startActivity(intent);
+            }
+        });
 
         ArrayList<InteractComment> list= new ArrayList<>();
         InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");

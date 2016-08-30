@@ -27,7 +27,7 @@ public class AdapterExplore extends BaseAdapter {
     public AdapterExplore(Context c, ArrayList<Explore> list_explores,int type) {
         mContext = c;
         this.listExplore = list_explores;
-
+        this.type=type;
     }
 
     @Override
