@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <include
-        android:id="@+id/menu_top_detail_listings"
-        layout="@layout/menu_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        layout="@layout/menu_top"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:id="@+id/menu_top_add_book_with_swap" />
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/menu_top_detail_listings"
-        android:layout_above="@+id/menu_bottom_listing_detail"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp">
+        android:id="@+id/scrollView3"
+        android:layout_below="@+id/menu_top_add_book_with_swap"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/menu_bottom_add_book_swap">
+
         <include
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            layout="@layout/layout_listings_detail"
-            android:id="@+id/layout_details" />
+            layout="@layout/menu_editlisting"
+            android:id="@+id/layout_add_book" />
     </ScrollView>
 
     <include
@@ -34,8 +32,5 @@
         layout="@layout/menu_bottom"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:id="@+id/menu_bottom_listing_detail" />
-
-
-
+        android:id="@+id/menu_bottom_add_book_swap" />
 </RelativeLayout>

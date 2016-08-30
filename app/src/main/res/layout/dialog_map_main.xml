@@ -23,7 +23,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="by Sara"
-        android:id="@+id/textView132"
+        android:id="@+id/btn_back_home"
         android:layout_below="@+id/textView131"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
@@ -32,7 +32,7 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:id="@+id/img_map_main"
-        android:layout_below="@+id/textView132"
+        android:layout_below="@+id/btn_back_home"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:src="@drawable/img_temp1" />
@@ -54,6 +54,7 @@
         android:id="@+id/ratingBar6"
         style="?android:attr/ratingBarStyleSmall"
         android:layout_below="@+id/textView133"
+        android:rating="3"
         android:layout_alignLeft="@+id/textView133"
         android:layout_alignStart="@+id/textView133"
         android:layout_marginRight="20dp" />
@@ -61,7 +62,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView40"
+        android:id="@+id/close_sent_request_lising"
         android:layout_alignBottom="@+id/ratingBar6"
         android:layout_toRightOf="@+id/ratingBar6"
         android:layout_toEndOf="@+id/ratingBar6"
@@ -71,10 +72,10 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView41"
+        android:id="@+id/close_buy_listings"
         android:layout_alignBottom="@+id/ratingBar6"
-        android:layout_toRightOf="@+id/imageView40"
-        android:layout_toEndOf="@+id/imageView40"
+        android:layout_toRightOf="@+id/close_sent_request_lising"
+        android:layout_toEndOf="@+id/close_sent_request_lising"
         android:src="@drawable/tab_book_explore_free_not"
         android:layout_marginRight="10dp" />
 
@@ -82,9 +83,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView42"
-        android:layout_alignBottom="@+id/imageView41"
-        android:layout_toRightOf="@+id/imageView41"
-        android:layout_toEndOf="@+id/imageView41"
+        android:layout_alignBottom="@+id/close_buy_listings"
+        android:layout_toRightOf="@+id/close_buy_listings"
+        android:layout_toEndOf="@+id/close_buy_listings"
         android:src="@drawable/tab_book_explore_swap_not" />
 </RelativeLayout>
 </RelativeLayout>

@@ -270,21 +270,21 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView16"
+            android:id="@+id/img_swap_listing"
             android:src="@drawable/tab_book_explore_swap"
             android:layout_weight="0.70" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/imageView17"
+            android:id="@+id/img_free_listings"
             android:src="@drawable/tab_book_explore_free"
             android:layout_margin="10dp" />
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:id="@+id/imageView34"
+            android:id="@+id/img_buy_listing"
             android:src="@drawable/tab_book_explore_cart"
             android:layout_weight="0.80" />
     </TableRow>

@@ -35,7 +35,7 @@
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/imageView34"
+        android:id="@+id/img_buy_listing"
         android:layout_alignTop="@+id/ratingBar"
         android:layout_toRightOf="@+id/textView117"
         android:layout_toEndOf="@+id/textView117"
@@ -46,9 +46,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/imageView35"
-        android:layout_alignTop="@+id/imageView34"
-        android:layout_toRightOf="@+id/imageView34"
-        android:layout_toEndOf="@+id/imageView34"
+        android:layout_alignTop="@+id/img_buy_listing"
+        android:layout_toRightOf="@+id/img_buy_listing"
+        android:layout_toEndOf="@+id/img_buy_listing"
         android:src="@drawable/icon_notification_infor3"
         android:layout_marginRight="5dp" />
 
