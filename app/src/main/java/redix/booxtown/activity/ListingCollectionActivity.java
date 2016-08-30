@@ -23,6 +23,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -124,6 +125,24 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
             }
         });
 
+        //change color tab
+        TextView txt_add_book = (TextView)findViewById(R.id.txt_add_book1);
+        txt_add_book.setTextColor(getResources().getColor(R.color.color_text));
+        txt_add_book.setBackgroundColor(getResources().getColor(R.color.dot_light_screen1));
+
+        TextView txt_my_listings = (TextView)findViewById(R.id.txt_my_listings1);
+        txt_my_listings.setTextColor(getResources().getColor(R.color.dot_light_screen1));
+        txt_my_listings.setBackgroundColor(getResources().getColor(R.color.color_text));
+
+        txt_my_listings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ListingCollectionActivity.this,ListingsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+        //end
     }
 
     @Override

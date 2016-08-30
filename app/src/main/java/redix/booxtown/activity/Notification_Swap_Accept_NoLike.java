@@ -1,5 +1,6 @@
 package redix.booxtown.activity;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -21,5 +22,17 @@ public class Notification_Swap_Accept_NoLike extends AppCompatActivity {
 
         TextView txt_menu_notification_infor2_phone = (TextView)findViewById(R.id.txt_menu_notification_infor2_phone);
         txt_menu_notification_infor2_phone.setVisibility(View.GONE);
+
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_menu_notification_infor2);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Notification_Swap_Accept_NoLike.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
+
     }
 }
