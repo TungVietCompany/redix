@@ -36,4 +36,8 @@
     <string name="title_activity_maps">Map</string>
     <string name="title_loacte">Locate</string>
     <string name="title_activity_activity_notification">activity_notification</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_activity_home">HomeActivity</string>
 </resources>

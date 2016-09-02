@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="redix.booxtown.activity.FaqActivity">
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="50dp"
         android:id="@+id/editSearch"
         android:background="@color/color_hint_interact"
@@ -22,6 +22,23 @@
         android:paddingLeft="15dp" />
 
 
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:layout_below="@+id/editSearch"
+        android:layout_above="@+id/menu_bottom_faq"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="70dp"
+        android:layout_marginRight="10dp">
+    <android.support.v7.widget.RecyclerView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/lv_content_faq"
+        android:layout_below="@+id/editSearch"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@+id/menu_bottom_faq" />
+    </LinearLayout>
+
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -31,37 +48,9 @@
         android:layout_alignEnd="@+id/editSearch"
         android:src="@drawable/icon_search"
         android:padding="15dp"
-       />
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/menu_top"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/include2" />
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-        android:layout_below="@+id/editSearch"
-        android:layout_above="@+id/menu_bottom_faq"
-        android:layout_marginLeft="10dp"
+        android:layout_gravity="right|top"
         android:layout_marginTop="10dp"
-        android:layout_marginRight="10dp">
-    <android.support.v7.widget.RecyclerView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/lv_content_faq"
-        android:layout_below="@+id/editSearch"
-        android:layout_centerHorizontal="true"
-        android:layout_above="@+id/menu_bottom_faq" />
-    </LinearLayout>
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/menu_bottom"
-        android:id="@+id/menu_bottom_faq"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_marginRight="10dp" />
 
 
-</RelativeLayout>
+</FrameLayout>

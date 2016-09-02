@@ -54,35 +54,41 @@ public class MenuActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }else if(i==1){
-                            Intent intent= new Intent(MenuActivity.this,NotificationActivity.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","1");
                             startActivity(intent);
                             finish();
                         }else if(i==2){
-                            Intent intent= new Intent(MenuActivity.this,FaqActivity.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","2");
                             startActivity(intent);
                             finish();
                         }else if(i==3){
-                            Intent intent= new Intent(MenuActivity.this,InviteFriendActivity.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","3");
                             startActivity(intent);
                             finish();
                         }else if(i==4){
-                            Intent intent= new Intent(MenuActivity.this,Rate.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","4");
                             startActivity(intent);
                             finish();
                         }else if(i==5){
-                            Intent intent= new Intent(MenuActivity.this,About.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","5");
                             startActivity(intent);
                             finish();
                         }else if(i==6){
-                            Intent intent= new Intent(MenuActivity.this,Contact.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","6");
                             startActivity(intent);
                             finish();
                         }else if(i==7){
-                            Intent intent= new Intent(MenuActivity.this,Setting.class);
+                            Intent intent= new Intent(MenuActivity.this,HomeActivity.class);
+                            intent.putExtra("position","7");
                             startActivity(intent);
                             finish();
                         }else if(i==8){
-                            //log out
                             Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
                             startActivity(intent);
                             finish();
