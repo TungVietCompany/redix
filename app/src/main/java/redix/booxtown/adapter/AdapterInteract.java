@@ -1,6 +1,7 @@
 package redix.booxtown.adapter;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
 
 import redix.booxtown.R;
 import redix.booxtown.model.Interact;
@@ -16,60 +18,49 @@ import redix.booxtown.model.Interact;
 /**
  * Created by Administrator on 27/08/2016.
  */
-public class AdapterInteract extends BaseAdapter {
-    private Context mContext;
+public class AdapterInteract extends RecyclerView.Adapter<AdapterInteract.RecyclerViewHolder> {
+    Context context;
     private ArrayList<Interact> listInteract;
+    public AdapterInteract(Context context,ArrayList<Interact> listInteract) {
+        this.listInteract = listInteract;
+        this.context = context;
 
-
-    public AdapterInteract(Context c, ArrayList<Interact> list_interact) {
-        mContext = c;
-        this.listInteract = list_interact;
-
+    }
+    @Override
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.custom_interact, parent, false);
+        return new RecyclerViewHolder(itemView);
     }
 
     @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        Interact interact= listInteract.get(position);
+        holder.txt_title_interact.setText(interact.getInteractTitle());
+
+        holder.txt_count_interact.setText("("+interact.getInteractCount()+")");
+        if(interact.isStatus()) {
+            holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_text));
+        }
+        holder.txt_dateUpdate_interact.setText("Last Updated on "+ interact.getInteractUpdatetime());
+    }
+
+    @Override
+    public int getItemCount() {
         return listInteract.size();
     }
 
-    @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return null;
-    }
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
 
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return 0;
-    }
+        public TextView txt_title_interact;
+        public TextView txt_count_interact;
+        public TextView txt_dateUpdate_interact;
 
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-
-        LayoutInflater inflater = (LayoutInflater) mContext
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
-        Interact interact= listInteract.get(position);
-
-
-        convertView = inflater.inflate(R.layout.custom_interact, null);
-
-            TextView txt_title_interact=(TextView) convertView.findViewById(R.id.txt_title_interact);
-            TextView txt_count_interact=(TextView) convertView.findViewById(R.id.txt_count_interact);
-            TextView txt_dateUpdate_interact=(TextView) convertView.findViewById(R.id.txt_time_update_interact);
-
-            txt_title_interact.setText(interact.getInteractTitle());
-
-            txt_count_interact.setText("("+interact.getInteractCount()+")");
-            if(interact.isStatus()) {
-                txt_count_interact.setTextColor(convertView.getResources().getColor(R.color.color_text));
-            }
-
-            txt_dateUpdate_interact.setText("Last Updated on "+ interact.getInteractUpdatetime());
-
-        return convertView;
+        public RecyclerViewHolder(View itemView) {
+            super(itemView);
+            txt_title_interact = (TextView) itemView.findViewById(R.id.txt_title_interact);
+            txt_count_interact = (TextView) itemView.findViewById(R.id.txt_count_interact);
+            txt_dateUpdate_interact = (TextView) itemView.findViewById(R.id.txt_time_update_interact);
+        }
     }
 }

@@ -26,17 +26,8 @@ public class Rate extends AppCompatActivity {
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                setContentView(R.layout.menu);
-                ListView lv=(ListView) findViewById(R.id.listViewa);
-                lv.setAdapter(new CustomAdapter(Rate.this, prgmNameList,prgmImages));
-                ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
-                close_menu.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent itent = new Intent(Rate.this,Rate.class);
-                        startActivity(itent);
-                    }
-                });
+               Intent intent = new Intent(Rate.this,MenuActivity.class);
+                startActivity(intent);
             }
         });
 

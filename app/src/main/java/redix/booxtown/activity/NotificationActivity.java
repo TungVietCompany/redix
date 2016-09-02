@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
 import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.Custom_ListView_Notification;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -33,37 +36,44 @@ public class NotificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_notification);
 
         //listview content notification
-        final ListView list_notification = (ListView)findViewById(R.id.lv_content_notification) ;
-        list_notification.setAdapter(new Custom_ListView_Notification(NotificationActivity.this, prgmNameList,prgmNameList));
+        RecyclerView lv_notification=(RecyclerView) findViewById(R.id.lv_content_notification);
+        RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(this);
+        lv_notification.setLayoutManager(layoutManager);
 
-        list_notification.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i==0){
-                    InteractThread interact1= new InteractThread();
-                    interact1.setInteractThreadTitle("Thread one text");
-                    interact1.setInteractThreadCount("20");
-                    interact1.setStatus(true);
-                    interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-                    interact1.setInteractThreadAddBy("Derek Jarma");
+        //set adapter
+        Custom_ListView_Notification menu = new Custom_ListView_Notification(prgmNameList,prgmNameList);
+        lv_notification.setAdapter(menu);
 
-                    listInteractThreads.add(interact1);
-                    InteractThread item = (InteractThread) listInteractThreads.get(0);
-                    Intent intent = new Intent(NotificationActivity.this,InteractThreadDetailsActivity.class);
-                    intent.putExtra("threadDetail",item);
-                    startActivity(intent);
-                }else if(i==1){
-                    Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
-                    startActivity(intent);
-                }else if(i==2){
-                    Intent intent1 = new Intent(NotificationActivity.this,NotificationSellActivity.class);
-                    startActivity(intent1);
-                }else if(i==3){
-                    Intent intent2 = new Intent(NotificationActivity.this,NotificationDominicActivity.class);
-                    startActivity(intent2);
-                }
-            }
-        });
+        lv_notification.addOnItemTouchListener(
+                new RecyclerItemClickListener(NotificationActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int i) {
+                        if(i==0){
+                            InteractThread interact1= new InteractThread();
+                            interact1.setInteractThreadTitle("Thread one text");
+                            interact1.setInteractThreadCount("20");
+                            interact1.setStatus(true);
+                            interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+                            interact1.setInteractThreadAddBy("Derek Jarma");
+
+                            listInteractThreads.add(interact1);
+                            InteractThread item = (InteractThread) listInteractThreads.get(0);
+                            Intent intent = new Intent(NotificationActivity.this,InteractThreadDetailsActivity.class);
+                            intent.putExtra("threadDetail",item);
+                            startActivity(intent);
+                        }else if(i==1){
+                            Intent intent = new Intent(NotificationActivity.this,NotificationSwapActivity.class);
+                            startActivity(intent);
+                        }else if(i==2){
+                            Intent intent1 = new Intent(NotificationActivity.this,NotificationSellActivity.class);
+                            startActivity(intent1);
+                        }else if(i==3){
+                            Intent intent2 = new Intent(NotificationActivity.this,NotificationDominicActivity.class);
+                            startActivity(intent2);
+                        }
+                    }
+                })
+        );
         //end
         //menu
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);

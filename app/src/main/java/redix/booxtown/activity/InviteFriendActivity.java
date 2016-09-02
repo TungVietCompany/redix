@@ -3,6 +3,8 @@ package redix.booxtown.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -10,6 +12,7 @@ import android.widget.TextView;
 
 
 import redix.booxtown.R;
+import redix.booxtown.custom.Custom_Listview_faq;
 import redix.booxtown.custom.Custom_invite;
 import redix.booxtown.custom.MenuBottomCustom;
 
@@ -22,8 +25,12 @@ public class InviteFriendActivity extends AppCompatActivity {
         setContentView(R.layout.activity_invite_friend);
 
 
-        ListView listView = (ListView)findViewById(R.id.lv_content_invite);
-        listView.setAdapter(new Custom_invite(InviteFriendActivity.this, prgmNameList));
+        RecyclerView recyclerView = (RecyclerView)findViewById(R.id.lv_content_invite);
+        RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(layoutManager);
+        //set adapter
+        Custom_invite custom_invite = new Custom_invite(prgmNameList);
+        recyclerView.setAdapter(custom_invite);
 
         //icon back
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);

@@ -2,6 +2,8 @@ package redix.booxtown.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -14,30 +16,20 @@ import redix.booxtown.custom.Custom_Listview_faq;
 import redix.booxtown.custom.MenuBottomCustom;
 
 public class FaqActivity extends AppCompatActivity {
-
-    public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
-    public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About Booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
+    public static String [] prgmNameList={"General","Sell","Swap","Buy","Donate"};
     private MenuBottomCustom bottomListings;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq);
 
-        ListView listView_faq = (ListView)findViewById(R.id.lv_content_faq);
-        listView_faq.setAdapter(new Custom_Listview_faq(FaqActivity.this, prgmNameList));
-
-        listView_faq.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                switch (i){
-                    case 0:
-                        Intent itent = new Intent(FaqActivity.this,Faq_content.class);
-                        startActivity(itent);
-                        break;
-                }
-            }
-        });
-
+        RecyclerView listView_faq = (RecyclerView)findViewById(R.id.lv_content_faq);
+        RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(this);
+        listView_faq.setLayoutManager(layoutManager);
+        //set adapter
+        Custom_Listview_faq custom_faq = new Custom_Listview_faq(FaqActivity.this,prgmNameList);
+        listView_faq.setAdapter(custom_faq);
+        //end
         ImageView menu =
                 (ImageView)findViewById(R.id.img_menu);
         menu.setOnClickListener(new View.OnClickListener() {
@@ -47,14 +39,12 @@ public class FaqActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
         //icon back
         ImageView img_menu_component = (ImageView)findViewById(R.id.img_menu_component);
         img_menu_component.setVisibility(View.GONE);
 
         TextView title_menu = (TextView)findViewById(R.id.txt_title);
         title_menu.setText("FAQ");
-
         //bottom
         //--------------------------------------------------------------
         View view_bottom = (View)findViewById(R.id.menu_bottom_faq);

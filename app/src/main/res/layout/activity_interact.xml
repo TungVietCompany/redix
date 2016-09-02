@@ -23,8 +23,12 @@
         android:textColor="#ffffff"
         android:background="@color/color_text"
         android:layout_margin="10dp" />
-
-    <ListView
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/txt_tilte_interact"
+    android:layout_above="@+id/menu_interact_bottom">
+    <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/list_view_interact"
@@ -34,7 +38,7 @@
         android:layout_marginRight="10dp"
         android:layout_marginTop="10dp"
         android:layout_above="@+id/menu_interact_bottom" />
-
+</LinearLayout>
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

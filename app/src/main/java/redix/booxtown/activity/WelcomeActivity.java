@@ -19,10 +19,11 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.autoviewpager.AutoScrollViewPager;
 
 public class WelcomeActivity extends AppCompatActivity {
 
-    private ViewPager viewPager;
+    private AutoScrollViewPager viewPager;
     private MyViewPagerAdapter myViewPagerAdapter;
     private LinearLayout dotsLayout;
     private TextView[] dots;
@@ -48,7 +49,7 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
-        viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager = (AutoScrollViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnsigup = (Button) findViewById(R.id.btn_sigup_wellcome);
         btnsignin = (Button) findViewById(R.id.btn_sigin_wellcome);
@@ -71,7 +72,8 @@ public class WelcomeActivity extends AppCompatActivity {
         myViewPagerAdapter = new MyViewPagerAdapter();
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
-
+//        viewPager.setInterval(2000);
+//        viewPager.startAutoScroll();
         btnsigup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -112,29 +114,12 @@ public class WelcomeActivity extends AppCompatActivity {
         return viewPager.getCurrentItem() + i;
     }
 
-//    private void launchHomeScreen() {
-//        prefManager.setFirstTimeLaunch(false);
-//        startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
-//        finish();
-//    }
-
     //	viewpager change listener
     ViewPager.OnPageChangeListener viewPagerPageChangeListener = new ViewPager.OnPageChangeListener() {
 
         @Override
         public void onPageSelected(int position) {
             addBottomDots(position);
-
-            // changing the next button text 'NEXT' / 'GOT IT'
-//            if (position == layouts.length - 1) {
-//                // last page. make button text to GOT IT
-//                btnNext.setText(getString(R.string.start));
-//                btnSkip.setVisibility(View.GONE);
-//            } else {
-//                // still pages are left
-//                btnNext.setText(getString(R.string.next));
-//                btnSkip.setVisibility(View.VISIBLE);
-//            }
         }
 
         @Override
@@ -171,7 +156,6 @@ public class WelcomeActivity extends AppCompatActivity {
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
             View view = layoutInflater.inflate(layouts[position], container, false);
             container.addView(view);
 

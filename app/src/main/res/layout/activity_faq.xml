@@ -19,7 +19,7 @@
         android:layout_marginRight="10dp"
         android:layout_below="@+id/include2"
         android:layout_marginTop="10dp"
-        />
+        android:paddingLeft="15dp" />
 
 
     <ImageView
@@ -39,18 +39,22 @@
         layout="@layout/menu_top"
         android:layout_centerHorizontal="true"
         android:id="@+id/include2" />
-
-    <ListView
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+        android:layout_below="@+id/editSearch"
+        android:layout_above="@+id/menu_bottom_faq"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="10dp">
+    <android.support.v7.widget.RecyclerView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/lv_content_faq"
         android:layout_below="@+id/editSearch"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="10dp"
         android:layout_above="@+id/menu_bottom_faq" />
-
+    </LinearLayout>
     <include
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

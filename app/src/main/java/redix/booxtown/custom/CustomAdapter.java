@@ -1,6 +1,7 @@
 package redix.booxtown.custom;
 
 import android.content.Context;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,53 +15,48 @@ import redix.booxtown.R;
 /**
  * Created by thuyetpham94 on 24/08/2016.
  */
-public class CustomAdapter extends BaseAdapter {
+public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerViewHolder> {
     String [] result;
-    Context context;
     int [] imageId;
-    private static LayoutInflater inflater=null;
-    public CustomAdapter(Context context, String[] prgmNameList, int[] prgmImages) {
-        // TODO Auto-generated constructor stub
-        result=prgmNameList;
-        this.context=context;
-        imageId=prgmImages;
-        inflater = ( LayoutInflater )context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+
+    public CustomAdapter(String [] result,int [] imageId) {
+        this.result = result;
+        this.imageId = imageId;
     }
+
     @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.program_list, parent, false);
+        return new RecyclerViewHolder(itemView);
+    }
+
+    @Override
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        holder.tv.setText(result[position]);
+        holder.img.setImageResource(imageId[position]);
+        if(position == result.length-1){
+            holder.txt_menu_cross.setVisibility(View.GONE);
+        }
+    }
+
+    @Override
+    public int getItemCount() {
         return result.length;
     }
 
-    @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return position;
-    }
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
 
-    @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return position;
-    }
+        public TextView tv;
+        public ImageView img;
+        public TextView txt_menu_cross;
 
-    public class Holder
-    {
-        TextView tv;
-        ImageView img;
-    }
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder=new Holder();
-        View rowView;
-        rowView = inflater.inflate(R.layout.program_list, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.textView1);
-        holder.img=(ImageView) rowView.findViewById(R.id.imageView1);
-        holder.tv.setText(result[position]);
-        holder.img.setImageResource(imageId[position]);
-        return rowView;
+        public RecyclerViewHolder(View itemView) {
+            super(itemView);
+            tv = (TextView) itemView.findViewById(R.id.textView1);
+            img = (ImageView) itemView.findViewById(R.id.imageView1);
+            txt_menu_cross = (TextView)itemView.findViewById(R.id.txt_menu_cross);
+        }
     }
 
 }

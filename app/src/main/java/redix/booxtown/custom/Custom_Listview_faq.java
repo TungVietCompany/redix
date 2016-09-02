@@ -1,6 +1,8 @@
 package redix.booxtown.custom;
 
 import android.content.Context;
+import android.content.Intent;
+import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,52 +11,54 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.Faq_content;
 
 /**
  * Created by thuyetpham94 on 25/08/2016.
  */
-public class Custom_Listview_faq extends BaseAdapter {
+public class Custom_Listview_faq extends RecyclerView.Adapter<Custom_Listview_faq.RecyclerViewHolder>{
 
-    String [] result;
+    String[] faqcontent;
     Context context;
-    private static LayoutInflater inflater=null;
-    public Custom_Listview_faq(Context context, String[] prgmNameList) {
-        // TODO Auto-generated constructor stub
-        result=prgmNameList;
-        this.context=context;
-        inflater = ( LayoutInflater )context.
-                getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+    public Custom_Listview_faq(Context context,String[] faqcontent){
+        this.faqcontent = faqcontent;
+        this.context = context;
     }
     @Override
-    public int getCount() {
-        // TODO Auto-generated method stub
-        return result.length;
+    public RecyclerViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+        View itemView = inflater.inflate(R.layout.custom_listview_faq, parent, false);
+        return new RecyclerViewHolder(itemView);
     }
 
     @Override
-    public Object getItem(int position) {
-        // TODO Auto-generated method stub
-        return position;
+    public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        holder.tv.setText(faqcontent[position]);
     }
 
     @Override
-    public long getItemId(int position) {
-        // TODO Auto-generated method stub
-        return position;
+    public int getItemCount() {
+        return faqcontent.length;
     }
 
-    public class Holder
-    {
-        TextView tv;
-    }
-    @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
-        // TODO Auto-generated method stub
-        Holder holder=new Holder();
-        View rowView;
-        rowView = inflater.inflate(R.layout.custom_listview_faq, null);
-        holder.tv=(TextView) rowView.findViewById(R.id.txt_content_faq);
-        holder.tv.setText(result[position]);
-        return rowView;
+
+    public class RecyclerViewHolder extends RecyclerView.ViewHolder{
+
+        public TextView tv;
+        ImageView img_listview_faq_next;
+        public RecyclerViewHolder(View itemView) {
+            super(itemView);
+            tv = (TextView) itemView.findViewById(R.id.txt_content_faq);
+            img_listview_faq_next = (ImageView)itemView.findViewById(R.id.img_listview_faq_next);
+            img_listview_faq_next.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(context, Faq_content.class);
+                    context.startActivity(intent);
+                }
+            });
+        }
     }
 }
+
+

@@ -3,6 +3,8 @@ package redix.booxtown.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -16,8 +18,10 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterInteract;
+import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Explore;
@@ -91,22 +95,27 @@ public class InteractActivity extends AppCompatActivity
         listInteract.add(interact4);
 
         //-----------------------------------------------------------
-        final AdapterInteract adapter = new AdapterInteract(InteractActivity.this,listInteract);
-        listView=(ListView) findViewById(R.id.list_view_interact);
-        listView.setAdapter(adapter);
+        RecyclerView lv_recycler=(RecyclerView) findViewById(R.id.list_view_interact);
+        RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(this);
+        lv_recycler.setLayoutManager(layoutManager);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Interact item = (Interact) listInteract.get(position);
-                Intent intent = new Intent(InteractActivity.this,InteractThreadActivity.class);
-                intent.putExtra("thread",item);
-                //based on item add info to intent
-                startActivity(intent);
-            }
-        });
-        //---------------------------------------------------------------
+        //set adapter
+        AdapterInteract interact = new AdapterInteract(InteractActivity.this,listInteract);
+        lv_recycler.setAdapter(interact);
+        //end
 
+        lv_recycler.addOnItemTouchListener(
+                new RecyclerItemClickListener(InteractActivity.this, new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Interact item = (Interact) listInteract.get(position);
+                        Intent intent = new Intent(InteractActivity.this,InteractThreadActivity.class);
+                        intent.putExtra("thread",item);
+                        //based on item add info to intent
+                        startActivity(intent);
+                    }
+                })
+        );
     }
 
     @Override
