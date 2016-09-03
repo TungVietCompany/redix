@@ -40,7 +40,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         txtTitle.setText("Locate");
         flag=true;
         img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
-        img_component.setImageResource(R.drawable.icon_explore);
+        img_component.setImageResource(R.drawable.btn_locate);
         img_component.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -53,7 +53,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
                 else {
                     callFragment(new redix.booxtown.activity.MainActivity());
                     txtTitle.setText("Locate");
-                    img_component.setImageResource(R.drawable.icon_explore);
+                    img_component.setImageResource(R.drawable.btn_locate);
                     flag=true;
                 }
             }
@@ -81,7 +81,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
                 btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
                 callFragment(new redix.booxtown.activity.MainActivity());
                 img_component.setVisibility(View.VISIBLE);
-                img_component.setImageResource(R.drawable.icon_explore);
+                img_component.setImageResource(R.drawable.btn_locate);
                 txtTitle.setText("Locate");
                 setDefaut(1);
             }

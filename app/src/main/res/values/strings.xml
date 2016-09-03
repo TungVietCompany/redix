@@ -22,9 +22,9 @@
     <string name="SignInWith">Sign in with</string>
     <string name="SignUp">Sign up</string>
     <string name="SignIn">Sign in</string>
-    <string name="forgotpassword">Forgot Password</string>
+    <string name="forgotpassword">Forgot Password?</string>
     <string name="youforgotpassword">Forgot Your Password ?</string>
-    <string name="labelemail">Enter Your Email to Find Password</string>
+    <string name="labelemail">Enter your email to find password</string>
     <string name="Confirm">Submit</string>
     <string name="Back">Back</string>
     <string name="title_activity_main">MainActivity</string>

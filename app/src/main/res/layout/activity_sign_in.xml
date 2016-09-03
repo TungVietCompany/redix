@@ -2,35 +2,38 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/layout_parent_left"
-    android:layout_marginTop="@dimen/layout_parent_top"
-    android:layout_marginRight="@dimen/layout_parent_right"
-    android:layout_marginBottom="@dimen/layout_parent_bottom"
     android:background="@color/dot_light_screen2">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:orientation="horizontal"
-        android:layout_gravity="center_horizontal">
+        android:layout_marginTop="15dp"
+        android:weightSum="1">
         <Button
             android:id="@+id/btn_back_sigin"
-            android:layout_width="29dp"
-            android:layout_height="wrap_content"
-            android:background="@drawable/back"
-            android:textSize="20sp"
-            android:textColor="@android:color/holo_red_light"/>
+            android:layout_width="16dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:background="@drawable/btn_sign_in_back"
+            android:gravity="center"
+            android:layout_marginLeft="15dp"
+             />
         <ImageView
             android:layout_width="178dp"
             android:layout_height="45dp"
-            android:src="@drawable/test"
+            android:src="@drawable/icon_sign_in_home"
             android:layout_marginLeft="65dp"
-            android:layout_gravity="center_vertical"/>
+            android:layout_gravity="center_vertical"
+            android:layout_weight="0.05" />
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="15dp"
+        >
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -45,18 +48,24 @@
             android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
             android:backgroundTint="@color/color_hint_interact" />
-        <Button
+        <TextView
             android:id="@+id/btn_sigin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="223dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
+            android:text="Sign In"
+            android:fontFamily="sans-serif-light"
+            android:textSize="20sp"
+            android:gravity="center"
             android:textColor="@android:color/white"
-            android:background="@drawable/icon_sigin2"/>
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/bg_btn_sign_in"/>
     </LinearLayout>
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_gravity="center"
+        android:layout_marginLeft="15dp"
         android:layout_height="wrap_content"
         android:gravity="center">
         <Button
@@ -66,6 +75,7 @@
             android:layout_height="match_parent"
             android:background="@android:color/transparent"
             android:text="@string/forgotpassword"
+            android:fontFamily="sans-serif-thin"
             android:textColor="@color/color_text_hint"
             android:textSize="18sp" />
     </LinearLayout>

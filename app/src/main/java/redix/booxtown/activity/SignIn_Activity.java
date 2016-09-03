@@ -5,12 +5,13 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 
 public class SignIn_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonForgotPass;
-    Button mButtonBackSignIn;
+    TextView mButtonBackSignIn;
     Button mButtonBack;
     Button mButtonSigin;
     @Override
@@ -19,7 +20,7 @@ Button mButtonForgotPass;
         setContentView(R.layout.activity_sign_in);
         mButtonForgotPass = (Button) findViewById(R.id.btn_forgotpass);
         mButtonBack = (Button) findViewById(R.id.btn_back_sigin);
-        mButtonBackSignIn = (Button) findViewById(R.id.btn_sigin);
+        mButtonBackSignIn = (TextView) findViewById(R.id.btn_sigin);
         mButtonBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
         mButtonForgotPass.setOnClickListener(this);

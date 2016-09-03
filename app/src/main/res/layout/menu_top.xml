@@ -2,13 +2,18 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dot_light_screen2"
+
     >
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="25dp"
+            android:layout_height="19dp"
             android:id="@+id/img_menu"
-            android:src="@drawable/menus"
-            android:padding="15dp"
+            android:src="@drawable/btn_menu_locate"
+            android:layout_marginBottom="15dp"
+            android:layout_marginTop="15dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
             />
         <TextView
             android:layout_width="wrap_content"
@@ -22,25 +27,21 @@
             android:layout_centerHorizontal="true"
             android:layout_alignParentTop="true"
             android:layout_above="@+id/view2" />
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/img_menu_component"
-            android:src="@drawable/icon_comeback_location"
-            android:padding="15dp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentRight="true"
-            android:layout_alignParentEnd="true"
-            android:layout_above="@+id/view2"
-
-            />
 
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
         android:background="#f06667"
         android:layout_below="@+id/img_menu"
-        android:layout_alignRight="@+id/img_menu_component"
-        android:layout_alignEnd="@+id/img_menu_component"
         android:id="@+id/view2" />
+
+    <ImageView
+        android:layout_width="18dp"
+        android:layout_height="18dp"
+        android:id="@+id/img_menu_component"
+        android:layout_alignTop="@+id/img_menu"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:src="@drawable/btn_locate"
+        android:layout_marginRight="10dp" />
 </RelativeLayout>

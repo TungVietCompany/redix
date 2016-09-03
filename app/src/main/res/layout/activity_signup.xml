@@ -1,110 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginLeft="@dimen/layout_parent_left"
-    android:layout_marginTop="@dimen/layout_parent_top"
-    android:layout_marginRight="@dimen/layout_parent_right"
-    android:layout_marginBottom="@dimen/layout_parent_bottom"
+    android:orientation="vertical"
+    android:background="@color/dot_light_screen2"
     >
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="67dp"
         android:layout_marginBottom="30dp"
+        android:layout_marginTop="15dp"
         android:orientation="horizontal">
+
         <Button
             android:id="@+id/btn_back_sigup"
-            android:layout_width="21dp"
-            android:layout_height="37dp"
-            android:background="@drawable/back"
-            android:textSize="20sp"
-            android:textColor="@android:color/holo_red_light"/>
+            android:layout_width="16dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginLeft="15dp"
+            android:background="@drawable/btn_sign_in_back"
+            android:textColor="@android:color/holo_red_light"
+            />
+
         <ImageView
             android:layout_width="178dp"
             android:layout_height="45dp"
             android:layout_marginLeft="65dp"
             android:src="@drawable/test" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:weightSum="2"
-        android:orientation="horizontal">
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_weight="1"
-            android:layout_height="wrap_content"
-            android:hint="First name"
-            android:fontFamily="sans-serif-thin"
-            android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"
-            />
+        android:orientation="horizontal"
+        android:layout_marginLeft="15dp"
+        android:weightSum="2">
 
         <EditText
             android:layout_width="match_parent"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:hint="Last name"
+            android:layout_weight="1"
             android:fontFamily="sans-serif-thin"
+            android:hint="First name"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"
-            />
+            android:theme="@style/MyEditTextTheme" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-thin"
+            android:hint="Last name"
+            android:textColorHint="@color/color_text_hint"
+            android:theme="@style/MyEditTextTheme" />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:layout_height="wrap_content">
+        android:layout_marginLeft="15dp"
+        android:layout_marginBottom="15dp"
+        >
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Username"
-            android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
+            android:theme="@style/MyEditTextTheme" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Email"
-            android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
+            android:theme="@style/MyEditTextTheme" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Birthday"
-            android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
+            android:theme="@style/MyEditTextTheme" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Phone"
-            android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
+            android:theme="@style/MyEditTextTheme" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Password"
-            android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
+            android:theme="@style/MyEditTextTheme" />
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
             android:fontFamily="sans-serif-thin"
+            android:hint="Confirm Password"
             android:textColorHint="@color/color_text_hint"
-            android:theme="@style/MyEditTextTheme"/>
-        <Button
-            android:layout_width="300dp"
-            android:layout_height="wrap_content"
+            android:theme="@style/MyEditTextTheme" />
+
+        <TextView
+            android:layout_width="223dp"
+            android:layout_height="36dp"
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
-            android:textSize="26sp"
+            android:background="@drawable/bg_btn_sign_in"
+            android:text="Sign up"
+            android:fontFamily="sans-serif-light"
+            android:textSize="20sp"
+            android:gravity="center"
             android:textColor="@android:color/white"
-            android:background="@drawable/icon_sigup2"/>
+             />
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="300dp"
         android:layout_height="wrap_content"
@@ -112,21 +133,24 @@
         android:orientation="horizontal"
 
         >
-        <android.support.v7.widget.AppCompatCheckBox
+
+        <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20sp"
-            android:buttonTint="@color/colorAccent"
-            android:text="I Agree"
+            android:buttonTint="@color/colorCheckbox"
             android:fontFamily="sans-serif-thin"
-            />
+            android:text="I Agree"
+
+            android:textSize="20sp" />
+
         <TextView
             android:layout_width="wrap_content"
-            android:textSize="20sp"
             android:layout_height="wrap_content"
-            android:textColor="@android:color/holo_red_light"
-            android:text="Terms and conditions"
             android:fontFamily="sans-serif-thin"
+            android:text="Terms and conditions"
+            android:layout_marginLeft="5dp"
+            android:textColor="@android:color/holo_red_light"
+            android:textSize="20sp"
 
             />
     </LinearLayout>
