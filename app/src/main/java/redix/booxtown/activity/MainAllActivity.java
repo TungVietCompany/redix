@@ -100,7 +100,9 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                callFragment(new redix.booxtown.activity.ListingsActivity());
+                img_component.setVisibility(View.GONE);
+                txtTitle.setText("Listings");
 
                 setDefaut(3);
             }
@@ -108,7 +110,10 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                callFragment(new redix.booxtown.activity.WishboardActivity());
+                img_component.setVisibility(View.VISIBLE);
+                img_component.setImageResource(R.drawable.icon_menu_wishboard);
+                txtTitle.setText("Wishboard");
                 setDefaut(4);
 
             }

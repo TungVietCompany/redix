@@ -1,78 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/menu_top"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/menu_top_listings" />
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/layout_search"
-        android:layout_below="@+id/menu_top_listings"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/search_listings" />
-
-    <TableRow
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/search_listings"
-        android:layout_centerHorizontal="true"
-        android:weightSum="2"
-        android:layout_margin="10dp"
-        android:id="@+id/tableRow4">
+        android:layout_height="match_parent">
 
-        <TextView
+        <include
+            android:id="@+id/search_listings"
+            layout="@layout/layout_search"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Add a book"
-            android:gravity="center"
-            android:id="@+id/txt_add_book"
-            android:background="@drawable/bg_button_listings"
-            android:layout_weight="1.15"
-            android:textColor="@color/dot_light_screen1"
-            android:padding="9dp" />
+            android:layout_centerHorizontal="true" />
 
-        <TextView
+        <TableRow
+            android:id="@+id/tableRow4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/search_listings"
+            android:layout_centerHorizontal="true"
+            android:layout_margin="10dp"
+            android:weightSum="2">
+
+            <TextView
+                android:id="@+id/txt_add_book"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.15"
+                android:background="@drawable/bg_button_listings"
+                android:gravity="center"
+                android:padding="9dp"
+                android:text="Add a book"
+                android:textColor="@color/dot_light_screen1" />
+
+            <TextView
+                android:id="@+id/txt_my_listings"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="0.84"
+                android:background="@color/dot_light_screen1"
+                android:gravity="center"
+                android:padding="9dp"
+                android:text="My listings (46)"
+                android:textColor="@color/color_text" />
+        </TableRow>
+
+        <GridView
+            android:id="@+id/grid_view_listings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="My listings (46)"
-            android:id="@+id/txt_my_listings"
-            android:layout_weight="0.84"
+            android:layout_below="@+id/tableRow4"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="5dp"
             android:gravity="center"
-            android:background="@color/dot_light_screen1"
-            android:textColor="@color/color_text"
-            android:padding="9dp" />
-    </TableRow>
+            android:horizontalSpacing="5dp"
+            android:numColumns="2"
+            android:verticalSpacing="5dp" />
+    </RelativeLayout>
 
-    <GridView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/grid_view_listings"
-        android:layout_below="@+id/tableRow4"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:numColumns="2"
-        android:gravity="center"
-        android:verticalSpacing="5dp"
-        android:horizontalSpacing="5dp"
-        android:layout_above="@+id/menu_bottom_listings"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp" />
-
-    <include
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        layout="@layout/menu_bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:id="@+id/menu_bottom_listings" />
-</RelativeLayout>
+</FrameLayout>
