@@ -5,8 +5,12 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,6 +36,7 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterFilter;
 import redix.booxtown.custom.CustomAdapter;
+import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Explore;
@@ -39,7 +44,7 @@ import redix.booxtown.model.Explore;
 /**
  * Created by Administrator on 26/08/2016.
  */
-public class ExploreActivity extends AppCompatActivity
+public class ExploreActivity extends Fragment
 {
     private LinearLayout linear_all;
     private LinearLayout linear_swap;
@@ -49,38 +54,22 @@ public class ExploreActivity extends AppCompatActivity
     GridView grid;
     private MenuBottomCustom bottomExplore;
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
+
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_explore);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.activity_explore, container, false);
 
-        //------------------------------------------------------------
-        TextView txtTitle=(TextView) findViewById(R.id.txt_title);
-        txtTitle.setText("Explore");
-        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
-        img_component.setImageResource(R.drawable.icon_comeback_location);
-        img_component.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
-        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ExploreActivity.this,MenuActivity.class);
-                startActivity(intent);
-            }
-        });
+
+        View view_search= (View)view.findViewById(R.id.explore_search);
+        new CustomSearch(view_search,getActivity());
+
         //-----------------------------------------------------------
-        final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,listEx,1);
-        grid=(GridView)findViewById(R.id.gridView);
+        final AdapterExplore adapter = new AdapterExplore(getActivity(),listEx,1);
+        grid=(GridView)view.findViewById(R.id.gridView);
         grid.setAdapter(adapter);
-        //---------------------------------------------------------------
-
         //filter/sort--------------------------------
-        filterSort();
+        filterSort(view);
         //end-------------------------------------
 
         Explore e1= new Explore();
@@ -109,13 +98,10 @@ public class ExploreActivity extends AppCompatActivity
         listEx.add(e2);
         listEx.add(e3);
         listEx.add(e4);
-        //--------------------------------------------------------------
-        View view = (View)findViewById(R.id.menu_bottom_explore);
-        bottomExplore=new MenuBottomCustom(view,this,1);
-        bottomExplore.setDefaut(1);
+
         //---------------------------------------------------------------
-        View view_tab=(View) findViewById(R.id.tab_explore);
-        final CustomTabbarExplore tab_custom=new CustomTabbarExplore(view_tab,this);
+        View view_tab=(View) view.findViewById(R.id.tab_explore);
+        final CustomTabbarExplore tab_custom=new CustomTabbarExplore(view_tab,getActivity());
 
         linear_all=(LinearLayout) view_tab.findViewById(R.id.linear_all);
         linear_swap=(LinearLayout) view_tab.findViewById(R.id.linear_swap);
@@ -125,8 +111,8 @@ public class ExploreActivity extends AppCompatActivity
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(1),1);
-                grid=(GridView)findViewById(R.id.gridView);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(1),1);
+                grid=(GridView) view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
             }
@@ -135,8 +121,8 @@ public class ExploreActivity extends AppCompatActivity
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(2),1);
-                grid=(GridView)findViewById(R.id.gridView);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(2),1);
+                grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
 
                 tab_custom.setDefault(2);
@@ -146,8 +132,8 @@ public class ExploreActivity extends AppCompatActivity
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(3),1);
-                grid=(GridView)findViewById(R.id.gridView);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(3),1);
+                grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 tab_custom.setDefault(3);
@@ -157,15 +143,17 @@ public class ExploreActivity extends AppCompatActivity
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(ExploreActivity.this,filterExplore(4),1);
-                grid=(GridView)findViewById(R.id.gridView);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(4),1);
+                grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
             }
         });
 
 
+        return view;
     }
+
 
     public ArrayList<Explore> filterExplore(int type){
         ArrayList<Explore> list= new ArrayList<>();
@@ -197,26 +185,19 @@ public class ExploreActivity extends AppCompatActivity
         return list;
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-
-        bottomExplore.setDefaut(1);
-    }
-
-    public void filterSort(){
-        ImageView btn_filter_explore = (ImageView)findViewById(R.id.btn_filter_explore);
+    public void filterSort(View view){
+        ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(ExploreActivity.this);
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_filter_sort);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
                 ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
-                lv_dialog_filter.setAdapter(new AdapterFilter(ExploreActivity.this,prgmNameList1));
+                lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),prgmNameList1));
 
                 final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
                 final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
@@ -259,7 +240,7 @@ public class ExploreActivity extends AppCompatActivity
                 list.add("Nearest distance");
                 list.add("list 2");
                 list.add("list 3");
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(ExploreActivity.this,
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_spinner_item, list);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner2.setAdapter(dataAdapter);

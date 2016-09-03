@@ -6,9 +6,13 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
+import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -42,7 +46,7 @@ import redix.booxtown.custom.CustomAdapter;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
 
-public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
+public class MainActivity extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
     private CoordinatorLayout coordinatorLayout;
     private GoogleMap mMap;
     final int RQS_GooglePlayServices = 1;
@@ -55,60 +59,36 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
     private MenuBottomCustom bottom;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_main, container, false);
 
-        View view_top= (View) findViewById(R.id.explore_menu_top);
-        TextView txtTitle=(TextView) view_top.findViewById(R.id.txt_title);
-        txtTitle.setText("Locate");
 
-        ImageView img_component=(ImageView) view_top.findViewById(R.id.img_menu_component);
-        img_component.setImageResource(R.drawable.icon_explore);
-        img_component.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent itentsign = new Intent(MainActivity.this,ExploreActivity.class);
-                startActivity(itentsign);
-            }
-        });
-        // set onclick for menu bottom
-        RelativeLayout menu_bottom=(RelativeLayout) findViewById(R.id.explore_menu_bottom);
-        bottom=new MenuBottomCustom(menu_bottom,this,1);
-        bottom.setDefaut(1);
-        // set for layout_search
-        View view= (View) findViewById(R.id.custom_search);
-        new CustomSearch(view,this);
+        View view_search= (View)view.findViewById(R.id.custom_search);
+        new CustomSearch(view_search,getActivity());
 
-        SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
-                .findFragmentById(R.id.map);
+        SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainActivity.this);
 
-        ImageView menu = (ImageView)findViewById(R.id.img_menu);
-        menu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,MenuActivity.class);
-                startActivity(intent);
-            }
-        });
-        filterSort();
+        filterSort(view);
+
+        return view;
     }
 
-    public void filterSort(){
-        ImageView btn_filter_explore = (ImageView)findViewById(R.id.btn_filter_explore);
+    public void filterSort(View view){
+        ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(MainActivity.this);
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_filter_sort);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                 dialog.show();
 
                 ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
-                lv_dialog_filter.setAdapter(new AdapterFilter(MainActivity.this,prgmNameList1));
+                lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),prgmNameList1));
 
                 final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
                 final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
@@ -151,7 +131,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 list.add("Nearest distance");
                 list.add("list 2");
                 list.add("list 3");
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(MainActivity.this,
+                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_spinner_item, list);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner2.setAdapter(dataAdapter);
@@ -161,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(MainActivity.this,ListingsDetailActivity.class);
+        Intent intent = new Intent(getActivity(),ListingsDetailActivity.class);
 
         intent.putExtra("type",2);
         startActivity(intent);
@@ -171,15 +151,15 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapLongClick(LatLng latLng) {
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-        if (resultCode == ConnectionResult.SUCCESS){
-        }else{
-            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
-        }
-    }
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+//        if (resultCode == ConnectionResult.SUCCESS){
+//        }else{
+//            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
+//        }
+//    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -218,7 +198,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         private final View myContentsView;
 
         MyInfoWindowAdapter(){
-            myContentsView = getLayoutInflater().inflate(R.layout.dialog_map_main, null);
+            myContentsView = getActivity().getLayoutInflater().inflate(R.layout.dialog_map_main, null);
         }
 
         @Override
@@ -239,15 +219,4 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottom.setDefaut(1);
-    }
 }

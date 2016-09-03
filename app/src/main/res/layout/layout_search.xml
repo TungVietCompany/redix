@@ -30,7 +30,8 @@
             android:paddingRight="35dp"
             android:layout_alignParentTop="false"
             android:layout_toStartOf="@+id/btn_filter_explore"
-            android:layout_toLeftOf="@+id/btn_filter_explore" />
+            android:layout_toLeftOf="@+id/btn_filter_explore"
+            android:paddingLeft="10dp" />
 
         <ImageView
             android:layout_width="wrap_content"

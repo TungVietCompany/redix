@@ -31,15 +31,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         String i = intent.getStringExtra("position");
         int position = Integer.parseInt(i);
         if(position==1){
-            callFragment(new NotificationActivity());
+            callFragment(new redix.booxtown.activity.NotificationActivity());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Notifications");
         } else if(position == 2){
-            callFragment(new FaqActivity());
+            callFragment(new redix.booxtown.activity.FaqActivity());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("FAQ");
         }else if(position == 3){
-            callFragment(new InviteFriendActivity());
+            callFragment(new redix.booxtown.activity.InviteFriendActivity());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Invite Friends");
         }else if(position == 4){
