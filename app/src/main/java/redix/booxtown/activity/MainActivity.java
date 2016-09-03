@@ -64,6 +64,14 @@ public class MainActivity extends Fragment implements GoogleMap.OnMapLongClickLi
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_main, container, false);
 
+        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
+                startActivity(intent);
+            }
+        });
 
         View view_search= (View)view.findViewById(R.id.custom_search);
         new CustomSearch(view_search,getActivity());
