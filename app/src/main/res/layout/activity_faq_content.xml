@@ -9,13 +9,13 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     layout="@layout/menu_top"
-    android:id="@+id/menu_top"
+    android:id="@+id/menu_top_all"
     android:layout_alignParentTop="true" />
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:padding="10dp"
-        android:layout_below="@+id/menu_top">
+        android:layout_below="@+id/menu_top_all">
         <RelativeLayout
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
