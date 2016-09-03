@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import redix.booxtown.R;
 
@@ -23,22 +24,40 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
         img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
+
+        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
+        img_component.setVisibility(View.GONE);
+
         String i = intent.getStringExtra("position");
         int position = Integer.parseInt(i);
         if(position==1){
             callFragment(new NotificationActivity());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("Notifications");
         } else if(position == 2){
             callFragment(new FaqActivity());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("FAQ");
         }else if(position == 3){
             callFragment(new InviteFriendActivity());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("Invite Friends");
         }else if(position == 4){
             callFragment(new Rate());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("Rate Booxtown");
         }else if(position == 5){
             callFragment(new About());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("About Boxtown");
         }else if(position == 6){
             callFragment(new Contact());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("Contact Booxtown");
         }else if(position == 7){
             callFragment(new Setting());
+            TextView txtTitle=(TextView)findViewById(R.id.txt_title);
+            txtTitle.setText("Settings");
         }else if(position == 8){
 
         }

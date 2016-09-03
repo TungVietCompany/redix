@@ -10,6 +10,7 @@ import android.location.Geocoder;
 import android.location.Location;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
@@ -22,12 +23,17 @@ import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
+
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapView;
 import com.google.android.gms.maps.MapsInitializer;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Calendar;
 
@@ -40,8 +46,9 @@ public class Setting extends Fragment implements OnMapReadyCallback{
     private SupportMapFragment mMapFragment;
     TextView txt_setting_besttime;
     SupportMapFragment mapFragment;
+    GoogleMap mMap;
     MapView mMapView;
-    private GoogleMap googleMap;
+    private GoogleMap Map;
     Location location;
     /**
      * ATTENTION: This was auto-generated to implement the App Indexing API.
@@ -169,8 +176,6 @@ public class Setting extends Fragment implements OnMapReadyCallback{
                 }
             }
         });
-
-
         return view;
     }
 
@@ -200,6 +205,45 @@ public class Setting extends Fragment implements OnMapReadyCallback{
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
+        if (ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return  ;
+        }
+        Map = googleMap;
+        Map.setMyLocationEnabled(true);
+        location = Map.getMyLocation();
+        Toast.makeText(getContext(),"location"+location.getLongitude(),Toast.LENGTH_LONG).show();
+        MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLongitude(), location.getLatitude())).title("Hello Maps");
 
+        // Changing marker icon
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
+
+        // adding marker
+        Map.addMarker(marker);
+    }
+
+    private void setUpMapIfNeeded() {
+        if (ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) != PackageManager.PERMISSION_GRANTED &&
+                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return  ;
+        }
+        // Do a null check to confirm that we have not already instantiated the map.
+        if (mMap == null) {
+            // Try to obtain the map from the SupportMapFragment.
+            mMap.setMyLocationEnabled(true);
+            // Check if we were successful in obtaining the map.
+            if (mMap != null) {
+                mMap.setOnMyLocationChangeListener(new GoogleMap.OnMyLocationChangeListener() {
+
+                    @Override
+                    public void onMyLocationChange(Location arg0) {
+                        // TODO Auto-generated method stub
+
+                        mMap.addMarker(new MarkerOptions().position(new LatLng(arg0.getLatitude(), arg0.getLongitude())).title("It's Me!"));
+                    }
+                });
+
+            }
+        }
     }
 }
