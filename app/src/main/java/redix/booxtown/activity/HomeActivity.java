@@ -11,11 +11,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.custom.MenuBottomCustom;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
     ImageView img_menu_bottom_location;
     ImageView img_menu_bottom_comment;
+    private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,6 +29,21 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.GONE);
+
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeActivity.this,MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        //--------------------------------------------------
+        View view_bottom = (View)findViewById(R.id.menu_bottom);
+        menu_bottom=new MenuBottomCustom(view_bottom,HomeActivity.this,0);
+        menu_bottom.setDefaut(0);
+        //---------------------------------------------------------------
 
         String i = intent.getStringExtra("position");
         int position = Integer.parseInt(i);
@@ -84,5 +101,11 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 callFragment(new About());
                 break;
         }
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        menu_bottom.setDefaut(0);
     }
 }
