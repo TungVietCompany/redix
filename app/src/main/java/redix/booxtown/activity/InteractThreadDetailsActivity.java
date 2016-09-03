@@ -1,9 +1,21 @@
 package redix.booxtown.activity;
 
+import android.app.Dialog;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.view.Window;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -11,65 +23,56 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.adapter.AdapterInteractThread;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.Interact;
 import redix.booxtown.model.InteractComment;
 import redix.booxtown.model.InteractThread;
 
 /**
  * Created by Administrator on 28/08/2016.
  */
-public class InteractThreadDetailsActivity extends AppCompatActivity
+public class InteractThreadDetailsActivity extends Fragment
 {
 
     ArrayList<InteractComment> listInteractThreads= new ArrayList<>();
     ListView listView;
     private MenuBottomCustom menu_bottom;
-
-    //----------------------------------------------
-
-    //--------------------------------------------------
-
-
+    InteractThread interactThreads;
+    Interact interact;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interact_thread_detail);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.activity_interact_thread_detail, container, false);
 
-        //----------------------------------------------
-        InteractThread interact = (InteractThread) getIntent().getSerializableExtra("threadDetail");
-        //--------------------------------------------------
-        View view=(View) findViewById(R.id.menu_interact_thread_detail);
-
-        TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
-        txtTitle.setText("Interact");
-        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
-        img_component.setVisibility(View.INVISIBLE);
-
-        ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         imageView_back.setImageResource(R.drawable.back_interact);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("thread", interact);
+                InteractThreadActivity fragment= new InteractThreadActivity();
+                fragment.setArguments(bundle);
+                callFragment(fragment);
+
             }
         });
 
-        TextView txt_title_thread=(TextView) findViewById(R.id.txt_title_thread_detail);
-        TextView txt_count_thread=(TextView) findViewById(R.id.txt_count_thread_detail);
-        TextView txt_content_thread=(TextView) findViewById(R.id.txt_contern_thread_details);
-        TextView txt_author_thread=(TextView) findViewById(R.id.txt_author_interact_thread_detail);
-        txt_title_thread.setText(interact.getInteractThreadTitle()+"");
-        txt_count_thread.setText("("+interact.getInteractThreadCount()+")");
-        txt_content_thread.setText(interact.getInteractThreadContent());
-        txt_author_thread.setText("Added by "+interact.getInteractThreadAddBy());
-
+        //----------------------------------------------
+        interactThreads = (InteractThread) getArguments().getSerializable("thread");
+        interact = (Interact) getArguments().getSerializable("interact");
         //--------------------------------------------------
-        View view_bottom = (View)findViewById(R.id.menu_bottom_threads);
-        menu_bottom=new MenuBottomCustom(view_bottom,this,2);
-        menu_bottom.setDefaut(2);
-        //---------------------------------------------------------------
+        TextView txt_title_thread=(TextView) view.findViewById(R.id.txt_title_thread_detail);
+        TextView txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread_detail);
+        TextView txt_content_thread=(TextView) view.findViewById(R.id.txt_contern_thread_details);
+        TextView txt_author_thread=(TextView) view.findViewById(R.id.txt_author_interact_thread_detail);
+        txt_title_thread.setText(interactThreads.getInteractThreadTitle()+"");
+        txt_count_thread.setText("("+interactThreads.getInteractThreadCount()+")");
+        txt_content_thread.setText(interactThreads.getInteractThreadContent());
+        txt_author_thread.setText("Added by "+interactThreads.getInteractThreadAddBy());
+
 
         ArrayList<InteractComment> list= new ArrayList<>();
         InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
@@ -86,19 +89,57 @@ public class InteractThreadDetailsActivity extends AppCompatActivity
 
 
         //-----------------------------------------------------------
-        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(InteractThreadDetailsActivity.this,list);
-        listView=(ListView) findViewById(R.id.listview_comments);
+        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(getActivity(),list);
+        listView=(ListView) view.findViewById(R.id.listview_comments);
         listView.setDivider(null);
         listView.setAdapter(adapter);
         //---------------------------------------------------------------
 
+
+        return view;
+    }
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        // menu_bottom.setDefaut(1);
-        finish();
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_interact_thread_detail);
+//
+//        //----------------------------------------------
+//        InteractThread interact = (InteractThread) getIntent().getSerializableExtra("threadDetail");
+//        //--------------------------------------------------
+//        View view=(View) findViewById(R.id.menu_interact_thread_detail);
+//
+//        TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
+//        txtTitle.setText("Interact");
+//        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
+//        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
+//        img_component.setVisibility(View.INVISIBLE);
+//
+//        ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
+//        imageView_back.setImageResource(R.drawable.back_interact);
+//        imageView_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//
+
+//
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        // menu_bottom.setDefaut(1);
+//        finish();
+//    }
 }
 

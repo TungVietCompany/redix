@@ -5,6 +5,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -48,6 +50,14 @@ public class InteractActivity extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.activity_interact, container, false);
 
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
+        imageView_back.setImageResource(R.drawable.menus);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                callFragment(new InteractActivity());
+            }
+        });
         Interact interact1= new Interact();
         interact1.setInteractTitle("Topic Name goes here");
         interact1.setInteractCount("20");
@@ -86,8 +96,28 @@ public class InteractActivity extends Fragment
         AdapterInteract interact = new AdapterInteract(getActivity(),listInteract);
         lv_recycler.setAdapter(interact);
         //end
+        lv_recycler.addOnItemTouchListener(
+                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(View view, int position) {
+                        Interact item = (Interact) listInteract.get(position);
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("thread", item);
+                        InteractThreadActivity fragment= new InteractThreadActivity();
+                        fragment.setArguments(bundle);
+                        callFragment(fragment);
+                    }
+                })
+        );
 
         return view;
+    }
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
     }
 
 //    @Override

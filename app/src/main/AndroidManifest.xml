@@ -66,8 +66,6 @@
         <!-- activity for Explore -->
 
         <activity android:name=".activity.TestActivity" />
-        <activity android:name=".activity.InteractThreadActivity" />
-        <activity android:name=".activity.InteractThreadDetailsActivity" />
         <activity android:name=".activity.UserProfileActivity" />
         <activity android:name=".activity.ListingsActivity" />
         <activity android:name=".activity.ListingsDetailActivity" />

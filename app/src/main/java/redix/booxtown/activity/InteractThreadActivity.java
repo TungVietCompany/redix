@@ -1,19 +1,30 @@
 package redix.booxtown.activity;
 
 import android.app.Dialog;
+
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -28,57 +39,40 @@ import redix.booxtown.model.InteractThread;
 /**
  * Created by Administrator on 27/08/2016.
  */
-public class InteractThreadActivity extends AppCompatActivity
+public class InteractThreadActivity extends Fragment
 {
 
     ArrayList<InteractThread> listInteractThreads= new ArrayList<>();
     ListView listView;
     private MenuBottomCustom menu_bottom;
-
-
-
+    Interact interact;
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_interact_thread);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.activity_interact_thread, container, false);
 
-        //----------------------------------------------
-        Interact interact = (Interact) getIntent().getSerializableExtra("thread");
-        //--------------------------------------------------
-        View view=(View) findViewById(R.id.menu_interact_thread);
-
-        TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
-        txtTitle.setText("Interact");
-        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
-        img_component.setVisibility(View.INVISIBLE);
-
-        ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         imageView_back.setImageResource(R.drawable.back_interact);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+                callFragment(new InteractActivity());
             }
         });
 
-        TextView txt_title_thread=(TextView) findViewById(R.id.txt_title_thread);
-        TextView txt_count_thread=(TextView) findViewById(R.id.txt_count_thread);
+        //-----------------------------------------------
+        interact = (Interact) getArguments().getSerializable("thread");
+        //--------------------------------------------------
+        TextView txt_title_thread=(TextView) view.findViewById(R.id.txt_title_thread);
+        TextView txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread);
         txt_title_thread.setText(interact.getInteractTitle());
         txt_count_thread.setText("("+interact.getInteractCount()+")");
-
-        //--------------------------------------------------
-        View view_bottom = (View)findViewById(R.id.bottom_interact_thread);
-        menu_bottom=new MenuBottomCustom(view_bottom,this,2);
-        menu_bottom.setDefaut(2);
-        //---------------------------------------------------------------
-
-        //btn add thread
-        TextView btn_add_thread = (TextView) findViewById(R.id.btn_add_thread);
+        //------------------------------------------------------------------------------
+        TextView btn_add_thread = (TextView) view.findViewById(R.id.btn_add_thread);
         btn_add_thread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final Dialog dialog = new Dialog(InteractThreadActivity.this);
+                final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_interact_addthread);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -144,29 +138,72 @@ public class InteractThreadActivity extends AppCompatActivity
         listInteractThreads.add(interact4);
 
         //-----------------------------------------------------------
-        final AdapterInteractThread adapter = new AdapterInteractThread(InteractThreadActivity.this,listInteractThreads);
-        listView=(ListView) findViewById(R.id.list_interact_thread);
+        final AdapterInteractThread adapter = new AdapterInteractThread(getActivity(),listInteractThreads);
+        listView=(ListView) view.findViewById(R.id.list_interact_thread);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 InteractThread item = (InteractThread) listInteractThreads.get(position);
-                Intent intent = new Intent(InteractThreadActivity.this,InteractThreadDetailsActivity.class);
-                intent.putExtra("threadDetail",item);
-                //based on item add info to intent
-                startActivity(intent);
+
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("thread", item);
+                bundle.putSerializable("interact", interact);
+
+                InteractThreadDetailsActivity fragment= new InteractThreadDetailsActivity();
+                fragment.setArguments(bundle);
+                callFragment(fragment);
             }
         });
-        //---------------------------------------------------------------
 
+        //------------------------------------------------------------------------------
+
+        return view;
+    }
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
     }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        // menu_bottom.setDefaut(1);
-        finish();
-    }
+//    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_interact_thread);
+//
+//        //----------------------------------------------
+//        Interact interact = (Interact) getIntent().getSerializableExtra("thread");
+//        //--------------------------------------------------
+//        View view=(View) findViewById(R.id.menu_interact_thread);
+//
+//        TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
+//        txtTitle.setText("Interact");
+//        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
+//        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
+//        img_component.setVisibility(View.INVISIBLE);
+//
+//
+
+//
+//        //--------------------------------------------------
+//        View view_bottom = (View)findViewById(R.id.bottom_interact_thread);
+//        menu_bottom=new MenuBottomCustom(view_bottom,this,2);
+//        menu_bottom.setDefaut(2);
+//        //---------------------------------------------------------------
+//
+//        //btn add thread
+//        //---------------------------------------------------------------
+//
+//    }
+//
+//    @Override
+//    public void onBackPressed() {
+//        super.onBackPressed();
+//        // menu_bottom.setDefaut(1);
+//        finish();
+//    }
 }
 
