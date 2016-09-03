@@ -3,17 +3,14 @@ package redix.booxtown.custom;
 import android.content.Context;
 import android.content.Intent;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import redix.booxtown.R;
-import redix.booxtown.activity.InteractActivity;
-import redix.booxtown.activity.ListingsActivity;
-import redix.booxtown.activity.MainActivity;
-import redix.booxtown.activity.MyProfileActivity;
-import redix.booxtown.activity.WishboardActivity;
+import redix.booxtown.fragment.InteractFragment;
+import redix.booxtown.fragment.ListingsFragment;
+import redix.booxtown.fragment.MainFragment;
+import redix.booxtown.fragment.MyProfileFragment;
+import redix.booxtown.fragment.WishboardFragment;
 
 /**
  * Created by Administrator on 26/08/2016.
@@ -41,7 +38,7 @@ public class MenuBottomCustom{
             public void onClick(View v) {
                 btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
                 if(type!=1){
-                    Intent itent = new Intent(context, MainActivity.class);
+                    Intent itent = new Intent(context, MainFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(1);
@@ -52,7 +49,7 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
                 if(type!=2){
-                    Intent itent = new Intent(context, InteractActivity.class);
+                    Intent itent = new Intent(context, InteractFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(2);
@@ -64,7 +61,7 @@ public class MenuBottomCustom{
             public void onClick(View v) {
 
                 if(type!=3){
-                    Intent itent = new Intent(context, ListingsActivity.class);
+                    Intent itent = new Intent(context, ListingsFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(3);
@@ -74,7 +71,7 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
                 if(type!=4){
-                    Intent itent = new Intent(context, WishboardActivity.class);
+                    Intent itent = new Intent(context, WishboardFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(4);
@@ -85,7 +82,7 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
                 if(type!=5){
-                    Intent itent = new Intent(context, MyProfileActivity.class);
+                    Intent itent = new Intent(context, MyProfileFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(5);

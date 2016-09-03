@@ -34,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.fragment.MyProfileFragment;
 
 public class EditListingActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
@@ -85,7 +86,7 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
                 btn_delete_editlisting.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Intent intent = new Intent(EditListingActivity.this,MyProfileActivity.class);
+                        Intent intent = new Intent(EditListingActivity.this,MyProfileFragment.class);
                         startActivity(intent);
                     }
                 });

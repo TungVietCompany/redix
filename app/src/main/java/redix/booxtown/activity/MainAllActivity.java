@@ -11,6 +11,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import redix.booxtown.R;
+import redix.booxtown.fragment.AboutFragment;
+import redix.booxtown.fragment.ExploreFragment;
+import redix.booxtown.fragment.InteractFragment;
+import redix.booxtown.fragment.ListingsFragment;
+import redix.booxtown.fragment.MainFragment;
+import redix.booxtown.fragment.MyProfileFragment;
+import redix.booxtown.fragment.RateFragment;
+import redix.booxtown.fragment.WishboardFragment;
 
 /**
  * Created by Administrator on 03/09/2016.
@@ -45,13 +53,13 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 if(flag) {
-                    callFragment(new redix.booxtown.activity.ExploreActivity());
+                    callFragment(new ExploreFragment());
                     txtTitle.setText("Explore");
                     img_component.setImageResource(R.drawable.icon_comeback_location);
                     flag=false;
                 }
                 else {
-                    callFragment(new redix.booxtown.activity.MainActivity());
+                    callFragment(new MainFragment());
                     txtTitle.setText("Locate");
                     img_component.setImageResource(R.drawable.icon_explore);
                     flag=true;
@@ -79,7 +87,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
             @Override
             public void onClick(View v) {
                 btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
-                callFragment(new redix.booxtown.activity.MainActivity());
+                callFragment(new MainFragment());
                 img_component.setVisibility(View.VISIBLE);
                 img_component.setImageResource(R.drawable.icon_explore);
                 txtTitle.setText("Locate");
@@ -90,7 +98,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_commnet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFragment(new redix.booxtown.activity.InteractActivity());
+                callFragment(new InteractFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Interact");
                 setDefaut(2);
@@ -100,7 +108,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_camera.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFragment(new redix.booxtown.activity.ListingsActivity());
+                callFragment(new ListingsFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Listings");
 
@@ -110,7 +118,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_bag.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFragment(new redix.booxtown.activity.WishboardActivity());
+                callFragment(new WishboardFragment());
                 img_component.setVisibility(View.VISIBLE);
                 img_component.setImageResource(R.drawable.icon_menu_wishboard);
                 txtTitle.setText("Wishboard");
@@ -121,13 +129,15 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                callFragment(new MyProfileFragment());
+                img_component.setVisibility(View.GONE);
+                txtTitle.setText("My Profile");
                 setDefaut(5);
             }
         });
         //-------------------------------------------------------
 
-        callFragment(new redix.booxtown.activity.MainActivity());
+        callFragment(new MainFragment());
 
     }
 
@@ -143,10 +153,10 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_menu_bottom_location:
-                callFragment(new Rate());
+                callFragment(new RateFragment());
                 break;
             case R.id.img_menu_bottom_comment:
-                callFragment(new About());
+                callFragment(new AboutFragment());
                 break;
         }
     }

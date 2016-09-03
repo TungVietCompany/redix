@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
@@ -27,6 +30,7 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.adapter.CustomPagerAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.InteractComment;
 
@@ -46,28 +50,26 @@ public class ListingsDetailActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_listings_detail);
-
+        ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
+        progressBar.setProgress(40);
         final int type = (int) getIntent().getSerializableExtra("type");
 
-        ProgressBar progressBar=(ProgressBar) findViewById(R.id.progressBar);
-        progressBar.setProgress(40);
 
-        //------------------------------------------------------------
-        View view_menu_top=(View) findViewById(R.id.menu_top_detail_listings);
+        View view_menu_top=(View)findViewById(R.id.menu_top_detail_listings);
         TextView txtTitle=(TextView) view_menu_top.findViewById(R.id.txt_title);
         txtTitle.setText("Listings");
         txtTitle.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
+        ImageView img_component=(ImageView)findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
 
-            ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
-            imageView_back.setImageResource(R.drawable.back_interact);
-            imageView_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    onBackPressed();
-                }
-            });
+        ImageView imageView_back=(ImageView)findViewById(R.id.img_menu);
+        imageView_back.setImageResource(R.drawable.back_interact);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onBackPressed();
+            }
+        });
 
 
         RelativeLayout layout_user=(RelativeLayout) findViewById(R.id.layout_user);
@@ -78,6 +80,7 @@ public class ListingsDetailActivity extends AppCompatActivity
                 startActivity(intent);
             }
         });
+
 
         //------------------------------------------------------------
         View view_bottom=(View) findViewById(R.id.menu_bottom_listing_detail);
@@ -162,7 +165,7 @@ public class ListingsDetailActivity extends AppCompatActivity
                     btn_back.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
-                            Intent inten= new Intent(ListingsDetailActivity.this, MainActivity.class);
+                            Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
                             startActivity(inten);
                             finish();
                         }
@@ -191,7 +194,7 @@ public class ListingsDetailActivity extends AppCompatActivity
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent inten= new Intent(ListingsDetailActivity.this, MainActivity.class);
+                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
                     startActivity(inten);
                     finish();
                 }
@@ -241,7 +244,7 @@ public class ListingsDetailActivity extends AppCompatActivity
                             btn_back.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    Intent inten= new Intent(ListingsDetailActivity.this, MainActivity.class);
+                                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
                                     startActivity(inten);
                                     finish();
                                 }
@@ -262,32 +265,6 @@ public class ListingsDetailActivity extends AppCompatActivity
                 }
             }
         });
-
-//        //------------------------------------------------------------
-//        View view=(View) findViewById(R.id.menu_top_listings);
-//        TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
-//        txtTitle.setText("Listings");
-//        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
-//        ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
-//        img_component.setVisibility(View.INVISIBLE);
-//
-//        //--------------------------------------------------------------
-//        View view_bottom = (View)findViewById(R.id.menu_bottom_listings);
-//        bottomListings=new MenuBottomCustom(view_bottom,this,3);
-//        bottomListings.setDefaut(3);
-//        //---------------------------------------------------------------
-//
-//        txt_my_book=(TextView) findViewById(R.id.txt_my_listings);
-//        txt_add_book=(TextView) findViewById(R.id.txt_add_book);
-//
-//        txt_my_book.setBackgroundColor(getResources().getColor(R.color.dot_light_screen2));
-//
-//        txt_add_book.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//
-//            }
-//        });
     }
 
     @Override

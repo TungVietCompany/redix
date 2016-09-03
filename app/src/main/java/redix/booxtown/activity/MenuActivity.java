@@ -10,15 +10,13 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.Window;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.ListView;
-import android.widget.RelativeLayout;
 
 import redix.booxtown.R;
 import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
 import redix.booxtown.custom.CustomAdapter;
+import redix.booxtown.fragment.MainFragment;
 
 public class MenuActivity extends AppCompatActivity {
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
@@ -50,7 +48,7 @@ public class MenuActivity extends AppCompatActivity {
                     @Override
                     public void onItemClick(View view, int i) {
                         if(i==0){
-                            Intent intent= new Intent(MenuActivity.this,MainActivity.class);
+                            Intent intent= new Intent(MenuActivity.this,MainAllActivity.class);
                             startActivity(intent);
                             finish();
                         }else if(i==1){

@@ -12,6 +12,13 @@ import android.widget.TextView;
 
 import redix.booxtown.R;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.fragment.AboutFragment;
+import redix.booxtown.fragment.ContactFragment;
+import redix.booxtown.fragment.FaqFragment;
+import redix.booxtown.fragment.InviteFriendFragment;
+import redix.booxtown.fragment.NotificationFragment;
+import redix.booxtown.fragment.RateFragment;
+import redix.booxtown.fragment.SettingFragment;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -48,31 +55,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         String i = intent.getStringExtra("position");
         int position = Integer.parseInt(i);
         if(position==1){
-            callFragment(new redix.booxtown.activity.NotificationActivity());
+            callFragment(new NotificationFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Notifications");
         } else if(position == 2){
-            callFragment(new redix.booxtown.activity.FaqActivity());
+            callFragment(new FaqFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("FAQ");
         }else if(position == 3){
-            callFragment(new redix.booxtown.activity.InviteFriendActivity());
+            callFragment(new InviteFriendFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Invite Friends");
         }else if(position == 4){
-            callFragment(new Rate());
+            callFragment(new RateFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Rate Booxtown");
         }else if(position == 5){
-            callFragment(new About());
+            callFragment(new AboutFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("About Boxtown");
         }else if(position == 6){
-            callFragment(new Contact());
+            callFragment(new ContactFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Contact Booxtown");
         }else if(position == 7){
-            callFragment(new Setting());
+            callFragment(new SettingFragment());
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Settings");
         }else if(position == 8){
@@ -95,10 +102,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_menu_bottom_location:
-                callFragment(new Rate());
+                callFragment(new RateFragment());
                 break;
             case R.id.img_menu_bottom_comment:
-                callFragment(new About());
+                callFragment(new AboutFragment());
                 break;
         }
     }
