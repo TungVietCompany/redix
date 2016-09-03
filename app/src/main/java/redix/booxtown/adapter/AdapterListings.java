@@ -1,7 +1,14 @@
 package redix.booxtown.adapter;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +23,7 @@ import redix.booxtown.R;
 import redix.booxtown.activity.EditListingActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.UserProfileActivity;
+import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.model.Explore;
 
 /**
@@ -47,18 +55,15 @@ public class AdapterListings extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return 0;
+        return listExplore.size();
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
-
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-
         Explore ex= listExplore.get(position);
-
         convertView = inflater.inflate(R.layout.custom_gridview_listings, null);
         TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
         TextView txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book_listings);
@@ -69,9 +74,6 @@ public class AdapterListings extends BaseAdapter {
         ImageView img_free = (ImageView)convertView.findViewById(R.id.img_explore_free_listings);
         ImageView img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         ImageView img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
-
-
-
         if(position%2==0){
             img_book.setImageResource((R.drawable.img_temp1));
             txt_title_book.setText("The Las Painting of Sara de Vos");
@@ -110,8 +112,8 @@ public class AdapterListings extends BaseAdapter {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(mContext, ListingsDetailActivity.class);
-                intent.putExtra("type",1);
-                mContext.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("type","1");
             }
         });
         img_edit.setOnClickListener(new View.OnClickListener() {
@@ -121,8 +123,13 @@ public class AdapterListings extends BaseAdapter {
                 mContext.startActivity(intent);
             }
         });
-
         return convertView;
     }
-
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = ((AppCompatActivity) mContext).getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
+    }
 }

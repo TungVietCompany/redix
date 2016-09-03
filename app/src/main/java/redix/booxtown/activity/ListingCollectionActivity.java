@@ -13,7 +13,6 @@ import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -21,9 +20,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
@@ -37,6 +34,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.fragment.ListingsFragment;
 
 public class ListingCollectionActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener  {
     private GoogleMap mMap;
@@ -152,7 +150,7 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
         btn_menu_listing_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListingCollectionActivity.this,ListingsActivity.class);
+                Intent intent = new Intent(ListingCollectionActivity.this,ListingsFragment.class);
                 startActivity(intent);
             }
         });
@@ -169,7 +167,7 @@ public class ListingCollectionActivity extends AppCompatActivity implements Loca
         txt_my_listings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListingCollectionActivity.this,ListingsActivity.class);
+                Intent intent = new Intent(ListingCollectionActivity.this,ListingsFragment.class);
                 startActivity(intent);
                 finish();
             }
