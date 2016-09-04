@@ -31,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
         lv.setLayoutManager(layoutManager);
 
         //set adapter
-        CustomAdapter menu = new CustomAdapter(prgmNameList,prgmImages);
+        CustomAdapter menu = new CustomAdapter(prgmNameList,prgmImages,MenuActivity.this);
         lv.setAdapter(menu);
         //end
         ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);
