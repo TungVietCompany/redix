@@ -38,7 +38,7 @@ public class InteractThreadDetailsFragment extends Fragment
         final View view = inflater.inflate(R.layout.interact_thread_detail_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.back_interact);
+        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

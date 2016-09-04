@@ -65,10 +65,10 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
             android:id="@+id/img_explore_swap_listings"
-            android:src="@drawable/swap" />
+            android:src="@drawable/explore_btn_swap_active" />
 
         <View
             android:layout_width="1dp"
@@ -82,10 +82,10 @@
             />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
             android:id="@+id/img_explore_free_listings"
-            android:src="@drawable/free_explore"
+            android:src="@drawable/explore_btn_free_dis_active"
             android:layout_alignTop="@+id/tableRow"
             android:layout_toRightOf="@+id/tableRow"
             android:layout_toEndOf="@+id/tableRow"
@@ -102,10 +102,10 @@
             android:layout_marginLeft="2dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:id="@+id/img_explore_buy_listing"
-            android:src="@drawable/cart" />
+            android:src="@drawable/listing_btn_buy" />
         <View
             android:layout_width="1dp"
             android:layout_height="match_parent"
@@ -130,8 +130,8 @@
     </TableRow>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
         android:id="@+id/img_listings_edit"
         android:src="@drawable/tab_book_listings_edit"
         android:layout_alignTop="@+id/tableRow"

@@ -68,13 +68,13 @@
     </TableLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="11dp"
+        android:layout_height="24dp"
         android:id="@+id/imageView7"
         android:layout_alignParentTop="true"
-        android:src="@drawable/next"
+        android:src="@drawable/btn_interact_next"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginRight="10dp"
-        android:layout_alignBottom="@+id/tableLayout" />
+        android:layout_above="@+id/tableLayout" />
 </RelativeLayout>

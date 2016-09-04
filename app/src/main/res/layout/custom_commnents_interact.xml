@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dot_light_screen2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -91,25 +92,25 @@
         android:layout_alignEnd="@+id/icon_user_listing_detail">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank1"
             android:layout_weight="1"
-            android:src="@drawable/icon_notification_infor2" />
+            android:src="@drawable/btn_rank_one" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank2"
             android:layout_weight="1"
-            android:src="@drawable/icon_notification_infor3" />
+            android:src="@drawable/btn_rank_two" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank3"
             android:layout_weight="1"
-            android:src="@drawable/icon_notification_infor1" />
+            android:src="@drawable/btn_rank_three" />
     </TableRow>
 
 </RelativeLayout>

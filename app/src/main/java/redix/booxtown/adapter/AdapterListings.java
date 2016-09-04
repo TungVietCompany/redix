@@ -17,6 +17,9 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -89,24 +92,31 @@ public class AdapterListings extends BaseAdapter {
             txt_price_book.setVisibility(View.INVISIBLE);
         }
         if(ex.isSwap()){
-            img_buy.setImageResource((R.drawable.tab_book_explore_swap));
+            //img_swap.setImageResource((R.drawable.explore_btn_swap_active));
+            Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
         }
         else {
-            img_swap.setImageResource((R.drawable.tab_book_explore_swap_not));
+            Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
+            //img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
         }
         if(ex.isFree()){
-            img_buy.setImageResource((R.drawable.tab_book_explore_free));
+            Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+            //img_free.setImageResource((R.drawable.explore_btn_free_active));
         }
         else {
-            img_free.setImageResource((R.drawable.tab_book_explore_free_not));
+            Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+            //img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
         }
         if(ex.isBuy()){
-            img_buy.setImageResource((R.drawable.tab_book_listings_cart));
+            Glide.with(mContext).load(R.drawable.listing_btn_buy).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+            //img_buy.setImageResource((R.drawable.listing_btn_buy));
         }
         else {
-            img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
+            Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+            //img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
         }
-        img_edit.setImageResource((R.drawable.tab_book_listings_edit));
+        Glide.with(mContext).load(R.drawable.listing_btn_edit).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_edit);
+        //img_edit.setImageResource((R.drawable.listing_btn_edit));
 
         img_book.setOnClickListener(new View.OnClickListener() {
             @Override

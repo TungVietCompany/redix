@@ -17,13 +17,13 @@
         android:layout_margin="5dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="18dp"
+        android:layout_height="18dp"
         android:id="@+id/imageView22"
         android:layout_alignTop="@+id/textView74"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/icon_personal_infor"
+        android:src="@drawable/btn_edit_profile"
         android:layout_marginRight="5dp" />
 
     <TextView
@@ -164,13 +164,13 @@
         android:layout_alignBottom="@+id/img_menu_personal_dashboard" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="11dp"
+        android:layout_height="20dp"
         android:id="@+id/img_menu_personal_dashboard"
         android:layout_below="@+id/textView86"
         android:layout_alignRight="@+id/textView86"
         android:layout_alignEnd="@+id/textView86"
-        android:src="@drawable/next"
+        android:src="@drawable/btn_interact_next"
         android:layout_marginTop="5dp"
         android:layout_marginRight="10dp" />
 

@@ -64,8 +64,8 @@
 
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="21dp"
+            android:layout_width="24dp"
+            android:layout_height="25dp"
             android:id="@+id/img_explore_swap"
             android:src="@drawable/explore_btn_swap_active" />
 
@@ -81,8 +81,8 @@
             />
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="17dp"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
             android:id="@+id/img_explore_free"
             android:src="@drawable/explore_btn_free_active"
             android:layout_alignTop="@+id/tableRow"
@@ -101,8 +101,8 @@
             android:layout_marginLeft="2dp" />
 
         <ImageView
-            android:layout_width="26dp"
-            android:layout_height="26dp"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
             android:id="@+id/img_explore_buy"
             android:src="@drawable/explore_btn_buy_dis_active" />
         <View

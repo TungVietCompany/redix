@@ -61,7 +61,7 @@
 
             <TextView
                 android:layout_width="1dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:text="New Text"
                 android:id="@+id/textView94"
                 android:layout_centerVertical="true"
@@ -88,7 +88,7 @@
 
             <TextView
                 android:layout_width="1dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:text="New Text"
                 android:id="@+id/textView95"
                 android:gravity="right"
@@ -115,7 +115,7 @@
 
             <TextView
                 android:layout_width="1dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:text="New Text"
                 android:id="@+id/textView96"
                 android:layout_alignParentTop="true"
@@ -141,7 +141,7 @@
 
             <TextView
                 android:layout_width="1dp"
-                android:layout_height="27dp"
+                android:layout_height="30dp"
                 android:text="New Text"
                 android:id="@+id/textView97"
                 android:layout_alignParentRight="true"

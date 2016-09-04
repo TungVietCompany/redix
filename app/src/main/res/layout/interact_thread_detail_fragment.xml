@@ -5,7 +5,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/dot_light_screen2"
+        >
 
         <TextView
             android:id="@+id/txt_title_thread_detail"
@@ -83,9 +85,9 @@
 
         <EditText
             android:id="@+id/edit_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/message"
+            android:layout_width="281dp"
+            android:layout_height="44dp"
+            android:background="@drawable/bg_interact_comment"
             android:ellipsize="start"
             android:fontFamily="sans-serif-light"
             android:hint="Add Comments"
@@ -98,16 +100,18 @@
             android:layout_alignLeft="@+id/listview_comments"
             android:layout_alignStart="@+id/listview_comments"
             android:layout_toLeftOf="@+id/btn_send_comment_interact"
-            android:layout_toStartOf="@+id/btn_send_comment_interact" />
+            android:layout_toStartOf="@+id/btn_send_comment_interact"
+            android:layout_marginBottom="5dp" />
 
         <ImageView
             android:id="@+id/btn_send_comment_interact"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@drawable/interact_send_message"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
             android:layout_alignParentBottom="true"
             android:layout_alignRight="@+id/listview_comments"
-            android:layout_alignEnd="@+id/listview_comments" />
+            android:layout_alignEnd="@+id/listview_comments"
+            android:layout_marginBottom="5dp"
+            android:src="@drawable/btn_interact_sent" />
 
         <ListView
             android:id="@+id/listview_comments"
@@ -118,6 +122,7 @@
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginTop="5dp"
-            android:layout_above="@+id/edit_message" />
+            android:layout_above="@+id/edit_message"
+            android:layout_marginBottom="15dp" />
     </RelativeLayout>
 </FrameLayout>

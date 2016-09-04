@@ -33,7 +33,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Wish"
-                    android:textColor="@color/color_text" />
+                    android:textColor="@color/color_text"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginLeft="5dp" />
 
                 <TextView
                     android:id="@+id/textView94"
@@ -59,7 +61,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Date Posted"
-                    android:textColor="@color/color_text" />
+                    android:textColor="@color/color_text"
+                    android:layout_marginTop="5dp" />
 
                 <TextView
                     android:id="@+id/textView95"
@@ -85,7 +88,8 @@
                     android:layout_height="wrap_content"
                     android:gravity="center"
                     android:text="Respond"
-                    android:textColor="@color/color_text" />
+                    android:textColor="@color/color_text"
+                    android:layout_marginTop="5dp" />
 
             </RelativeLayout>
 

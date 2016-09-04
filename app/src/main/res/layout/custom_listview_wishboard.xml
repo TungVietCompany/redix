@@ -23,7 +23,12 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="?android:attr/textAppearanceMedium"
                 android:text="The last painting"
-                android:id="@+id/txt_title_lisview_wishboard" />
+                android:layout_marginTop="15dp"
+                android:id="@+id/txt_title_lisview_wishboard"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:maxLines="1"
+                android:layout_marginLeft="5dp" />
 
             <TextView
                 android:layout_width="wrap_content"
@@ -34,7 +39,8 @@
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentRight="true"
-                android:layout_alignParentEnd="true" />
+                android:layout_alignParentEnd="true"
+                android:layout_marginLeft="5dp" />
 
             <TextView
                 android:layout_width="1dp"
@@ -56,6 +62,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="New Text"
+                android:layout_marginTop="15dp"
                 android:id="@+id/txt_date_customlistview_wishboard"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="false"
@@ -80,16 +87,19 @@
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
-            android:gravity="center_vertical">
+            >
 
             <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_width="24dp"
+                android:layout_height="18dp"
                 android:id="@+id/imgv_listview_respond"
-                android:src="@drawable/icon_wishboard"
+                android:src="@drawable/btn_wishbroad_message"
+                android:layout_marginTop="15dp"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_alignParentTop="true" />
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentBottom="false" />
         </RelativeLayout>
     </LinearLayout>
 </RelativeLayout>
