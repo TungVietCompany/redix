@@ -40,13 +40,13 @@
     </LinearLayout>
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/imageView"
         android:layout_alignTop="@+id/editSearch"
         android:layout_alignRight="@+id/editSearch"
         android:layout_alignEnd="@+id/editSearch"
-        android:src="@drawable/icon_search"
+        android:src="@drawable/btn_locate_search"
         android:padding="15dp"
         android:layout_gravity="right|top"
         android:layout_marginTop="10dp"

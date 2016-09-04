@@ -52,33 +52,33 @@
             android:layout_marginRight="20dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank1"
             android:layout_below="@+id/textView16"
             android:layout_toRightOf="@+id/myRatingBar"
             android:layout_toEndOf="@+id/myRatingBar"
-            android:src="@drawable/icon_notification_infor2"
+            android:src="@drawable/btn_rank_one"
             android:layout_marginRight="5dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank2"
             android:layout_below="@+id/textView16"
             android:layout_toRightOf="@+id/img_comment_rank1"
             android:layout_toEndOf="@+id/img_comment_rank1"
-            android:src="@drawable/icon_notification_infor3"
+            android:src="@drawable/btn_rank_two"
             android:layout_marginRight="5dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_comment_rank3"
             android:layout_below="@+id/textView16"
             android:layout_toRightOf="@+id/img_comment_rank2"
             android:layout_toEndOf="@+id/img_comment_rank2"
-            android:src="@drawable/icon_notification_infor1"
+            android:src="@drawable/btn_rank_three"
             android:layout_marginRight="5dp" />
 
         <TextView

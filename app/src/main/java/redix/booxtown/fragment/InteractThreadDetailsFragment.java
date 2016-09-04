@@ -32,21 +32,31 @@ public class InteractThreadDetailsFragment extends Fragment
     private MenuBottomCustom menu_bottom;
     InteractThread interactThreads;
     Interact interact;
+    TextView txt_title;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.interact_thread_detail_fragment, container, false);
+
+        txt_title=(TextView) getActivity().findViewById(R.id.txt_title);
+        txt_title.setText("Interact");
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         imageView_back.setImageResource(R.drawable.btn_sign_in_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("thread", interact);
-                InteractThreadFragment fragment= new InteractThreadFragment();
-                fragment.setArguments(bundle);
-                callFragment(fragment);
+                if(interact !=null) {
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("thread", interact);
+                    InteractThreadFragment fragment = new InteractThreadFragment();
+                    fragment.setArguments(bundle);
+                    callFragment(fragment);
+                }
+                else {
+                    //callFragment(new NotificationFragment());
+                    txt_title.setText("Notifications");
+                }
 
             }
         });

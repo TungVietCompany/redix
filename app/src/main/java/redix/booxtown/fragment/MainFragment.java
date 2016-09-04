@@ -146,7 +146,6 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     @Override
     public void onInfoWindowClick(Marker marker) {
         Intent intent = new Intent(getActivity(),ListingsDetailActivity.class);
-
         intent.putExtra("type",2);
         startActivity(intent);
     }

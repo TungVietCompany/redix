@@ -40,10 +40,10 @@
             android:layout_alignStart="@+id/textView37" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/imageView23"
-            android:src="@drawable/icon_notification_infor2"
+            android:src="@drawable/btn_rank_one"
             android:layout_alignTop="@+id/ratingBar2"
             android:layout_toRightOf="@+id/ratingBar2"
             android:layout_alignParentRight="false"
@@ -51,23 +51,23 @@
             android:layout_marginLeft="5dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/imageView24"
             android:layout_alignTop="@+id/imageView23"
             android:layout_toRightOf="@+id/imageView23"
             android:layout_toEndOf="@+id/imageView23"
-            android:src="@drawable/icon_notification_infor3"
+            android:src="@drawable/btn_rank_two"
             android:layout_marginLeft="5dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/imageView25"
             android:layout_alignTop="@+id/imageView24"
             android:layout_toRightOf="@+id/imageView24"
             android:layout_toEndOf="@+id/imageView24"
-            android:src="@drawable/icon_notification_infor1"
+            android:src="@drawable/btn_rank_three"
             android:layout_marginLeft="5dp" />
 
         <TextView

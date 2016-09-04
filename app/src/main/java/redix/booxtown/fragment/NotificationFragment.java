@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -16,6 +18,8 @@ import java.util.ArrayList;
 
 import redix.booxtown.R;
 import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
+import redix.booxtown.activity.HomeActivity;
+import redix.booxtown.activity.MainAllActivity;
 import redix.booxtown.activity.NotificationDominicActivity;
 import redix.booxtown.activity.NotificationSellActivity;
 import redix.booxtown.activity.NotificationSwapActivity;
@@ -30,12 +34,14 @@ public class NotificationFragment extends Fragment {
     public static String [] prgmNameList={"Unread","Dominic send a swap request","Dominic want to your book","Dominic reject your swap request"};
     private MenuBottomCustom bottomListings;
     public boolean flag=true;
+    HomeActivity main;
     ArrayList<InteractThread> listInteractThreads= new ArrayList<>();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        main = (HomeActivity) getActivity();
         View view = inflater.inflate(R.layout.notification_fragment, container, false);
         //listview content notification
         RecyclerView lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
@@ -57,9 +63,12 @@ public class NotificationFragment extends Fragment {
 
                             listInteractThreads.add(interact1);
                             InteractThread item = (InteractThread) listInteractThreads.get(0);
-                            Intent intent = new Intent(getActivity(),InteractThreadDetailsFragment.class);
-                            intent.putExtra("threadDetail",item);
-                            startActivity(intent);
+                            InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("thread", item);
+                            fragment.setArguments(bundle);
+                            main.callFragment(fragment);
+
                         }else if(i==1){
                             Intent intent = new Intent(getActivity(),NotificationSwapActivity.class);
                             startActivity(intent);
@@ -75,4 +84,12 @@ public class NotificationFragment extends Fragment {
         );
         return view;
     }
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.add(R.id.frame_main_all, fragment);
+        transaction.commit();
+    }
+
 }

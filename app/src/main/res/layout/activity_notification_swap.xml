@@ -87,11 +87,12 @@
                 android:textColor="#f25d5d" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="223dp"
+                android:layout_height="36dp"
+                android:textAllCaps="false"
                 android:text="Didn&apos;t like any book"
                 android:id="@+id/btn_notification_not_like"
-                android:background="@drawable/bg_buttom_red"
+                android:background="@drawable/bg_btn_sign_in"
                 android:textColor="#ffffff"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"

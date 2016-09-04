@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.MainAllActivity;
 import redix.booxtown.custom.Custom_Listview_faq;
 import redix.booxtown.custom.MenuBottomCustom;
 
@@ -18,6 +19,7 @@ public class FaqFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.faq_fragment, container, false);
         RecyclerView listView_faq = (RecyclerView)view.findViewById(R.id.lv_content_faq);
