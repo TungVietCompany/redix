@@ -12,14 +12,18 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="163dp"
+            android:layout_height="36dp"
             android:text="Accept"
+            android:textAllCaps="false"
             android:id="@+id/btn_menu_notification_dominic_accept"
             android:gravity="center"
-            android:background="@drawable/bg_buttom_red"
-            android:layout_margin="20dp"
-            android:textColor="@color/dot_light_screen2"/>
+            android:background="@drawable/bg_notification_popup"
+            android:textColor="@color/dot_light_screen2"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="10dp" />
     </LinearLayout>
 
     <LinearLayout
@@ -30,12 +34,16 @@
         android:gravity="center_horizontal">
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="163dp"
+            android:layout_height="36dp"
             android:text="reject"
+            android:textAllCaps="false"
             android:id="@+id/btn_menu_notification_dominic_reject"
-            android:background="@drawable/bg_buttom_red"
-            android:layout_margin="20dp"
-            android:textColor="@color/dot_light_screen2"/>
+            android:background="@drawable/bg_notification_popup"
+            android:textColor="@color/dot_light_screen2"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:layout_marginRight="20dp" />
     </LinearLayout>
 </LinearLayout>
