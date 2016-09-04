@@ -67,58 +67,66 @@ public class AdapterListings extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Explore ex= listExplore.get(position);
+        Hoder hoder = new Hoder();
         convertView = inflater.inflate(R.layout.custom_gridview_listings, null);
-        TextView txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
-        TextView txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book_listings);
-        TextView txt_price_book=(TextView) convertView.findViewById(R.id.txt_price_listings);
+        hoder.txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
+        hoder.txt_author_book = (TextView) convertView.findViewById(R.id.txt_author_book_listings);
+        hoder.txt_price_book=(TextView) convertView.findViewById(R.id.txt_price_listings);
 
-        ImageView img_book = (ImageView)convertView.findViewById(R.id.img_book);
-        ImageView img_swap = (ImageView)convertView.findViewById(R.id.img_explore_swap_listings);
-        ImageView img_free = (ImageView)convertView.findViewById(R.id.img_explore_free_listings);
-        ImageView img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
-        ImageView img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
+        hoder.img_book = (ImageView)convertView.findViewById(R.id.img_book);
+        hoder.img_swap = (ImageView)convertView.findViewById(R.id.img_explore_swap_listings);
+        hoder.img_free = (ImageView)convertView.findViewById(R.id.img_explore_free_listings);
+        hoder.img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
+        hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
         if(position%2==0){
-            img_book.setImageResource((R.drawable.img_temp1));
-            txt_title_book.setText("The Las Painting of Sara de Vos");
-            txt_author_book.setText("buy Gandalf");
+            hoder.img_book.setImageResource((R.drawable.img_temp1));
+            hoder.txt_title_book.setText("The Las Painting of Sara de Vos");
+            hoder.txt_author_book.setText("buy Gandalf");
         }
         else
         {
-            img_book.setImageResource((R.drawable.img_temp2));
-            txt_title_book.setText("Gandalf the first");
-            txt_author_book.setText("buy Ptit");
+            hoder.img_book.setImageResource((R.drawable.img_temp2));
+            hoder.txt_title_book.setText("Gandalf the first");
+            hoder.txt_author_book.setText("buy Ptit");
         }
         if(!ex.isBuy()) {
-            txt_price_book.setVisibility(View.INVISIBLE);
+            hoder.txt_price_book.setVisibility(View.INVISIBLE);
         }
         if(ex.isSwap()){
+            hoder.img_buy.setImageResource((R.drawable.explore_btn_swap_active));
             //img_swap.setImageResource((R.drawable.explore_btn_swap_active));
-            Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
+            //Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
         }
         else {
-            Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
+            hoder.img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
+//            Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
         }
         if(ex.isFree()){
-            Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+            hoder.img_buy.setImageResource((R.drawable.explore_btn_free_active));
+//            Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_active));
         }
         else {
-            Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+            hoder.img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
+//            Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
         }
         if(ex.isBuy()){
-            Glide.with(mContext).load(R.drawable.listing_btn_buy).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+            hoder.img_buy.setImageResource((R.drawable.listing_btn_buy));
+//            Glide.with(mContext).load(R.drawable.listing_btn_buy).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.listing_btn_buy));
         }
         else {
-            Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+            hoder.img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
+//            Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
         }
-        Glide.with(mContext).load(R.drawable.listing_btn_edit).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_edit);
+        hoder.img_edit.setImageResource((R.drawable.listing_btn_edit));
+//        Glide.with(mContext).load(R.drawable.listing_btn_edit).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_edit);
         //img_edit.setImageResource((R.drawable.listing_btn_edit));
 
-        img_book.setOnClickListener(new View.OnClickListener() {
+        hoder.img_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(mContext, ListingsDetailActivity.class);
@@ -126,13 +134,27 @@ public class AdapterListings extends BaseAdapter {
                 bundle.putString("type","1");
             }
         });
-        img_edit.setOnClickListener(new View.OnClickListener() {
+        hoder.img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent= new Intent(mContext, EditListingActivity.class);
                 mContext.startActivity(intent);
             }
         });
+
+
+        hoder.img_book.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ListingsDetailActivity fragment = new ListingsDetailActivity();
+                Bundle bundle = new Bundle();
+                bundle.putString(String.valueOf(R.string.valueListings),"2");
+                fragment.setArguments(bundle);
+                callFragment(fragment);
+            }
+        });
+
+
         return convertView;
     }
     public void callFragment(Fragment fragment ){
@@ -141,5 +163,19 @@ public class AdapterListings extends BaseAdapter {
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
         transaction.replace(R.id.frame_main_all, fragment);
         transaction.commit();
+    }
+
+    public class Hoder{
+
+        TextView txt_title_book ;
+        TextView txt_author_book ;
+        TextView txt_price_book;
+
+        ImageView img_book ;
+        ImageView img_swap;
+        ImageView img_free;
+        ImageView img_buy ;
+        ImageView img_edit ;
+
     }
 }

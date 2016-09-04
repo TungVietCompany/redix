@@ -18,6 +18,7 @@
     <color name="dot_light_screen2">#ffffff</color>
     <color name="dot_light_screen3">#ffffff</color>
     <color name="dot_light_screen4">#ffffff</color>
+    <color name="textview_popup_78">#b14a4c</color>
 
     <!--Color Text Hint-->
     <color name="color_text_hint">#C8C8C8</color>
