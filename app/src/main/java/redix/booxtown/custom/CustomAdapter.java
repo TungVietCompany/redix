@@ -10,6 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import redix.booxtown.R;
 
 /**
@@ -18,10 +21,11 @@ import redix.booxtown.R;
 public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerViewHolder> {
     String [] result;
     int [] imageId;
-
-    public CustomAdapter(String [] result,int [] imageId) {
+    Context ctext;
+    public CustomAdapter(String [] result,int [] imageId, Context ct) {
         this.result = result;
         this.imageId = imageId;
+        this.ctext=ct;
     }
 
     @Override
@@ -34,7 +38,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerVi
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.tv.setText(result[position]);
-        holder.img.setImageResource(imageId[position]);
+        Glide.with(ctext).load(imageId[position]).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.img);
+        //holder.img.setImageResource(imageId[position]);
         if(position == result.length-1){
             holder.txt_menu_cross.setVisibility(View.GONE);
         }
