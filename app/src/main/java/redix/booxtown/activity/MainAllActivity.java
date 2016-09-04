@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import redix.booxtown.R;
 import redix.booxtown.fragment.AboutFragment;
@@ -59,7 +60,6 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
                     callFragment(new ExploreFragment());
                     txtTitle.setText("Explore");
                     Glide.with(MainAllActivity.this).load(R.drawable.btn_location).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
-
                     flag=false;
                 }
                 else {
@@ -92,22 +92,13 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 //btn_location.setImageResource(R.drawable.icon_menu_bottom_location);
                 Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-
+                initLayout();
                 callFragment(new MainFragment());
                 img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
                 img_component.setVisibility(View.VISIBLE);
-//                img_component.setImageResource(R.drawable.btn_explore);
-                Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
-                img_component.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                            callFragment(new ExploreFragment());
-                            txtTitle.setText("Explore");
-                            Glide.with(MainAllActivity.this).load(R.drawable.btn_location).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
+                img_component.setImageResource(R.drawable.btn_explore);
+                //Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
 
-
-                    }
-                });
                 txtTitle.setText("Locate");
                 setDefaut(1);
             }
@@ -158,7 +149,31 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         callFragment(new MainFragment());
 
     }
-
+    public void initLayout(){
+        view_top = (View) findViewById(R.id.menu_top_all);
+        txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
+        txtTitle.setText("Locate");
+        flag=true;
+        img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
+        Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
+        img_component.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if(flag) {
+                    callFragment(new ExploreFragment());
+                    txtTitle.setText("Explore");
+                    Glide.with(MainAllActivity.this).load(R.drawable.btn_location).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
+                    flag=false;
+                }
+                else {
+                    callFragment(new MainFragment());
+                    txtTitle.setText("Locate");
+                    Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
+                    flag=true;
+                }
+            }
+        });
+    }
     public void callFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
@@ -182,48 +197,81 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
     public void setDefaut(int i){
         //set icon tab
         if(i==0) {
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_not_active);
+            btn_location.setImageResource(R.drawable.btn_locate_not_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_not_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_not_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
         }
         else if(i==1) {
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_not_active);
+            btn_location.setImageResource(R.drawable.btn_locate_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_not_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_not_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
+
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
         }
         else if(i==2) {
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_active);
+            btn_location.setImageResource(R.drawable.btn_locate_not_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_not_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_not_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
+
+
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
         }
         else if(i==3) {
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_not_active);
+            btn_location.setImageResource(R.drawable.btn_locate_not_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_not_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
+
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
         }
         else if(i==4) {
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_not_active);
+            btn_location.setImageResource(R.drawable.btn_locate_not_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_not_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
 
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
         }
         else {
-
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
-            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
+            btn_commnet.setImageResource(R.drawable.btn_locate_interact_not_active);
+            btn_location.setImageResource(R.drawable.btn_locate_not_active);
+            btn_camera.setImageResource(R.drawable.btn_locate_listing_not_active);
+            btn_bag.setImageResource(R.drawable.btn_locate_wishbroad_not_active);
+            btn_user.setImageResource(R.drawable.btn_locate_profile_active);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_commnet);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_location);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_listing_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_camera);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_wishbroad_not_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_bag);
+//            Glide.with(MainAllActivity.this).load(R.drawable.btn_locate_profile_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(btn_user);
 
         }
 

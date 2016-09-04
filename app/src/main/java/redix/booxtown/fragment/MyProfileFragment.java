@@ -11,6 +11,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -26,7 +29,7 @@ public class MyProfileFragment extends Fragment {
     private LinearLayout linear_cart;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
-
+    ImageView img_component;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -40,8 +43,7 @@ public class MyProfileFragment extends Fragment {
                 callFragment(new MyProfileDashboardFragment());
             }
         });
-        ImageView img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
-        img_component.setImageResource(R.drawable.btn_location);
+
         Explore e1= new Explore();
         e1.setPrice_book(152.0f);
         e1.setBuy(true);

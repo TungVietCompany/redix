@@ -52,6 +52,7 @@ public class ExploreFragment extends Fragment
     private LinearLayout linear_cart;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
+    ImageView img_component;
     private MenuBottomCustom bottomExplore;
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
 
@@ -69,13 +70,19 @@ public class ExploreFragment extends Fragment
             }
         });
 
-        ImageView img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
-        img_component.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                callFragment(new MainFragment());
-
-            }});
+//        img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
+//        img_component.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callFragment(new MainFragment());
+//                img_component.setImageResource(R.drawable.btn_explore);
+////                img_component.setOnClickListener(new View.OnClickListener() {
+////                    @Override
+////                    public void onClick(View v) {
+////                        img_component.setImageResource(R.drawable.btn_location);
+////                    }
+////                });
+//            }});
 
         View view_search= (View)view.findViewById(R.id.explore_search);
         new CustomSearch(view_search,getActivity());
