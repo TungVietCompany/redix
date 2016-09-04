@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,15 +12,19 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.ListAdapter;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
@@ -37,62 +42,55 @@ import redix.booxtown.model.InteractComment;
 /**
  * Created by Administrator on 29/08/2016.
  */
-public class ListingsDetailActivity extends AppCompatActivity
+public class ListingsDetailActivity extends Fragment implements View.OnClickListener
 {
     private  ListView listView;
     private TextView txt_add_book;
     private TextView txt_my_book;
+
+    private ImageView imSwap;
+
+    private ImageView imFree;
+
+    private ImageView imBuy;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
     private MenuBottomCustom bottomListings;
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_listings_detail);
-        ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
-        progressBar.setProgress(40);
-        final int type = (int) getIntent().getSerializableExtra("type");
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
 
-        View view_menu_top=(View)findViewById(R.id.menu_top_detail_listings);
-        TextView txtTitle=(TextView) view_menu_top.findViewById(R.id.txt_title);
-        txtTitle.setText("Listings");
-        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
-        ImageView img_component=(ImageView)findViewById(R.id.img_menu_component);
-        img_component.setVisibility(View.INVISIBLE);
+        TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
+        EditText editText11 = (EditText) v.findViewById(R.id.editText11);
+        String type = getArguments().getString(String.valueOf(R.string.valueListings));
+        MainAllActivity mainAllActivity = new MainAllActivity();
 
-        ImageView imageView_back=(ImageView)findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.back_interact);
-        imageView_back.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
+        imBuy = (ImageView) v.findViewById(R.id.img_buy_listing);
 
+        imFree = (ImageView) v.findViewById(R.id.img_free_listings);
 
-        RelativeLayout layout_user=(RelativeLayout) findViewById(R.id.layout_user);
-        layout_user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent=new Intent(ListingsDetailActivity.this,UserProfileActivity.class);
-                startActivity(intent);
-            }
-        });
+        imSwap = (ImageView) v.findViewById(R.id.img_buy_listing);
+//        mainAllActivity.settitle("Listings");
 
+        if (type.equals("1")){
+            imFree.setVisibility(View.GONE);
+            ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
+            editText11.setVisibility(View.GONE);
+            img_close_dialog_unsubcribe.setVisibility(View.GONE);
+            RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
+            params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            tbTypebook.setLayoutParams(params);
 
-        //------------------------------------------------------------
-        View view_bottom=(View) findViewById(R.id.menu_bottom_listing_detail);
-        bottomListings=new MenuBottomCustom(view_bottom,this,3);
-        bottomListings.setDefaut(3);
-        //------------------------------------------------------------
-        View view=(View) findViewById(R.id.layout_details);
-        CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
+        }
+        View view=(View) v.findViewById(R.id.layout_details);
+        CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getActivity());
         ViewPager mViewPager = (ViewPager) view.findViewById(R.id.pager);
         mViewPager.setAdapter(mCustomPagerAdapter);
 
-        CirclePageIndicator indicator = (CirclePageIndicator)findViewById(R.id.indicator);
+        CirclePageIndicator indicator = (CirclePageIndicator)v.findViewById(R.id.indicator);
         indicator.setViewPager(mViewPager);
 
         ArrayList<InteractComment> list= new ArrayList<>();
@@ -110,103 +108,65 @@ public class ListingsDetailActivity extends AppCompatActivity
 
 
         //-----------------------------------------------------------
-        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(ListingsDetailActivity.this,list);
-        listView=(ListView) view.findViewById(R.id.listView_comment);
+        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(getActivity(),list);
+        RelativeLayout.LayoutParams paramslist = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
+        listView=(ListView) v.findViewById(R.id.listView_comment);
+        setListViewHeightBasedOnChildren(listView);
         listView.setDivider(null);
         listView.setAdapter(adapter);
-        //---------------------------------------------------------------
-        EditText edit=(EditText) view.findViewById(R.id.edit_message);
-        ImageView img_send=(ImageView) view.findViewById(R.id.btn_send_comment_interact);
-        ImageView imgFree=(ImageView) view.findViewById(R.id.img_free_listings);
-        ImageView imgSwap=(ImageView) view.findViewById(R.id.img_swap_listing);
-        ImageView imgBuy=(ImageView) view.findViewById(R.id.img_buy_listing);
-        if(type!=1){
-            edit.setVisibility(View.GONE);
-            img_send.setVisibility(View.GONE);
-            imgFree.setVisibility(View.INVISIBLE);
-        }
-
-        if (type==3){
-            final Dialog dialog = new Dialog(ListingsDetailActivity.this);
-            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog.setContentView(R.layout.dialog_buy_listing);
-            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog.show();
-
-            ImageView btn_dialog_notification_swap = (ImageView) dialog.findViewById(R.id.close_buy_listings);
-            btn_dialog_notification_swap.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-
-                    dialog.dismiss();
-                }
-            });
-
-            TextView btn_confirm=(TextView) dialog.findViewById(R.id.btn_confirm_buy_listing);
-            btn_confirm.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                    final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
-                    dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog1.setContentView(R.layout.dialog_request_sent_listing);
-                    dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                    dialog1.show();
-
-                    ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
-                    btn_close.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            dialog1.dismiss();
-                            finish();
-                        }
-                    });
-                    TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
-                    btn_back.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
-                            startActivity(inten);
-                            finish();
-                        }
-                    });
-                }
-            });
-
-        }
-        if(type==4){
-
-            final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
-            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-            dialog1.setContentView(R.layout.dialog_request_sent_listing);
-            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-            dialog1.show();
-
-            ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
-            btn_close.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    dialog1.dismiss();
-                    finish();
-                }
-            });
-            TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
-            btn_back.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
-                    startActivity(inten);
-                    finish();
-                }
-            });
-
-        }
-
-        imgBuy.setOnClickListener(new View.OnClickListener() {
+        listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
-            public void onClick(View v) {
-                if(type==2){
-                    final Dialog dialog = new Dialog(ListingsDetailActivity.this);
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
+
+
+
+
+
+
+        return v;
+
+    }
+
+    public static void setListViewHeightBasedOnChildren(ListView listView) {
+        ListAdapter listAdapter = listView.getAdapter();
+        if (listAdapter == null)
+            return;
+
+        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
+        int totalHeight = 0;
+        View view = null;
+        for (int i = 0; i < listAdapter.getCount(); i++) {
+            view = listAdapter.getView(i, view, listView);
+            if (i == 0)
+                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RelativeLayout.LayoutParams.WRAP_CONTENT));
+
+            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
+            totalHeight += view.getMeasuredHeight();
+        }
+        ViewGroup.LayoutParams params = listView.getLayoutParams();
+        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
+        listView.setLayoutParams(params);
+    }
+
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()){
+            case R.id.img_swap_listing:
+                break;
+            case R.id.img_free_listings:
+                break;
+            case R.id.img_buy_listing:
+
+                break;
+        }
+    }
+
+    public void buy(){
+        final Dialog dialog = new Dialog(getActivity());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.dialog_buy_listing);
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
@@ -220,58 +180,235 @@ public class ListingsDetailActivity extends AppCompatActivity
                             dialog.dismiss();
                         }
                     });
-
-                    TextView btn_confirm=(TextView) dialog.findViewById(R.id.btn_confirm_buy_listing);
-                    btn_confirm.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            dialog.dismiss();
-                            final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
-                            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                            dialog1.setContentView(R.layout.dialog_request_sent_listing);
-                            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                            dialog1.show();
-
-                            ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
-                            btn_close.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View view) {
-                                    dialog1.dismiss();
-                                    finish();
-                                }
-                            });
-                            TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
-                            btn_back.setOnClickListener(new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-                                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
-                                    startActivity(inten);
-                                    finish();
-                                }
-                            });
-                        }
-                    });
-
-                }
-            }
-        });
-
-        imgSwap.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if(type==2){
-                    Intent intent= new Intent(ListingsDetailActivity.this, SwapActivity.class);
-                    startActivity(intent);
-                }
-            }
-        });
     }
 
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottomListings.setDefaut(3);
+
+    //    @Override
+//    protected void onCreate(Bundle savedInstanceState) {
+//        super.onCreate(savedInstanceState);
+//        setContentView(R.layout.activity_listings_detail);
+//        ProgressBar progressBar=(ProgressBar)findViewById(R.id.progressBar);
+//        progressBar.setProgress(40);
+//        final int type = (int) getIntent().getSerializableExtra("type");
+//
+//
+//        View view_menu_top=(View)findViewById(R.id.menu_top_detail_listings);
+//        TextView txtTitle=(TextView) view_menu_top.findViewById(R.id.txt_title);
+//        txtTitle.setText("Listings");
+//        txtTitle.setGravity(Gravity.CENTER_VERTICAL);
+//        ImageView img_component=(ImageView)findViewById(R.id.img_menu_component);
+//        img_component.setVisibility(View.INVISIBLE);
+//
+//        ImageView imageView_back=(ImageView)findViewById(R.id.img_menu);
+//        imageView_back.setImageResource(R.drawable.back_interact);
+//        imageView_back.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                onBackPressed();
+//            }
+//        });
+//
+//
+//        RelativeLayout layout_user=(RelativeLayout) findViewById(R.id.layout_user);
+//        layout_user.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent=new Intent(ListingsDetailActivity.this,UserProfileActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//
+//        //------------------------------------------------------------
+//        View view_bottom=(View) findViewById(R.id.menu_bottom_listing_detail);
+//        bottomListings=new MenuBottomCustom(view_bottom,this,3);
+//        bottomListings.setDefaut(3);
+//        //------------------------------------------------------------
+//        View view=(View) findViewById(R.id.layout_details);
+//        CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(this);
+//        ViewPager mViewPager = (ViewPager) view.findViewById(R.id.pager);
+//        mViewPager.setAdapter(mCustomPagerAdapter);
+//
+//        CirclePageIndicator indicator = (CirclePageIndicator)findViewById(R.id.indicator);
+//        indicator.setViewPager(mViewPager);
+//
+//        ArrayList<InteractComment> list= new ArrayList<>();
+//        InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
+//        InteractComment interactComment2= new InteractComment(3.0f,true,true,true,"Gandalf2","If you want to buy best books order us2","June 12 at 5:14 pm");
+//        InteractComment interactComment3= new InteractComment(4.0f,false,false,true,"Gandalf3","If you want to buy best books order us3","June 12 at 5:14 pm");
+//        InteractComment interactComment4= new InteractComment(3.5f,true,false,false,"Gandalf4","If you want to buy best books order us4","June 12 at 5:14 pm");
+//        InteractComment interactComment5= new InteractComment(5.0f,true,false,false,"Gandalf5","If you want to buy best books order us5","June 12 at 5:14 pm");
+//
+//        list.add(interactComment1);
+//        list.add(interactComment2);
+//        list.add(interactComment3);
+//        list.add(interactComment4);
+//        list.add(interactComment5);
+//
+//
+//        //-----------------------------------------------------------
+//        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(ListingsDetailActivity.this,list);
+//        listView=(ListView) view.findViewById(R.id.listView_comment);
+//        listView.setDivider(null);
+//        listView.setAdapter(adapter);
+//        //---------------------------------------------------------------
+//        EditText edit=(EditText) view.findViewById(R.id.edit_message);
+//        ImageView img_send=(ImageView) view.findViewById(R.id.btn_send_comment_interact);
+//        ImageView imgFree=(ImageView) view.findViewById(R.id.img_free_listings);
+//        ImageView imgSwap=(ImageView) view.findViewById(R.id.img_swap_listing);
+//        ImageView imgBuy=(ImageView) view.findViewById(R.id.img_buy_listing);
+//        if(type!=1){
+//            edit.setVisibility(View.GONE);
+//            img_send.setVisibility(View.GONE);
+//            imgFree.setVisibility(View.INVISIBLE);
+//        }
+//
+//        if (type==3){
+//            final Dialog dialog = new Dialog(ListingsDetailActivity.this);
+//            dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            dialog.setContentView(R.layout.dialog_buy_listing);
+//            dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            dialog.show();
+//
+//            ImageView btn_dialog_notification_swap = (ImageView) dialog.findViewById(R.id.close_buy_listings);
+//            btn_dialog_notification_swap.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//
+//                    dialog.dismiss();
+//                }
+//            });
+//
+//            TextView btn_confirm=(TextView) dialog.findViewById(R.id.btn_confirm_buy_listing);
+//            btn_confirm.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    dialog.dismiss();
+//                    final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
+//                    dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                    dialog1.setContentView(R.layout.dialog_request_sent_listing);
+//                    dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                    dialog1.show();
+//
+//                    ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
+//                    btn_close.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//                            dialog1.dismiss();
+//                            finish();
+//                        }
+//                    });
+//                    TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
+//                    btn_back.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
+//                            startActivity(inten);
+//                            finish();
+//                        }
+//                    });
+//                }
+//            });
+//
+//        }
+//        if(type==4){
+//
+//            final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
+//            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//            dialog1.setContentView(R.layout.dialog_request_sent_listing);
+//            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//            dialog1.show();
+//
+//            ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
+//            btn_close.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View view) {
+//                    dialog1.dismiss();
+//                    finish();
+//                }
+//            });
+//            TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
+//            btn_back.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
+//                    startActivity(inten);
+//                    finish();
+//                }
+//            });
+//
+//        }
+//
+//        imgBuy.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(type==2){
+//                    final Dialog dialog = new Dialog(ListingsDetailActivity.this);
+//                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                    dialog.setContentView(R.layout.dialog_buy_listing);
+//                    dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                    dialog.show();
+//
+//                    ImageView btn_dialog_notification_swap = (ImageView) dialog.findViewById(R.id.close_buy_listings);
+//                    btn_dialog_notification_swap.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View view) {
+//
+//                            dialog.dismiss();
+//                        }
+//                    });
+//
+//                    TextView btn_confirm=(TextView) dialog.findViewById(R.id.btn_confirm_buy_listing);
+//                    btn_confirm.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            dialog.dismiss();
+//                            final Dialog dialog1 = new Dialog(ListingsDetailActivity.this);
+//                            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                            dialog1.setContentView(R.layout.dialog_request_sent_listing);
+//                            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                            dialog1.show();
+//
+//                            ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
+//                            btn_close.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View view) {
+//                                    dialog1.dismiss();
+//                                    finish();
+//                                }
+//                            });
+//                            TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
+//                            btn_back.setOnClickListener(new View.OnClickListener() {
+//                                @Override
+//                                public void onClick(View v) {
+//                                    Intent inten= new Intent(ListingsDetailActivity.this, MainFragment.class);
+//                                    startActivity(inten);
+//                                    finish();
+//                                }
+//                            });
+//                        }
+//                    });
+//
+//                }
+//            }
+//        });
+//
+//        imgSwap.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                if(type==2){
+//                    Intent intent= new Intent(ListingsDetailActivity.this, SwapActivity.class);
+//                    startActivity(intent);
+//                }
+//            }
+//        });
     }
 
-}
+//    @Override
+//    protected void onRestart() {
+//        super.onRestart();
+//        bottomListings.setDefaut(3);
+//    }
+
+//}
 
