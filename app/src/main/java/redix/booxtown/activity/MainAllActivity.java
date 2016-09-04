@@ -131,7 +131,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
             public void onClick(View v) {
                 callFragment(new WishboardFragment());
                 img_component.setVisibility(View.VISIBLE);
-                img_component.setImageResource(R.drawable.icon_menu_wishboard);
+                img_component.setImageResource(R.drawable.btn_add_wishbroad);
                 txtTitle.setText("Wishboard");
                 setDefaut(4);
 

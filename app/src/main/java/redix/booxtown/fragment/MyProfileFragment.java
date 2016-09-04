@@ -1,5 +1,6 @@
 package redix.booxtown.fragment;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -17,6 +18,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.custom.CustomTabbarExplore;
@@ -41,6 +43,17 @@ public class MyProfileFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 callFragment(new MyProfileDashboardFragment());
+            }
+        });
+
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
+        Glide.with(getActivity()).load(R.drawable.btn_menu_locate).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView_back);
+       // imageView_back.setImageResource(R.drawable.btn_menu_locate);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
+                startActivity(intent);
             }
         });
 

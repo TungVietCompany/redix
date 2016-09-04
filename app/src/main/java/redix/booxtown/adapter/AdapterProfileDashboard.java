@@ -72,9 +72,9 @@ public class AdapterProfileDashboard extends BaseAdapter {
         holder.img_status.setImageResource(imagestatus[position]);
 
         if(position %2==0){
-            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_text_hint));
+            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_myprofile_list_databroad));
         }else{
-            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.dot_light_screen1));
+            rowView.setBackgroundColor(ContextCompat.getColor(context, R.color.color_myprofile_list_databroad));
         }
         return rowView;
     }

@@ -4,10 +4,10 @@
     android:layout_height="wrap_content">
 
     <EditText
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="281dp"
+        android:layout_height="44dp"
 
-        android:background="@drawable/message"
+        android:background="@drawable/bg_interact_comment"
         android:hint="Add Comments"
         android:fontFamily="sans-serif-light"
         android:textColorHint="@color/color_text_hint"
@@ -19,14 +19,14 @@
         android:id="@+id/editText11"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/img_close_dialog_unsubcribe"
-        android:layout_toStartOf="@+id/img_close_dialog_unsubcribe"
-        android:layout_marginLeft="10dp" />
+        android:layout_alignLeft="@+id/listView_comment"
+        android:layout_alignStart="@+id/listView_comment" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
 
-        android:background="@drawable/interact_send_message"
+        android:background="@drawable/btn_interact_sent"
         android:layout_alignTop="@+id/editText11"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
@@ -42,7 +42,8 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/view6"
         android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp" />
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
