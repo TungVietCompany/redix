@@ -4,17 +4,21 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.media.Image;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.viewpagerindicator.CirclePageIndicator;
@@ -82,9 +86,30 @@ public class SwapActivity extends AppCompatActivity {
         btn_Swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(SwapActivity.this, ListingsDetailActivity.class);
-                intent.putExtra("type",4);
-                startActivity(intent);
+
+                final Dialog dialog = new Dialog(SwapActivity.this);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.setContentView(R.layout.custompopup_screen78);
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.show();
+
+                ImageView btnclose = (ImageView) dialog.findViewById(R.id.close_popup);
+                TextView btnbacktohome = (TextView) dialog.findViewById(R.id.backhome);
+
+                btnclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        dialog.hide();
+                    }
+                });
+
+                btnbacktohome.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Intent iten = new Intent(SwapActivity.this,MainAllActivity.class);
+                        startActivity(iten);
+                    }
+                });
             }
         });
         btn_add_book.setOnClickListener(new View.OnClickListener() {

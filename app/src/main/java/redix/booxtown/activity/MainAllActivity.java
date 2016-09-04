@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
@@ -107,6 +108,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         btn_commnet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 callFragment(new InteractFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Interact");
@@ -149,6 +151,11 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         callFragment(new MainFragment());
 
     }
+
+    public void settitle(String title){
+        txtTitle.setText(title);
+    }
+
     public void initLayout(){
         view_top = (View) findViewById(R.id.menu_top_all);
         txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
