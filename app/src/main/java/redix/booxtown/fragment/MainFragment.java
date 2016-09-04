@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -145,10 +147,14 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getActivity(),ListingsDetailActivity.class);
-
-        intent.putExtra("type",2);
-        startActivity(intent);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString(String.valueOf(R.string.valueListings),"1");
+        FragmentTransaction transaction = manager.beginTransaction();
+        ListingsDetailActivity fra = new ListingsDetailActivity();
+        fra.setArguments(bundle);
+        transaction.replace(R.id.map,fra);
+        transaction.commit();
     }
 
     @Override

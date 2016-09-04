@@ -1,6 +1,7 @@
 package redix.booxtown.activity;
 
 import android.app.Dialog;
+import android.app.FragmentManager;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -8,6 +9,7 @@ import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -66,14 +68,20 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
         EditText editText11 = (EditText) v.findViewById(R.id.editText11);
         String type = getArguments().getString(String.valueOf(R.string.valueListings));
-        MainAllActivity mainAllActivity = new MainAllActivity();
+
+        MainAllActivity activity = (MainAllActivity) getActivity();
 
         imBuy = (ImageView) v.findViewById(R.id.img_buy_listing);
 
+        imBuy.setOnClickListener(this);
+
         imFree = (ImageView) v.findViewById(R.id.img_free_listings);
 
-        imSwap = (ImageView) v.findViewById(R.id.img_buy_listing);
-//        mainAllActivity.settitle("Listings");
+        imSwap = (ImageView) v.findViewById(R.id.img_swap_listing);
+
+        imSwap.setOnClickListener(this);
+
+        activity.gettitle().setText("Listings");
 
         if (type.equals("1")){
             imFree.setVisibility(View.GONE);
@@ -156,16 +164,18 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.img_swap_listing:
+                swap();
                 break;
             case R.id.img_free_listings:
                 break;
             case R.id.img_buy_listing:
-
+                buy();
                 break;
         }
     }
 
-    public void buy(){
+    public void buy() {
+
         final Dialog dialog = new Dialog(getActivity());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.dialog_buy_listing);
@@ -180,6 +190,56 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
                             dialog.dismiss();
                         }
                     });
+
+
+        TextView btn_confirm=(TextView) dialog.findViewById(R.id.btn_confirm_buy_listing);
+                    btn_confirm.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            dialog.dismiss();
+                            final Dialog dialog1 = new Dialog(getActivity());
+                            dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                            dialog1.setContentView(R.layout.dialog_request_sent_listing);
+                            dialog1.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                            dialog1.show();
+
+                            ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
+                            btn_close.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View view) {
+                                    dialog1.dismiss();
+//                                    getActivity().finish();
+                                }
+                            });
+                            TextView btn_back=(TextView) dialog1.findViewById(R.id.btn_back_home);
+                            btn_back.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    dialog1.dismiss();
+                                    callFragment(new MainFragment());
+                                }
+                            });
+                        }
+                    });
+
+
+    }
+
+
+
+    public void swap(){
+        Intent intent= new Intent(getActivity(), SwapActivity.class);
+        startActivity(intent);
+
+    }
+
+
+
+    public void callFragment(Fragment fragment ){
+        android.support.v4.app.FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
     }
 
 

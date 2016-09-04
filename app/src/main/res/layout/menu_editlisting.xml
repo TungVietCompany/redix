@@ -393,13 +393,13 @@
         android:visibility="gone"/>
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="@dimen/btn_w_181"
+        android:layout_height="@dimen/btn_h"
         android:text="Add a book"
         android:id="@+id/btn_menu_listing_addbook"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_button_listing"
+        android:background="@drawable/btn_wishbroad_popup"
         android:textColor="@color/dot_light_screen1"
         android:layout_marginBottom="15dp"
         android:layout_below="@+id/edt_editlisting_sell"
