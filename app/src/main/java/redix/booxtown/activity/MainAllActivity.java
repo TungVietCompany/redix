@@ -152,8 +152,8 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
 
     }
 
-    public void settitle(String title){
-        txtTitle.setText(title);
+    public TextView gettitle(){
+        return txtTitle;
     }
 
     public void initLayout(){
