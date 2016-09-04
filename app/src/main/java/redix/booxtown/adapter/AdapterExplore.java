@@ -9,6 +9,9 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -81,26 +84,32 @@ public class AdapterExplore extends BaseAdapter {
             }
 
             if(ex.isSwap()){
-                img_swap.setImageResource((R.drawable.tab_book_explore_swap));
+                //img_swap.setImageResource((R.drawable.explore_btn_swap_active));
+                Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
             }
             else{
-                img_swap.setImageResource((R.drawable.tab_book_explore_swap_not));
+                Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
+                //img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
             }
 
             if(ex.isFree()){
-                img_free.setImageResource((R.drawable.tab_book_explore_free));
+                Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+                //img_free.setImageResource((R.drawable.explore_btn_free_active));
             }
             else{
-                img_free.setImageResource((R.drawable.tab_book_explore_free_not));
+                Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
+                //img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
             }
 
             if(ex.isBuy()){
-                img_buy.setImageResource((R.drawable.tab_book_explore_cart));
+                Glide.with(mContext).load(R.drawable.explore_btn_buy_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+                //img_buy.setImageResource((R.drawable.explore_btn_buy_active));
                 txt_price_book.setVisibility(View.VISIBLE);
                 
             }
             else{
-                img_buy.setImageResource((R.drawable.tab_book_explore_cart_not));
+                Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
+                //img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
             }
 
             img_buy.setOnClickListener(new View.OnClickListener() {

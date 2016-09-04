@@ -51,8 +51,8 @@ public class WishboardFragment extends Fragment {
         ListView lv_wishboard = (ListView) view.findViewById(R.id.lv_wishboard);
         lv_wishboard.setAdapter(new AdapterListviewWishboard(getActivity(),title,name,date));
 
-        ImageView img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
 
+        ImageView img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
         img_component.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

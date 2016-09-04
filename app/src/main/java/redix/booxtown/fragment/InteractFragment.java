@@ -40,7 +40,7 @@ public class InteractFragment extends Fragment
         final View view = inflater.inflate(R.layout.interact_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.menus);
+        imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

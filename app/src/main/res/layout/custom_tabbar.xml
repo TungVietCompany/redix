@@ -51,7 +51,7 @@
             android:layout_marginBottom="5dp"
             android:layout_gravity="center_vertical"
             android:textColor="@android:color/white"
-            android:src="@drawable/tab_swap_not"
+            android:src="@drawable/explore_btn_swap_not_active"
             android:id="@+id/tab_swap"
             />
 
@@ -82,7 +82,7 @@
             android:layout_marginBottom="5dp"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/tab_free_not"
+            android:src="@drawable/explore_btn_free_not_active"
             android:id="@+id/tab_free"
             />
 
@@ -111,7 +111,7 @@
             android:layout_height="30dp"
             android:layout_marginTop="5dp"
             android:layout_marginBottom="5dp"
-            android:src="@drawable/tab_cart_not"
+            android:src="@drawable/explore_btn_buy_not_active"
             android:textColor="@android:color/white"
             android:layout_gravity="center_vertical"
             android:id="@+id/tab_cart"

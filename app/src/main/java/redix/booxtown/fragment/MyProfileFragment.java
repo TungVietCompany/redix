@@ -32,6 +32,7 @@ public class MyProfileFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.my_profile_fragment, container, false);
+
         ImageView img_menu_personal_dashboard = (ImageView)view.findViewById(R.id.img_menu_personal_dashboard);
         img_menu_personal_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -39,7 +40,8 @@ public class MyProfileFragment extends Fragment {
                 callFragment(new MyProfileDashboardFragment());
             }
         });
-
+        ImageView img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
+        img_component.setImageResource(R.drawable.btn_location);
         Explore e1= new Explore();
         e1.setPrice_book(152.0f);
         e1.setBuy(true);
