@@ -96,7 +96,8 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
         btn_menu_editlist_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onBackPressed();
+               Intent intent = new Intent(getApplicationContext(),SwapActivity.class);
+                startActivity(intent);
             }
         });
 

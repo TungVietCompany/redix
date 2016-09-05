@@ -84,13 +84,13 @@
                 android:textColor="#ffffff" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="224dp"
+                android:layout_height="36dp"
                 android:text="Change password"
                 android:id="@+id/button3"
                 android:layout_below="@+id/editText6"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/change_pass"
+                android:background="@drawable/bg_white_popup"
                 android:textColor="#f56767" />
         </RelativeLayout>
     </RelativeLayout>
@@ -101,10 +101,10 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/imv_close_dialog_changepass"
-            android:src="@drawable/close_popup" />
+            android:src="@drawable/btn_close_filter" />
     </LinearLayout>
 
 

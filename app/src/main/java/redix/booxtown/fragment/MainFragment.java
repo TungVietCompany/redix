@@ -176,6 +176,11 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 //            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
 //        }
 //    }
+    public Bitmap resizeMapIcons(int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier("icon_swap", "drawable", getActivity().getPackageName()));
+        Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+        return resizedBitmap;
+    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
@@ -190,7 +195,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
+        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(110,150)));
 
         // adding marker
         mMap.addMarker(marker);

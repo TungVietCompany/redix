@@ -67,7 +67,8 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
+
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
