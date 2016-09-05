@@ -57,9 +57,6 @@ public class MainAllActivity extends AppCompatActivity{
 
         if(intent.getStringExtra("key")!=null){
             int i =Integer.parseInt(intent.getStringExtra("key"));
-
-            Toast.makeText(MainAllActivity.this,"key"+i,Toast.LENGTH_LONG).show();
-
             if(i==1){
                 initLayout();
                 callFragment(new MainFragment());

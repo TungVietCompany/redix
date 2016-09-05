@@ -71,8 +71,8 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
-//                mainAllActivity.callFragment(new ListFragment());
+                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+                mainAllActivity.callFragment(new ListFragment());
             }
         });
 
