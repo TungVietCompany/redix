@@ -37,7 +37,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
         img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
-
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera);
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.GONE);
 

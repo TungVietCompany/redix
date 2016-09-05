@@ -17,12 +17,22 @@ import redix.booxtown.custom.NotificationAccept;
 /**
  * Created by thuyetpham94 on 28/08/2016.
  */
-public class NotificationDominicAccept extends AppCompatActivity {
-    private MenuBottomCustom bottomListings;
+public class NotificationDominicAccept extends AppCompatActivity implements View.OnClickListener{
+    ImageView img_menu_bottom_location;
+    ImageView img_menu_bottom_comment;
+    ImageView img_menu_bottom_camera;
+    ImageView img_menu_bottom_bag;
+    ImageView img_menu_bottom_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_sell_accept2);
+
+        img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
+        img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera);
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
 
         TextView txt_menu_notification_title2 = (TextView) findViewById(R.id.txt_menu_notification_title2);
         txt_menu_notification_title2.setText("you accepted a request form");
@@ -43,7 +53,7 @@ public class NotificationDominicAccept extends AppCompatActivity {
         txtTitle.setText("Notifications");
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back_interact);
+        img_menu.setImageResource(R.drawable.back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,27 +63,44 @@ public class NotificationDominicAccept extends AppCompatActivity {
         });
         //end
 
-        //infor
-        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
-        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(NotificationDominicAccept.this,UserProfileActivity.class);
-                startActivity(intent);
-            }
-        });
-        //end
-//bottom
         //--------------------------------------------------------------
-        View view_bottom = (View)findViewById(R.id.menu_bottom_noti_sell_accept2);
-        bottomListings=new MenuBottomCustom(view_bottom,this,0);
-        bottomListings.setDefaut(0);
+        img_menu_bottom_location.setOnClickListener(this);
+        img_menu_bottom_comment.setOnClickListener(this);
+        img_menu_bottom_camera.setOnClickListener(this);
+        img_menu_bottom_bag.setOnClickListener(this);
+        img_menu_bottom_user.setOnClickListener(this);
         //---------------------------------------------------------------
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottomListings.setDefaut(0);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_menu_bottom_location:
+                Intent intent1 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
+                intent1.putExtra("key","1");
+                startActivity(intent1);
+                break;
+            case R.id.img_menu_bottom_comment:
+                Intent intent2 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
+                intent2.putExtra("key","2");
+                startActivity(intent2);
+                break;
+            case R.id.img_menu_bottom_camera:
+                Intent intent3 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
+                intent3.putExtra("key","3");
+                startActivity(intent3);
+                break;
+            case R.id.img_menu_bottom_bag:
+                Intent intent4 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
+                intent4.putExtra("key","4");
+                startActivity(intent4);
+                break;
+            case R.id.img_menu_bottom_user:
+                Intent intent5 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
+                intent5.putExtra("key","5");
+                startActivity(intent5);
+                break;
+
+        }
     }
 }
