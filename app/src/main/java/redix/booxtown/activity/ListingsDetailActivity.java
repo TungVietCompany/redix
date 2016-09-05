@@ -38,8 +38,6 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.adapter.CustomPagerAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
-import redix.booxtown.fragment.InteractFragment;
-import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
 import redix.booxtown.model.Explore;
