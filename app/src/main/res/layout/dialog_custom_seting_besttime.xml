@@ -87,13 +87,13 @@
                 android:layout_marginBottom="20dp" />
 
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="224dp"
+                android:layout_height="36dp"
                 android:text="Submit"
                 android:id="@+id/btn_setingdialog_time"
                 android:layout_below="@+id/textView10"
                 android:layout_centerHorizontal="true"
-                android:background="@drawable/change_pass"
+                android:background="@drawable/bg_white_popup"
                 android:textColor="#f56767" />
 
         </RelativeLayout>
@@ -105,9 +105,9 @@
 
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/imv_close_dialog_submit"
-            android:src="@drawable/close_popup" />
+            android:src="@drawable/btn_close_filter" />
     </LinearLayout>
 </RelativeLayout>

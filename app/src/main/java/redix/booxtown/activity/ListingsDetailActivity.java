@@ -51,7 +51,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     private  ListView listView;
     private TextView txt_add_book;
     private TextView txt_my_book;
-
+    private View search_listings;
     private ImageView imSwap;
 
     private ImageView imFree;
@@ -67,7 +67,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,9 +94,12 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
 
         imSwap.setOnClickListener(this);
 
+        //search_listings=(View) v.findViewById(R.id.search_listings);
+
         activity.gettitle().setText("Listings");
 
         if (type.equals("1")){
+            //search_listings.setVisibility(View.GONE);
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
             editText11.setVisibility(View.GONE);
