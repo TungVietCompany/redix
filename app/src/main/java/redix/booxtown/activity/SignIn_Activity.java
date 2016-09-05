@@ -52,7 +52,7 @@ Button mButtonForgotPass;
                     Intent intent = new Intent(SignIn_Activity.this,MainAllActivity.class);
                     startActivity(intent);
                 }else {
-                    Toast.makeText(getApplicationContext(),"Username or password eror!",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();
                 }
             default:
                 break;

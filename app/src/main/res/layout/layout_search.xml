@@ -6,7 +6,7 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="50dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
@@ -31,7 +31,8 @@
             android:layout_alignParentTop="false"
             android:layout_toStartOf="@+id/btn_filter_explore"
             android:layout_toLeftOf="@+id/btn_filter_explore"
-            android:paddingLeft="10dp" />
+            android:paddingLeft="10dp"
+            android:layout_marginRight="-10dp" />
 
         <ImageView
             android:layout_width="47dp"
@@ -42,7 +43,7 @@
             android:layout_alignParentEnd="false"
             android:layout_alignTop="@+id/editSearch"
             android:layout_alignBottom="@+id/editSearch"
-            android:layout_marginRight="10dp"
+            android:layout_marginRight="5dp"
             android:adjustViewBounds="true" />
 
         <ImageView

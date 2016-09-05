@@ -49,7 +49,8 @@
             android:hint="Password"
             android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
-            android:backgroundTint="@color/color_hint_interact" />
+            android:backgroundTint="@color/color_hint_interact"
+            android:password="true" />
         <TextView
             android:id="@+id/btn_sigin"
             android:layout_width="223dp"

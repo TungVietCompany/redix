@@ -363,35 +363,46 @@
         android:layout_alignRight="@+id/checkBox3"
         android:layout_alignEnd="@+id/checkBox3"
         android:visibility="gone"/>
-
-    <Button
-        android:layout_width="wrap_content"
+    <TableRow
+        android:id="@+id/row_edit_book"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/edt_editlisting_sell"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="10dp"
+
+        >
+    <Button
+        android:layout_width="145dp"
+        android:layout_height="36dp"
         android:text="Delete book"
         android:id="@+id/btn_menu_editlist_delete"
-        android:layout_below="@+id/edt_editlisting_sell"
-        android:layout_alignLeft="@+id/edt_editlisting_sell"
-        android:layout_alignStart="@+id/edt_editlisting_sell"
-        android:background="@drawable/bg_button_listing"
-        android:layout_marginLeft="10dp"
+        android:background="@drawable/btn_wishbroad_popup"
         android:textColor="@color/dot_light_screen1"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"/>
+        android:visibility="visible"
+        android:layout_weight="1"
+        android:layout_alignTop="@+id/btn_menu_editlisting_update"
+        android:layout_alignRight="@+id/textView116"
+        android:layout_alignEnd="@+id/textView116"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="10dp" />
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="145dp"
+        android:layout_height="36dp"
         android:text="Update"
+        android:layout_weight="1"
         android:id="@+id/btn_menu_editlisting_update"
         android:layout_below="@+id/edt_editlisting_sell"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:background="@drawable/bg_button_listing"
-        android:layout_marginRight="10dp"
+        android:background="@drawable/btn_wishbroad_popup"
+        android:layout_marginRight="20dp"
         android:textColor="@color/dot_light_screen1"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"/>
-
+        android:visibility="visible"
+        android:layout_marginLeft="10dp" />
+</TableRow>
     <Button
         android:layout_width="@dimen/btn_w_181"
         android:layout_height="@dimen/btn_h"

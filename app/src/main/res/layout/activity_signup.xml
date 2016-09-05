@@ -2,9 +2,8 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="@color/dot_light_screen2"
-    >
+    android:orientation="vertical">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -17,11 +16,10 @@
             android:id="@+id/btn_back_sigup"
             android:layout_width="14dp"
             android:layout_height="26dp"
-            android:layout_marginTop="10dp"
             android:layout_marginLeft="15dp"
+            android:layout_marginTop="10dp"
             android:background="@drawable/btn_sign_in_back"
-            android:textColor="@android:color/holo_red_light"
-            />
+            android:textColor="@android:color/holo_red_light" />
 
         <ImageView
             android:layout_width="178dp"
@@ -33,8 +31,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginLeft="15dp"
+        android:orientation="horizontal"
         android:weightSum="2">
 
         <EditText
@@ -62,10 +60,9 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginLeft="15dp"
         android:layout_marginBottom="15dp"
-        >
+        android:layout_marginLeft="15dp"
+        android:orientation="vertical">
 
         <EditText
             android:id="@+id/username"
@@ -87,11 +84,12 @@
 
         <EditText
             android:id="@+id/birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-thin"
             android:hint="Birthday"
             android:textColorHint="@color/color_text_hint"
-            android:layout_width="match_parent"
-            android:theme="@style/MyEditTextTheme"
-            android:layout_height="wrap_content">
+            android:theme="@style/MyEditTextTheme">
 
         </EditText>
 
@@ -101,6 +99,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
             android:hint="Phone"
+            android:phoneNumber="true"
             android:textColorHint="@color/color_text_hint"
             android:theme="@style/MyEditTextTheme" />
 
@@ -110,6 +109,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
             android:hint="Password"
+            android:password="true"
             android:textColorHint="@color/color_text_hint"
             android:theme="@style/MyEditTextTheme" />
 
@@ -119,6 +119,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-thin"
             android:hint="Confirm Password"
+            android:password="true"
             android:textColorHint="@color/color_text_hint"
             android:theme="@style/MyEditTextTheme" />
 
@@ -129,12 +130,11 @@
             android:layout_gravity="center"
             android:layout_marginTop="15dp"
             android:background="@drawable/bg_btn_sign_in"
-            android:text="Sign up"
             android:fontFamily="sans-serif-light"
-            android:textSize="20sp"
             android:gravity="center"
+            android:text="Sign up"
             android:textColor="@android:color/white"
-             />
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
@@ -158,9 +158,9 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
             android:fontFamily="sans-serif-thin"
             android:text="Terms and conditions"
-            android:layout_marginLeft="5dp"
             android:textColor="@android:color/holo_red_light"
             android:textSize="20sp"
 
