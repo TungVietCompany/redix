@@ -51,7 +51,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     private  ListView listView;
     private TextView txt_add_book;
     private TextView txt_my_book;
-    private View search_listings;
+
     private ImageView imSwap;
 
     private ImageView imFree;
@@ -94,18 +94,17 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
 
         imSwap.setOnClickListener(this);
 
-        //search_listings=(View) v.findViewById(R.id.search_listings);
-
         activity.gettitle().setText("Listings");
 
         if (type.equals("1")){
-            //search_listings.setVisibility(View.GONE);
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
             editText11.setVisibility(View.GONE);
             img_close_dialog_unsubcribe.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
             params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
+            img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
 
         }
