@@ -53,21 +53,22 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        Hoder hoder = new Hoder();
 
             InteractComment interactComments= listInteractComments.get(position);
         convertView = inflater.inflate(R.layout.custom_commnents_interact, null);
 
-            ImageView img_icon=(ImageView) convertView.findViewById(R.id.icon_user_listing_detail);
-            ImageView img_rank_one=(ImageView) convertView.findViewById(R.id.img_comment_rank1);
-            ImageView img_rank_two=(ImageView) convertView.findViewById(R.id.img_comment_rank2);
-            ImageView img_rank_three=(ImageView) convertView.findViewById(R.id.img_comment_rank3);
-            TextView txt_userName=(TextView) convertView.findViewById(R.id.txt_user_comment);
-            TextView txt_contents=(TextView) convertView.findViewById(R.id.txt_content_thread_comments);
-            TextView txt_datetime=(TextView) convertView.findViewById(R.id.txt_date_thread_comment);
+        hoder.img_icon=(ImageView) convertView.findViewById(R.id.icon_user_listing_detail);
+        hoder.img_rank_one=(ImageView) convertView.findViewById(R.id.img_comment_rank1);
+        hoder.img_rank_two=(ImageView) convertView.findViewById(R.id.img_comment_rank2);
+        hoder.img_rank_three=(ImageView) convertView.findViewById(R.id.img_comment_rank3);
+        hoder.txt_userName=(TextView) convertView.findViewById(R.id.txt_user_comment);
+        hoder.txt_contents=(TextView) convertView.findViewById(R.id.txt_content_thread_comments);
+        hoder.txt_datetime=(TextView) convertView.findViewById(R.id.txt_date_thread_comment);
 
 
-            img_icon.setImageResource(R.drawable.icon_test);
-            img_icon.setOnClickListener(new View.OnClickListener() {
+        hoder.img_icon.setImageResource(R.drawable.icon_test);
+        hoder.img_icon.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     Intent intent=new Intent(mContext,UserProfileActivity.class);
@@ -81,31 +82,42 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 //            notificationAccept.accept(mContext, mResources, mBitmap, img_icon);
 
             if(interactComments.isRank_one()){
-                img_rank_one.setVisibility(View.VISIBLE);
+                hoder.img_rank_one.setVisibility(View.VISIBLE);
             }
             else{
-                img_rank_one.setVisibility(View.INVISIBLE);
+                hoder.img_rank_one.setVisibility(View.INVISIBLE);
             }
 
             if(interactComments.isRank_two()){
-                img_rank_two.setVisibility(View.VISIBLE);
+                hoder.img_rank_two.setVisibility(View.VISIBLE);
             }
             else{
-                img_rank_two.setVisibility(View.INVISIBLE);
+                hoder.img_rank_two.setVisibility(View.INVISIBLE);
             }
 
             if(interactComments.isRank_three()){
-                img_rank_three.setVisibility(View.VISIBLE);
+                hoder.img_rank_three.setVisibility(View.VISIBLE);
             }
             else{
-                img_rank_three.setVisibility(View.INVISIBLE);
+                hoder.img_rank_three.setVisibility(View.INVISIBLE);
             }
 
-            txt_userName.setText(interactComments.getUser_name());
-            txt_contents.setText(interactComments.getContent());
-            txt_datetime.setText(interactComments.getDate_time());
+        hoder.txt_userName.setText(interactComments.getUser_name());
+        hoder.txt_contents.setText(interactComments.getContent());
+        hoder.txt_datetime.setText(interactComments.getDate_time());
 
 
         return convertView;
+    }
+
+    public class Hoder{
+        ImageView img_icon;
+        ImageView img_rank_one;
+        ImageView img_rank_two;
+        ImageView img_rank_three;
+        TextView txt_userName;
+        TextView txt_contents;
+        TextView txt_datetime;
+
     }
 }

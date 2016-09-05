@@ -7,7 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        android:background="@color/color_text">
+        android:background="@drawable/customborder">
 
         <TextView
             android:layout_width="match_parent"
@@ -76,7 +76,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/img_close_dialog_post_book_wishbroad"
-            android:src="@drawable/close_popup"
+            android:src="@drawable/btn_wishbroad_close"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

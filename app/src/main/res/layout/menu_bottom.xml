@@ -23,23 +23,23 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true">
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_location"
-            android:src="@drawable/icon_menu_bottom_location"
+            android:src="@drawable/btn_locate_active"
             android:padding="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
             android:layout_weight="1"
             android:layout_gravity="bottom"
-            />
+            android:layout_marginTop="5dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="26dp"
+            android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_comment"
-            android:src="@drawable/icon_menu_bottom_comment_not"
+            android:src="@drawable/btn_locate_interact_not_active"
             android:padding="5dp"
             android:layout_alignParentBottom="true"
             android:layout_weight="1"
@@ -48,10 +48,10 @@
             android:layout_gravity="bottom" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="26dp"
+            android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_camera"
-            android:src="@drawable/icon_menu_bottom_camera_not"
+            android:src="@drawable/btn_locate_listing_not_active"
             android:padding="5dp"
             android:layout_weight="1"
             android:layout_alignTop="@+id/view"
@@ -60,10 +60,10 @@
             android:layout_gravity="bottom" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_bag"
-            android:src="@drawable/icon_menu_bottom_bag_not"
+            android:src="@drawable/btn_locate_wishbroad_not_active"
             android:padding="5dp"
             android:layout_weight="1"
             android:layout_alignParentBottom="true"
@@ -72,10 +72,10 @@
             android:layout_gravity="bottom" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="16dp"
+            android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_user"
-            android:src="@drawable/icon_menu_bottom_user_not"
+            android:src="@drawable/btn_locate_profile_not_active"
             android:padding="5dp"
             android:layout_weight="1"
             android:layout_gravity="bottom"

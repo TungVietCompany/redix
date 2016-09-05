@@ -25,6 +25,7 @@
     <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+        android:orientation="vertical"
         android:layout_below="@+id/editSearch"
         android:layout_above="@+id/menu_bottom_faq"
         android:layout_marginLeft="10dp"
@@ -37,20 +38,24 @@
         android:layout_below="@+id/editSearch"
         android:layout_centerHorizontal="true"
         android:layout_above="@+id/menu_bottom_faq" />
+
     </LinearLayout>
 
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
         android:id="@+id/imageView"
         android:layout_alignTop="@+id/editSearch"
         android:layout_alignRight="@+id/editSearch"
         android:layout_alignEnd="@+id/editSearch"
-        android:src="@drawable/icon_search"
+        android:src="@drawable/btn_locate_search"
         android:padding="15dp"
         android:layout_gravity="right|top"
         android:layout_marginTop="10dp"
         android:layout_marginRight="10dp" />
+
+
 
 
 </FrameLayout>

@@ -16,10 +16,9 @@ import android.widget.ImageView;
 import redix.booxtown.R;
 import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
 import redix.booxtown.custom.CustomAdapter;
-import redix.booxtown.fragment.MainFragment;
 
 public class MenuActivity extends AppCompatActivity {
-    public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
+    public static int [] prgmImages={R.drawable.menu_home,R.drawable.menu_notifi,R.drawable.menu_fqa,R.drawable.menu_invite,R.drawable.menu_rate,R.drawable.menu_boox,R.drawable.menu_message,R.drawable.menu_setting,R.drawable.menu_logout,R.drawable.menu_unsub};
     public static String [] prgmNameList={"Home","Notifications","FAQ","Invite friends","Rate Booxtown","About booxtown","Contact Booxtown","Settings","Logout","Unsubscribe"};
 
     @Override
@@ -32,7 +31,7 @@ public class MenuActivity extends AppCompatActivity {
         lv.setLayoutManager(layoutManager);
 
         //set adapter
-        CustomAdapter menu = new CustomAdapter(prgmNameList,prgmImages);
+        CustomAdapter menu = new CustomAdapter(prgmNameList,prgmImages,MenuActivity.this);
         lv.setAdapter(menu);
         //end
         ImageView close_menu = (ImageView)findViewById(R.id.imgv_close);

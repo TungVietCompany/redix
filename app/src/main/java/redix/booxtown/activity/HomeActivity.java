@@ -15,15 +15,11 @@ import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.AboutFragment;
 import redix.booxtown.fragment.ContactFragment;
 import redix.booxtown.fragment.FaqFragment;
-import redix.booxtown.fragment.InteractFragment;
 import redix.booxtown.fragment.InviteFriendFragment;
-import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
-import redix.booxtown.fragment.MyProfileFragment;
 import redix.booxtown.fragment.NotificationFragment;
 import redix.booxtown.fragment.RateFragment;
 import redix.booxtown.fragment.SettingFragment;
-import redix.booxtown.fragment.WishboardFragment;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -37,14 +33,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
         Intent intent = getIntent();
         img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
         img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
-        img_menu_bottom_camera  = (ImageView)findViewById(R.id.img_menu_bottom_camera);
-        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
-        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
+
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.GONE);
+
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -53,11 +49,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 startActivity(intent);
             }
         });
+
         //--------------------------------------------------
         View view_bottom = (View)findViewById(R.id.menu_bottom);
         menu_bottom=new MenuBottomCustom(view_bottom,HomeActivity.this,0);
         menu_bottom.setDefaut(0);
         //---------------------------------------------------------------
+
         String i = intent.getStringExtra("position");
         int position = Integer.parseInt(i);
         if(position==1){
@@ -89,6 +87,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             TextView txtTitle=(TextView)findViewById(R.id.txt_title);
             txtTitle.setText("Settings");
         }else if(position == 8){
+
         }
 
         img_menu_bottom_location.setOnClickListener(this);
@@ -110,20 +109,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_menu_bottom_location:
-                callFragment(new MainFragment());
+                Intent intent1 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent1.putExtra("key","1");
+                startActivity(intent1);
                 break;
             case R.id.img_menu_bottom_comment:
-                callFragment(new InteractFragment());
+                Intent intent2 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent2.putExtra("key","2");
+                startActivity(intent2);
                 break;
             case R.id.img_menu_bottom_camera:
-                callFragment(new ListingsFragment());
+                Intent intent3 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent3.putExtra("key","3");
+                startActivity(intent3);
                 break;
             case R.id.img_menu_bottom_bag:
-                callFragment(new WishboardFragment());
+                Intent intent4 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent4.putExtra("key","4");
+                startActivity(intent4);
                 break;
             case R.id.img_menu_bottom_user:
-                callFragment(new MyProfileFragment());
+                Intent intent5 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent5.putExtra("key","5");
+                startActivity(intent5);
                 break;
+
         }
     }
 

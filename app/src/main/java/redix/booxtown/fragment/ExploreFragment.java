@@ -7,6 +7,8 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,6 +22,8 @@ import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
@@ -48,6 +52,7 @@ public class ExploreFragment extends Fragment
     private LinearLayout linear_cart;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
+    ImageView img_component;
     private MenuBottomCustom bottomExplore;
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
 
@@ -64,6 +69,20 @@ public class ExploreFragment extends Fragment
                 startActivity(intent);
             }
         });
+
+//        img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
+//        img_component.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                callFragment(new MainFragment());
+//                img_component.setImageResource(R.drawable.btn_explore);
+////                img_component.setOnClickListener(new View.OnClickListener() {
+////                    @Override
+////                    public void onClick(View v) {
+////                        img_component.setImageResource(R.drawable.btn_location);
+////                    }
+////                });
+//            }});
 
         View view_search= (View)view.findViewById(R.id.explore_search);
         new CustomSearch(view_search,getActivity());
@@ -188,7 +207,13 @@ public class ExploreFragment extends Fragment
 
         return list;
     }
-
+    public void callFragment(Fragment fragment) {
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
+    }
     public void filterSort(View view){
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {

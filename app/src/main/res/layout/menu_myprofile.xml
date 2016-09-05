@@ -42,20 +42,20 @@
         android:layout_marginTop="5dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imv_close_dialog_dashboard_status"
-        android:src="@drawable/icon_notification_infor2"
+        android:src="@drawable/btn_rank_one"
         android:layout_below="@+id/ratingBar3"
         android:layout_alignLeft="@+id/ratingBar3"
         android:layout_alignStart="@+id/ratingBar3"
         android:layout_marginTop="5dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imageView26"
-        android:src="@drawable/icon_notification_infor3"
+        android:src="@drawable/btn_rank_two"
         android:layout_alignTop="@+id/imv_close_dialog_dashboard_status"
         android:layout_toRightOf="@+id/imv_close_dialog_dashboard_status"
         android:layout_toEndOf="@+id/imv_close_dialog_dashboard_status"
@@ -63,10 +63,10 @@
         android:layout_marginStart="9dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imageView27"
-        android:src="@drawable/icon_notification_infor1"
+        android:src="@drawable/btn_rank_three"
         android:layout_alignTop="@+id/imageView26"
         android:layout_toRightOf="@+id/imageView26"
         android:layout_toEndOf="@+id/imageView26"

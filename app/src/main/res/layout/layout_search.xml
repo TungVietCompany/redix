@@ -34,10 +34,10 @@
             android:paddingLeft="10dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:id="@+id/btn_filter_explore"
-            android:src="@drawable/filter"
+            android:src="@drawable/btn_locate_filter"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
             android:layout_alignTop="@+id/editSearch"
@@ -49,12 +49,12 @@
             android:layout_width="20dp"
             android:layout_height="match_parent"
             android:id="@+id/button2"
-            android:background="@drawable/icon_search"
             android:layout_alignTop="@+id/editSearch"
             android:layout_alignBottom="@+id/editSearch"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
             android:layout_toLeftOf="@+id/btn_filter_explore"
-            android:layout_marginRight="10dp" />
+            android:layout_marginRight="10dp"
+            android:src="@drawable/btn_locate_search" />
         </RelativeLayout>
 </RelativeLayout>

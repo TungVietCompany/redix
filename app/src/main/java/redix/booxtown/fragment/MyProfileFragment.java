@@ -15,7 +15,6 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.custom.CustomTabbarExplore;
@@ -28,12 +27,13 @@ public class MyProfileFragment extends Fragment {
     private LinearLayout linear_cart;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
-
+    ImageView img_component;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         final View view = inflater.inflate(R.layout.my_profile_fragment, container, false);
+
         ImageView img_menu_personal_dashboard = (ImageView)view.findViewById(R.id.img_menu_personal_dashboard);
         img_menu_personal_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,7 +43,8 @@ public class MyProfileFragment extends Fragment {
         });
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.menus);
+        Glide.with(getActivity()).load(R.drawable.btn_menu_locate).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView_back);
+       // imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -4,9 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +18,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.ListingCollectionActivity;
+import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -50,7 +56,7 @@ public class ListingsFragment extends Fragment
         txt_add_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                callFragment(new ListingCollectionActivity());
             }
         });
         //-------------------------------------------------------------
@@ -91,6 +97,16 @@ public class ListingsFragment extends Fragment
         //end
         return view;
     }
+
+
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.commit();
+    }
+
 
 }
 

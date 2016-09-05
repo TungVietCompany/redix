@@ -40,4 +40,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_home">HomeActivity</string>
+    <string name="RequestSend">Request sent</string>
+    <string name="titlepopp_screen78">Your request has been sent successfully. Let\'s wait for Domonic\'s reply</string>
+    <string name="backtohome">Back to home</string>
+    <string name="valueListings">layoutValue</string>
 </resources>

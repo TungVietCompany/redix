@@ -18,8 +18,8 @@ import redix.booxtown.custom.MenuBottomCustom;
 
 public class MyProfileDashboardFragment extends Fragment {
 
-    public static int [] imgoffer={R.drawable.icon_sell_blue,R.drawable.icon_free_blue,R.drawable.icon_swap_blue,R.drawable.icon_swap_blue};
-    public static int [] imgstatus={R.drawable.icon_status_profile,R.drawable.icon_stop_profile,R.drawable.icon_delete_profile,R.drawable.icon_delete_profile};
+    public static int [] imgoffer={R.drawable.myprofile_buy_come,R.drawable.myprofile_free_back,R.drawable.myprofile_swap,R.drawable.myprofile_swap};
+    public static int [] imgstatus={R.drawable.myprofile_tick,R.drawable.myprofile_not,R.drawable.myprofile_all_not,R.drawable.myprofile_not};
     public static String [] txtbook={"Nearest distance","Price low to high","Price high to low","Price high to low"};
 
     @Override

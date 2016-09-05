@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,11 +26,13 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -54,6 +58,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     public static String [] prgmNameList={"Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high"};
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
     private MenuBottomCustom bottom;
+
+    private LatLng latLngBounds;
 
     @Nullable
     @Override
@@ -146,10 +152,14 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        Intent intent = new Intent(getActivity(),ListingsDetailActivity.class);
-
-        intent.putExtra("type",2);
-        startActivity(intent);
+        FragmentManager manager = getActivity().getSupportFragmentManager();
+        Bundle bundle = new Bundle();
+        bundle.putString(String.valueOf(R.string.valueListings),"1");
+        FragmentTransaction transaction = manager.beginTransaction();
+        ListingsDetailActivity fra = new ListingsDetailActivity();
+        fra.setArguments(bundle);
+        transaction.replace(R.id.map,fra);
+        transaction.commit();
     }
 
     @Override
@@ -173,6 +183,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         // latitude and longitude
         double latitude = 17.385044;
         double longitude = 78.486671;
+
+        latLngBounds = new LatLng(latitude,longitude);
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
@@ -183,7 +195,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.addMarker(marker);
 
 
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
@@ -192,6 +204,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.getUiSettings().setAllGesturesEnabled(true);
 
         mMap.setTrafficEnabled(true);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

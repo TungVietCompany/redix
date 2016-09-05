@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="@color/dot_light_screen2"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.github.siyamed.shapeimageview.CircularImageView
@@ -43,20 +44,20 @@
         android:id="@+id/ratingBar5" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imageView10"
         android:layout_alignBottom="@+id/ratingBar5"
         android:layout_toRightOf="@+id/ratingBar5"
         android:layout_toEndOf="@+id/ratingBar5"
         android:layout_marginLeft="5dp"
-        android:src="@drawable/icon_notification_infor2" />
+        android:src="@drawable/btn_rank_one" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imageView28"
-        android:src="@drawable/icon_notification_infor3"
+        android:src="@drawable/btn_rank_two"
         android:layout_alignTop="@+id/imageView10"
         android:layout_toRightOf="@+id/imageView10"
         android:layout_toEndOf="@+id/imageView10"
@@ -64,12 +65,12 @@
         android:layout_marginRight="5dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="15dp"
+        android:layout_height="15dp"
         android:id="@+id/imageView39"
         android:layout_alignBottom="@+id/imageView28"
         android:layout_toRightOf="@+id/imageView28"
         android:layout_toEndOf="@+id/imageView28"
-        android:src="@drawable/icon_notification_infor1" />
+        android:src="@drawable/btn_rank_three" />
 
 </RelativeLayout>

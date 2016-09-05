@@ -73,10 +73,10 @@
                 app:gap="0"
                 app:bar_color="@color/color_text_hint"
                 app:bar_highlight_color="@color/color_text"
-                app:left_thumb_image="@drawable/icon_filter_range"
-                app:right_thumb_image="@drawable/icon_filter_range"
-                app:left_thumb_image_pressed="@drawable/icon_filter_range"
-                app:right_thumb_image_pressed="@drawable/icon_filter_range"
+                app:left_thumb_image="@drawable/btn_filter_standar"
+                app:right_thumb_image="@drawable/btn_filter_standar"
+                app:left_thumb_image_pressed="@drawable/btn_filter_standar"
+                app:right_thumb_image_pressed="@drawable/btn_filter_standar"
                 app:data_type="_integer"
                 android:layout_below="@+id/textView127"
                 android:layout_alignParentLeft="true"
@@ -102,8 +102,8 @@
                 app:steps="5"
                 app:bar_color="@color/color_text_hint"
                 app:bar_highlight_color="@color/color_text"
-                app:left_thumb_image="@drawable/icon_filter_range"
-                app:left_thumb_image_pressed="@drawable/icon_filter_range"
+                app:left_thumb_image="@drawable/btn_filter_standar"
+                app:left_thumb_image_pressed="@drawable/btn_filter_standar"
                 app:data_type="_integer"
                 android:layout_below="@+id/textView75"
                 android:layout_alignParentRight="true"
@@ -207,11 +207,11 @@
                 android:layout_alignParentTop="true"
                 android:layout_centerHorizontal="true" />
             <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="223dp"
+                android:layout_height="36dp"
                 android:text="Submit"
                 android:id="@+id/btn_dialog_filter_submit"
-                android:background="@drawable/bg_buttom_red"
+                android:background="@drawable/bg_btn_sign_in"
                 android:textColor="#ffffff"
                 android:layout_below="@+id/lv_dialog_filter"
                 android:layout_centerHorizontal="true"
@@ -226,13 +226,13 @@
     android:layout_alignParentEnd="true">
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:id="@+id/imv_dialog_filter_close"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:src="@drawable/close_popup" />
+        android:src="@drawable/btn_close_filter" />
 </RelativeLayout>
 </RelativeLayout>
 

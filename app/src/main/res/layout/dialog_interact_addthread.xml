@@ -55,13 +55,13 @@
             android:backgroundTint="@color/dot_light_screen1" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="223dp"
+            android:layout_height="36dp"
             android:text="Submit"
             android:id="@+id/btn_dialog_interact_submit"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="172dp"
-            android:background="@drawable/change_pass"
+            android:background="@drawable/bg_interact_bt_popup"
             android:layout_marginBottom="20dp"
             android:textColor="@color/color_text"/>
     </RelativeLayout>
@@ -71,10 +71,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
             android:id="@+id/imv_dialog_interacr_close"
-            android:src="@drawable/close_popup"
+            android:src="@drawable/btn_close_filter"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

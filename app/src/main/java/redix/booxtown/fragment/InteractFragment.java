@@ -40,7 +40,7 @@ public class InteractFragment extends Fragment
         final View view = inflater.inflate(R.layout.interact_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.menus);
+        imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -105,8 +105,7 @@ public class InteractFragment extends Fragment
     public void callFragment(Fragment fragment ){
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
-        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
-        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.add(R.id.frame_main_all, fragment);
         transaction.commit();
     }
 
