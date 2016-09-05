@@ -55,7 +55,7 @@ public class SwapActivity extends AppCompatActivity {
         ImageView img_component = (ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
         ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.back_interact);
+        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
