@@ -56,26 +56,27 @@
         android:layout_marginLeft="20dp">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="145dp"
+            android:layout_height="36dp"
             android:text="Swap"
             android:id="@+id/btn_swap"
-            android:background="@drawable/bg_button_listing"
+            android:background="@drawable/bg_btn_add_book"
             android:gravity="center"
             android:textColor="@color/dot_light_screen1"
             android:textSize="18sp"
             android:layout_weight="1"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="5dp" />
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="145dp"
+            android:layout_height="36dp"
             android:text="Add a book"
             android:id="@+id/btn_add_book"
             android:textSize="18dp"
             android:textColor="@color/dot_light_screen1"
             android:gravity="center"
-            android:background="@drawable/bg_button_listing"
+            android:background="@drawable/bg_btn_add_book"
             android:layout_weight="1"
             android:layout_marginLeft="5dp" />
     </TableRow>
@@ -92,11 +93,11 @@
     </TableRow>
 
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="292dp"
+        android:layout_height="36dp"
         android:text="Manage your swap list"
         android:id="@+id/btn_manager"
-        android:background="@drawable/bg_buttom_red"
+        android:background="@drawable/bg_btn_add_book_2"
         android:textColor="#ffffff"
         android:textSize="18sp"
         android:gravity="center"
@@ -105,7 +106,7 @@
         android:layout_alignStart="@+id/tableRow6"
         android:layout_alignRight="@+id/tableRow5"
         android:layout_alignEnd="@+id/tableRow5"
-        android:layout_marginBottom="15dp" />
+        android:layout_marginBottom="20dp" />
 
     <ListView
         android:layout_width="wrap_content"

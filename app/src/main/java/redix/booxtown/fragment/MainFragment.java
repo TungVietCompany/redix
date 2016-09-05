@@ -3,6 +3,8 @@ package redix.booxtown.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -174,7 +176,11 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 //            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
 //        }
 //    }
-
+public Bitmap resizeMapIcons(int width, int height){
+    Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier("icon_swap", "drawable", getActivity().getPackageName()));
+    Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
+    return resizedBitmap;
+}
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -188,7 +194,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
+        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(110,150)));
 
         // adding marker
         mMap.addMarker(marker);
@@ -204,7 +210,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         mMap.setTrafficEnabled(true);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,12));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

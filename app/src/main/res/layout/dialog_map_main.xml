@@ -60,32 +60,35 @@
         android:layout_marginRight="20dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26dp"
+        android:layout_height="26dp"
         android:id="@+id/close_sent_request_lising"
         android:layout_alignBottom="@+id/ratingBar6"
         android:layout_toRightOf="@+id/ratingBar6"
         android:layout_toEndOf="@+id/ratingBar6"
-        android:src="@drawable/tab_book_explore_cart_not"
+        android:src="@drawable/explore_btn_swap_active"
         android:layout_marginRight="10dp" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="30dp"
+        android:layout_height="20dp"
         android:id="@+id/close_buy_listings"
         android:layout_alignBottom="@+id/ratingBar6"
         android:layout_toRightOf="@+id/close_sent_request_lising"
         android:layout_toEndOf="@+id/close_sent_request_lising"
-        android:src="@drawable/tab_book_explore_free_not"
-        android:layout_marginRight="10dp" />
+        android:src="@drawable/explore_btn_free_dis_active"
+        android:layout_marginRight="5dp"
+        android:layout_alignTop="@+id/close_sent_request_lising" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="26dp"
+        android:layout_height="27dp"
         android:id="@+id/imageView42"
         android:layout_alignBottom="@+id/close_buy_listings"
         android:layout_toRightOf="@+id/close_buy_listings"
         android:layout_toEndOf="@+id/close_buy_listings"
-        android:src="@drawable/tab_book_explore_swap_not" />
+        android:src="@drawable/explore_btn_buy_dis_active"
+        android:layout_marginRight="5dp"
+        android:layout_marginTop="5dp" />
 </RelativeLayout>
 </RelativeLayout>
