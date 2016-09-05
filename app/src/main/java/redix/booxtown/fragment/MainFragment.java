@@ -26,11 +26,13 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -56,6 +58,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     public static String [] prgmNameList={"Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high"};
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
     private MenuBottomCustom bottom;
+
+    private LatLng latLngBounds;
 
     @Nullable
     @Override
@@ -178,6 +182,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         // latitude and longitude
         double latitude = 17.385044;
         double longitude = 78.486671;
+
+        latLngBounds = new LatLng(latitude,longitude);
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
@@ -197,6 +203,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.getUiSettings().setAllGesturesEnabled(true);
 
         mMap.setTrafficEnabled(true);
+
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

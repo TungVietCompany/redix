@@ -12,7 +12,7 @@ import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
 import redix.booxtown.fragment.WishboardFragment;
 
-/**
+/*
  * Created by Administrator on 26/08/2016.
  */
 public class MenuBottomCustom{
