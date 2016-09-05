@@ -114,34 +114,34 @@
             android:layout_toEndOf="@+id/txt_listed_by" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_rank3_listings"
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/icon_notification_infor1"
+            android:src="@drawable/btn_rank_three"
             android:layout_marginRight="10dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_rank2_listings"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/img_rank3_listings"
             android:layout_toStartOf="@+id/img_rank3_listings"
             android:layout_marginRight="10dp"
-            android:src="@drawable/icon_notification_infor3"
+            android:src="@drawable/btn_rank_two"
             android:layout_marginLeft="10dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="15dp"
+            android:layout_height="15dp"
             android:id="@+id/img_rank1_listings"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/img_rank2_listings"
             android:layout_toStartOf="@+id/img_rank2_listings"
-            android:src="@drawable/icon_notification_infor2" />
+            android:src="@drawable/btn_rank_one" />
 
     </RelativeLayout>
 
@@ -269,24 +269,24 @@
         android:layout_margin="5dp">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="25dp"
+            android:layout_height="40dp"
             android:id="@+id/img_swap_listing"
-            android:src="@drawable/tab_book_explore_swap"
+            android:src="@drawable/explore_btn_swap_active"
             android:layout_weight="0.70" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="30dp"
+            android:layout_height="22dp"
             android:id="@+id/img_free_listings"
-            android:src="@drawable/tab_book_explore_free"
+            android:src="@drawable/explore_btn_free_active"
             android:layout_margin="10dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
+            android:layout_width="24dp"
+            android:layout_height="40dp"
             android:id="@+id/img_buy_listing"
-            android:src="@drawable/tab_book_explore_cart"
+            android:src="@drawable/explore_btn_buy_active"
             android:layout_weight="0.80" />
     </TableRow>
 

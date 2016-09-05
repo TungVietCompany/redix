@@ -54,7 +54,7 @@ public class Faq_content extends ExpandableListActivity implements View.OnClickL
         title_menu.setText("FAQ");
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

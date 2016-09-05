@@ -3,6 +3,8 @@ package redix.booxtown.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -47,13 +49,17 @@ import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
 
 public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
-
+    private CoordinatorLayout coordinatorLayout;
     private GoogleMap mMap;
+    final int RQS_GooglePlayServices = 1;
 
+    ListView lv;
+    Context context;
+    ImageView close_menu;
     public static int [] prgmImages={R.drawable.home,R.drawable.notification,R.drawable.faq,R.drawable.invited,R.drawable.rate,R.drawable.about,R.drawable.contact1,R.drawable.setting,R.drawable.logout,R.drawable.unsub};
     public static String [] prgmNameList={"Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high"};
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
-
+    private MenuBottomCustom bottom;
 
     private LatLng latLngBounds;
 
@@ -63,7 +69,6 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.menus);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -161,6 +166,17 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     @Override
     public void onMapLongClick(LatLng latLng) {
     }
+
+//    @Override
+//    protected void onResume() {
+//        super.onResume();
+//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
+//        if (resultCode == ConnectionResult.SUCCESS){
+//        }else{
+//            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
+//        }
+//    }
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -178,6 +194,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         // adding marker
         mMap.addMarker(marker);
+
+
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
@@ -188,8 +206,9 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         mMap.setTrafficEnabled(true);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
 
+        mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
         mMap.setOnInfoWindowClickListener(this);
     }
@@ -204,6 +223,11 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         @Override
         public View getInfoContents(Marker marker) {
+//            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title_locate));
+//            tvTitle.setText(marker.getTitle());
+//            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet_locate));
+//            tvSnippet.setText(marker.getSnippet());
+
             return myContentsView;
         }
 

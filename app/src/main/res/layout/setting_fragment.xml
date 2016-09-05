@@ -141,13 +141,13 @@
             android:paddingBottom="10dp" />
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="12dp"
+            android:layout_height="24dp"
             android:id="@+id/imv_setting_editpass"
             android:layout_alignTop="@+id/textView17"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:background="@drawable/next"
+            android:background="@drawable/btn_interact_next"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp" />
 

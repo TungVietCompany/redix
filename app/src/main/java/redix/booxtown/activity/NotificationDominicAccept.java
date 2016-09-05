@@ -53,7 +53,7 @@ public class NotificationDominicAccept extends AppCompatActivity implements View
         txtTitle.setText("Notifications");
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -63,44 +63,27 @@ public class NotificationDominicAccept extends AppCompatActivity implements View
         });
         //end
 
+        //infor
+        ImageView imv_nitification_infor3_phone = (ImageView)findViewById(R.id.imv_nitification_infor3_phone);
+        imv_nitification_infor3_phone.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NotificationDominicAccept.this,UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
+        //end
+//bottom
         //--------------------------------------------------------------
-        img_menu_bottom_location.setOnClickListener(this);
-        img_menu_bottom_comment.setOnClickListener(this);
-        img_menu_bottom_camera.setOnClickListener(this);
-        img_menu_bottom_bag.setOnClickListener(this);
-        img_menu_bottom_user.setOnClickListener(this);
+        View view_bottom = (View)findViewById(R.id.menu_bottom_noti_sell_accept2);
+        bottomListings=new MenuBottomCustom(view_bottom,this,0);
+        bottomListings.setDefaut(0);
         //---------------------------------------------------------------
     }
 
     @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_menu_bottom_location:
-                Intent intent1 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
-                intent1.putExtra("key","1");
-                startActivity(intent1);
-                break;
-            case R.id.img_menu_bottom_comment:
-                Intent intent2 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
-                intent2.putExtra("key","2");
-                startActivity(intent2);
-                break;
-            case R.id.img_menu_bottom_camera:
-                Intent intent3 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
-                intent3.putExtra("key","3");
-                startActivity(intent3);
-                break;
-            case R.id.img_menu_bottom_bag:
-                Intent intent4 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
-                intent4.putExtra("key","4");
-                startActivity(intent4);
-                break;
-            case R.id.img_menu_bottom_user:
-                Intent intent5 = new Intent(NotificationDominicAccept.this,MainAllActivity.class);
-                intent5.putExtra("key","5");
-                startActivity(intent5);
-                break;
-
-        }
+    protected void onRestart() {
+        super.onRestart();
+        bottomListings.setDefaut(0);
     }
 }
