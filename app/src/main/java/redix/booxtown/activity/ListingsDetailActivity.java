@@ -68,7 +68,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
         img_menu.setImageResource(R.drawable.back);
-
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +102,8 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             img_close_dialog_unsubcribe.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
             params.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+            ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
+            img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
 
         }
