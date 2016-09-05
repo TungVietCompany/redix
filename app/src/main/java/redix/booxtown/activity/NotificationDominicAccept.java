@@ -17,12 +17,22 @@ import redix.booxtown.custom.NotificationAccept;
 /**
  * Created by thuyetpham94 on 28/08/2016.
  */
-public class NotificationDominicAccept extends AppCompatActivity {
-    private MenuBottomCustom bottomListings;
+public class NotificationDominicAccept extends AppCompatActivity implements View.OnClickListener{
+    ImageView img_menu_bottom_location;
+    ImageView img_menu_bottom_comment;
+    ImageView img_menu_bottom_camera;
+    ImageView img_menu_bottom_bag;
+    ImageView img_menu_bottom_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_sell_accept2);
+
+        img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
+        img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera);
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
 
         TextView txt_menu_notification_title2 = (TextView) findViewById(R.id.txt_menu_notification_title2);
         txt_menu_notification_title2.setText("you accepted a request form");

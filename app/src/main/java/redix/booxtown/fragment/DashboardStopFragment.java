@@ -69,7 +69,7 @@ public class DashboardStopFragment extends Fragment {
 
         //menu
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back_interact);
+        img_menu.setImageResource(R.drawable.back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

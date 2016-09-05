@@ -25,19 +25,23 @@ import redix.booxtown.custom.BorderImage;
 import redix.booxtown.custom.CustomListviewNotificationSwap;
 import redix.booxtown.custom.MenuBottomCustom;
 
-public class NotificationSwapActivity extends AppCompatActivity {
-    private Context mContext;
-    private Resources mResources;
-    private RelativeLayout mRelativeLayout;
-    private Button mBTN;
-    private ImageView mImageView;
-    private Bitmap mBitmap;
-    private MenuBottomCustom bottomListings;
+public class NotificationSwapActivity extends AppCompatActivity implements View.OnClickListener {
     public static String [] prgmNameList={"Home","Notifications","FAQ"};
+    ImageView img_menu_bottom_location;
+    ImageView img_menu_bottom_comment;
+    ImageView img_menu_bottom_camera;
+    ImageView img_menu_bottom_bag;
+    ImageView img_menu_bottom_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notification_swap);
+
+        img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
+        img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera);
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
 
         ListView listView = (ListView)findViewById(R.id.lv_notification_swap);
         listView.setAdapter(new CustomListviewNotificationSwap(NotificationSwapActivity.this, prgmNameList));
@@ -100,18 +104,43 @@ public class NotificationSwapActivity extends AppCompatActivity {
             }
         });
         //end
+        img_menu_bottom_location.setOnClickListener(this);
+        img_menu_bottom_comment.setOnClickListener(this);
+        img_menu_bottom_camera.setOnClickListener(this);
+        img_menu_bottom_bag.setOnClickListener(this);
+        img_menu_bottom_user.setOnClickListener(this);
 
-        //bottom
-        //--------------------------------------------------------------
-        View view_bottom = (View)findViewById(R.id.menu_bottom_noti_swap);
-        bottomListings=new MenuBottomCustom(view_bottom,this,0);
-        bottomListings.setDefaut(0);
-        //---------------------------------------------------------------
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottomListings.setDefaut(0);
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_menu_bottom_location:
+                Intent intent1 = new Intent(NotificationSwapActivity.this,MainAllActivity.class);
+                intent1.putExtra("key","1");
+                startActivity(intent1);
+                break;
+            case R.id.img_menu_bottom_comment:
+                Intent intent2 = new Intent(NotificationSwapActivity.this,MainAllActivity.class);
+                intent2.putExtra("key","2");
+                startActivity(intent2);
+                break;
+            case R.id.img_menu_bottom_camera:
+                Intent intent3 = new Intent(NotificationSwapActivity.this,MainAllActivity.class);
+                intent3.putExtra("key","3");
+                startActivity(intent3);
+                break;
+            case R.id.img_menu_bottom_bag:
+                Intent intent4 = new Intent(NotificationSwapActivity.this,MainAllActivity.class);
+                intent4.putExtra("key","4");
+                startActivity(intent4);
+                break;
+            case R.id.img_menu_bottom_user:
+                Intent intent5 = new Intent(NotificationSwapActivity.this,MainAllActivity.class);
+                intent5.putExtra("key","5");
+                startActivity(intent5);
+                break;
+
+        }
     }
 }

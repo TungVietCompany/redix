@@ -21,7 +21,6 @@ public class MyProfileDashboardFragment extends Fragment {
     public static int [] imgoffer={R.drawable.myprofile_buy_come,R.drawable.myprofile_free_back,R.drawable.myprofile_swap,R.drawable.myprofile_swap};
     public static int [] imgstatus={R.drawable.myprofile_tick,R.drawable.myprofile_not,R.drawable.myprofile_all_not,R.drawable.myprofile_not};
     public static String [] txtbook={"Nearest distance","Price low to high","Price high to low","Price high to low"};
-    private MenuBottomCustom menu_bottom;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -50,7 +49,7 @@ public class MyProfileDashboardFragment extends Fragment {
         title_menu.setText("My Profile");
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back_interact);
+        img_menu.setImageResource(R.drawable.back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

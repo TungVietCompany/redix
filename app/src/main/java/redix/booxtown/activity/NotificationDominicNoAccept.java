@@ -41,7 +41,7 @@ public class NotificationDominicNoAccept extends AppCompatActivity {
         img_menu_component.setVisibility(View.GONE);
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back_interact);
+        img_menu.setImageResource(R.drawable.back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

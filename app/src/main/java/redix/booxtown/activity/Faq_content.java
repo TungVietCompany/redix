@@ -2,6 +2,7 @@ package redix.booxtown.activity;
 
 import android.app.ExpandableListActivity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.CoordinatorLayout;
 import android.view.LayoutInflater;
@@ -16,14 +17,21 @@ import redix.booxtown.R;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.custom.NewAdapter;
 
-public class Faq_content extends ExpandableListActivity {
-    private CoordinatorLayout coordinatorLayout;
-    private MenuBottomCustom bottomListings;
+public class Faq_content extends ExpandableListActivity implements View.OnClickListener{
+    ImageView img_menu_bottom_location;
+    ImageView img_menu_bottom_comment;
+    ImageView img_menu_bottom_camera;
+    ImageView img_menu_bottom_bag;
+    ImageView img_menu_bottom_user;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_faq_content);
-
+        img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
+        img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera);
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
         //expland content
         ExpandableListView expandableListView = getExpandableListView();
 
@@ -57,18 +65,13 @@ public class Faq_content extends ExpandableListActivity {
 
         //bottom
         //--------------------------------------------------------------
-        View view_bottom = (View)findViewById(R.id.menu_bottom_faq_content);
-        bottomListings=new MenuBottomCustom(view_bottom,this,0);
-        bottomListings.setDefaut(0);
+        img_menu_bottom_location.setOnClickListener(this);
+        img_menu_bottom_comment.setOnClickListener(this);
+        img_menu_bottom_camera.setOnClickListener(this);
+        img_menu_bottom_bag.setOnClickListener(this);
+        img_menu_bottom_user.setOnClickListener(this);
         //---------------------------------------------------------------
     }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        bottomListings.setDefaut(0);
-    }
-
     public void setGroupData() {
         groupItem.add("TechNology");
         groupItem.add("Mobile");
@@ -109,5 +112,37 @@ public class Faq_content extends ExpandableListActivity {
         child.add("Thanks for the code. Please from now on share code in your question by editing it," +
                 " since it is not readable in comment. Also, please share your main layout");
         childItem.add(child);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.img_menu_bottom_location:
+                Intent intent1 = new Intent(Faq_content.this,MainAllActivity.class);
+                intent1.putExtra("key","1");
+                startActivity(intent1);
+                break;
+            case R.id.img_menu_bottom_comment:
+                Intent intent2 = new Intent(Faq_content.this,MainAllActivity.class);
+                intent2.putExtra("key","2");
+                startActivity(intent2);
+                break;
+            case R.id.img_menu_bottom_camera:
+                Intent intent3 = new Intent(Faq_content.this,MainAllActivity.class);
+                intent3.putExtra("key","3");
+                startActivity(intent3);
+                break;
+            case R.id.img_menu_bottom_bag:
+                Intent intent4 = new Intent(Faq_content.this,MainAllActivity.class);
+                intent4.putExtra("key","4");
+                startActivity(intent4);
+                break;
+            case R.id.img_menu_bottom_user:
+                Intent intent5 = new Intent(Faq_content.this,MainAllActivity.class);
+                intent5.putExtra("key","5");
+                startActivity(intent5);
+                break;
+
+        }
     }
 }

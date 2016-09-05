@@ -176,11 +176,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 //            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
 //        }
 //    }
-public Bitmap resizeMapIcons(int width, int height){
-    Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier("icon_swap", "drawable", getActivity().getPackageName()));
-    Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
-    return resizedBitmap;
-}
+
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
@@ -194,7 +190,7 @@ public Bitmap resizeMapIcons(int width, int height){
         MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
 
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(110,150)));
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
 
         // adding marker
         mMap.addMarker(marker);
@@ -210,7 +206,7 @@ public Bitmap resizeMapIcons(int width, int height){
 
         mMap.setTrafficEnabled(true);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,12));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

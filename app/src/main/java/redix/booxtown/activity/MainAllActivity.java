@@ -29,7 +29,7 @@ import redix.booxtown.fragment.WishboardFragment;
 /**
  * Created by Administrator on 03/09/2016.
  */
-public class MainAllActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainAllActivity extends AppCompatActivity{
 
     View view_top;
     View view_bottom;
@@ -219,18 +219,6 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
         transaction.replace(R.id.frame_main_all, fragment);
         transaction.commit();
-    }
-
-    @Override
-    public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.img_menu_bottom_location:
-                callFragment(new RateFragment());
-                break;
-            case R.id.img_menu_bottom_comment:
-                callFragment(new AboutFragment());
-                break;
-        }
     }
 
     public void setDefaut(int i){
