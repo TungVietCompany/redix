@@ -255,7 +255,6 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
             MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
             // Changing marker icon
             marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
-
             // adding marker
             mMap.addMarker(marker);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));

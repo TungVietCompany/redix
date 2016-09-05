@@ -56,13 +56,13 @@
         android:src="@drawable/img_temp1" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:id="@+id/imageView32"
         android:layout_alignBottom="@+id/imageView31"
         android:layout_toRightOf="@+id/imageView31"
         android:layout_toEndOf="@+id/imageView31"
-        android:src="@drawable/icon_add_img" />
+        android:src="@drawable/btn_add" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -252,13 +252,13 @@
         android:layout_alignStart="@+id/textView113" />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
         android:id="@+id/imageView33"
         android:layout_alignTop="@+id/editText10"
         android:layout_toRightOf="@+id/editText10"
         android:layout_toEndOf="@+id/editText10"
-        android:src="@drawable/icon_add_img"
+        android:src="@drawable/btn_add"
         android:layout_marginTop="5dp"
         android:layout_marginLeft="5dp" />
 
@@ -407,12 +407,13 @@
         />
 
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="13dp"
+        android:layout_height="10dp"
         android:id="@+id/img_menu_genre"
         android:layout_alignTop="@+id/textView107"
-        android:src="@drawable/icon_spin"
+        android:src="@drawable/btn_down"
         android:longClickable="true"
+        android:layout_marginTop="8dp"
         android:layout_alignBottom="@+id/txt_menu_genre1"
         android:layout_alignRight="@+id/textView107"
         android:layout_alignEnd="@+id/textView107" />

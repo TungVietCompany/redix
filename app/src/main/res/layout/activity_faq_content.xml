@@ -59,15 +59,16 @@
                 android:paddingLeft="10dp" />
 
             <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="20dp"
+                android:layout_height="40dp"
                 android:id="@+id/imageView"
-                android:src="@drawable/icon_search"
-                android:padding="15dp"
+                android:src="@drawable/btn_locate_search"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"
-                android:layout_marginTop="5dp" />
+                android:layout_marginTop="5dp"
+                android:layout_alignBottom="@+id/editSearch"
+                android:layout_marginRight="10dp" />
         </RelativeLayout>
 
         <ExpandableListView
