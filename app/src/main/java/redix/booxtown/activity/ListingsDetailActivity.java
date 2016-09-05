@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Gravity;
@@ -38,6 +39,7 @@ import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.adapter.CustomPagerAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.MainFragment;
+import redix.booxtown.fragment.MyProfileFragment;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.InteractComment;
 
@@ -63,6 +65,17 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
+
+        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.back);
+
+        img_menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+//                mainAllActivity.callFragment(new ListFragment());
+            }
+        });
 
 
         TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
@@ -129,12 +142,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
                 return false;
             }
         });
-
-
-
-
-
-
         return v;
 
     }

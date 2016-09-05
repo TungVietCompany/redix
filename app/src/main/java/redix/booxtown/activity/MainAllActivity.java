@@ -48,7 +48,7 @@ public class MainAllActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main_all);
-
+        initLayout();
         view_top = (View) findViewById(R.id.menu_top_all);
         txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
         txtTitle.setText("Locate");
@@ -67,25 +67,34 @@ public class MainAllActivity extends AppCompatActivity{
             }else if(i==2){
                 initLayout();
                 callFragment(new InteractFragment());
+                img_component.setVisibility(View.GONE);
+                txtTitle.setText("Interact");
                 setDefaut(2);
             }else if(i==3){
                 initLayout();
                 callFragment(new ListingsFragment());
+                img_component.setVisibility(View.GONE);
+                txtTitle.setText("Listings");
                 setDefaut(3);
             }else if(i==4){
                 initLayout();
                 callFragment(new WishboardFragment());
+                img_component.setVisibility(View.VISIBLE);
+                img_component.setImageResource(R.drawable.btn_add_wishbroad);
+                txtTitle.setText("Wishboard");
                 setDefaut(4);
             }else if(i==5){
                 initLayout();
                 callFragment(new MyProfileFragment());
+                img_component.setVisibility(View.GONE);
+                txtTitle.setText("My Profile");
                 setDefaut(5);
             }
         }else {
             callFragment(new MainFragment());
         }
 
-        img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
+        
         Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
         img_component.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -111,11 +120,12 @@ public class MainAllActivity extends AppCompatActivity{
             public void onClick(View view) {
                 Intent intent = new Intent(MainAllActivity.this,MenuActivity.class);
                 startActivity(intent);
+
             }
         });
 
         //-------------------------------------------------------
-        initLayout();
+
 
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +161,6 @@ public class MainAllActivity extends AppCompatActivity{
                 callFragment(new ListingsFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Listings");
-
                 setDefaut(3);
             }
         });
@@ -186,6 +195,9 @@ public class MainAllActivity extends AppCompatActivity{
     public void initLayout(){
         view_top = (View) findViewById(R.id.menu_top_all);
         txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
+        img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
+        view_top = (View) findViewById(R.id.menu_top_all);
+        txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
         txtTitle.setText("Locate");
         flag=true;
         img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
@@ -218,6 +230,7 @@ public class MainAllActivity extends AppCompatActivity{
         FragmentTransaction transaction = manager.beginTransaction();
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
         transaction.replace(R.id.frame_main_all, fragment);
+        transaction.addToBackStack(null);
         transaction.commit();
     }
 
