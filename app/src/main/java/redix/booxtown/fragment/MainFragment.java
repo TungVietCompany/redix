@@ -61,6 +61,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.menus);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

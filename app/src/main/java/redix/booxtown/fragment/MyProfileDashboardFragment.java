@@ -21,7 +21,6 @@ public class MyProfileDashboardFragment extends Fragment {
     public static int [] imgoffer={R.drawable.icon_sell_blue,R.drawable.icon_free_blue,R.drawable.icon_swap_blue,R.drawable.icon_swap_blue};
     public static int [] imgstatus={R.drawable.icon_status_profile,R.drawable.icon_stop_profile,R.drawable.icon_delete_profile,R.drawable.icon_delete_profile};
     public static String [] txtbook={"Nearest distance","Price low to high","Price high to low","Price high to low"};
-    private MenuBottomCustom menu_bottom;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
