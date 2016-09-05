@@ -259,7 +259,7 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
             // adding marker
             mMap.addMarker(marker);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-            mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+            mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
             mMap.getUiSettings().setZoomControlsEnabled(true);
             mMap.getUiSettings().setCompassEnabled(true);
             mMap.getUiSettings().setMyLocationButtonEnabled(true);

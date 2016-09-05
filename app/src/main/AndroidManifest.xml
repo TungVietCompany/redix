@@ -34,7 +34,6 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -44,11 +43,6 @@
         <activity
             android:name=".activity.SigUp_Activity"
             android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".activity.SignIn_Activity"
@@ -62,7 +56,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAGgKk_NkwjdhtjRNjCvZZiYqNUSe4M3wU" />
+            android:value="AIzaSyBN4rdozjYTxjEm_coEEjVcypH7Xd1Xqbc" />
         <activity android:name=".activity.Faq_content" />
         <!-- activity for Explore -->
 
@@ -90,7 +84,6 @@
         <activity android:name=".activity.RespondActivity" />
         <activity android:name=".activity.SwapActivity" />
         <activity android:name=".activity.AddbookActivity" />
-        <activity android:name=".activity.ListingCollectionActivity" />
         <activity android:name=".activity.HomeActivity"></activity>
     </application>
 

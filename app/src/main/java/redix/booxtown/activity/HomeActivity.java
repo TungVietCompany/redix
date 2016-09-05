@@ -16,6 +16,7 @@ import redix.booxtown.fragment.AboutFragment;
 import redix.booxtown.fragment.ContactFragment;
 import redix.booxtown.fragment.FaqFragment;
 import redix.booxtown.fragment.InviteFriendFragment;
+import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.NotificationFragment;
 import redix.booxtown.fragment.RateFragment;
 import redix.booxtown.fragment.SettingFragment;
@@ -24,6 +25,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     ImageView img_menu_bottom_location;
     ImageView img_menu_bottom_comment;
+    ImageView img_menu_bottom_camera;
+    ImageView img_menu_bottom_bag;
+    ImageView img_menu_bottom_user;
     private MenuBottomCustom menu_bottom;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +37,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         Intent intent = getIntent();
         img_menu_bottom_location = (ImageView)findViewById(R.id.img_menu_bottom_location);
         img_menu_bottom_comment = (ImageView)findViewById(R.id.img_menu_bottom_comment);
-
+        img_menu_bottom_camera = (ImageView)findViewById(R.id.img_menu_bottom_camera) ;
+        img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag) ;
+        img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user) ;
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.GONE);
 
@@ -88,6 +94,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         img_menu_bottom_location.setOnClickListener(this);
         img_menu_bottom_comment.setOnClickListener(this);
+        img_menu_bottom_camera.setOnClickListener(this);
+        img_menu_bottom_bag.setOnClickListener(this);
+        img_menu_bottom_user.setOnClickListener(this);
     }
 
     public void callFragment(Fragment fragment) {
@@ -102,11 +111,31 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.img_menu_bottom_location:
-                callFragment(new RateFragment());
+                Intent intent1 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent1.putExtra("key","1");
+                startActivity(intent1);
                 break;
             case R.id.img_menu_bottom_comment:
-                callFragment(new AboutFragment());
+                Intent intent2 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent2.putExtra("key","2");
+                startActivity(intent2);
                 break;
+            case R.id.img_menu_bottom_camera:
+                Intent intent3 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent3.putExtra("key","3");
+                startActivity(intent3);
+                break;
+            case R.id.img_menu_bottom_bag:
+                Intent intent4 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent4.putExtra("key","4");
+                startActivity(intent4);
+                break;
+            case R.id.img_menu_bottom_user:
+                Intent intent5 = new Intent(HomeActivity.this,MainAllActivity.class);
+                intent5.putExtra("key","5");
+                startActivity(intent5);
+                break;
+
         }
     }
 

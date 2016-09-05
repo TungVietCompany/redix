@@ -194,7 +194,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.addMarker(marker);
 
 
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
 
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
@@ -204,7 +204,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         mMap.setTrafficEnabled(true);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

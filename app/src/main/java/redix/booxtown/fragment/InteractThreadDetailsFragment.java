@@ -15,6 +15,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Interact;
@@ -54,7 +55,8 @@ public class InteractThreadDetailsFragment extends Fragment
                     callFragment(fragment);
                 }
                 else {
-                    //callFragment(new NotificationFragment());
+                    HomeActivity home= (HomeActivity)getActivity();
+                    home.callFragment(new NotificationFragment());
                     txt_title.setText("Notifications");
                 }
 

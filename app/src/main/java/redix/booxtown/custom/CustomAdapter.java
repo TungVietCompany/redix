@@ -38,7 +38,8 @@ public class CustomAdapter extends RecyclerView.Adapter<CustomAdapter.RecyclerVi
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.tv.setText(result[position]);
-        Glide.with(ctext).load(imageId[position]).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.img);
+//        Glide.with(ctext).load(imageId[position]).diskCacheStrategy(DiskCacheStrategy.ALL).into(holder.img);
+        holder.img.setImageResource(imageId[position]);
         //holder.img.setImageResource(imageId[position]);
         if(position == result.length-1){
             holder.txt_menu_cross.setVisibility(View.GONE);

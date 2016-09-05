@@ -10,6 +10,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -52,6 +53,38 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         txtTitle = (TextView) view_top.findViewById(R.id.txt_title);
         txtTitle.setText("Locate");
         flag=true;
+        Intent intent = getIntent();
+
+        if(intent.getStringExtra("key")!=null){
+            int i =Integer.parseInt(intent.getStringExtra("key"));
+
+            Toast.makeText(MainAllActivity.this,"key"+i,Toast.LENGTH_LONG).show();
+
+            if(i==1){
+                initLayout();
+                callFragment(new MainFragment());
+                setDefaut(1);
+            }else if(i==2){
+                initLayout();
+                callFragment(new InteractFragment());
+                setDefaut(2);
+            }else if(i==3){
+                initLayout();
+                callFragment(new ListingsFragment());
+                setDefaut(3);
+            }else if(i==4){
+                initLayout();
+                callFragment(new WishboardFragment());
+                setDefaut(4);
+            }else if(i==5){
+                initLayout();
+                callFragment(new MyProfileFragment());
+                setDefaut(5);
+            }
+        }else {
+            callFragment(new MainFragment());
+        }
+
         img_component = (ImageView) view_top.findViewById(R.id.img_menu_component);
         Glide.with(MainAllActivity.this).load(R.drawable.btn_explore).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_component);
         img_component.setOnClickListener(new View.OnClickListener() {
@@ -82,11 +115,7 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         });
 
         //-------------------------------------------------------
-        btn_location = (ImageView) findViewById(R.id.img_menu_bottom_location);
-        btn_commnet = (ImageView) findViewById(R.id.img_menu_bottom_comment);
-        btn_camera = (ImageView) findViewById(R.id.img_menu_bottom_camera);
-        btn_bag = (ImageView) findViewById(R.id.img_menu_bottom_bag);
-        btn_user = (ImageView) findViewById(R.id.img_menu_bottom_user);
+        initLayout();
 
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -148,8 +177,6 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
         });
         //-------------------------------------------------------
 
-        callFragment(new MainFragment());
-
     }
 
     public TextView gettitle(){
@@ -180,6 +207,11 @@ public class MainAllActivity extends AppCompatActivity implements View.OnClickLi
                 }
             }
         });
+        btn_location = (ImageView) findViewById(R.id.img_menu_bottom_location);
+        btn_commnet = (ImageView) findViewById(R.id.img_menu_bottom_comment);
+        btn_camera = (ImageView) findViewById(R.id.img_menu_bottom_camera);
+        btn_bag = (ImageView) findViewById(R.id.img_menu_bottom_bag);
+        btn_user = (ImageView) findViewById(R.id.img_menu_bottom_user);
     }
     public void callFragment(Fragment fragment) {
         FragmentManager manager = getSupportFragmentManager();
