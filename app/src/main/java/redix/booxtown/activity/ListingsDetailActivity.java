@@ -76,6 +76,8 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             }
         });
 
+        RelativeLayout menu_search = (RelativeLayout)getActivity().findViewById(R.id.custom_search);
+        menu_search.setVisibility(View.GONE);
 
         TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
         EditText editText11 = (EditText) v.findViewById(R.id.editText11);
