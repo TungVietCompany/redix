@@ -34,7 +34,7 @@ public class DashboardStatusFragment extends Fragment {
         txt_menu_dashboard_cancel.setVisibility(View.GONE);
         //menu
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
         TextView title_menu = (TextView)getActivity().findViewById(R.id.txt_title);
         title_menu.setText("Dashboard");
         img_menu.setOnClickListener(new View.OnClickListener() {

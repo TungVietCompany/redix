@@ -15,10 +15,12 @@
             android:text="Post a book to Wishboard"
             android:id="@+id/textView138"
             android:gravity="center"
-            android:layout_margin="20dp"
             android:textColor="@color/dot_light_screen1"
             android:textSize="20sp"
-            />
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="20dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -63,8 +65,8 @@
             android:gravity="center_vertical|center"
             android:layout_below="@+id/editText13"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="30dp" />
 
     </RelativeLayout>
 

@@ -47,15 +47,11 @@
             android:adjustViewBounds="true" />
 
         <ImageView
-            android:layout_width="20dp"
-            android:layout_height="match_parent"
+            android:layout_width="24dp"
+            android:layout_height="18dp"
             android:id="@+id/button2"
-            android:layout_alignTop="@+id/editSearch"
-            android:layout_alignBottom="@+id/editSearch"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_toLeftOf="@+id/btn_filter_explore"
-            android:layout_marginRight="10dp"
-            android:src="@drawable/btn_locate_search" />
+            android:src="@drawable/btn_locate_search"
+            android:layout_centerVertical="true"
+            android:layout_toLeftOf="@+id/btn_filter_explore" />
         </RelativeLayout>
 </RelativeLayout>

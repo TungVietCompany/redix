@@ -163,8 +163,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         btn_menu_listing_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ListingsFragment.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(),ListingsFragment.class);
+//                startActivity(intent);
+                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+                mainAllActivity.callFragment(new ListingsFragment());
             }
         });
 

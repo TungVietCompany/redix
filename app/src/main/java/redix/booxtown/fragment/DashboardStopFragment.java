@@ -33,7 +33,7 @@ public class DashboardStopFragment extends Fragment {
         txt_menu_dashboard_cancel.setVisibility(View.GONE);
 
         Button btn_menu_dashboard_bottom_rate = (Button) view.findViewById(R.id.btn_menu_dashboard_bottom_rate);
-        btn_menu_dashboard_bottom_rate.setBackgroundResource(R.drawable.icon_dashboard_stop);
+        btn_menu_dashboard_bottom_rate.setBackgroundResource(R.drawable.btn_xam);
 
         ImageView img_menu_dashboard_bottom_status = (ImageView)view.findViewById(R.id.img_menu_dashboard_bottom_status);
         img_menu_dashboard_bottom_status.setImageResource(R.drawable.icon_stop_profile);
