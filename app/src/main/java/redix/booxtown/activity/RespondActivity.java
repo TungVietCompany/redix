@@ -3,7 +3,9 @@ package redix.booxtown.activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
@@ -84,6 +86,15 @@ public class RespondActivity extends AppCompatActivity
 
         listView.setDivider(null);
         listView.setAdapter(adapter);
+        Log.d("adapterRespone",String.valueOf(adapter.getCount()));
+
+        listView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
         //---------------------------------------------------------------
 
     }

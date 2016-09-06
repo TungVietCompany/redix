@@ -43,7 +43,6 @@ public class UserController {
 
 
     public boolean signUp(User user){
-        boolean success = false;
         Call<Result> callService = service.addUser(user);
         try{
             if (android.os.Build.VERSION.SDK_INT > 9) {

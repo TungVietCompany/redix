@@ -19,6 +19,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -43,7 +45,7 @@ public class InteractThreadFragment extends Fragment
         final View view = inflater.inflate(R.layout.interact_thread_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
+        Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

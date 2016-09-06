@@ -122,6 +122,7 @@ public class MainAllActivity extends AppCompatActivity{
             }
         });
 
+
         //-------------------------------------------------------
 
 
@@ -312,5 +313,10 @@ public class MainAllActivity extends AppCompatActivity{
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
