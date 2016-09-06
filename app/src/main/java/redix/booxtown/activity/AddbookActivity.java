@@ -21,6 +21,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -59,7 +60,7 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
         ImageView img_component = (ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
         ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.back);
+        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
 
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,6 +94,10 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
 
         Button btn_menu_editlist_addbook = (Button)findViewById(R.id.btn_menu_listing_addbook);
         btn_menu_editlist_addbook.setVisibility(View.VISIBLE);
+
+        TableRow row= (TableRow) findViewById(R.id.row_edit_book) ;
+        row.setVisibility(View.GONE);
+
         btn_menu_editlist_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -272,8 +272,9 @@
             android:layout_width="25dp"
             android:layout_height="40dp"
             android:id="@+id/img_swap_listing"
-            android:src="@drawable/explore_btn_swap_active"
-            android:layout_weight="0.70" />
+            android:src="@drawable/explore_btn_buy_active"
+            android:layout_weight="0.8"
+            android:layout_marginRight="10dp" />
 
         <ImageView
             android:layout_width="30dp"
@@ -286,8 +287,9 @@
             android:layout_width="24dp"
             android:layout_height="40dp"
             android:id="@+id/img_buy_listing"
-            android:src="@drawable/explore_btn_buy_active"
-            android:layout_weight="0.80" />
+            android:src="@drawable/explore_btn_swap_active"
+            android:layout_weight="0.80"
+            android:layout_marginLeft="10dp" />
     </TableRow>
 
     <include

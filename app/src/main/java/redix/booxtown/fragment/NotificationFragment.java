@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -47,7 +48,7 @@ public class NotificationFragment extends Fragment {
         RecyclerView lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getActivity());
         lv_notification.setLayoutManager(layoutManager);
-        Custom_ListView_Notification menu = new Custom_ListView_Notification(prgmNameList,prgmNameList);
+        Custom_ListView_Notification menu = new Custom_ListView_Notification(getActivity(),prgmNameList,prgmNameList);
         lv_notification.setAdapter(menu);
         lv_notification.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
@@ -60,7 +61,6 @@ public class NotificationFragment extends Fragment {
                             interact1.setStatus(true);
                             interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
                             interact1.setInteractThreadAddBy("Derek Jarma");
-
                             listInteractThreads.add(interact1);
                             InteractThread item = (InteractThread) listInteractThreads.get(0);
                             InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();

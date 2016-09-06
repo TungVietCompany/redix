@@ -24,13 +24,13 @@
             android:layout_marginTop="20dp" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="223dp"
+            android:layout_height="36dp"
             android:text="Done"
             android:id="@+id/button_spiner_genre"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:background="@drawable/change_pass"
+            android:background="@drawable/bg_interact_bt_popup"
             android:singleLine="true"
             android:layout_marginBottom="15dp" />
     </RelativeLayout>
@@ -40,10 +40,10 @@
         android:layout_height="wrap_content">
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
             android:id="@+id/img_close_dialoggenre"
-            android:src="@drawable/close_popup"
+            android:src="@drawable/btn_close_filter"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

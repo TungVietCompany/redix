@@ -23,7 +23,7 @@ public class DashboardDeleteFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.dashboard_fragment,container,false);
         ImageView img_menu_dashboard_bottom_status = (ImageView)view.findViewById(R.id.img_menu_dashboard_bottom_status);
-        img_menu_dashboard_bottom_status.setImageResource(R.drawable.icon_delete_profile);
+        img_menu_dashboard_bottom_status.setImageResource(R.drawable.myprofile_all_not);
 
         Button btn_menu_dashboard_bottom_rate = (Button)view.findViewById(R.id.btn_menu_dashboard_bottom_rate);
         btn_menu_dashboard_bottom_rate.setVisibility(View.GONE);
@@ -34,7 +34,7 @@ public class DashboardDeleteFragment extends Fragment {
 
         //menu
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.back);
+        img_menu.setImageResource(R.drawable.btn_sign_in_back);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

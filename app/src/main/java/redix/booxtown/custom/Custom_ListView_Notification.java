@@ -1,5 +1,6 @@
 package redix.booxtown.custom;
 
+import android.content.Context;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +15,10 @@ import redix.booxtown.R;
 public class Custom_ListView_Notification extends RecyclerView.Adapter<Custom_ListView_Notification.RecyclerViewHolder> {
     String [] tv;
     String [] tv_content;
-    public Custom_ListView_Notification(String[] tv, String[] tv_content) {
+    Context context;
+    public Custom_ListView_Notification(Context context,String[] tv, String[] tv_content) {
         // TODO Auto-generated constructor stub
+        this.context = context;
         this.tv = tv;
         this.tv_content=tv_content;
     }
@@ -29,6 +32,9 @@ public class Custom_ListView_Notification extends RecyclerView.Adapter<Custom_Li
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
+        if (position==0){
+            holder.tv.setTextColor(context.getResources().getColor(R.color.color_list_noti));
+        }
         holder.tv.setText(tv[position]);
         holder.tv_content.setText(tv_content[position]);
     }

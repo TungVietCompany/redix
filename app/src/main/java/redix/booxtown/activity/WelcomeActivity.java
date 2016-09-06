@@ -62,14 +62,13 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome_slide2,
                 R.layout.welcome_slide3,
                 R.layout.welcome_slide4};
-
         // adding bottom dots
         addBottomDots(0);
 
         // making notification bar transparent
         changeStatusBarColor();
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
+        myViewPagerAdapter = new MyViewPagerAdapter(layouts);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 //        viewPager.setInterval(2000);
@@ -149,16 +148,16 @@ public class WelcomeActivity extends AppCompatActivity {
      */
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
+        int [] layouts1;
+        public MyViewPagerAdapter(int [] layouts) {
+            this.layouts1 = layouts;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(layouts[position], container, false);
+            View view = layoutInflater.inflate(layouts1[0], container, false);
             container.addView(view);
-
             return view;
         }
 
