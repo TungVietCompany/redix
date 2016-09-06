@@ -45,7 +45,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="Ayn rand"
         android:id="@+id/textView45"
         android:layout_below="@+id/textView44"
         android:layout_centerHorizontal="true"
@@ -66,7 +66,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="The last painting"
+        android:text="The last painting of Sara de Vos"
         android:id="@+id/textView46"
         android:layout_below="@+id/include13"
         android:layout_centerHorizontal="true"
@@ -75,7 +75,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="abcsshahaha"
+        android:text="Dominic Smith"
         android:id="@+id/textView47"
         android:layout_below="@+id/textView46"
         android:layout_centerHorizontal="true"

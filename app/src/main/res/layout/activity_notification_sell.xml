@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Evil Thuyet"
+        android:text="Evil Queen : The last paintings"
         android:id="@+id/textView48"
         android:layout_below="@+id/include16"
         android:layout_alignParentRight="true"
@@ -49,16 +49,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="evinvnvn"
+        android:text="Ayn rand"
         android:id="@+id/textView49"
         android:layout_below="@+id/textView48"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textColor="@color/color_text_hint"
+        android:theme="@style/MyEditTextTheme"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="20000VND"
+        android:text="AED 220"
         android:id="@+id/textView50"
         android:layout_below="@+id/textView49"
         android:layout_centerHorizontal="true"

@@ -35,6 +35,9 @@ public class Notification_Swap_Accept_Like extends AppCompatActivity implements 
         TextView txt_notification_infor3_phone = (TextView)findViewById(R.id.txt_notification_infor3_phone);
         txt_notification_infor3_phone.setVisibility(View.GONE);
 
+        TextView txt_menu_notification_infor3_title = (TextView)findViewById(R.id.txt_menu_notification_infor3_title);
+        txt_menu_notification_infor3_title.setText("Rejected your swap reject for");
+
         //menu
         TextView txt_menu_notification_title2 = (TextView)findViewById(R.id.txt_menu_notification_title2);
         txt_menu_notification_title2.setText("Sorry!");
