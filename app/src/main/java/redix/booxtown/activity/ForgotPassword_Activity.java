@@ -40,7 +40,7 @@ Button mButtonBackForgot;
                 if (success == true){
                     Toast.makeText(getApplicationContext(), "Check Email Please", Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getApplicationContext(), "Email Eror", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_LONG).show();
                 }
                 break;
 

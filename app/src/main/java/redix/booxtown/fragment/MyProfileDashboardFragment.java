@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterProfileDashboard;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -49,8 +51,7 @@ public class MyProfileDashboardFragment extends Fragment {
         title_menu.setText("My Profile");
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.btn_sign_in_back);
-
+        Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

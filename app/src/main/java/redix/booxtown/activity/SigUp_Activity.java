@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.regex.Pattern;
+
 import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.model.User;
@@ -22,6 +24,15 @@ Button mButtonBackSigup;
     EditText edt_birthday;
     String birthday;
     TextView signUp;
+    public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,6 +53,11 @@ Button mButtonBackSigup;
 //        birthday = String.valueOf(edt_birthday.getYear()) + String.valueOf(edt_birthday.getMonth()) + String.valueOf(edt_birthday.getDayOfMonth());
 
 
+    }
+
+
+    private boolean checkEmail(String email) {
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 
     @Override
@@ -67,12 +83,12 @@ Button mButtonBackSigup;
                     Toast.makeText(getApplicationContext(),"Phone null",Toast.LENGTH_LONG).show();
                 }else if(edt_birthday.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"Birthday null",Toast.LENGTH_LONG).show();
-                }else if(edt_mail.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Email null",Toast.LENGTH_LONG).show();
+                }else if(checkEmail(edt_mail.getText().toString()) == false){
+                    Toast.makeText(getApplicationContext(),"invalid email address",Toast.LENGTH_LONG).show();
                 }else if(edt_password.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"Password null",Toast.LENGTH_LONG).show();
                 }else if(!edt_password.getText().toString().equals(edt_confirmpass.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Enter Password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Password not match",Toast.LENGTH_LONG).show();
                 }else if (checkSignup.isChecked() == false) {
                     Toast.makeText(getApplicationContext(), "unCheck", Toast.LENGTH_LONG).show();
 
@@ -82,6 +98,8 @@ Button mButtonBackSigup;
                         Intent intent = new Intent(SigUp_Activity.this,MainAllActivity.class);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                    }else {
+                        Toast.makeText(getApplicationContext(), "Username has already been taken", Toast.LENGTH_LONG).show();
                     }
                 }
 
