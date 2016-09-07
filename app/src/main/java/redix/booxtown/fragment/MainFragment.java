@@ -3,6 +3,7 @@ package redix.booxtown.fragment;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -61,7 +62,6 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     public static String [] prgmNameList={"Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high","Price high to low","Recently added","Nearest distance","Price low to high"};
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
     private MenuBottomCustom bottom;
-
     private LatLng latLngBounds;
 
     @Nullable
@@ -87,6 +87,11 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         filterSort(view);
 
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 
     public void filterSort(View view){

@@ -1,17 +1,24 @@
 package redix.booxtown.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
+import redix.booxtown.model.Result;
 
 public class SignIn_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonForgotPass;
@@ -19,6 +26,7 @@ Button mButtonForgotPass;
     TextView mButtonBackSignIn;
     Button mButtonBack;
     Button mButtonSigin;
+    Result result;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,16 +54,62 @@ Button mButtonForgotPass;
                 startActivity(itentback);
                 break;
             case R.id.btn_sigin:
-                UserController userController  = new UserController();
-                boolean success = userController.checkLoginValidate(edt_username.getText().toString(),edt_pass.getText().toString(),"iphonecuatung");
-                if (success ==true){
-                    Intent intent = new Intent(SignIn_Activity.this,MainAllActivity.class);
-                    startActivity(intent);
+                if (edt_username.getText().toString().equals("")){
+                    Toast.makeText(getApplicationContext(),"Enter username please",Toast.LENGTH_LONG).show();
+                }else  if (edt_pass.getText().toString().equals("")){
+                Toast.makeText(getApplicationContext(),"Enter password please",Toast.LENGTH_LONG).show();
                 }else {
-                    Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();
+                    SiginAsystask siginAsystask = new SiginAsystask();
+                    siginAsystask.execute(edt_username.getText().toString(), edt_pass.getText().toString(), "iphonecuatung");
                 }
             default:
                 break;
         }
+    }
+
+
+    class SiginAsystask extends AsyncTask<String,Void,String>{
+
+        ProgressDialog dialog;
+
+        @Override
+        protected String doInBackground(String... params) {
+            UserController userController  = new UserController();
+            String session_id = userController.checkLoginValidate(params[0],params[1],params[2]);
+            return session_id;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(SignIn_Activity.this);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String aBoolean) {
+            if (aBoolean != null) {
+                Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
+                startActivity(intent);
+                dialog.dismiss();
+                String session_id = aBoolean.toString();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("session_id", session_id);
+                editor.commit();
+            }else {
+                Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(aBoolean);
+        }
+    }
+
+    @Override
+    public void onBackPressed() {
+        Intent iten = new Intent(SignIn_Activity.this,WelcomeActivity.class);
+        startActivity(iten);
+        finish();
     }
 }
