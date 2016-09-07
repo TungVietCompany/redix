@@ -105,8 +105,7 @@ Button mButtonBackSigup;
 
                 break;
             case R.id.btn_back_sigup:
-                Intent intent = new Intent(SigUp_Activity.this,WelcomeActivity.class);
-                startActivity(intent);
+                onBackPressed();
                 break;
             default:
                 break;

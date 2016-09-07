@@ -10,4 +10,6 @@
         android:layout_height="match_parent"
         android:id="@+id/img_splash"
         android:background="@drawable/splash"/>
+
+
 </RelativeLayout>

@@ -94,6 +94,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent itent = new Intent(WelcomeActivity.this,SigUp_Activity.class);
                 startActivity(itent);
+
             }
         });
 
@@ -102,6 +103,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent itent = new Intent(WelcomeActivity.this,SignIn_Activity.class);
                 startActivity(itent);
+                
             }
         });
     }

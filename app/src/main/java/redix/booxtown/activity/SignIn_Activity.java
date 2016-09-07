@@ -42,8 +42,7 @@ Button mButtonForgotPass;
                 startActivity(itent);
                 break;
             case R.id.btn_back_sigin:
-                Intent itentback = new Intent(SignIn_Activity.this,WelcomeActivity.class);
-                startActivity(itentback);
+                onBackPressed();
                 break;
             case R.id.btn_sigin:
                 UserController userController  = new UserController();
