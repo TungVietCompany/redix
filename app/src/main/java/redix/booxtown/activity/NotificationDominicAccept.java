@@ -36,7 +36,7 @@ public class NotificationDominicAccept extends AppCompatActivity implements View
         txt_menu_notification_title2.setText("you accepted a request form");
 
         TextView txt_menu_notification_infor3_title = (TextView) findViewById(R.id.txt_menu_notification_infor3_title);
-        txt_menu_notification_infor3_title.setText("to buy your book");
+        txt_menu_notification_infor3_title.setText("to get your book");
         txt_menu_notification_infor3_title.setTextColor(getResources().getColor(R.color.color_txt_menu_notification_title2));
 
         TextView txt_notification_sell_accept_money = (TextView)findViewById(R.id.txt_notification_sell_accept_money);

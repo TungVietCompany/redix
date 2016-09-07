@@ -31,7 +31,7 @@
         android:layout_marginLeft="33dp"
         android:text="@string/SignUp"
         android:background="@drawable/bg_btn_welcome"
-        android:textColor="@android:color/holo_blue_light" />
+        android:textColor="@color/backgroung_signin" />
 
     <Button
         android:id="@+id/btn_sigin_wellcome"
@@ -45,7 +45,7 @@
         android:layout_marginRight="33dp"
         android:text="@string/SignIn"
         android:background="@drawable/bg_btn_welcome"
-        android:textColor="@android:color/holo_blue_light" />
+        android:textColor="@color/backgroung_signin" />
 
     <TextView
         android:layout_width="wrap_content"

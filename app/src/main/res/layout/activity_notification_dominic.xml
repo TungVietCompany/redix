@@ -36,7 +36,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
-        android:text="Medium Text"
+        android:text="Evil Queen:The last paintings"
         android:id="@+id/textView65"
         android:layout_below="@+id/include42"
         android:layout_centerHorizontal="true"
@@ -45,10 +45,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Text"
+        android:text="Ayn rand"
         android:id="@+id/textView66"
         android:layout_below="@+id/textView65"
         android:layout_centerHorizontal="true"
+        android:textColor="@color/color_text_hint"
         android:layout_marginBottom="10dp" />
 
     <include

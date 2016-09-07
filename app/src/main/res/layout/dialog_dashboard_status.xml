@@ -33,7 +33,9 @@
                 android:layout_gravity="center"
                 android:layout_marginTop="10dp"
                 android:textColor="@color/dot_light_screen1"/>
-
+            <RadioGroup
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -42,25 +44,25 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="10dp"
                 android:id="@+id/linearLayout3">
-                <RadioButton
+                <android.support.v7.widget.AppCompatCheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:text="Yes"
-
                     android:id="@+id/radioButton3"
+                    android:buttonTint="@android:color/white"
+
                     android:layout_alignParentLeft="true"
-                    android:layout_alignParentStart="true"
-                    android:checked="false" />
+                    android:layout_alignParentStart="true" />
 
-                <RadioButton
-
+                <android.support.v7.widget.AppCompatCheckBox
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="No"
+                    android:buttonTint="@android:color/white"
                     android:id="@+id/radioButton4"
-                    android:layout_alignTop="@+id/radioButton3"
-                    android:checked="false" />
+                    android:layout_alignTop="@+id/radioButton3" />
             </LinearLayout>
+            </RadioGroup>
         </LinearLayout>
         <RelativeLayout
             android:layout_width="match_parent"

@@ -19,6 +19,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -79,13 +80,13 @@ public class AdapterListings extends BaseAdapter {
         hoder.img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
         if(position%2==0){
-            hoder.img_book.setImageResource((R.drawable.img_temp1));
+            Picasso.with(mContext).load(R.drawable.img_temp1).into(hoder.img_book);
             hoder.txt_title_book.setText("The Las Painting of Sara de Vos");
             hoder.txt_author_book.setText("buy Gandalf");
         }
         else
         {
-            hoder.img_book.setImageResource((R.drawable.img_temp2));
+            Picasso.with(mContext).load(R.drawable.img_temp2).into(hoder.img_book);
             hoder.txt_title_book.setText("Gandalf the first");
             hoder.txt_author_book.setText("buy Ptit");
         }
@@ -93,36 +94,38 @@ public class AdapterListings extends BaseAdapter {
             hoder.txt_price_book.setVisibility(View.INVISIBLE);
         }
         if(ex.isSwap()){
-            hoder.img_buy.setImageResource((R.drawable.explore_btn_swap_active));
+            Picasso.with(mContext).load(R.drawable.explore_btn_swap_active).into(hoder.img_buy);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_active));
             //Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
         }
         else {
-            hoder.img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
+            Picasso.with(mContext).load(R.drawable.explore_btn_swap_dis_active).into(hoder.img_swap);
+
 //            Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
         }
         if(ex.isFree()){
-            hoder.img_buy.setImageResource((R.drawable.explore_btn_free_active));
+            Picasso.with(mContext).load(R.drawable.explore_btn_free_active).into(hoder.img_buy);
 //            Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_active));
         }
         else {
-            hoder.img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
+            Picasso.with(mContext).load(R.drawable.explore_btn_free_dis_active).into(hoder.img_free);
 //            Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
         }
         if(ex.isBuy()){
-            hoder.img_buy.setImageResource((R.drawable.listing_btn_buy));
+            Picasso.with(mContext).load(R.drawable.listing_btn_buy).into(hoder.img_buy);
 //            Glide.with(mContext).load(R.drawable.listing_btn_buy).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.listing_btn_buy));
         }
         else {
-            hoder.img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
+            Picasso.with(mContext).load(R.drawable.explore_btn_buy_dis_active).into(hoder.img_buy);
 //            Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
         }
-        hoder.img_edit.setImageResource((R.drawable.listing_btn_edit));
+
+        Picasso.with(mContext).load(R.drawable.listing_btn_edit).into(hoder.img_edit);
 //        Glide.with(mContext).load(R.drawable.listing_btn_edit).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_edit);
         //img_edit.setImageResource((R.drawable.listing_btn_edit));
 

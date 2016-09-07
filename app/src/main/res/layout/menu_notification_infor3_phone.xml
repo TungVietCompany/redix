@@ -99,7 +99,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="accept your swap request for"
+            android:text="accepted your swap request for"
             android:id="@+id/txt_menu_notification_infor3_title"
             android:layout_below="@+id/textView58"
             android:layout_alignParentRight="true"

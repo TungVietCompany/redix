@@ -38,6 +38,7 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.adapter.CustomPagerAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
 import redix.booxtown.model.Explore;
@@ -66,25 +67,17 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
-//        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-//        img_menu.setImageResource(R.drawable.btn_sign_in_back);
-//
-//        img_menu.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
-//                mainAllActivity.callFragment(new ListFragment());
-//            }
-//        });
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         imageView_back.setImageResource(R.drawable.btn_sign_in_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFragment(new ListFragment());
+                callFragment(new ListingsFragment());
             }
         });
 
+        RelativeLayout menu_search = (RelativeLayout)getActivity().findViewById(R.id.custom_search);
+        menu_search.setVisibility(View.GONE);
 
         TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
         EditText editText11 = (EditText) v.findViewById(R.id.editText11);
@@ -93,17 +86,11 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         MainAllActivity activity = (MainAllActivity) getActivity();
 
         imBuy = (ImageView) v.findViewById(R.id.img_buy_listing);
-
         imBuy.setOnClickListener(this);
-
         imFree = (ImageView) v.findViewById(R.id.img_free_listings);
-
         imSwap = (ImageView) v.findViewById(R.id.img_swap_listing);
-
         imSwap.setOnClickListener(this);
-
         activity.gettitle().setText("Listings");
-
         if (type.equals("1")){
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
@@ -114,7 +101,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
             img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
-
         }
         View view=(View) v.findViewById(R.id.layout_details);
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getActivity());
@@ -142,7 +128,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(getActivity(),list);
         RelativeLayout.LayoutParams paramslist = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
         listView=(ListView) v.findViewById(R.id.listView_comment);
-        setListViewHeightBasedOnChildren(listView);
         listView.setDivider(null);
         listView.setAdapter(adapter);
         listView.setOnTouchListener(new View.OnTouchListener() {
@@ -156,26 +141,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
 
     }
 
-    public static void setListViewHeightBasedOnChildren(ListView listView) {
-        ListAdapter listAdapter = listView.getAdapter();
-        if (listAdapter == null)
-            return;
-
-        int desiredWidth = View.MeasureSpec.makeMeasureSpec(listView.getWidth(), View.MeasureSpec.UNSPECIFIED);
-        int totalHeight = 0;
-        View view = null;
-        for (int i = 0; i < listAdapter.getCount(); i++) {
-            view = listAdapter.getView(i, view, listView);
-            if (i == 0)
-                view.setLayoutParams(new ViewGroup.LayoutParams(desiredWidth, RelativeLayout.LayoutParams.WRAP_CONTENT));
-
-            view.measure(desiredWidth, View.MeasureSpec.UNSPECIFIED);
-            totalHeight += view.getMeasuredHeight();
-        }
-        ViewGroup.LayoutParams params = listView.getLayoutParams();
-        params.height = totalHeight + (listView.getDividerHeight() * (listAdapter.getCount() - 1));
-        listView.setLayoutParams(params);
-    }
 
     @Override
     public void onClick(View v) {

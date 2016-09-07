@@ -15,8 +15,14 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
+import com.squareup.picasso.Target;
 
 import redix.booxtown.R;
 import redix.booxtown.autoviewpager.AutoScrollViewPager;
@@ -49,6 +55,11 @@ public class WelcomeActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_welcome);
 
+        //get image by picaso
+        Button btn_sigup_wellcome = (Button)findViewById(R.id.btn_sigup_wellcome);
+
+        //end
+
         viewPager = (AutoScrollViewPager) findViewById(R.id.view_pager);
         dotsLayout = (LinearLayout) findViewById(R.id.layoutDots);
         btnsigup = (Button) findViewById(R.id.btn_sigup_wellcome);
@@ -62,14 +73,18 @@ public class WelcomeActivity extends AppCompatActivity {
                 R.layout.welcome_slide2,
                 R.layout.welcome_slide3,
                 R.layout.welcome_slide4};
-
         // adding bottom dots
+
+//        ImageView imageView1_icon_booxtown_intro = (ImageView)findViewById(R.id.imageView1_icon_booxtown_intro);
+//        Picasso.with(getApplicationContext()).load(String.valueOf(getResources().getDrawable(R.drawable.icon_booxtown_intro))).into(imageView1_icon_booxtown_intro);
+//
+
         addBottomDots(0);
 
         // making notification bar transparent
         changeStatusBarColor();
 
-        myViewPagerAdapter = new MyViewPagerAdapter();
+        myViewPagerAdapter = new MyViewPagerAdapter(layouts);
         viewPager.setAdapter(myViewPagerAdapter);
         viewPager.addOnPageChangeListener(viewPagerPageChangeListener);
 //        viewPager.setInterval(2000);
@@ -79,6 +94,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent itent = new Intent(WelcomeActivity.this,SigUp_Activity.class);
                 startActivity(itent);
+
             }
         });
 
@@ -87,6 +103,7 @@ public class WelcomeActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent itent = new Intent(WelcomeActivity.this,SignIn_Activity.class);
                 startActivity(itent);
+                
             }
         });
     }
@@ -149,16 +166,16 @@ public class WelcomeActivity extends AppCompatActivity {
      */
     public class MyViewPagerAdapter extends PagerAdapter {
         private LayoutInflater layoutInflater;
-
-        public MyViewPagerAdapter() {
+        int [] layouts1;
+        public MyViewPagerAdapter(int [] layouts) {
+            this.layouts1 = layouts;
         }
 
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View view = layoutInflater.inflate(layouts[position], container, false);
+            View view = layoutInflater.inflate(layouts1[position], container, false);
             container.addView(view);
-
             return view;
         }
 
@@ -178,5 +195,10 @@ public class WelcomeActivity extends AppCompatActivity {
             View view = (View) object;
             container.removeView(view);
         }
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }

@@ -26,6 +26,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -54,6 +55,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
+
+
+
 //menu
 //        mMapFragment = ((SupportMapFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.fragment_map_editlisting));
 //        mMapFragment.getMapAsync(ListingCollectionActivity.this);
@@ -153,12 +157,16 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         //end
         Button btn_menu_listing_addbook = (Button)v.findViewById(R.id.btn_menu_listing_addbook);
         btn_menu_listing_addbook.setVisibility(View.VISIBLE);
+        TableRow row= (TableRow) v.findViewById(R.id.row_edit_book) ;
+        row.setVisibility(View.GONE);
 
         btn_menu_listing_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getActivity(),ListingsFragment.class);
-                startActivity(intent);
+//                Intent intent = new Intent(getActivity(),ListingsFragment.class);
+//                startActivity(intent);
+                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+                mainAllActivity.callFragment(new ListingsFragment());
             }
         });
 

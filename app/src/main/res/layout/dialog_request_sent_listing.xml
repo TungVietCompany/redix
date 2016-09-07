@@ -16,7 +16,7 @@
             android:id="@+id/textView131"
 
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="35dp"
+            android:layout_marginTop="50dp"
             android:textColor="@color/dot_light_screen1"
             android:textSize="18dp" />
 
@@ -45,14 +45,14 @@
             android:text="Back to home"
             android:id="@+id/btn_back_home"
 
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="50dp"
             android:background="@drawable/bg_white_popup"
             android:gravity="center"
             android:textColor="@color/color_text"
             android:textSize="18sp"
             android:layout_below="@+id/textView133"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="10dp" />
+            android:layout_marginBottom="60dp" />
     </RelativeLayout>
 
     <RelativeLayout

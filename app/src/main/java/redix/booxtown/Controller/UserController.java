@@ -4,6 +4,9 @@ import android.content.SharedPreferences;
 import android.os.StrictMode;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import redix.booxtown.API.ServiceGenerator;
 import redix.booxtown.API.ServiceInterface;
 import redix.booxtown.model.Result;
@@ -19,7 +22,7 @@ public class UserController {
         service = ServiceGenerator.GetInstance();
     }
 
-    public boolean checkLoginValidate(String username,String password,String device_type){
+    public String checkLoginValidate(String username, String password, String device_type){
                 Call<Result> callService = service.login(username,password,device_type);
                 try{
                     if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -29,21 +32,17 @@ public class UserController {
                     }
                     Result result = callService.execute().body();
                     if (result.getCode() == 200){
-//                        SharedPreferences.Editor editor = getSharedPreferences("SessionId", MODE_PRIVATE).edit();
-//                        editor.putInt("idName", 12);
-//                        editor.commit();
-                        return true;
+                        return result.getSession_id();
                     }
                 }
                 catch (Exception ex){
 
                 }
-        return false;
+        return null;
     }
 
 
     public boolean signUp(User user){
-        boolean success = false;
         Call<Result> callService = service.addUser(user);
         try{
             if (android.os.Build.VERSION.SDK_INT > 9) {
@@ -78,6 +77,25 @@ public class UserController {
         } catch (Exception ex) {
 
         }
+        return false;
+    }
+
+
+    public boolean logout(String session_id){
+        Call<Result> response = service.logout(session_id);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            Result rs = response.execute().body();
+            if (rs.getCode() == 200){
+                return true;
+            }
+        }catch (Exception e){
+        }
+
         return false;
     }
 }

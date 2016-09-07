@@ -36,6 +36,9 @@ public class NotificationDominicActivity extends AppCompatActivity implements Vi
         TextView txt_notification_infor3_phone = (TextView)findViewById(R.id.txt_notification_infor3_phone);
         txt_notification_infor3_phone.setVisibility(View.GONE);
 
+        TextView txt_menu_notification_infor3_title = (TextView)findViewById(R.id.txt_menu_notification_infor3_title);
+        txt_menu_notification_infor3_title.setText("wants to buy your book");
+
         Button btn_menu_notification_dominic_accept = (Button)findViewById(R.id.btn_menu_notification_dominic_accept);
         btn_menu_notification_dominic_accept.setOnClickListener(new View.OnClickListener() {
             @Override

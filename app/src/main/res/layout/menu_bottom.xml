@@ -26,7 +26,7 @@
             android:layout_width="15dp"
             android:layout_height="32dp"
             android:id="@+id/img_menu_bottom_location"
-            android:src="@drawable/btn_locate_active"
+            android:src="@drawable/btn_locate_not_active"
             android:padding="5dp"
             android:layout_alignParentBottom="true"
             android:layout_alignParentLeft="true"

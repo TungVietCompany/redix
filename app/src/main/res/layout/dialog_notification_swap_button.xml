@@ -7,6 +7,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
+        android:paddingBottom="40dp"
         android:background="@drawable/customborder"
         android:id="@+id/relativeLayout9">
 
@@ -16,9 +17,9 @@
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Are you sure you want reject Thuyet&apos;s swap request"
             android:id="@+id/textView35"
-            android:layout_alignParentTop="true"
+            android:layout_alignParentTop="false"
             android:textColor="#ffffff"
-            android:layout_alignParentRight="true"
+            android:layout_alignParentRight="false"
             android:layout_alignParentEnd="false"
             android:gravity="center"
             android:layout_marginTop="40dp"
@@ -34,8 +35,8 @@
             android:textColor="#f76565"
             android:layout_below="@+id/textView35"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="30dp"
-            android:layout_marginTop="10dp" />
+            android:layout_marginBottom="60dp"
+            android:layout_marginTop="20dp" />
 
     </RelativeLayout>
 

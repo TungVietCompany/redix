@@ -1,6 +1,8 @@
 package redix.booxtown.activity;
 
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -35,17 +37,45 @@ Button mButtonBackForgot;
                 onBackPressed();
                 break;
             case R.id.submit_forgot:
-                UserController userController = new UserController();
-                boolean success = userController.forgetPassword(edt_email.getText().toString());
-                if (success == true){
-                    Toast.makeText(getApplicationContext(), "Check Email Please", Toast.LENGTH_LONG).show();
-                }else {
-                    Toast.makeText(getApplicationContext(), "Email Eror", Toast.LENGTH_LONG).show();
-                }
+                Forgotpassword forgotpassword = new Forgotpassword();
+                forgotpassword.execute(edt_email.getText().toString());
                 break;
 
             default:
                 break;
+        }
+    }
+
+    class Forgotpassword extends AsyncTask<String,Void,Boolean>{
+
+        ProgressDialog dialog;
+
+        @Override
+        protected Boolean doInBackground(String... params) {
+            UserController userController = new UserController();
+            boolean success = userController.forgetPassword(params[0]);
+
+            return success;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(ForgotPassword_Activity.this);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (aBoolean == true){
+                Toast.makeText(getApplicationContext(), "Check Email Please", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }else {
+                Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_LONG).show();
+            }
         }
     }
 }

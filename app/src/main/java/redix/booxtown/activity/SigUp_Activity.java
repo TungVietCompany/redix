@@ -1,6 +1,13 @@
 package redix.booxtown.activity;
 
+import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.Dialog;
+import android.app.DialogFragment;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.res.Resources;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -8,8 +15,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.Calendar;
+import java.util.regex.Pattern;
 
 import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
@@ -22,6 +33,15 @@ Button mButtonBackSigup;
     EditText edt_birthday;
     String birthday;
     TextView signUp;
+    public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
+            "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
+                    "\\@" +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,64}" +
+                    "(" +
+                    "\\." +
+                    "[a-zA-Z0-9][a-zA-Z0-9\\-]{0,25}" +
+                    ")+"
+    );
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,9 +59,15 @@ Button mButtonBackSigup;
         edt_password = (EditText) findViewById(R.id.password);
         edt_confirmpass = (EditText) findViewById(R.id.confirmpassword);
         checkSignup = (CheckBox) findViewById(R.id.checksignup);
+        edt_birthday.setOnClickListener(this);
 //        birthday = String.valueOf(edt_birthday.getYear()) + String.valueOf(edt_birthday.getMonth()) + String.valueOf(edt_birthday.getDayOfMonth());
 
 
+    }
+
+
+    private boolean checkEmail(String email) {
+        return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 
     @Override
@@ -67,31 +93,98 @@ Button mButtonBackSigup;
                     Toast.makeText(getApplicationContext(),"Phone null",Toast.LENGTH_LONG).show();
                 }else if(edt_birthday.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"Birthday null",Toast.LENGTH_LONG).show();
-                }else if(edt_mail.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Email null",Toast.LENGTH_LONG).show();
+                }else if(checkEmail(edt_mail.getText().toString()) == false){
+                    Toast.makeText(getApplicationContext(),"invalid email address",Toast.LENGTH_LONG).show();
                 }else if(edt_password.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"Password null",Toast.LENGTH_LONG).show();
                 }else if(!edt_password.getText().toString().equals(edt_confirmpass.getText().toString())){
-                    Toast.makeText(getApplicationContext(),"Enter Password",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Password not match",Toast.LENGTH_LONG).show();
                 }else if (checkSignup.isChecked() == false) {
-                    Toast.makeText(getApplicationContext(), "unCheck", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Please agree Term and Condition before signup", Toast.LENGTH_LONG).show();
 
                 }else {
-                    boolean success = userController.signUp(user);
-                    if (success == true){
-                        Intent intent = new Intent(SigUp_Activity.this,MainAllActivity.class);
-                        startActivity(intent);
-                        Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
-                    }
+                    SignupAsyntask signupAsyntask = new SignupAsyntask();
+                    signupAsyntask.execute(user);
                 }
 
                 break;
             case R.id.btn_back_sigup:
                 Intent intent = new Intent(SigUp_Activity.this,WelcomeActivity.class);
                 startActivity(intent);
+
+            case R.id.birthday:
+                DialogFragment dialogfragment = new DatePickerDialogClass();
+
+                dialogfragment.show(getFragmentManager(), "Date Time");
                 break;
             default:
                 break;
         }
     }
+
+    public static class DatePickerDialogClass extends DialogFragment implements DatePickerDialog.OnDateSetListener{
+
+        @Override
+        public Dialog onCreateDialog(Bundle savedInstanceState){
+            final Calendar calendar = Calendar.getInstance();
+            int year = calendar.get(Calendar.YEAR);
+            int month = calendar.get(Calendar.MONTH);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
+
+            DatePickerDialog datepickerdialog = new DatePickerDialog(getActivity(),this,year,month,day);
+
+            return datepickerdialog;
+        }
+
+        public void onDateSet(DatePicker view, int year, int month, int day){
+
+            EditText textview = (EditText) getActivity().findViewById(R.id.birthday);
+
+            textview.setText(day + "/" + (month+1) + "/" + year);
+
+        }
+    }
+
+    public class SignupAsyntask extends AsyncTask<User,Void,Boolean>{
+
+
+        ProgressDialog dialog;
+        UserController userController;
+
+        @Override
+        protected Boolean doInBackground(User... params) {
+            userController = new UserController();
+            boolean success = userController.signUp(params[0]);
+            return success;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(SigUp_Activity.this);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onProgressUpdate(Void... values) {
+            super.onProgressUpdate(values);
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean == true){
+                Intent intent = new Intent(SigUp_Activity.this,MainAllActivity.class);
+                startActivity(intent);
+                Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
+            }else {
+                Toast.makeText(getApplicationContext(), "Username has already been taken", Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(aBoolean);
+        }
+    }
+
+
 }

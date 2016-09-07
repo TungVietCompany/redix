@@ -88,6 +88,7 @@ public class MainAllActivity extends AppCompatActivity{
                 setDefaut(5);
             }
         }else {
+            setDefaut(1);
             callFragment(new MainFragment());
         }
 
@@ -120,6 +121,7 @@ public class MainAllActivity extends AppCompatActivity{
 
             }
         });
+
 
         //-------------------------------------------------------
 
@@ -311,5 +313,10 @@ public class MainAllActivity extends AppCompatActivity{
 
         }
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 }
