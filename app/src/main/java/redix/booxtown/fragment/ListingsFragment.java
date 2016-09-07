@@ -41,10 +41,11 @@ public class ListingsFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.listings_fragment, container, false);
 
-        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setOnClickListener(new View.OnClickListener() {
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
+        imageView_back.setImageResource(R.drawable.btn_menu_locate);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),MenuActivity.class);
                 startActivity(intent);
             }

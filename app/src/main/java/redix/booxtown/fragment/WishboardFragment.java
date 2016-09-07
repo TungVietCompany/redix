@@ -40,6 +40,7 @@ public class WishboardFragment extends Fragment {
         final View view = inflater.inflate(R.layout.activity_wishboard , container, false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+        img_menu.setImageResource(R.drawable.btn_menu_locate);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

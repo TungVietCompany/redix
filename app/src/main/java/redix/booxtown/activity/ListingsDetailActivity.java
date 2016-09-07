@@ -66,14 +66,22 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
-        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.btn_sign_in_back);
-
-        img_menu.setOnClickListener(new View.OnClickListener() {
+//        ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+//        img_menu.setImageResource(R.drawable.btn_sign_in_back);
+//
+//        img_menu.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+//                mainAllActivity.callFragment(new ListFragment());
+//            }
+//        });
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
+        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
-                mainAllActivity.callFragment(new ListFragment());
+            public void onClick(View v) {
+                callFragment(new ListFragment());
             }
         });
 
