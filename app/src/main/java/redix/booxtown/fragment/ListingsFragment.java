@@ -30,11 +30,8 @@ import redix.booxtown.model.Explore;
  */
 public class ListingsFragment extends Fragment
 {
-    private TextView txt_add_book;
-    private TextView txt_my_book;
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
-    private MenuBottomCustom bottomListings;
 
     @Nullable
     @Override

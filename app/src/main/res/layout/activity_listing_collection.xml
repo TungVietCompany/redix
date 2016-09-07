@@ -11,16 +11,19 @@
         android:layout_height="wrap_content"
         android:weightSum="2"
         android:layout_centerHorizontal="true"
-        android:layout_margin="5dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="10dp"
         android:id="@+id/tableRow5">
 
         <TextView
-            android:layout_width="@dimen/btn_w_181"
-            android:layout_height="@dimen/btn_h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="Add a book"
             android:id="@+id/txt_add_book1"
             android:gravity="center"
-            android:background="@drawable/btn_wishbroad_popup"
+            android:background="@drawable/bg_button_listings"
             android:layout_weight="1.15"
             android:textColor="@color/dot_light_screen1"
             android:padding="9dp" />
@@ -42,8 +45,6 @@
         android:layout_height="wrap_content"
         android:id="@+id/scrollView3"
         android:layout_below="@+id/tableRow5"
-        android:layout_alignLeft="@+id/tableRow5"
-        android:layout_alignStart="@+id/tableRow5"
         >
 
         <include

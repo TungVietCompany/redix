@@ -11,6 +11,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -21,6 +22,7 @@ import redix.booxtown.R;
 import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.activity.MainAllActivity;
+import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.activity.NotificationDominicActivity;
 import redix.booxtown.activity.NotificationSellActivity;
 import redix.booxtown.activity.NotificationSwapActivity;
@@ -44,6 +46,17 @@ public class NotificationFragment extends Fragment {
         // Inflate the layout for this fragment
         main = (HomeActivity) getActivity();
         View view = inflater.inflate(R.layout.notification_fragment, container, false);
+
+        ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
+        imageView_back.setImageResource(R.drawable.btn_menu_locate);
+        imageView_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(),MenuActivity.class);
+                startActivity(intent);
+            }
+        });
+
         //listview content notification
         RecyclerView lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getActivity());

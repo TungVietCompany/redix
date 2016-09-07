@@ -50,4 +50,5 @@
         <item>@color/color_text_hint</item>
     </array>
     <color name="backgroung_signin">#38BFC3</color>
+    <color name="background_listing">#F6F6F6</color>
 </resources>
