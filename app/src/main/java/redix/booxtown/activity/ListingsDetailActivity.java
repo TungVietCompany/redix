@@ -86,17 +86,11 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         MainAllActivity activity = (MainAllActivity) getActivity();
 
         imBuy = (ImageView) v.findViewById(R.id.img_buy_listing);
-
         imBuy.setOnClickListener(this);
-
         imFree = (ImageView) v.findViewById(R.id.img_free_listings);
-
         imSwap = (ImageView) v.findViewById(R.id.img_swap_listing);
-
         imSwap.setOnClickListener(this);
-
         activity.gettitle().setText("Listings");
-
         if (type.equals("1")){
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
@@ -107,7 +101,6 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
             img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
-
         }
         View view=(View) v.findViewById(R.id.layout_details);
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getActivity());

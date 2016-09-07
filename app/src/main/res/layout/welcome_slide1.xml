@@ -16,7 +16,7 @@
         <ImageView
             android:layout_width="227dp"
             android:layout_height="58dp"
-            android:id="@+id/imageView2"
+            android:id="@+id/imageView1_icon_booxtown_intro"
             android:background="@drawable/icon_booxtown_intro"
             android:layout_marginLeft="35dp"
             android:layout_alignParentLeft="true"
