@@ -5,8 +5,11 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -33,7 +36,6 @@ Button mButtonBackSigup;
     EditText edt_birthday;
     String birthday;
     TextView signUp;
-    SignIn_Activity signIn_activity;
     public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
@@ -47,7 +49,6 @@ Button mButtonBackSigup;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        signIn_activity = (SignIn_Activity)getApplicationContext();
         mButtonBackSigup = (Button) findViewById(R.id.btn_back_sigup);
         signUp = (TextView) findViewById(R.id.signup);
         signUp.setOnClickListener(this);
@@ -64,12 +65,20 @@ Button mButtonBackSigup;
         edt_birthday.setOnClickListener(this);
 
 
-        if (signIn_activity.isOnline() == false){
+        if (isOnline() == false){
             Toast.makeText(getApplicationContext(), "Check network state please", Toast.LENGTH_LONG).show();
         }
 //        birthday = String.valueOf(edt_birthday.getYear()) + String.valueOf(edt_birthday.getMonth()) + String.valueOf(edt_birthday.getDayOfMonth());
 
 
+    }
+
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
 
