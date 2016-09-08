@@ -10,6 +10,8 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.AboutFragment;
@@ -44,6 +46,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         img_component.setVisibility(View.GONE);
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_menu_locate).into(img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

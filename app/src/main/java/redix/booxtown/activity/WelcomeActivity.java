@@ -57,7 +57,12 @@ public class WelcomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_welcome);
 
         //get image by picaso
-        Button btn_sigup_wellcome = (Button)findViewById(R.id.btn_sigup_wellcome);
+        ImageView signin_fb = (ImageView)findViewById(R.id.signin_fb);
+        Picasso.with(WelcomeActivity.this).load(R.mipmap.fb).into(signin_fb);
+        ImageView signin_twitter = (ImageView)findViewById(R.id.signin_twitter);
+        Picasso.with(WelcomeActivity.this).load(R.mipmap.twetter).into(signin_twitter);
+        ImageView signin_google = (ImageView)findViewById(R.id.signin_google);
+        Picasso.with(WelcomeActivity.this).load(R.mipmap.g).into(signin_google);
 
         //end
 
@@ -112,8 +117,8 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor  = pref.edit();
         String session_id = pref.getString("session_id", null);
         if (session_id != null){
-            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
-            startActivity(intent);
+//            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
+//            startActivity(intent);
         }
 
 
@@ -186,6 +191,19 @@ public class WelcomeActivity extends AppCompatActivity {
         public Object instantiateItem(ViewGroup container, int position) {
             layoutInflater = (LayoutInflater) getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = layoutInflater.inflate(layouts1[position], container, false);
+            if(position == 0) {
+                ImageView imageView1_icon_booxtown_intro = (ImageView) view.findViewById(R.id.imageView1_icon_booxtown_intro);
+                Picasso.with(getApplicationContext()).load(R.drawable.icon_booxtown_intro).into(imageView1_icon_booxtown_intro);
+            }else if(position == 1) {
+                ImageView imageView2_icon_booxtown_intro = (ImageView) view.findViewById(R.id.imageView2_icon_booxtown_intro);
+                Picasso.with(getApplicationContext()).load(R.drawable.icon_booxtown_intro).into(imageView2_icon_booxtown_intro);
+            }else if(position ==2) {
+                ImageView imageView3_icon_booxtown_intro = (ImageView) view.findViewById(R.id.imageView3_icon_booxtown_intro);
+                Picasso.with(getApplicationContext()).load(R.drawable.icon_booxtown_intro).into(imageView3_icon_booxtown_intro);
+            }else if(position == 3) {
+                ImageView imageView4_icon_booxtown_intro = (ImageView) view.findViewById(R.id.imageView4_icon_booxtown_intro);
+                Picasso.with(getApplicationContext()).load(R.drawable.icon_booxtown_intro).into(imageView4_icon_booxtown_intro);
+            }
             container.addView(view);
             return view;
         }

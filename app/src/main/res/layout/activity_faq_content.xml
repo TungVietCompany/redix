@@ -61,8 +61,7 @@
             <ImageView
                 android:layout_width="20dp"
                 android:layout_height="40dp"
-                android:id="@+id/imageView"
-                android:src="@drawable/btn_locate_search"
+                android:id="@+id/imageView_search_faqcontent"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true"

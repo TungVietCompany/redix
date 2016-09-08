@@ -7,6 +7,8 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 
 /**
@@ -29,9 +31,9 @@ public class CustomTabbarExplore {
     private TextView txt_cart_count;
 
     View view;
-
+    Context ct;
     public CustomTabbarExplore(View view, Context ct){
-
+        this.ct = ct;
         this.view= view;
 
         linear_all=(LinearLayout) view.findViewById(R.id.linear_all);
@@ -61,15 +63,18 @@ public class CustomTabbarExplore {
             txt_all_count.setTextColor(view.getResources().getColor(R.color.color_text));
 
             linear_swap.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_swap.setImageResource(R.drawable.explore_btn_swap_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_swap_not_active).into(img_swap);
+//            img_swap.setImageResource(R.drawable.explore_btn_swap_not_active);
             txt_swap_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_free.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_free.setImageResource(R.drawable.explore_btn_free_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_free_not_active).into(img_free);
+//            img_free.setImageResource(R.drawable.explore_btn_free_not_active);
             txt_free_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_cart.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_buy_not_active).into(imge_cart);
+//            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
             txt_cart_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
         }
@@ -79,15 +84,18 @@ public class CustomTabbarExplore {
             txt_all_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_swap.setBackgroundColor(view.getResources().getColor(R.color.dot_light_screen1));
-            img_swap.setImageResource(R.drawable.explore_btn_swap_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_swap_active).into(img_swap);
+//            img_swap.setImageResource(R.drawable.explore_btn_swap_active);
             txt_swap_count.setTextColor(view.getResources().getColor(R.color.color_text));
 
             linear_free.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_free.setImageResource(R.drawable.explore_btn_free_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_free_not_active).into(img_free);
+//            img_free.setImageResource(R.drawable.explore_btn_free_not_active);
             txt_free_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_cart.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_buy_not_active).into(imge_cart);
+//            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
             txt_cart_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
         }
         else if(type==3){
@@ -96,15 +104,18 @@ public class CustomTabbarExplore {
             txt_all_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_swap.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_swap.setImageResource(R.drawable.explore_btn_swap_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_swap_not_active).into(img_swap);
+//            img_swap.setImageResource(R.drawable.explore_btn_swap_not_active);
             txt_swap_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_free.setBackgroundColor(view.getResources().getColor(R.color.dot_light_screen1));
-            img_free.setImageResource(R.drawable.explore_btn_free_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_free_active).into(img_free);
+//            img_free.setImageResource(R.drawable.explore_btn_free_active);
             txt_free_count.setTextColor(view.getResources().getColor(R.color.color_text));
 
             linear_cart.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_buy_not_active).into(imge_cart);
+//            imge_cart.setImageResource(R.drawable.explore_btn_buy_not_active);
             txt_cart_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
         }
         else {
@@ -113,15 +124,15 @@ public class CustomTabbarExplore {
             txt_all_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_swap.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_swap.setImageResource(R.drawable.explore_btn_swap_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_swap_not_active).into(img_swap);
             txt_swap_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_free.setBackgroundColor(view.getResources().getColor(R.color.color_text));
-            img_free.setImageResource(R.drawable.explore_btn_free_not_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_free_not_active).into(img_free);
             txt_free_count.setTextColor(view.getResources().getColor(R.color.color_text_hint));
 
             linear_cart.setBackgroundColor(view.getResources().getColor(R.color.dot_light_screen1));
-            imge_cart.setImageResource(R.drawable.explore_btn_buy_active);
+            Picasso.with(ct).load(R.drawable.explore_btn_buy_active).into(imge_cart);
             txt_cart_count.setTextColor(view.getResources().getColor(R.color.color_text));
         }
     }

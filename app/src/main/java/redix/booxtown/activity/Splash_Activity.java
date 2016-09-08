@@ -18,8 +18,8 @@ public class Splash_Activity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_);
-        ImageView img_splash =(ImageView)findViewById(R.id.img_splash);
-        Picasso.with(getApplicationContext()).load(String.valueOf(getResources().getDrawable(R.drawable.splash))).into(img_splash);
+//        ImageView img_splash =(ImageView)findViewById(R.id.img_splash);
+//        Picasso.with(getApplicationContext()).load(R.drawable.splash).into(img_splash);
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

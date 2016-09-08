@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 import redix.booxtown.activity.Faq_content;
 
@@ -50,6 +52,7 @@ public class Custom_Listview_faq extends RecyclerView.Adapter<Custom_Listview_fa
             super(itemView);
             tv = (TextView) itemView.findViewById(R.id.txt_content_faq);
             img_listview_faq_next = (ImageView)itemView.findViewById(R.id.img_listview_faq_next);
+            Picasso.with(context).load(R.drawable.btn_interact_next).into(img_listview_faq_next);
             img_listview_faq_next.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

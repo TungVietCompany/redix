@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +80,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         });
 
         View view_search= (View)view.findViewById(R.id.custom_search);
-        new CustomSearch(view_search,getActivity());
+//        new CustomSearch(view_search,getActivity());
 
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
         mapFragment.getMapAsync(MainFragment.this);
@@ -96,6 +97,10 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
     public void filterSort(View view){
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_filter).into(btn_filter_explore);
+
+        ImageView btn_search = (ImageView)view.findViewById(R.id.btn_search);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_search).into(btn_search);
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -103,6 +108,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_filter_sort);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+
                 dialog.show();
 
                 ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
@@ -130,6 +136,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                 });
 
                 ImageView imv_dialog_filter_close = (ImageView)dialog.findViewById(R.id.imv_dialog_filter_close);
+                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(imv_dialog_filter_close);
                 imv_dialog_filter_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -217,7 +224,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         mMap.setTrafficEnabled(true);
 
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,14));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
 
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());

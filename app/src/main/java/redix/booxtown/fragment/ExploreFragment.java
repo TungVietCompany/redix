@@ -28,6 +28,7 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -216,6 +217,11 @@ public class ExploreFragment extends Fragment
     }
     public void filterSort(View view){
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_filter).into(btn_filter_explore);
+
+        ImageView btn_search = (ImageView)view.findViewById(R.id.btn_search);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_search).into(btn_search);
+
         btn_filter_explore.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -250,6 +256,7 @@ public class ExploreFragment extends Fragment
                 });
 
                 ImageView imv_dialog_filter_close = (ImageView)dialog.findViewById(R.id.imv_dialog_filter_close);
+                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(imv_dialog_filter_close);
                 imv_dialog_filter_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

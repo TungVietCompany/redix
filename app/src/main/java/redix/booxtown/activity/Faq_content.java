@@ -11,6 +11,8 @@ import android.widget.ExpandableListView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -53,9 +55,13 @@ public class Faq_content extends ExpandableListActivity implements View.OnClickL
         TextView title_menu = (TextView)findViewById(R.id.txt_title);
         title_menu.setText("FAQ");
 
-        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.btn_sign_in_back);
+        //picaso
+        ImageView imageView_search_faqcontent = (ImageView)findViewById(R.id.imageView_search_faqcontent);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_search).into(imageView_search_faqcontent);
+        //end
 
+        ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_sign_in_back).into(img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
