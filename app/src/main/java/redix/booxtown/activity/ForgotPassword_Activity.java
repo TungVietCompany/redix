@@ -17,6 +17,7 @@ import redix.booxtown.R;
 public class ForgotPassword_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonBackForgot;
     TextView mButtonSubmit;
+    SignIn_Activity signIn_activity;
     EditText edt_email;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,9 +25,13 @@ Button mButtonBackForgot;
         setContentView(R.layout.activity_forgot_password);
         edt_email = (EditText) findViewById(R.id.email_forgot);
         mButtonBackForgot = (Button) findViewById(R.id.btn_back_forgot);
+        signIn_activity = (SignIn_Activity)getApplicationContext();
         mButtonSubmit = (TextView)  findViewById(R.id.submit_forgot);
         mButtonSubmit.setOnClickListener(this);
         mButtonBackForgot.setOnClickListener(this);
+        if (signIn_activity.isOnline() ==false){
+            Toast.makeText(getApplicationContext(), "Check network state please", Toast.LENGTH_LONG).show();
+        }
 
     }
 
@@ -49,6 +54,8 @@ Button mButtonBackForgot;
     class Forgotpassword extends AsyncTask<String,Void,Boolean>{
 
         ProgressDialog dialog;
+
+        SigUp_Activity sigUp_activity = (SigUp_Activity)getApplicationContext();
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -73,8 +80,9 @@ Button mButtonBackForgot;
             if (aBoolean == true){
                 Toast.makeText(getApplicationContext(), "Check Email Please", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
-            }else {
+            }else if (sigUp_activity.checkEmail(edt_email.getText().toString()) == false){
                 Toast.makeText(getApplicationContext(), "Invalid email address", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
         }
     }

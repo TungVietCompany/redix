@@ -33,6 +33,7 @@ Button mButtonBackSigup;
     EditText edt_birthday;
     String birthday;
     TextView signUp;
+    SignIn_Activity signIn_activity;
     public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
@@ -46,6 +47,7 @@ Button mButtonBackSigup;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
+        signIn_activity = (SignIn_Activity)getApplicationContext();
         mButtonBackSigup = (Button) findViewById(R.id.btn_back_sigup);
         signUp = (TextView) findViewById(R.id.signup);
         signUp.setOnClickListener(this);
@@ -60,13 +62,18 @@ Button mButtonBackSigup;
         edt_confirmpass = (EditText) findViewById(R.id.confirmpassword);
         checkSignup = (CheckBox) findViewById(R.id.checksignup);
         edt_birthday.setOnClickListener(this);
+
+
+        if (signIn_activity.isOnline() == false){
+            Toast.makeText(getApplicationContext(), "Check network state please", Toast.LENGTH_LONG).show();
+        }
 //        birthday = String.valueOf(edt_birthday.getYear()) + String.valueOf(edt_birthday.getMonth()) + String.valueOf(edt_birthday.getDayOfMonth());
 
 
     }
 
 
-    private boolean checkEmail(String email) {
+    public boolean checkEmail(String email) {
         return EMAIL_ADDRESS_PATTERN.matcher(email).matches();
     }
 
@@ -84,19 +91,19 @@ Button mButtonBackSigup;
                 user.setUsername(edt_name.getText().toString());
                 user.setPassword(edt_password.getText().toString());
                 if (edt_name.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"User name null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"User name not null",Toast.LENGTH_LONG).show();
                 }else if(edt_lastname.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Last name null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Last name not null",Toast.LENGTH_LONG).show();
                 }else if(edt_firtname.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"First name null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"First name not null",Toast.LENGTH_LONG).show();
                 }else if(edt_phone.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Phone null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Phone not null",Toast.LENGTH_LONG).show();
                 }else if(edt_birthday.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Birthday null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Birthday not null",Toast.LENGTH_LONG).show();
                 }else if(checkEmail(edt_mail.getText().toString()) == false){
                     Toast.makeText(getApplicationContext(),"invalid email address",Toast.LENGTH_LONG).show();
                 }else if(edt_password.getText().toString().equals("")){
-                    Toast.makeText(getApplicationContext(),"Password null",Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(),"Password not null",Toast.LENGTH_LONG).show();
                 }else if(!edt_password.getText().toString().equals(edt_confirmpass.getText().toString())){
                     Toast.makeText(getApplicationContext(),"Password not match",Toast.LENGTH_LONG).show();
                 }else if (checkSignup.isChecked() == false) {
@@ -147,7 +154,6 @@ Button mButtonBackSigup;
 
     public class SignupAsyntask extends AsyncTask<User,Void,Boolean>{
 
-
         ProgressDialog dialog;
         UserController userController;
 
@@ -179,8 +185,9 @@ Button mButtonBackSigup;
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
                 dialog.dismiss();
-            }else {
+            }else if (aBoolean ==false){
                 Toast.makeText(getApplicationContext(), "Username has already been taken", Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
             super.onPostExecute(aBoolean);
         }

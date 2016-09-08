@@ -39,6 +39,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Username"
+            android:maxLines="1"
             android:fontFamily="sans-serif-thin"
             android:textColorHint="@color/color_text_hint"
             android:backgroundTint="@color/color_hint_interact" />
@@ -48,6 +49,7 @@
             android:layout_height="wrap_content"
             android:hint="Password"
             android:fontFamily="sans-serif-thin"
+            android:maxLines="1"
             android:textColorHint="@color/color_text_hint"
             android:backgroundTint="@color/color_hint_interact"
             android:password="true" />

@@ -2,6 +2,7 @@ package redix.booxtown.activity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Build;
 import android.os.Bundle;
@@ -106,6 +107,16 @@ public class WelcomeActivity extends AppCompatActivity {
                 
             }
         });
+
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        String session_id = pref.getString("session_id", null);
+        if (session_id != null){
+            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
+            startActivity(intent);
+        }
+
+
     }
 
     private void addBottomDots(int currentPage) {

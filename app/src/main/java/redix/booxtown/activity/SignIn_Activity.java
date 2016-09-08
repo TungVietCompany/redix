@@ -1,8 +1,11 @@
 package redix.booxtown.activity;
 
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -27,6 +30,7 @@ Button mButtonForgotPass;
     Button mButtonBack;
     Button mButtonSigin;
     Result result;
+    String session_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +43,16 @@ Button mButtonForgotPass;
         mButtonBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
         mButtonForgotPass.setOnClickListener(this);
-
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        session_id = pref.getString("session_id", null);
+        if (session_id != null){
+            Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
+            startActivity(intent);
+        }
+        if (isOnline() == false){
+            Toast.makeText(getApplicationContext(),"Check network state please",Toast.LENGTH_LONG).show();
+        }
     }
 
     @Override
@@ -98,11 +111,19 @@ Button mButtonForgotPass;
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("session_id", session_id);
                 editor.commit();
-            }else {
+            }else{
                 Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }
             super.onPostExecute(aBoolean);
         }
+    }
+
+    public boolean isOnline() {
+        ConnectivityManager cm =
+                (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo netInfo = cm.getActiveNetworkInfo();
+        return netInfo != null && netInfo.isConnectedOrConnecting();
     }
 
     @Override
