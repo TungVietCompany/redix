@@ -110,6 +110,7 @@ Button mButtonForgotPass;
                 SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
                 SharedPreferences.Editor editor = pref.edit();
                 editor.putString("session_id", session_id);
+                editor.putString("username",edt_username.getText().toString());
                 editor.commit();
             }else{
                 Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();

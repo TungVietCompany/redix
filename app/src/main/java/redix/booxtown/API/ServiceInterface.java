@@ -20,7 +20,7 @@ public interface ServiceInterface {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Multipart
     @POST("/")
-    Call<ResponseBody> postImage(@Part MultipartBody.Part image);
+    Call<Result> postImage(@Part MultipartBody.Part image);
 
     @GET("/uploads")
     Call<ResponseBody> getImage(@Query("fileName") String fileName);

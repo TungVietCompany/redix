@@ -4,9 +4,13 @@ import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Dialog;
 import android.content.ClipData;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.location.Location;
@@ -14,13 +18,16 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.media.Image;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -46,9 +53,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import redix.booxtown.Controller.UploadFileController;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -57,10 +67,14 @@ import redix.booxtown.fragment.ListingsFragment;
 public class ListingCollectionActivity extends Fragment implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener ,View.OnClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
-    ImageView btn_sellectimage;
+    ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3;
+    UploadFileController uploadFileController;
+    String username;
     String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
+
+
 
     int PICK_IMAGE_MULTIPLE = 1;
     String imageEncoded;
@@ -75,10 +89,16 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
 
         btn_sellectimage = (ImageView) v.findViewById(R.id.imageView32) ;
         btn_sellectimage.setOnClickListener(this);
-
+        uploadFileController = new UploadFileController();
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", getActivity().MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        username = pref.getString("username",null);
         //end
         //spinner
         ImageView imageView=(ImageView) v.findViewById(R.id.img_menu_genre);
+        imagebook1 = (ImageView) v.findViewById(R.id.imageView29);
+        imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
+        imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -165,6 +185,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             public void onClick(View view) {
 //                Intent intent = new Intent(getActivity(),ListingsFragment.class);
 //                startActivity(intent);
+
+                addbook();
+                Addbook addbook = new Addbook();
+                addbook.execute();
                 MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
                 mainAllActivity.callFragment(new ListingsFragment());
             }
@@ -194,6 +218,21 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         //---------------------------------------------------------------
 
         return v;
+    }
+
+
+    public void addbook(){
+        for (int i = 0; i < lisImmage.size();i++){
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),lisImmage.get(i));
+                bmap.add(bitmap);
+                String fileName = getFileName(lisImmage.get(i));
+                listFileName.add(fileName);
+                Log.d("dsmdhkshkd",listFileName.get(i));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 
@@ -287,14 +326,47 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.imageView32:
-                Intent intent = new Intent();
-                intent.setType("image/*");
-                intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
-                intent.setAction(Intent.ACTION_GET_CONTENT);
-                startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
+                if (lisImmage.size()<3){
+                    choseImage();
                 break;
+                }else {
+                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+                    alertDialogBuilder.setTitle("you want to change other image");
+                    alertDialogBuilder
+                            .setMessage("Click yes to chose other image")
+                            .setCancelable(false)
+                            .setPositiveButton("Yes",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+                                            lisImmage.remove(0);
+                                            choseImage();
+                                        }
+                                    })
+
+                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                                public void onClick(DialogInterface dialog, int id) {
+
+                                    dialog.cancel();
+                                }
+                            });
+
+                    AlertDialog alertDialog = alertDialogBuilder.create();
+                    alertDialog.show();
+                }
+
         }
     }
+
+    public void choseImage() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
+    }
+
+
+    ArrayList<Uri> lisImmage = new ArrayList<>();
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     @Override
@@ -311,6 +383,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 if(data.getData()!=null){
 
                     Uri mImageUri=data.getData();
+                    lisImmage.add(mImageUri);
 
                     // Get the cursor
                     Cursor cursor = getActivity().getContentResolver().query(mImageUri,
@@ -346,14 +419,111 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                     }
                 }
             } else {
-                Toast.makeText(getActivity(), "You haven't picked Image",
-                        Toast.LENGTH_LONG).show();
+                return;
             }
         } catch (Exception e) {
-            Toast.makeText(getActivity(), "Something went wrong", Toast.LENGTH_LONG)
-                    .show();
+            return;
+        }
+        if (lisImmage.size() == 1){
+            imagebook1.setImageURI(lisImmage.get(0));
+        }else if (lisImmage.size() == 2){
+            imagebook2.setImageURI(lisImmage.get(1));
+        }else if (lisImmage.size()==3){
+            imagebook3.setImageURI(lisImmage.get(2));
         }
 
+        Log.d("dsdsds",String.valueOf(lisImmage.size()));
+        Log.d("dsdsds",String.valueOf(imagebook1.getTag()));
+        Log.d("dsdsds",String.valueOf(imagebook2.getTag()));
+        Log.d("dsdsds",String.valueOf(imagebook3.getTag()));
+        Log.d("dsdsds",String.valueOf(imagesEncodedList.size()));
         super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public String getFileName(Uri uri) {
+        String result = null;
+        if (uri.getScheme().equals("content")) {
+            Cursor cursor = getActivity().getContentResolver().query(uri, null, null, null, null);
+            try {
+                if (cursor != null && cursor.moveToFirst()) {
+                    result = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+                }
+            } finally {
+                cursor.close();
+            }
+        }
+        if (result == null) {
+            result = uri.getPath();
+            int cut = result.lastIndexOf('/');
+            if (cut != -1) {
+                result = result.substring(cut + 1);
+            }
+        }
+        return result;
+    }
+
+
+    ArrayList<String> listFileName = new ArrayList<>();
+    ArrayList<Uri> listImageTemp = new ArrayList<>();
+    ArrayList<Bitmap> bmap = new ArrayList<>();
+
+    public class Addbook extends AsyncTask<Void,Void,Void>{
+
+
+        @Override
+        protected Void doInBackground(Void... params) {
+//            for (int i = 0;i<listImageTemp.size();i++){
+
+            Thread thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (uploadFileController.uploadFile(bmap.get(0),""+username+"::"+listFileName.get(0))){
+
+                    }
+                }
+            });
+
+            Thread thread1 = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    if (uploadFileController.uploadFile(bmap.get(1),""+username+"::"+listFileName.get(1)));
+                }
+            });
+
+            Thread thread2  =new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                        uploadFileController.uploadFile(bmap.get(2),""+username+"::"+listFileName.get(2)+"");
+
+                }
+            });
+
+            if (bmap.size() == 1){
+                thread.start();
+            }else if (bmap.size() == 2){
+                thread.start();
+                thread1.start();
+            }else if (bmap.size() == 3){
+                thread.start();
+                thread1.start();
+                thread2.start();
+            }
+
+//                new UploadFileController().uploadFile(bmap.get(0),"duong::book.jpg");
+//            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(Void aVoid) {
+            super.onPostExecute(aVoid);
+        }
     }
 }
