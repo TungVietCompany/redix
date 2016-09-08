@@ -62,19 +62,20 @@
         android:layout_marginBottom="70dp"
         android:layout_centerHorizontal="true"
         android:layout_height="wrap_content">
-        <Button
+        <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@mipmap/fb"/>
-        <Button
+            android:id="@+id/signin_fb"
+            />
+        <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
             android:layout_marginLeft="15dp"
             android:layout_marginRight="15dp"
-            android:background="@mipmap/twetter"/>
-        <Button
+            android:id="@+id/signin_twitter"/>
+        <ImageView
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:background="@mipmap/g"/>
+            android:id="@+id/signin_google"/>
     </LinearLayout>
 </RelativeLayout>

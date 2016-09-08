@@ -231,8 +231,7 @@
         android:id="@+id/imv_dialog_filter_close"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/btn_close_filter" />
+        android:layout_alignParentEnd="true" />
 </RelativeLayout>
 </RelativeLayout>
 

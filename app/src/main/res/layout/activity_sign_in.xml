@@ -10,19 +10,18 @@
         android:orientation="horizontal"
         android:layout_marginTop="10dp"
         android:weightSum="1">
-        <Button
+        <ImageView
             android:id="@+id/btn_back_sigin"
             android:layout_width="14dp"
             android:layout_height="26dp"
             android:layout_marginTop="10dp"
-            android:background="@drawable/btn_sign_in_back"
             android:gravity="center"
             android:layout_marginLeft="15dp"
              />
         <ImageView
             android:layout_width="178dp"
             android:layout_height="45dp"
-            android:src="@drawable/icon_sign_in_home"
+            android:id="@+id/icon_sign_in_home"
             android:layout_marginLeft="65dp"
             android:layout_gravity="center_vertical"
             android:layout_weight="0.05" />

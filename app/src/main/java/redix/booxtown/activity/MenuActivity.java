@@ -16,6 +16,8 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
@@ -29,6 +31,10 @@ public class MenuActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu);
+        //picaso
+        ImageView imgv_close = (ImageView)findViewById(R.id.imgv_close);
+        Picasso.with(getApplicationContext()).load(R.drawable.menu_close).into(imgv_close);
+        //end
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor  = pref.edit();
         session_id = pref.getString("session_id", null);
@@ -102,6 +108,7 @@ public class MenuActivity extends AppCompatActivity {
                             dialog.show();
 
                             ImageView img_close_dialog_unsubcribe = (ImageView)dialog.findViewById(R.id.img_close_dialog_unsubcribe);
+                            Picasso.with(getApplicationContext()).load(R.drawable.btn_close_filter).into(img_close_dialog_unsubcribe);
                             img_close_dialog_unsubcribe.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

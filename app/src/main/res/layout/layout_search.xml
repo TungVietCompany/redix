@@ -38,7 +38,6 @@
             android:layout_width="47dp"
             android:layout_height="wrap_content"
             android:id="@+id/btn_filter_explore"
-            android:src="@drawable/btn_locate_filter"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="false"
             android:layout_alignTop="@+id/editSearch"
@@ -49,8 +48,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="18dp"
-            android:id="@+id/button2"
-            android:src="@drawable/btn_locate_search"
+            android:id="@+id/btn_search"
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/btn_filter_explore" />
         </RelativeLayout>

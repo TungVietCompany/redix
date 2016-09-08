@@ -18,9 +18,12 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
 import java.util.regex.Pattern;
@@ -30,7 +33,7 @@ import redix.booxtown.R;
 import redix.booxtown.model.User;
 
 public class SigUp_Activity extends AppCompatActivity implements View.OnClickListener{
-Button mButtonBackSigup;
+    ImageView mButtonBackSigup;
     EditText edt_name,edt_firtname,edt_phone,edt_mail,edt_password,edt_confirmpass,edt_lastname;
     CheckBox checkSignup;
     EditText edt_birthday;
@@ -49,7 +52,15 @@ Button mButtonBackSigup;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_signup);
-        mButtonBackSigup = (Button) findViewById(R.id.btn_back_sigup);
+
+        //picaso
+        ImageView icon_signup = (ImageView)findViewById(R.id.icon_sign_up_home);
+        Picasso.with(SigUp_Activity.this).load(R.drawable.icon_sign_in_home).into(icon_signup);
+
+        //end
+
+        mButtonBackSigup = (ImageView) findViewById(R.id.btn_back_sigup);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_sign_in_back).into(mButtonBackSigup);
         signUp = (TextView) findViewById(R.id.signup);
         signUp.setOnClickListener(this);
         mButtonBackSigup.setOnClickListener(this);
