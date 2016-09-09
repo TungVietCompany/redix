@@ -9,6 +9,8 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -44,7 +46,16 @@ public class UserProfileActivity extends AppCompatActivity
         img_component.setVisibility(View.INVISIBLE);
 
         ImageView img_menu = (ImageView)findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.btn_sign_in_back);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_sign_in_back).into(img_menu);
+//        img_menu.setImageResource(R.drawable.btn_sign_in_back);
+        ImageView imv_close_dialog_dashboard_status = (ImageView)findViewById(R.id.imv_close_dialog_dashboard_status);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_one).into(imv_close_dialog_dashboard_status);
+
+        ImageView imageView26 = (ImageView)findViewById(R.id.imageView26);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_two).into(imageView26);
+
+        ImageView imageView27 = (ImageView)findViewById(R.id.imageView27);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_three).into(imageView27);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

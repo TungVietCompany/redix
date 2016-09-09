@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -48,6 +49,17 @@ public class MyProfileFragment extends Fragment {
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Glide.with(getActivity()).load(R.drawable.btn_menu_locate).diskCacheStrategy(DiskCacheStrategy.ALL).into(imageView_back);
+
+        ImageView imv_close_dialog_dashboard_status = (ImageView)view.findViewById(R.id.imv_close_dialog_dashboard_status);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_one).into(imv_close_dialog_dashboard_status);
+
+        ImageView imageView26 = (ImageView)view.findViewById(R.id.imageView26);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_two).into(imageView26);
+
+        ImageView imageView27 = (ImageView)view.findViewById(R.id.imageView27);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_three).into(imageView27);
+
+
        // imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override

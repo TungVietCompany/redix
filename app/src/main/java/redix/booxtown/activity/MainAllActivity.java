@@ -127,7 +127,6 @@ public class MainAllActivity extends AppCompatActivity{
 
         //-------------------------------------------------------
 
-
         btn_location.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -148,7 +147,6 @@ public class MainAllActivity extends AppCompatActivity{
         btn_commnet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 callFragment(new InteractFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Interact");
@@ -237,14 +235,14 @@ public class MainAllActivity extends AppCompatActivity{
     public void setDefaut(int i){
         //set icon tab
         if(i==0) {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_not_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_not_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_not_active).into(btn_bag);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_profile_not_active).into(btn_user);
         }
         else if(i==1) {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_not_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_not_active).into(btn_bag);
@@ -256,7 +254,7 @@ public class MainAllActivity extends AppCompatActivity{
 //            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
         }
         else if(i==2) {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_not_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_not_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_not_active).into(btn_bag);
@@ -269,7 +267,7 @@ public class MainAllActivity extends AppCompatActivity{
 //            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
         }
         else if(i==3) {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_not_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_not_active).into(btn_bag);
@@ -282,7 +280,7 @@ public class MainAllActivity extends AppCompatActivity{
 //            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
         }
         else if(i==4) {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_not_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_not_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_active).into(btn_bag);
@@ -295,7 +293,7 @@ public class MainAllActivity extends AppCompatActivity{
 //            btn_user.setImageResource(R.drawable.btn_locate_profile_not_active);
         }
         else {
-            Picasso.with(MainAllActivity.this).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
+            Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_interact_not_active).into(btn_commnet);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_not_active).into(btn_location);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_listing_not_active).into(btn_camera);
             Picasso.with(getApplicationContext()).load(R.drawable.btn_locate_wishbroad_not_active).into(btn_bag);

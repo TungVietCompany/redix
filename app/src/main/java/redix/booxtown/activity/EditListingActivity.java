@@ -32,6 +32,7 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,12 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
     private SupportMapFragment mMapFragment;
     private MenuBottomCustom menu_bottom;
 
+    private ImageView btn_location;
+    private ImageView btn_commnet;
+    private ImageView btn_camera;
+    private ImageView btn_bag;
+    private ImageView btn_user;
+
     ArrayList<Genre> genre;
     String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
             "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
@@ -57,6 +64,18 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_listing);
         genre = new ArrayList<>();
+        //picaso
+        ImageView img_add_image = (ImageView)findViewById(R.id.imageView32);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_add).into(img_add_image);
+
+        btn_location = (ImageView) findViewById(R.id.img_menu_bottom_location);
+        btn_commnet = (ImageView) findViewById(R.id.img_menu_bottom_comment);
+        btn_camera = (ImageView) findViewById(R.id.img_menu_bottom_camera);
+        btn_bag = (ImageView) findViewById(R.id.img_menu_bottom_bag);
+        btn_user = (ImageView) findViewById(R.id.img_menu_bottom_user);
+
+        //sửa sau
+        //end
         for (int i = 0;i<genravalue.length;i++){
             Genre genrel = new Genre();
             genrel.setValue(genravalue[i]);
@@ -207,16 +226,10 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
         //end
 
         //--------------------------------------------------
-        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
-        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
-        menu_bottom.setDefaut(0);
+//        View view_bottom = (View) findViewById(R.id.menu_bottom_myprofile);
+//        menu_bottom=new MenuBottomCustom(view_bottom,this,0);
+//        menu_bottom.setDefaut(0);
         //---------------------------------------------------------------
-    }
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-        menu_bottom.setDefaut(0);
     }
 
     public void btnDelete(){
