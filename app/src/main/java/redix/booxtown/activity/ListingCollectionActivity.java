@@ -58,11 +58,13 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import redix.booxtown.Controller.GPSTracker;
 import redix.booxtown.Controller.UploadFileController;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.ListingsFragment;
+import redix.booxtown.model.Genre;
 
 public class ListingCollectionActivity extends Fragment implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener ,View.OnClickListener {
     private GoogleMap mMap;
@@ -70,7 +72,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3;
     UploadFileController uploadFileController;
     String username;
-    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+    ArrayList<Genre> genre;
+    double latitude,longitude;
+    String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
 
@@ -86,7 +90,12 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
 
-
+        genre = new ArrayList<>();
+        for (int i = 0;i<genravalue.length;i++){
+            Genre genrel = new Genre();
+            genrel.setValue(genravalue[i]);
+            genre.add(genrel);
+        }
         btn_sellectimage = (ImageView) v.findViewById(R.id.imageView32) ;
         btn_sellectimage.setOnClickListener(this);
         uploadFileController = new UploadFileController();
@@ -107,8 +116,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 dialog.setContentView(R.layout.dialog_genre);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
-                listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
+                final ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
+                final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(),genre);
+                listView_genre.setAdapter(adapter);
                 dialog.show();
 
                 Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
@@ -127,7 +137,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                     }
                 });
             }
+
+
         });
+
         TextView txt_view = (TextView) v.findViewById(R.id.txt_menu_genre1);
         txt_view.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -293,6 +306,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             location = service
                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (location != null) {
+                latitude =  location.getLatitude();
+                longitude = location.getLongitude();
                 addMaker(location);
             }
 
@@ -301,6 +316,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             location = service
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
             if (location != null) {
+                latitude =  location.getLatitude();
+                longitude = location.getLongitude();
                 addMaker(location);
             }
         }
@@ -358,11 +375,14 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     }
 
     public void choseImage() {
+        GPSTracker gps = new GPSTracker(getActivity());
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
+        Log.d("dhadjagjd",String.valueOf(gps.getLatitude()));
+        Log.d("dhadjagjd",String.valueOf(gps.getLongitude()));
     }
 
 
@@ -432,11 +452,11 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             imagebook3.setImageURI(lisImmage.get(2));
         }
 
-        Log.d("dsdsds",String.valueOf(lisImmage.size()));
-        Log.d("dsdsds",String.valueOf(imagebook1.getTag()));
-        Log.d("dsdsds",String.valueOf(imagebook2.getTag()));
-        Log.d("dsdsds",String.valueOf(imagebook3.getTag()));
-        Log.d("dsdsds",String.valueOf(imagesEncodedList.size()));
+//        Log.d("dsdsds",String.valueOf(lisImmage.size()));
+//        Log.d("dsdsds",String.valueOf(imagebook1.getTag()));
+//        Log.d("dsdsds",String.valueOf(imagebook2.getTag()));
+//        Log.d("dsdsds",String.valueOf(imagebook3.getTag()));
+//        Log.d("dsdsds",String.valueOf(imagesEncodedList.size()));
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -473,6 +493,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         @Override
         protected Void doInBackground(Void... params) {
 //            for (int i = 0;i<listImageTemp.size();i++){
+
+            for (int i = 0;i<genre.size();i++){
+                Log.d("dsmnndshk",String.valueOf(genre.get(i).ischeck() == true));
+            }
 
             Thread thread = new Thread(new Runnable() {
                 @Override
