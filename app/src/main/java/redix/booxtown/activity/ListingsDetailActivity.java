@@ -30,6 +30,7 @@ import android.widget.RelativeLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
 import com.viewpagerindicator.CirclePageIndicator;
 
 import java.util.ArrayList;
@@ -68,7 +69,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         View v = inflater.inflate(R.layout.activity_listings_detail,container,false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
+        Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -76,6 +77,16 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             }
         });
 
+        //btn_rank
+        ImageView btn_rank_one = (ImageView)v.findViewById(R.id.img_rank1_listings);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_one).into(btn_rank_one);
+
+        ImageView btn_rank_two = (ImageView)v.findViewById(R.id.img_rank2_listings);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_two).into(btn_rank_two);
+
+        ImageView btn_rank_three = (ImageView)v.findViewById(R.id.img_rank3_listings);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_three).into(btn_rank_three);
+        //end
 //        RelativeLayout menu_search = (RelativeLayout)getActivity().findViewById(R.id.custom_search);
 //        menu_search.setVisibility(View.GONE);
 
@@ -94,6 +105,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         if (type.equals("1")){
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
+            Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialog_unsubcribe);
             editText11.setVisibility(View.GONE);
             img_close_dialog_unsubcribe.setVisibility(View.GONE);
             RelativeLayout.LayoutParams params = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
@@ -165,6 +177,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
                     dialog.show();
 
                     ImageView btn_dialog_notification_swap = (ImageView) dialog.findViewById(R.id.close_buy_listings);
+                    Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(btn_dialog_notification_swap);
                     btn_dialog_notification_swap.setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
@@ -186,6 +199,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
                             dialog1.show();
 
                             ImageView btn_close = (ImageView) dialog1.findViewById(R.id.close_sent_request_lising);
+
                             btn_close.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View view) {

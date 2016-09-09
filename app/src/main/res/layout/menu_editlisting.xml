@@ -63,7 +63,7 @@
         android:layout_alignBottom="@+id/imageView31"
         android:layout_toRightOf="@+id/imageView31"
         android:layout_toEndOf="@+id/imageView31"
-        android:src="@drawable/btn_add" />
+         />
 
     <TextView
         android:layout_width="wrap_content"
@@ -89,7 +89,7 @@
         android:layout_alignRight="@+id/textView105"
         android:layout_alignEnd="@+id/textView105"
         android:hint="The last paiting"
-        android:background="@color/dot_light_screen2"
+        android:background="@android:color/transparent"
         android:fontFamily="sans-serif-thin"
         android:textColorHint="@color/color_text_hint"
         android:layout_marginTop="5dp" />
@@ -120,8 +120,8 @@
         android:layout_alignEnd="@+id/textView106"
         android:fontFamily="sans-serif-thin"
         android:textColorHint="@color/color_text_hint"
-        android:hint="Thuyết"
-        android:background="@color/dot_light_screen2"
+        android:hint="Author"
+        android:background="@android:color/transparent"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -188,8 +188,8 @@
         app:steps="5"
         app:bar_color="@color/color_text_hint"
         app:bar_highlight_color="@color/color_text"
-        app:left_thumb_image="@drawable/icon_filter_range"
-        app:left_thumb_image_pressed="@drawable/icon_filter_range"
+        app:left_thumb_image="@drawable/icon_filer"
+        app:left_thumb_image_pressed="@drawable/icon_filer"
         app:data_type="_integer"/>
 
     <TextView
@@ -423,7 +423,6 @@
         android:layout_height="10dp"
         android:id="@+id/img_menu_genre"
         android:layout_alignTop="@+id/textView107"
-        android:src="@drawable/btn_down"
         android:longClickable="true"
         android:layout_marginTop="8dp"
         android:layout_alignBottom="@+id/txt_menu_genre1"

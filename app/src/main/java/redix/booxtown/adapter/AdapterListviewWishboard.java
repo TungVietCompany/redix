@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 import redix.booxtown.activity.RespondActivity;
 
@@ -71,6 +73,7 @@ public class AdapterListviewWishboard  extends BaseAdapter {
         holder.date.setText(date[position]);
 
         ImageView imgv_listview_respond = (ImageView)rowView.findViewById(R.id.imgv_listview_respond);
+        Picasso.with(context).load(R.drawable.btn_wishbroad_message).into(imgv_listview_respond);
         imgv_listview_respond.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

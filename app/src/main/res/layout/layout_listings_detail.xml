@@ -120,7 +120,7 @@
             android:layout_centerVertical="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true"
-            android:src="@drawable/btn_rank_three"
+
             android:layout_marginRight="10dp" />
 
         <ImageView
@@ -131,7 +131,7 @@
             android:layout_toLeftOf="@+id/img_rank3_listings"
             android:layout_toStartOf="@+id/img_rank3_listings"
             android:layout_marginRight="10dp"
-            android:src="@drawable/btn_rank_two"
+
             android:layout_marginLeft="10dp" />
 
         <ImageView
@@ -141,7 +141,7 @@
             android:layout_centerVertical="true"
             android:layout_toLeftOf="@+id/img_rank2_listings"
             android:layout_toStartOf="@+id/img_rank2_listings"
-            android:src="@drawable/btn_rank_one" />
+             />
 
     </RelativeLayout>
 
