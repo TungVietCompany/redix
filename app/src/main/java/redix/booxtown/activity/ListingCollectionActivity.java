@@ -319,7 +319,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                     tag = tag + listTag.get(i) + ";";
                 }
                 else{
-                    tag = tag + listvalueGenre.get(i);
+                    tag = tag + listTag.get(i);
                 }
             }
         }
