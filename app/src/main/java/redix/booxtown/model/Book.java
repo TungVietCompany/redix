@@ -2,10 +2,12 @@ package redix.booxtown.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * Created by vietp on 04/09/2016.
  */
-public class Book {
+public class Book implements Serializable{
     @Expose
     private String title;
     @Expose

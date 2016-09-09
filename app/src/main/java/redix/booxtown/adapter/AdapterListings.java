@@ -9,6 +9,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,6 +30,7 @@ import redix.booxtown.activity.ListingCollectionActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.UserProfileActivity;
 import redix.booxtown.fragment.ListingsFragment;
+import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 
 /**
@@ -64,7 +66,7 @@ public class AdapterListings extends BaseAdapter {
     }
 
     @Override
-    public View getView(int position, View convertView, ViewGroup parent) {
+    public View getView(final int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -144,8 +146,11 @@ public class AdapterListings extends BaseAdapter {
 //                Intent intent= new Intent(mContext, ListingCollectionActivity.class);
 //
 //                mContext.startActivity(intent);
+               Explore book = (Explore) listExplore.get(position);
+                Log.d("boooook",String.valueOf(book.getPrice_book()));
                 Bundle bundle = new Bundle();
                 bundle.putString("activity","edit");
+                bundle.putSerializable("book",book);
                 ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
                 listingCollectionActivity.setArguments(bundle);
                 callFragment(listingCollectionActivity);
