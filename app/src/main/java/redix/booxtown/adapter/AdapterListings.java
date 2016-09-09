@@ -25,6 +25,7 @@ import java.util.ArrayList;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.EditListingActivity;
+import redix.booxtown.activity.ListingCollectionActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.UserProfileActivity;
 import redix.booxtown.fragment.ListingsFragment;
@@ -140,8 +141,14 @@ public class AdapterListings extends BaseAdapter {
         hoder.img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent= new Intent(mContext, EditListingActivity.class);
-                mContext.startActivity(intent);
+//                Intent intent= new Intent(mContext, ListingCollectionActivity.class);
+//
+//                mContext.startActivity(intent);
+                Bundle bundle = new Bundle();
+                bundle.putString("activity","edit");
+                ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
+                listingCollectionActivity.setArguments(bundle);
+                callFragment(listingCollectionActivity);
             }
         });
 

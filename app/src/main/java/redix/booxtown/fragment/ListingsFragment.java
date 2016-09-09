@@ -64,7 +64,11 @@ public class ListingsFragment extends Fragment
         txt_add_book.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callFragment(new ListingCollectionActivity());
+                Bundle bundle = new Bundle();
+                bundle.putString("activity","add");
+                ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
+                listingCollectionActivity.setArguments(bundle);
+                callFragment(listingCollectionActivity);
             }
         });
         //-------------------------------------------------------------

@@ -33,17 +33,21 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.MyProfileFragment;
+import redix.booxtown.model.Genre;
 
 public class EditListingActivity extends AppCompatActivity implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     private MenuBottomCustom menu_bottom;
 
-    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+    ArrayList<Genre> genre;
+    String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
             "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
             ,"Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
@@ -52,6 +56,12 @@ public class EditListingActivity extends AppCompatActivity implements LocationLi
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_listing);
+        genre = new ArrayList<>();
+        for (int i = 0;i<genravalue.length;i++){
+            Genre genrel = new Genre();
+            genrel.setValue(genravalue[i]);
+            genre.add(genrel);
+        }
         mMapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.fragment_map_editlisting));
         mMapFragment.getMapAsync(EditListingActivity.this);
         btnDelete();
