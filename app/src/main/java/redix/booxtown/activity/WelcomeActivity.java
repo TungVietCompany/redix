@@ -117,8 +117,8 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences.Editor editor  = pref.edit();
         String session_id = pref.getString("session_id", null);
         if (session_id != null){
-//            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
-//            startActivity(intent);
+            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
+            startActivity(intent);
         }
 
 
