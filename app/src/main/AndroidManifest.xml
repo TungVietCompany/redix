@@ -13,6 +13,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.MEDIA_CONTENT_CONTROL"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -56,7 +59,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyB04RWwwD8cuU94uJAuQ-qhGFWmuRgHsxw" />
+            android:value="AIzaSyAwDbV3NPAhN-qdSGm4cURhRomkiMly7zY" />
         <activity android:name=".activity.Faq_content" />
         <!-- activity for Explore -->
 

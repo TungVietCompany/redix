@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +37,7 @@ public class ListingsFragment extends Fragment
 {
     ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
+    Book book;
 
     @Nullable
     @Override
@@ -66,6 +68,7 @@ public class ListingsFragment extends Fragment
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("activity","add");
+//                bundle.putSerializable("book",book);
                 ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
                 listingCollectionActivity.setArguments(bundle);
                 callFragment(listingCollectionActivity);

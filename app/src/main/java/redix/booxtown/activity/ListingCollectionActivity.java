@@ -3,6 +3,7 @@ package redix.booxtown.activity;
 import android.Manifest;
 import android.annotation.TargetApi;
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.ClipData;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -44,6 +45,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
+import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -52,6 +55,8 @@ import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -61,22 +66,35 @@ import java.util.List;
 
 import redix.booxtown.Controller.GPSTracker;
 import redix.booxtown.Controller.UploadFileController;
+import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.ListingsFragment;
+import redix.booxtown.model.Book;
+import redix.booxtown.model.Explore;
 import redix.booxtown.model.Genre;
 
 public class ListingCollectionActivity extends Fragment implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener ,View.OnClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
-    ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3;
+    ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3,addtag;
     UploadFileController uploadFileController;
     Button btn_menu_editlist_delete,btn_menu_editlisting_update,btn_menu_listing_addbook;
     String username;
     ArrayList<Genre> genre;
     double latitude,longitude;
+    EditText edt_tilte,edt_author,edt_tag,edt_editlisting_sell;
     TableRow row;
+    CheckBox swap,free,sell;
+    String session_id;
+    float price;
+    String condition;
+    CrystalSeekbar seekbar;
+    UserController userController;
+    boolean success;
+    Book book;
+    String titl;
     String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
@@ -86,6 +104,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     int PICK_IMAGE_MULTIPLE = 1;
     String imageEncoded;
     List<String> imagesEncodedList;
+    ArrayList<String> listTag;
 
 
     @Nullable
@@ -93,15 +112,30 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
 
-
+        edt_editlisting_sell = (EditText) v.findViewById(R.id.edt_editlisting_sell);
+        swap = (CheckBox) v.findViewById(R.id.checkBox);
+        sell = (CheckBox) v.findViewById(R.id.ck_sell_editlisting);
+        free = (CheckBox) v.findViewById(R.id.checkBox3) ;
+        edt_author = (EditText) v.findViewById(R.id.editText9) ;
+        edt_tilte = (EditText) v.findViewById(R.id.editText8) ;
+        edt_tag = (EditText) v.findViewById(R.id.editText10) ;
+        addtag = (ImageView) v.findViewById(R.id.imageView33);
+        addtag.setOnClickListener(this);
         btn_menu_listing_addbook = (Button)v.findViewById(R.id.btn_menu_listing_addbook);
         btn_menu_editlist_delete = (Button)v.findViewById(R.id.btn_menu_editlist_delete);
         btn_menu_editlisting_update = (Button)v.findViewById(R.id.btn_menu_editlisting_update);
+        btn_menu_editlist_delete.setOnClickListener(this);
+        btn_menu_editlisting_update.setOnClickListener(this);
         row= (TableRow) v.findViewById(R.id.row_edit_book) ;
         String s = getArguments().getString("activity");
+        listTag = new ArrayList<>();
             if (s.equals("edit")){
                 btn_menu_listing_addbook.setVisibility(View.GONE);
                 row.setVisibility(View.VISIBLE);
+                Explore explore = (Explore) getArguments().getSerializable("book");
+                Log.d("boooook",String.valueOf(explore.getPrice_book()));
+
+
             }else {
                 btn_menu_listing_addbook.setVisibility(View.VISIBLE);
                 row.setVisibility(View.GONE);
@@ -121,6 +155,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", getActivity().MODE_PRIVATE);
         SharedPreferences.Editor editor = pref.edit();
         username = pref.getString("username",null);
+        session_id = pref.getString("session_id",null);
+
         //end
         //spinner
         ImageView imageView=(ImageView) v.findViewById(R.id.img_menu_genre);
@@ -128,6 +164,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         imagebook1 = (ImageView) v.findViewById(R.id.imageView29);
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
+        seekbar = (CrystalSeekbar) v.findViewById(R.id.seekBar2);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -197,7 +234,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         //end
         //show edittext when check to sell
         final CheckBox checkBox = (CheckBox)v.findViewById(R.id.ck_sell_editlisting);
-        final EditText edt_editlisting_sell = (EditText)v.findViewById(R.id.edt_editlisting_sell);
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -253,6 +289,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
 
 
     public void addbook(){
+
+        GPSTracker gps = new GPSTracker(getActivity());
         for (int i = 0; i < lisImmage.size();i++){
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),lisImmage.get(i));
@@ -264,6 +302,94 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 e.printStackTrace();
             }
         }
+        ArrayList<String> listvalueGenre = new ArrayList<>();
+        for (int i = 0;i<genre.size();i++){
+            if (genre.get(i).ischeck() == true){
+                listvalueGenre.add(genre.get(i).getValue());
+            }
+            Log.d("dsmnndshk",String.valueOf(listvalueGenre.size()));
+        }
+
+        String auth = edt_author.getText().toString();
+        titl = edt_tilte.getText().toString();
+        String tag = "";
+        if (listTag.size()!=0){
+            for(int i=0;i<listTag.size(); i++){
+                if(i!=listTag.size()-1) {
+                    tag = tag + listTag.get(i) + ";";
+                }
+                else{
+                    tag = tag + listTag.get(i);
+                }
+            }
+        }
+
+        String genrel="";
+
+        if (listvalueGenre.size()!=0){
+            for(int i=0;i<listvalueGenre.size(); i++){
+                if(i!=listvalueGenre.size()-1) {
+                    genrel = genrel + listvalueGenre.get(i) + ";";
+                }
+                else{
+                    genrel = genrel + listvalueGenre.get(i);
+                }
+            }
+        }
+
+        String action = getAction();
+
+        seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
+            @Override
+            public void valueChanged(Number minValue) {
+                condition = String.valueOf(minValue);
+            }
+        });
+
+        String imagename = "";
+        if (listFileName.size()!=0){
+            for(int i=0;i<listFileName.size(); i++){
+                if(i!=listFileName.size()-1) {
+                    imagename = imagename + listFileName.get(i) + ";";
+                }
+                else{
+                    imagename = imagename + listFileName.get(i);
+                }
+            }
+        }
+
+//        if(sell.isChecked()){
+//            price = Float.valueOf(edt_editlisting_sell.getText().toString());
+//        }
+
+
+
+        book = new Book();
+        book.setAction(action);
+        book.setAuthor(auth);
+        book.setTitle(titl);
+        book.setCondition(condition);
+        book.setGenre(genrel);
+        book.setHash_tag(tag);
+        book.setLocation_latitude(Float.valueOf(String.valueOf(gps.getLatitude())));
+        book.setLocation_longitude(Float.valueOf(String.valueOf(gps.getLongitude())));
+        book.setPhoto(imagename);
+//        book.setPrice(price);
+
+
+    }
+
+    public String getAction(){
+        String s = "";
+        s += swap.isChecked() == true ? "1" : "0";
+        s += sell.isChecked() == true ? "1" : "0";
+        s += free.isChecked() == true ? "1" : "0";
+        return s;
+    }
+
+    public String parseJson(Object object){
+        Gson gson = new Gson();
+        return gson.toJson(object);
     }
 
 
@@ -323,9 +449,12 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         if(isGPSEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location != null) {
-                latitude =  location.getLatitude();
-                longitude = location.getLongitude();
+            if (location == null) {
+                {
+                    location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                    latitude =  location.getLatitude();
+                    longitude = location.getLongitude();
+                }
                 addMaker(location);
             }
 
@@ -333,9 +462,12 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         if(isNetworkEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location != null) {
-                latitude =  location.getLatitude();
-                longitude = location.getLongitude();
+            if (location == null) {
+                location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+                {
+                    latitude =  location.getLatitude();
+                    longitude = location.getLongitude();
+                }
                 addMaker(location);
             }
         }
@@ -388,19 +520,36 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                     AlertDialog alertDialog = alertDialogBuilder.create();
                     alertDialog.show();
                 }
+            case R.id.btn_menu_editlist_delete:
+                break;
+            case R.id.btn_menu_editlisting_update:
+                break;
+            case R.id.imageView33:
+                if (listTag.size() < 3){
+                    addTag();
+                }else {
+                    addtag.setEnabled(false);
+                }
+
+                break;
 
         }
     }
 
+
+    public void addTag(){
+
+        listTag.add(edt_tag.getText().toString());
+        edt_tag.setText("");
+    }
+
     public void choseImage() {
-        GPSTracker gps = new GPSTracker(getActivity());
         Intent intent = new Intent();
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
-        Log.d("dhadjagjd",String.valueOf(gps.getLatitude()));
-        Log.d("dhadjagjd",String.valueOf(gps.getLongitude()));
+
     }
 
 
@@ -505,16 +654,17 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     ArrayList<Uri> listImageTemp = new ArrayList<>();
     ArrayList<Bitmap> bmap = new ArrayList<>();
 
-    public class Addbook extends AsyncTask<Void,Void,Void>{
+    public class Addbook extends AsyncTask<Void,Void,Boolean>{
+
+        public ProgressDialog dialog;
+
 
 
         @Override
-        protected Void doInBackground(Void... params) {
+        protected Boolean doInBackground(Void... params) {
+
 //            for (int i = 0;i<listImageTemp.size();i++){
 
-            for (int i = 0;i<genre.size();i++){
-                Log.d("dsmnndshk",String.valueOf(genre.get(i).ischeck() == true));
-            }
 
             Thread thread = new Thread(new Runnable() {
                 @Override
@@ -542,9 +692,11 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             Thread content = new Thread(new Runnable() {
                 @Override
                 public void run() {
-
+                    userController = new UserController();
+                    success = userController.addbook(book,session_id);
                 }
             });
+            content.start();
             if (bmap.size() == 1){
                 thread.start();
             }else if (bmap.size() == 2){
@@ -559,17 +711,28 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
 //                new UploadFileController().uploadFile(bmap.get(0),"duong::book.jpg");
 //            }
 
-            return null;
+            return success;
         }
 
         @Override
         protected void onPreExecute() {
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
             super.onPreExecute();
         }
 
         @Override
-        protected void onPostExecute(Void aVoid) {
-            super.onPostExecute(aVoid);
+        protected void onPostExecute(Boolean bolean) {
+            if (bolean == true){
+                dialog.dismiss();
+                Toast.makeText(getActivity(),"Addbook Success",Toast.LENGTH_LONG).show();
+            }else {
+                dialog.dismiss();
+                Toast.makeText(getActivity(),"Addbook Faile",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(bolean);
         }
     }
 }
