@@ -16,6 +16,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -23,6 +25,7 @@ import redix.booxtown.activity.ListingCollectionActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterListings;
+import redix.booxtown.adapter.ListBookAdapter;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
@@ -32,7 +35,7 @@ import redix.booxtown.model.Explore;
  */
 public class ListingsFragment extends Fragment
 {
-    ArrayList<Explore> listEx= new ArrayList<>();
+    ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
     Book book;
 
@@ -42,7 +45,7 @@ public class ListingsFragment extends Fragment
         final View view = inflater.inflate(R.layout.listings_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.btn_menu_locate);
+        Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -50,6 +53,12 @@ public class ListingsFragment extends Fragment
                 startActivity(intent);
             }
         });
+
+        ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_filter).into(btn_filter_explore);
+
+        ImageView btn_search = (ImageView)view.findViewById(R.id.btn_search);
+        Picasso.with(getContext()).load(R.drawable.btn_locate_search).into(btn_search);
 
         //------------------------------------------------------------
         //add book
@@ -66,28 +75,28 @@ public class ListingsFragment extends Fragment
             }
         });
         //-------------------------------------------------------------
-        Explore e1= new Explore();
-        e1.setPrice_book(152.0f);
-        e1.setBuy(true);
+        Book e1= new Book();
+        e1.setPrice("AED 300");
+        e1.setAction("110");
 
-        Explore e2= new Explore();
-        e2.setPrice_book(153.0f);
-        e2.setBuy(true);
+        Book e2= new Book();
+        e2.setPrice("AED 200");
+        e2.setAction("101");
 
-        Explore e3= new Explore();
-        e3.setPrice_book(154.0f);
-        e3.setBuy(true);
+        Book e3= new Book();
+        e3.setPrice("AED 200");
+        e3.setAction("100");
 
-        Explore e4= new Explore();
-        e4.setPrice_book(155.0f);
-        e4.setBuy(true);
+        Book e4= new Book();
+        e4.setPrice("AED 200");
+        e4.setAction("111");
 
         listEx.add(e1);
         listEx.add(e2);
         listEx.add(e3);
         listEx.add(e4);
         //-----------------------------------------------------------
-        final AdapterListings adapter = new AdapterListings(getActivity(),listEx);
+        final ListBookAdapter adapter = new ListBookAdapter(getActivity(),listEx);
         grid=(GridView)view.findViewById(R.id.grid_view_listings);
         grid.setAdapter(adapter);
 

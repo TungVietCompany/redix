@@ -18,6 +18,8 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import redix.booxtown.R;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
@@ -40,7 +42,7 @@ public class WishboardFragment extends Fragment {
         final View view = inflater.inflate(R.layout.activity_wishboard , container, false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
-        img_menu.setImageResource(R.drawable.btn_menu_locate);
+        Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +66,7 @@ public class WishboardFragment extends Fragment {
                 dialog.show();
 
                 ImageView img_close_dialog_post_book_wishbroad = (ImageView)dialog.findViewById(R.id.img_close_dialog_post_book_wishbroad);
+                Picasso.with(getContext()).load(R.drawable.btn_wishbroad_close).into(img_close_dialog_post_book_wishbroad);
                 img_close_dialog_post_book_wishbroad.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

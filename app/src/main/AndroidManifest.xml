@@ -33,7 +33,7 @@
         android:largeHeap="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar.FullScreen">
         <activity
-            android:name=".activity.Splash_Activity"
+            android:name=".activity.MainAllActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -54,7 +54,7 @@
             android:name=".activity.ForgotPassword_Activity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".activity.MainAllActivity"
+            android:name=".activity.Splash_Activity"
             android:screenOrientation="portrait" />
 
         <meta-data

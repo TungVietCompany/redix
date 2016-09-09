@@ -57,6 +57,7 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
+import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -146,6 +147,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             genre.add(genrel);
         }
         btn_sellectimage = (ImageView) v.findViewById(R.id.imageView32) ;
+        //picaso
+        Picasso.with(getContext()).load(R.drawable.btn_add).into(btn_sellectimage);
+        //end
         btn_sellectimage.setOnClickListener(this);
         uploadFileController = new UploadFileController();
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref", getActivity().MODE_PRIVATE);
@@ -156,6 +160,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         //end
         //spinner
         ImageView imageView=(ImageView) v.findViewById(R.id.img_menu_genre);
+        Picasso.with(getContext()).load(R.drawable.btn_down).into(imageView);
         imagebook1 = (ImageView) v.findViewById(R.id.imageView29);
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
@@ -182,6 +187,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 });
 
                 ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
                 img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -215,6 +221,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 });
 
                 ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
                 img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {

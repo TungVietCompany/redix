@@ -43,7 +43,6 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:id="@+id/img_close_dialoggenre"
-            android:src="@drawable/btn_close_filter"
             android:layout_alignParentTop="true"
             android:layout_alignParentRight="true"
             android:layout_alignParentEnd="true" />

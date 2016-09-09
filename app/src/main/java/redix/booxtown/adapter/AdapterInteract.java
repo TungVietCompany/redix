@@ -9,6 +9,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -37,7 +39,6 @@ public class AdapterInteract extends RecyclerView.Adapter<AdapterInteract.Recycl
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         Interact interact= listInteract.get(position);
         holder.txt_title_interact.setText(interact.getInteractTitle());
-
         holder.txt_count_interact.setText("("+interact.getInteractCount()+")");
         if(interact.isStatus()) {
             holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_text));
@@ -55,12 +56,15 @@ public class AdapterInteract extends RecyclerView.Adapter<AdapterInteract.Recycl
         public TextView txt_title_interact;
         public TextView txt_count_interact;
         public TextView txt_dateUpdate_interact;
+        ImageView imageView;
 
         public RecyclerViewHolder(View itemView) {
             super(itemView);
             txt_title_interact = (TextView) itemView.findViewById(R.id.txt_title_interact);
             txt_count_interact = (TextView) itemView.findViewById(R.id.txt_count_interact);
             txt_dateUpdate_interact = (TextView) itemView.findViewById(R.id.txt_time_update_interact);
+            imageView = (ImageView)itemView.findViewById(R.id.imageView_next_interac);
+            Picasso.with(context).load(R.drawable.btn_interact_next).into(imageView);
         }
     }
 }
