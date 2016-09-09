@@ -71,9 +71,11 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     private SupportMapFragment mMapFragment;
     ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3;
     UploadFileController uploadFileController;
+    Button btn_menu_editlist_delete,btn_menu_editlisting_update,btn_menu_listing_addbook;
     String username;
     ArrayList<Genre> genre;
     double latitude,longitude;
+    TableRow row;
     String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
@@ -90,6 +92,19 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
 
+
+        btn_menu_listing_addbook = (Button)v.findViewById(R.id.btn_menu_listing_addbook);
+        btn_menu_editlist_delete = (Button)v.findViewById(R.id.btn_menu_editlist_delete);
+        btn_menu_editlisting_update = (Button)v.findViewById(R.id.btn_menu_editlisting_update);
+        row= (TableRow) v.findViewById(R.id.row_edit_book) ;
+        String s = getArguments().getString("activity");
+            if (s.equals("edit")){
+                btn_menu_listing_addbook.setVisibility(View.GONE);
+                row.setVisibility(View.VISIBLE);
+            }else {
+                btn_menu_listing_addbook.setVisibility(View.VISIBLE);
+                row.setVisibility(View.GONE);
+            }
         genre = new ArrayList<>();
         for (int i = 0;i<genravalue.length;i++){
             Genre genrel = new Genre();
@@ -188,10 +203,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             }
         });
         //end
-        Button btn_menu_listing_addbook = (Button)v.findViewById(R.id.btn_menu_listing_addbook);
-        btn_menu_listing_addbook.setVisibility(View.VISIBLE);
-        TableRow row= (TableRow) v.findViewById(R.id.row_edit_book) ;
-        row.setVisibility(View.GONE);
 
         btn_menu_listing_addbook.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -502,7 +513,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 @Override
                 public void run() {
                     if (uploadFileController.uploadFile(bmap.get(0),""+username+"::"+listFileName.get(0))){
-
                     }
                 }
             });
@@ -517,12 +527,17 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             Thread thread2  =new Thread(new Runnable() {
                 @Override
                 public void run() {
-
-                        uploadFileController.uploadFile(bmap.get(2),""+username+"::"+listFileName.get(2)+"");
+                    uploadFileController.uploadFile(bmap.get(2),""+username+"::"+listFileName.get(2)+"");
 
                 }
             });
 
+            Thread content = new Thread(new Runnable() {
+                @Override
+                public void run() {
+
+                }
+            });
             if (bmap.size() == 1){
                 thread.start();
             }else if (bmap.size() == 2){
