@@ -52,6 +52,18 @@ public class MyProfileDashboardFragment extends Fragment {
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(img_menu);
+
+        ImageView imv_close_dialog_dashboard_status = (ImageView)view.findViewById(R.id.imv_close_dialog_dashboard_status);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_one).into(imv_close_dialog_dashboard_status);
+
+        ImageView imageView26 = (ImageView)view.findViewById(R.id.imageView26);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_two).into(imageView26);
+
+        ImageView imageView27 = (ImageView)view.findViewById(R.id.imageView27);
+        Picasso.with(getContext()).load(R.drawable.btn_rank_three).into(imageView27);
+
+
+
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

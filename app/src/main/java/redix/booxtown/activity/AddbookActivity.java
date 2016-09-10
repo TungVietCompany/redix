@@ -13,6 +13,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
@@ -33,9 +34,12 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 
+import java.util.ArrayList;
+
 import redix.booxtown.R;
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.Genre;
 
 /**
  * Created by Administrator on 30/08/2016.
@@ -44,14 +48,21 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     private MenuBottomCustom bottomCustom;
-    String[] genre= {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
+    ArrayList<Genre> genre;
+    String[] genvalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
             "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_book_with_swap);
-
+        genre = new ArrayList<>();
+        for (int i = 0; i<genvalue.length;i++){
+            Genre genrel = new Genre();
+            genrel.setValue(genvalue[i]);
+            genre.add(genrel);
+        }
+        Log.d("genkjkjk",String.valueOf(genre.size()));
         //------------------------------------------------------------
         View view_menu_top = (View) findViewById(R.id.menu_top_add_book_with_swap);
         TextView txtTitle = (TextView) view_menu_top.findViewById(R.id.txt_title);
@@ -147,6 +158,7 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
 
                 ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
                 listView_genre.setAdapter(new CustomListviewGenre(AddbookActivity.this,genre));
+
                 dialog.show();
 
                 Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);

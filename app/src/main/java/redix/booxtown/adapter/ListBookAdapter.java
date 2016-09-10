@@ -9,7 +9,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +25,6 @@ import java.util.ArrayList;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.EditListingActivity;
-import redix.booxtown.activity.ListingCollectionActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.UserProfileActivity;
 import redix.booxtown.fragment.ListingsFragment;
@@ -36,21 +34,21 @@ import redix.booxtown.model.Explore;
 /**
  * Created by Administrator on 29/08/2016.
  */
-public class AdapterListings extends BaseAdapter {
+public class ListBookAdapter extends BaseAdapter {
     private Context mContext;
-    private ArrayList<Explore> listExplore;
+    private ArrayList<Book> listBook;
 
 
-    public AdapterListings(Context c, ArrayList<Explore> list_explores) {
+    public ListBookAdapter(Context c, ArrayList<Book> list_book) {
         mContext = c;
-        this.listExplore = list_explores;
+        this.listBook = list_book;
 
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return listExplore.size();
+        return listBook.size();
     }
 
     @Override
@@ -62,15 +60,15 @@ public class AdapterListings extends BaseAdapter {
     @Override
     public long getItemId(int position) {
         // TODO Auto-generated method stub
-        return listExplore.size();
+        return listBook.size();
     }
 
     @Override
-    public View getView(final int position, View convertView, ViewGroup parent) {
+    public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        Explore ex= listExplore.get(position);
+        Book ex= listBook.get(position);
         Hoder hoder = new Hoder();
         convertView = inflater.inflate(R.layout.custom_gridview_listings, null);
         hoder.txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
@@ -93,11 +91,15 @@ public class AdapterListings extends BaseAdapter {
             hoder.txt_title_book.setText("Gandalf the first");
             hoder.txt_author_book.setText("buy Ptit");
         }
-        if(!ex.isBuy()) {
+        //String action[] = ex.getAction().split("");
+        char array[]=ex.getAction().toCharArray();
+        if(ex.getPrice() == null) {
             hoder.txt_price_book.setVisibility(View.INVISIBLE);
+        }else {
+            hoder.txt_price_book.setText(ex.getPrice());
         }
-        if(ex.isSwap()){
-            Picasso.with(mContext).load(R.drawable.explore_btn_swap_active).into(hoder.img_buy);
+        if(String.valueOf(array[0]).contains("1")){
+            Picasso.with(mContext).load(R.drawable.explore_btn_swap_active).into(hoder.img_swap);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_active));
             //Glide.with(mContext).load(R.drawable.explore_btn_swap_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
         }
@@ -107,8 +109,8 @@ public class AdapterListings extends BaseAdapter {
 //            Glide.with(mContext).load(R.drawable.explore_btn_swap_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_swap);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_dis_active));
         }
-        if(ex.isFree()){
-            Picasso.with(mContext).load(R.drawable.explore_btn_free_active).into(hoder.img_buy);
+        if(String.valueOf(array[1]).contains("1")){
+            Picasso.with(mContext).load(R.drawable.explore_btn_free_active).into(hoder.img_free);
 //            Glide.with(mContext).load(R.drawable.explore_btn_free_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_active));
         }
@@ -117,7 +119,7 @@ public class AdapterListings extends BaseAdapter {
 //            Glide.with(mContext).load(R.drawable.explore_btn_free_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_free);
             //img_free.setImageResource((R.drawable.explore_btn_free_dis_active));
         }
-        if(ex.isBuy()){
+        if(String.valueOf(array[2]).contains("1")){
             Picasso.with(mContext).load(R.drawable.listing_btn_buy).into(hoder.img_buy);
 //            Glide.with(mContext).load(R.drawable.listing_btn_buy).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.listing_btn_buy));
@@ -143,17 +145,8 @@ public class AdapterListings extends BaseAdapter {
         hoder.img_edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent= new Intent(mContext, ListingCollectionActivity.class);
-//
-//                mContext.startActivity(intent);
-               Explore book = (Explore) listExplore.get(position);
-                Log.d("boooook",String.valueOf(book.getPrice_book()));
-                Bundle bundle = new Bundle();
-                bundle.putString("activity","edit");
-                bundle.putSerializable("book",book);
-                ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
-                listingCollectionActivity.setArguments(bundle);
-                callFragment(listingCollectionActivity);
+                Intent intent= new Intent(mContext, EditListingActivity.class);
+                mContext.startActivity(intent);
             }
         });
 

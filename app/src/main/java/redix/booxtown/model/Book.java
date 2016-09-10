@@ -2,10 +2,12 @@ package redix.booxtown.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * Created by vietp on 04/09/2016.
  */
-public class Book {
+public class Book implements Serializable{
     @Expose
     private String title;
     @Expose
@@ -24,8 +26,11 @@ public class Book {
     private String b_condition;
     @Expose
     private String b_action;
+    @Expose
+    private String price;
 
-    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action) {
+    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
+                String price) {
         this.title = title;
         this.author = author;
         this.photo = photo;
@@ -35,6 +40,7 @@ public class Book {
         this.genre = genre;
         this.b_condition = b_condition;
         this.b_action = b_action;
+        this.price = price;
     }
 
     public Book() {
@@ -110,5 +116,13 @@ public class Book {
 
     public void setAction(String action) {
         this.b_action = action;
+    }
+
+    public String getPrice() {
+        return price;
+    }
+
+    public void setPrice(String price) {
+        this.price = price;
     }
 }

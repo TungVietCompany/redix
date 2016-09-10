@@ -1,9 +1,11 @@
 package redix.booxtown.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 26/08/2016.
  */
-public class Explore {
+public class Explore implements Serializable{
     private String url_img_book;
     private String title_book;
     private String author_book;

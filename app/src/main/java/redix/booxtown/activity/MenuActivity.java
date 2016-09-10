@@ -161,6 +161,10 @@ public class MenuActivity extends AppCompatActivity {
                 editor.remove("session_id");
                 editor.commit();
                 finish();
+                dialog.hide();
+            }else
+            {
+                dialog.hide();
             }
         }
     }

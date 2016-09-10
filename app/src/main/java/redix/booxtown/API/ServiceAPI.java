@@ -9,6 +9,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import redix.booxtown.model.Result;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -40,13 +41,13 @@ public class ServiceAPI {
         }
         RequestBody reqFile = RequestBody.create(MediaType.parse("application/octet-stream"), data2);
         MultipartBody.Part body = MultipartBody.Part.createFormData("upload", fileName, reqFile);
-        retrofit2.Call<okhttp3.ResponseBody> req = git.postImage(body);
-        req.enqueue(new Callback<ResponseBody>() {
+        retrofit2.Call<Result> req = git.postImage(body);
+        req.enqueue(new Callback<Result>() {
             @Override
-            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) { }
+            public void onResponse(Call<Result> call, Response<Result> response) { }
 
             @Override
-            public void onFailure(Call<ResponseBody> call, Throwable t) {
+            public void onFailure(Call<Result> call, Throwable t) {
                 t.printStackTrace();
             }
         });

@@ -12,6 +12,8 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 
 import redix.booxtown.R;
@@ -46,6 +48,16 @@ public class RespondActivity extends AppCompatActivity implements View.OnClickLi
         img_menu_bottom_bag = (ImageView)findViewById(R.id.img_menu_bottom_bag);
         img_menu_bottom_user = (ImageView)findViewById(R.id.img_menu_bottom_user);
         //--------------------------------------------------
+        //rank
+        ImageView btn_rank_one = (ImageView)findViewById(R.id.imageView10);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_one).into(btn_rank_one);
+
+        ImageView btn_rank_two = (ImageView)findViewById(R.id.imageView28);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_two).into(btn_rank_two);
+
+        ImageView btn_rank_three = (ImageView)findViewById(R.id.imageView39);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_rank_three).into(btn_rank_three);
+        //end
         View view=(View) findViewById(R.id.menu_top_respond);
         TextView txtTitle=(TextView) view.findViewById(R.id.txt_title);
         txtTitle.setText("Respond");
@@ -53,7 +65,7 @@ public class RespondActivity extends AppCompatActivity implements View.OnClickLi
         ImageView img_component=(ImageView) findViewById(R.id.img_menu_component);
         img_component.setVisibility(View.INVISIBLE);
         ImageView imageView_back=(ImageView) findViewById(R.id.img_menu);
-        imageView_back.setImageResource(R.drawable.btn_sign_in_back);
+        Picasso.with(getApplicationContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

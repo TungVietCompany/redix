@@ -72,6 +72,7 @@ public class InteractThreadFragment extends Fragment
 
 
                 ImageView imv_dialog_interacr_close = (ImageView)dialog.findViewById(R.id.imv_dialog_interacr_close);
+                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(imv_dialog_interacr_close);
                 imv_dialog_interacr_close.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
