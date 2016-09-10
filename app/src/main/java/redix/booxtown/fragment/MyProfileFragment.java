@@ -107,7 +107,6 @@ public class MyProfileFragment extends Fragment {
                 final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(2),1);
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
-
                 tab_custom.setDefault(2);
             }
         });
