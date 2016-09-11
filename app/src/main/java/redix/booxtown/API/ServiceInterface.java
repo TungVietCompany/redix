@@ -1,4 +1,4 @@
-package redix.booxtown.API;
+package redix.booxtown.api;
 
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;

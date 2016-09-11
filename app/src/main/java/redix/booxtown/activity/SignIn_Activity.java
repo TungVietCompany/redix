@@ -13,16 +13,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import redix.booxtown.Controller.UserController;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.model.Result;
 

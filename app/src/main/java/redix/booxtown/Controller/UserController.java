@@ -1,14 +1,9 @@
-package redix.booxtown.Controller;
+package redix.booxtown.controller;
 
-import android.content.SharedPreferences;
 import android.os.StrictMode;
-import android.widget.Toast;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import redix.booxtown.API.ServiceGenerator;
-import redix.booxtown.API.ServiceInterface;
+import redix.booxtown.api.ServiceGenerator;
+import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.User;

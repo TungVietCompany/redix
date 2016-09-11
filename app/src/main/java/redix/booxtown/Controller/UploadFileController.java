@@ -1,9 +1,8 @@
-package redix.booxtown.Controller;
+package redix.booxtown.controller;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.StrictMode;
-import android.util.Log;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -14,8 +13,8 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import redix.booxtown.API.ServiceGenerator;
-import redix.booxtown.API.ServiceInterface;
+import redix.booxtown.api.ServiceGenerator;
+import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Result;
 import retrofit2.Call;
 import retrofit2.Callback;

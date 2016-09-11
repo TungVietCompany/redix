@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
+import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterInteract;
 import redix.booxtown.custom.MenuBottomCustom;

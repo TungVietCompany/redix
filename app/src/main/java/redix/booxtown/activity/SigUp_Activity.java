@@ -1,25 +1,21 @@
 package redix.booxtown.activity;
 
-import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Resources;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,7 +24,7 @@ import com.squareup.picasso.Picasso;
 import java.util.Calendar;
 import java.util.regex.Pattern;
 
-import redix.booxtown.Controller.UserController;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.model.User;
 

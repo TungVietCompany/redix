@@ -14,14 +14,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.RecyclerClick.RecyclerItemClickListener;
+import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.HomeActivity;
-import redix.booxtown.activity.MainAllActivity;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.activity.NotificationDominicActivity;
 import redix.booxtown.activity.NotificationSellActivity;
