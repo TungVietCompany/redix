@@ -57,6 +57,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.controller.UploadFileController;
 import redix.booxtown.controller.UserController;
@@ -83,15 +84,14 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     float price;
     String condition;
     CrystalSeekbar seekbar;
-    UserController userController;
+    //UserController userController;
+    BookController bookController;
     boolean success;
     Book book;
     String titl;
     String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
-
-
 
     int PICK_IMAGE_MULTIPLE = 1;
     String imageEncoded;
@@ -281,7 +281,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
 
 
     public void addbook(){
-
         GPSTracker gps = new GPSTracker(getActivity());
         for (int i = 0; i < lisImmage.size();i++){
             try {
@@ -684,8 +683,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             Thread content = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    userController = new UserController();
-                    success = userController.addbook(book,session_id);
+                    bookController = new BookController();
+                    success = bookController.addbook(book,session_id);
                 }
             });
             content.start();

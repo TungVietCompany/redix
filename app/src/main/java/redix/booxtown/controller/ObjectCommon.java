@@ -13,7 +13,7 @@ public class ObjectCommon {
 
     }
 
-    public static Object ObjectDymanic(Object obj){
+    public static Hashtable ObjectDymanic(Object obj){
         Hashtable user= new Hashtable();
         Object someObject = obj;
         for (Field field : someObject.getClass().getDeclaredFields()) {

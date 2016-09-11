@@ -98,7 +98,6 @@ public class MenuActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }else if(i==8){
-
                             LogoutAsynTask logoutAsynTask = new LogoutAsynTask();
                             logoutAsynTask.execute(session_id);
                         }else if(i==9){
@@ -165,6 +164,8 @@ public class MenuActivity extends AppCompatActivity {
                 dialog.hide();
             }else
             {
+                Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
+                startActivity(intent);
                 dialog.hide();
             }
         }

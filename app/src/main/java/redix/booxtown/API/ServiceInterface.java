@@ -20,11 +20,11 @@ import retrofit2.http.Query;
 public interface ServiceInterface {
     ////////////////////////////////////////////////////////////////////////////////////////////////
     @Multipart
-    @POST("/")
+    @POST("/booxtown/rest/uploadimage")
     Call<Result> postImage(@Part MultipartBody.Part image);
 
-    @GET("/uploads")
-    Call<ResponseBody> getImage(@Query("fileName") String fileName);
+    @GET("/booxtown/rest/getimage")
+    Call<ResponseBody> getImage(@Query("username") String username ,@Query("image") String image);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -32,32 +32,34 @@ public interface ServiceInterface {
     Call<Result> addUser(@Body User user);
 
     @POST("/booxtown/rest/user/login")
-    Call<Result> login(@Query("username") String username, @Query("password") String password,
-                       @Query("device_type") String device_type);
+    Call<Result> login(@Body Object user);
 
-    @POST("/booxtown/rest/user/getprofile")
+    @GET("/booxtown/rest/user/getprofile")
     Call<UserResult> getprofile(@Query("session_id") String session_id);
 
     @POST("/booxtown/rest/user/updateprofile")
-    Call<Result> updateprofile(@Body User user, @Query("session_id") String session_id);
+    Call<Result> updateprofile(@Body Object user);
 
     @POST("/booxtown/rest/user/changepassword")
     Call<Result> changepassword(@Query("session_id") String session_id, @Query("pwd_old") String pwd_old,
                                 @Query("pwd_new") String pwd_new);
 
     @POST("/booxtown/rest/user/logout")
-    Call<Result> logout(@Query("session_id") String session_id);
+    Call<Result> logout(@Body Object user);
 
     @POST("/booxtown/rest/user/forgotpassword")
-    Call<Result> forgotpassword(@Query("email") String email);
+    Call<Result> forgotpassword(@Body Object email);
 
     @POST("/booxtown/rest/book/addbook")
-    Call<Result> addbook(@Body Book book, @Query("session_id") String session_id);
+    Call<Result> addbook(@Body Object book);
 
     @POST("/booxtown/rest/book/getinfo")
     Call<BookResult> getinfo(@Query("session_id") String session_id, @Query("book_id") String book_id);
 
-    @POST("/booxtown/rest/book/getallbook")
-    Call<BookResult> getAllBook(@Query("session_id") String session_id);
+    @GET("/booxtown/rest/book/getallbook")
+    Call<BookResult> getAllBook();
+
+    @GET("/booxtown/rest/book/getallbookbyuser")
+    Call<BookResult> getAllBookByUser(@Query("session_id") String session_id);
 
 }

@@ -28,6 +28,8 @@ public class Book implements Serializable{
     private String b_action;
     @Expose
     private String price;
+    @Expose
+    private String id;
 
     public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
                 String price) {
@@ -124,5 +126,13 @@ public class Book implements Serializable{
 
     public void setPrice(String price) {
         this.price = price;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 }

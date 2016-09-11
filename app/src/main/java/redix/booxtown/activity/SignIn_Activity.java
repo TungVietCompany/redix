@@ -18,9 +18,14 @@ import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
-import redix.booxtown.controller.UserController;
+
+import java.util.Hashtable;
+
 import redix.booxtown.R;
+import redix.booxtown.controller.ObjectCommon;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.model.Result;
+import redix.booxtown.model.User;
 
 public class SignIn_Activity extends AppCompatActivity implements View.OnClickListener{
 Button mButtonForgotPass;
@@ -50,13 +55,13 @@ Button mButtonForgotPass;
         mimgBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
         mButtonForgotPass.setOnClickListener(this);
-        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-        SharedPreferences.Editor editor  = pref.edit();
-        session_id = pref.getString("session_id", null);
-        if (session_id != null){
-            Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
-            startActivity(intent);
-        }
+//        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+//        SharedPreferences.Editor editor  = pref.edit();
+//        session_id = pref.getString("session_id", null);
+//        if (session_id != null){
+//            Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
+//            startActivity(intent);
+//        }
         if (isOnline() == false){
             Toast.makeText(getApplicationContext(),"Check network state please",Toast.LENGTH_LONG).show();
         }
@@ -120,7 +125,6 @@ Button mButtonForgotPass;
                 editor.putString("username",edt_username.getText().toString());
                 editor.commit();
                 dialog.dismiss();
-                dialog.cancel();
             }else{
                 Toast.makeText(getApplicationContext(),"Username or password error!",Toast.LENGTH_LONG).show();
                 dialog.dismiss();

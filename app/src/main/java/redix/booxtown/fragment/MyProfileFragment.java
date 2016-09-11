@@ -19,13 +19,12 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import redix.booxtown.Controller.UserController;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;

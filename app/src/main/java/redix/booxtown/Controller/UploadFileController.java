@@ -45,7 +45,7 @@ public class UploadFileController {
 
         }
         RequestBody reqFile = RequestBody.create(MediaType.parse("application/octet-stream"), data2);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("upload", fileName, reqFile);
+        MultipartBody.Part body = MultipartBody.Part.createFormData("", fileName, reqFile);
         Call<Result> req = service.postImage(body);
         req.enqueue(new Callback<Result>() {
             @Override
@@ -65,9 +65,9 @@ public class UploadFileController {
         return success;
     }
 
-    public Bitmap getImage(String fileName) {
+    public Bitmap getImage(String username,String image) {
 
-        Call<ResponseBody> call = service.getImage(fileName);
+        Call<ResponseBody> call = service.getImage(username,image);
         try{
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =

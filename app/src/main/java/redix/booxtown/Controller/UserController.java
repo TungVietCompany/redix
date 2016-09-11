@@ -1,13 +1,14 @@
-package redix.booxtown.Controller;
+package redix.booxtown.controller;
 
 import android.os.StrictMode;
 
+import java.util.Hashtable;
 import java.util.List;
 
-import redix.booxtown.API.ServiceGenerator;
-import redix.booxtown.API.ServiceInterface;
+import redix.booxtown.api.ServiceGenerator;
+import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
-import redix.booxtown.model.Profile;
+import redix.booxtown.model.BookResult;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.User;
 import redix.booxtown.model.UserResult;
@@ -23,7 +24,11 @@ public class UserController {
     }
 
     public String checkLoginValidate(String username, String password, String device_type){
-                Call<Result> callService = service.login(username,password,device_type);
+        Hashtable obj = new Hashtable();
+        obj.put("username",username);
+        obj.put("password",password);
+        obj.put("device_type",device_type);
+                Call<Result> callService = service.login(obj);
                 try{
                     if (android.os.Build.VERSION.SDK_INT > 9) {
                         StrictMode.ThreadPolicy policy =
@@ -63,7 +68,9 @@ public class UserController {
 
 
     public boolean forgetPassword(String email) {
-        Call<Result> status = service.forgotpassword(email);
+        Hashtable obj = new Hashtable();
+        obj.put("email",email);
+        Call<Result> status = service.forgotpassword(obj);
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =
@@ -82,7 +89,9 @@ public class UserController {
 
 
     public boolean logout(String session_id){
-        Call<Result> response = service.logout(session_id);
+        Hashtable obj = new Hashtable();
+        obj.put("session_id",session_id);
+        Call<Result> response = service.logout(obj);
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =
@@ -96,25 +105,6 @@ public class UserController {
         }catch (Exception e){
         }
 
-        return false;
-    }
-
-    public boolean addbook(Book book,String session_id){
-        Call<Result> status = service.addbook(book,session_id);
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy =
-                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-            }
-            Result str = status.execute().body();
-            if (str.getCode() == 200){
-                return true;
-            }
-            String s = "";
-        } catch (Exception ex) {
-            String s = "";
-        }
         return false;
     }
 
@@ -134,4 +124,6 @@ public class UserController {
         }
         return null;
     }
+
+
 }
