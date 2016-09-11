@@ -1,17 +1,16 @@
 package redix.booxtown.Controller;
 
-import android.content.SharedPreferences;
 import android.os.StrictMode;
-import android.widget.Toast;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import redix.booxtown.API.ServiceGenerator;
 import redix.booxtown.API.ServiceInterface;
 import redix.booxtown.model.Book;
+import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.User;
+import redix.booxtown.model.UserResult;
 import retrofit2.Call;
 
 /**
@@ -119,4 +118,20 @@ public class UserController {
         return false;
     }
 
+    public List<User> getprofile(String session_id){
+        Call<UserResult> profile = service.getprofile(session_id);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            UserResult str = profile.execute().body();
+            if (str.getCode() == 200){
+                return str.getUser();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
+    }
 }

@@ -1,6 +1,10 @@
 package redix.booxtown.fragment;
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -11,19 +15,24 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import redix.booxtown.Controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.model.Explore;
+import redix.booxtown.model.User;
 
 public class MyProfileFragment extends Fragment {
     private LinearLayout linear_all;
@@ -59,7 +68,11 @@ public class MyProfileFragment extends Fragment {
         ImageView imageView27 = (ImageView)view.findViewById(R.id.imageView27);
         Picasso.with(getContext()).load(R.drawable.btn_rank_three).into(imageView27);
 
+        Profile profile = new Profile(getContext());
+        SharedPreferences pref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
+        String session_id =  pref.getString("session_id", null);
+        profile.execute("d56dc16833f41983beac5e040d1c5b8c");
        // imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -182,5 +195,40 @@ public class MyProfileFragment extends Fragment {
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
         transaction.replace(R.id.frame_main_all, fragment);
         transaction.commit();
+    }
+
+    class Profile extends AsyncTask<String,Void,List<User>>{
+        Context context;
+        public Profile(Context context){
+            this.context=context;
+        }
+        ProgressDialog dialog;
+        List<User> str_profile;
+        @Override
+        protected List<User> doInBackground(String... strings) {
+            UserController userController  = new UserController();
+            str_profile = userController.getprofile(strings[0]);
+            return str_profile;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(List<User> bookResult) {
+            if(bookResult ==null){
+                Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(context,"data"+bookResult.size(),Toast.LENGTH_LONG).show();
+            }
+            dialog.dismiss();
+            super.onPostExecute(bookResult);
+        }
     }
 }

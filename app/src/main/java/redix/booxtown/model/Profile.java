@@ -3,25 +3,22 @@ package redix.booxtown.model;
 import java.util.List;
 
 /**
- * Created by vietp on 04/09/2016.
+ * Created by thuyetpham94 on 11/09/2016.
  */
-public class UserResult {
+public class Profile {
     private int code;
-    private List<User> user;
+    private User user;
 
-    public UserResult() {
-    }
-
-    public UserResult(int code, List<User> user) {
+    public Profile(int code, User user) {
         this.code = code;
         this.user = user;
     }
 
-    public List<User> getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(List<User> user) {
+    public void setUser(User user) {
         this.user = user;
     }
 

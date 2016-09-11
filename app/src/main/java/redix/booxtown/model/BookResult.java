@@ -7,22 +7,14 @@ import java.util.List;
  */
 public class BookResult {
     private int code;
-    private List<User> user;
+    private List<Book> book;
+
+    public BookResult(int code, List<Book> book) {
+        this.code = code;
+        this.book = book;
+    }
 
     public BookResult() {
-    }
-
-    public BookResult(int code, List<User> user) {
-        this.code = code;
-        this.user = user;
-    }
-
-    public List<User> getUser() {
-        return user;
-    }
-
-    public void setUser(List<User> user) {
-        this.user = user;
     }
 
     public int getCode() {
@@ -31,5 +23,13 @@ public class BookResult {
 
     public void setCode(int code) {
         this.code = code;
+    }
+
+    public List<Book> getBook() {
+        return book;
+    }
+
+    public void setBook(List<Book> book) {
+        this.book = book;
     }
 }

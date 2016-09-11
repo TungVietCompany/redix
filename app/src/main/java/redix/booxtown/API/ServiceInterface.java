@@ -3,10 +3,11 @@ package redix.booxtown.API;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import redix.booxtown.model.Book;
+import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.BookResult;
-import redix.booxtown.model.UserResult;
 import redix.booxtown.model.User;
+import redix.booxtown.model.UserResult;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -35,7 +36,7 @@ public interface ServiceInterface {
                        @Query("device_type") String device_type);
 
     @POST("/booxtown/rest/user/getprofile")
-    Call<BookResult> getprofile(@Query("session_id") String session_id);
+    Call<UserResult> getprofile(@Query("session_id") String session_id);
 
     @POST("/booxtown/rest/user/updateprofile")
     Call<Result> updateprofile(@Body User user, @Query("session_id") String session_id);
@@ -54,9 +55,9 @@ public interface ServiceInterface {
     Call<Result> addbook(@Body Book book, @Query("session_id") String session_id);
 
     @POST("/booxtown/rest/book/getinfo")
-    Call<UserResult> getinfo(@Query("session_id") String session_id, @Query("book_id") String book_id);
+    Call<BookResult> getinfo(@Query("session_id") String session_id, @Query("book_id") String book_id);
 
     @POST("/booxtown/rest/book/getallbook")
-    Call<UserResult> getAllBook(@Query("session_id") String session_id);
+    Call<BookResult> getAllBook(@Query("session_id") String session_id);
 
 }
