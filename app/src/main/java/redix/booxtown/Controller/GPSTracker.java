@@ -1,4 +1,4 @@
-package redix.booxtown.Controller;
+package redix.booxtown.controller;
 
 /**
  * Created by duong on 9/9/2016.

@@ -1,4 +1,4 @@
-package redix.booxtown.API;
+package redix.booxtown.api;
 
 import android.util.Base64;
 

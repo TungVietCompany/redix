@@ -1,7 +1,6 @@
 package redix.booxtown.activity;
 
 import android.app.ProgressDialog;
-import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -11,7 +10,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import redix.booxtown.Controller.UserController;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
 
 public class ForgotPassword_Activity extends AppCompatActivity implements View.OnClickListener{
