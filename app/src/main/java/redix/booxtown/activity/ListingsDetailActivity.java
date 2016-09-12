@@ -13,6 +13,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.ListFragment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -42,6 +43,7 @@ import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
+import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.InteractComment;
 
@@ -93,6 +95,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         TableRow tbTypebook = (TableRow) v.findViewById(R.id.row_type_book);
         EditText editText11 = (EditText) v.findViewById(R.id.editText11);
         String type = getArguments().getString(String.valueOf(R.string.valueListings));
+        Log.d("dksdksdslkd",type.toString());
 
         MainAllActivity activity = (MainAllActivity) getActivity();
 
@@ -113,6 +116,10 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
             img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
+        }else {
+            Book book = (Book) getArguments().getSerializable("bookedit");
+            Log.d("dksdksdslkd",book.toString());
+
         }
         View view=(View) v.findViewById(R.id.layout_details);
         CustomPagerAdapter mCustomPagerAdapter = new CustomPagerAdapter(getActivity());
