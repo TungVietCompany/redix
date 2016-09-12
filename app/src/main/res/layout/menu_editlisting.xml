@@ -373,7 +373,7 @@
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_marginTop="10dp"
-
+        android:layout_marginBottom="10dp"
         >
     <Button
         android:layout_width="145dp"
@@ -398,7 +398,7 @@
         android:id="@+id/btn_menu_editlisting_update"
         android:layout_below="@+id/edt_editlisting_sell"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
+
         android:background="@drawable/btn_wishbroad_popup"
         android:layout_marginRight="20dp"
         android:textColor="@color/dot_light_screen1"

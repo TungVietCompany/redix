@@ -46,6 +46,7 @@ public class ListingsFragment extends Fragment
     ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
     Book book;
+    ListBookAdapter adapter;
 
     @Nullable
     @Override
@@ -54,6 +55,7 @@ public class ListingsFragment extends Fragment
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
+        grid=(GridView)view.findViewById(R.id.grid_view_listings);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,12 +63,16 @@ public class ListingsFragment extends Fragment
                 startActivity(intent);
             }
         });
-
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
         Picasso.with(getContext()).load(R.drawable.btn_locate_filter).into(btn_filter_explore);
 
         ImageView btn_search = (ImageView)view.findViewById(R.id.btn_search);
         Picasso.with(getContext()).load(R.drawable.btn_locate_search).into(btn_search);
+        listingAsync listingAsync = new listingAsync(getContext());
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        String session_id = pref.getString("session_id", null);
+        listingAsync.execute(session_id);
 
         //------------------------------------------------------------
         //add book
@@ -82,38 +88,6 @@ public class ListingsFragment extends Fragment
                 callFragment(listingCollectionActivity);
             }
         });
-        //-------------------------------------------------------------
-
-        listingAsync listBook = new listingAsync(getContext());
-        SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor  = pref.edit();
-        String session_id = pref.getString("session_id", null);
-        listBook.execute(session_id);
-        List<Book> list=listBook.listbook;
-        Book e1= new Book();
-        e1.setPrice("AED 300");
-        e1.setAction("110");
-
-        Book e2= new Book();
-        e2.setPrice("AED 200");
-        e2.setAction("101");
-
-        Book e3= new Book();
-        e3.setPrice("AED 200");
-        e3.setAction("100");
-
-        Book e4= new Book();
-        e4.setPrice("AED 200");
-        e4.setAction("111");
-
-        listEx.add(e1);
-        listEx.add(e2);
-        listEx.add(e3);
-        listEx.add(e4);
-        //-----------------------------------------------------------
-        final ListBookAdapter adapter = new ListBookAdapter(getActivity(),listEx);
-        grid=(GridView)view.findViewById(R.id.grid_view_listings);
-        grid.setAdapter(adapter);
 
         //--------------------------------------------------------------
         //change color tab
@@ -142,16 +116,17 @@ public class ListingsFragment extends Fragment
 
         Context context;
         ProgressDialog dialog;
-        List<Book> listbook;
+        List<Book> listemp;
         public listingAsync(Context context){
             this.context = context;
         }
 
         @Override
         protected List<Book> doInBackground(String... strings) {
+            listemp = new ArrayList<>();
             BookController bookController = new BookController();
-            listbook = bookController.getAllBookById(strings[0]);
-            return listbook;
+            listemp = bookController.getAllBookById(strings[0]);
+            return listemp;
         }
 
         @Override
@@ -160,7 +135,6 @@ public class ListingsFragment extends Fragment
             dialog.setMessage("Please wait...");
             dialog.setIndeterminate(true);
             dialog.show();
-            listbook = new ArrayList<>();
             super.onPreExecute();
         }
 
@@ -168,8 +142,13 @@ public class ListingsFragment extends Fragment
         protected void onPostExecute(List<Book> books) {
             if (books == null){
                 Toast.makeText(context,"khong co",Toast.LENGTH_LONG).show();
+                dialog.dismiss();
             }else {
                 Toast.makeText(context,"co"+books.size(),Toast.LENGTH_LONG).show();
+                adapter = new ListBookAdapter(getActivity(),books);
+                grid.setAdapter(adapter);
+                adapter.notifyDataSetChanged();
+                dialog.dismiss();
             }
             super.onPostExecute(books);
         }

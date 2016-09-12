@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import java.util.Hashtable;
 import java.util.List;
 
+import okhttp3.ResponseBody;
 import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
@@ -56,5 +57,24 @@ public class BookController {
         } catch (Exception ex) {
         }
         return null;
+    }
+
+    public Boolean updatebook(Book book,String session_id){
+        Hashtable table = ObjectCommon.ObjectDymanic(book);
+        table.put("session_id",session_id);
+        Call<Result> imagebook = service.update(table);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            Result str = imagebook.execute().body();
+            if (str.getCode() == 200){
+                return true;
+            }
+        } catch (Exception ex) {
+        }
+        return false;
     }
 }

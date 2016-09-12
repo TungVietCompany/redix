@@ -31,6 +31,9 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/user/signup")
     Call<Result> addUser(@Body User user);
 
+    @POST("/booxtown/rest/book/update")
+    Call<Result> update(@Body Object book);
+
     @POST("/booxtown/rest/user/login")
     Call<Result> login(@Body Object user);
 

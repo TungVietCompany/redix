@@ -31,8 +31,9 @@ public class Book implements Serializable{
     @Expose
     private String id;
 
-    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
+    public Book(String id,String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
                 String price) {
+        this.id = id;
         this.title = title;
         this.author = author;
         this.photo = photo;
@@ -134,5 +135,23 @@ public class Book implements Serializable{
 
     public void setId(String id) {
         this.id = id;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "title='" + title + '\'' +
+                ", author='" + author + '\'' +
+                ", photo='" + photo + '\'' +
+                ", hash_tag='" + hash_tag + '\'' +
+                ", location_longitude=" + location_longitude +
+                ", location_latitude=" + location_latitude +
+                ", genre='" + genre + '\'' +
+                ", b_condition='" + b_condition + '\'' +
+                ", b_action='" + b_action + '\'' +
+                ", price='" + price + '\'' +
+                ", id='" + id + '\'' +
+                '}';
     }
 }

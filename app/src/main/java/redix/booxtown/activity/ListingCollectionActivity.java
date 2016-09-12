@@ -23,9 +23,12 @@ import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,7 +42,6 @@ import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -81,14 +83,18 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     TableRow row;
     CheckBox swap,free,sell;
     String session_id;
-    float price;
+    String price;
     String condition;
+    Uri mImageUri;
+    String s;
     CrystalSeekbar seekbar;
     //UserController userController;
     BookController bookController;
     boolean success;
     Book book;
     String titl;
+    public int numclick = 0;
+    public int numimageclick = 0;
     String[] genravalue = {"Architecture","Business and Economics","Boy,Mid and Spirit","Children","Computers and Technology",
     "Crafts and Hobbies","Education","Family,Parenting and Relationships","Fiction and Literature","Food and Drink"
     };
@@ -97,8 +103,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     String imageEncoded;
     List<String> imagesEncodedList;
     ArrayList<String> listTag;
-
-
+    Book bookedit;
+    TableRow tb_menu;
+    ImageView imageView_back;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -119,19 +126,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         btn_menu_editlist_delete.setOnClickListener(this);
         btn_menu_editlisting_update.setOnClickListener(this);
         row= (TableRow) v.findViewById(R.id.row_edit_book) ;
-        String s = getArguments().getString("activity");
+        s = getArguments().getString("activity");
         listTag = new ArrayList<>();
-            if (s.equals("edit")){
-                btn_menu_listing_addbook.setVisibility(View.GONE);
-                row.setVisibility(View.VISIBLE);
-                Explore explore = (Explore) getArguments().getSerializable("book");
-                Log.d("boooook",String.valueOf(explore.getPrice_book()));
-
-
-            }else {
-                btn_menu_listing_addbook.setVisibility(View.VISIBLE);
-                row.setVisibility(View.GONE);
-            }
         genre = new ArrayList<>();
         for (int i = 0;i<genravalue.length;i++){
             Genre genrel = new Genre();
@@ -201,7 +197,20 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
-                listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
+                if (s != null){
+                    String[] separated = book.getGenre().split(";");
+                    for (int i = 0;i<genre.size();i++){
+                        for (int j = 0;j<separated.length;j++){
+                            if (genre.get(i).getValue().equals(separated[j].trim())){
+                                genre.get(i).setIscheck(true);
+                            }
+                        }
+                    }
+                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
+                }else {
+                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
+                }
+
                 dialog.show();
 
                 Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
@@ -269,16 +278,66 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 main.callFragment(new ListingsFragment());
             }
         });
-
+        tb_menu = (TableRow)v.findViewById(R.id.tableRow5);
+        imageView_back = (ImageView)getActivity().findViewById(R.id.img_menu);
         //--------------------------------------------------
 //        View view_bottom = (View) v.findViewById(R.id.menu_bottom_listing_collec);
 //        menu_bottom=new MenuBottomCustom(view_bottom,this,3);
 //        menu_bottom.setDefaut(3);
         //---------------------------------------------------------------
 
+
+        if (s.equals("edit")){
+            btn_menu_listing_addbook.setVisibility(View.GONE);
+            row.setVisibility(View.VISIBLE);
+            bookedit = (Book) getArguments().getSerializable("bookedit");
+            Log.d("boooook",String.valueOf(bookedit.getAction()));
+            edt_author.setText(bookedit.getAuthor().toString());
+            edt_tilte.setText(bookedit.getTitle().toString());
+            edt_tag.setText(bookedit.getHash_tag().toString());
+
+            tb_menu.setVisibility(View.GONE);
+
+            Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
+            imageView_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    callFragment(new ListingsFragment());
+                }
+            });
+
+            char array[]=bookedit.getAction().toCharArray();
+            if (String.valueOf(array[0]).contains("1")){
+                swap.setChecked(true);
+            }
+            if (String.valueOf(array[1]).contains("1")){
+                free.setChecked(true);
+            }
+            if (String.valueOf(array[2]).contains("1")){
+                sell.setChecked(true);
+                edt_editlisting_sell.setVisibility(View.VISIBLE);
+                edt_editlisting_sell.setText(book.getPrice().toString());
+            }
+
+//            seekbar.set(80);
+
+
+        }else {
+            btn_menu_listing_addbook.setVisibility(View.VISIBLE);
+            row.setVisibility(View.GONE);
+        }
         return v;
     }
 
+
+    public void callFragment(Fragment fragment ){
+        FragmentManager manager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
+        FragmentTransaction transaction = manager.beginTransaction();
+        //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
+        transaction.replace(R.id.frame_main_all, fragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
+    }
 
     public void addbook(){
         GPSTracker gps = new GPSTracker(getActivity());
@@ -337,6 +396,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             }
         });
 
+
         String imagename = "";
         if (listFileName.size()!=0){
             for(int i=0;i<listFileName.size(); i++){
@@ -349,9 +409,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             }
         }
 
-//        if(sell.isChecked()){
-//            price = Float.valueOf(edt_editlisting_sell.getText().toString());
-//        }
+        if(sell.isChecked()){
+            price = edt_editlisting_sell.getText().toString();
+        }
 
 
 
@@ -365,7 +425,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         book.setLocation_latitude(Float.valueOf(String.valueOf(gps.getLatitude())));
         book.setLocation_longitude(Float.valueOf(String.valueOf(gps.getLongitude())));
         book.setPhoto(imagename);
-//        book.setPrice(price);
+        book.setPrice(price);
+        if (s!=null){
+            book.setId(bookedit.getId());
+        }
 
 
     }
@@ -484,36 +547,72 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.imageView32:
+                numclick = numclick + 1;
+                if (numclick > 3){
+                    numclick = 0;
+                }
                 if (lisImmage.size()<3){
                     choseImage();
+                    imagebook1.setEnabled(false);
+                    imagebook2.setEnabled(false);
+                    imagebook3.setEnabled(false);
                 break;
-                }else {
-                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-                    alertDialogBuilder.setTitle("you want to change other image");
-                    alertDialogBuilder
-                            .setMessage("Click yes to chose other image")
-                            .setCancelable(false)
-                            .setPositiveButton("Yes",
-                                    new DialogInterface.OnClickListener() {
-                                        public void onClick(DialogInterface dialog, int id) {
-                                            lisImmage.remove(0);
-                                            choseImage();
-                                        }
-                                    })
+                }else if (lisImmage.size() == 3){
+//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+//                    alertDialogBuilder.setTitle("you want to change other image");
+//                    alertDialogBuilder
+//                            .setMessage("Click yes to chose other image")
+//                            .setCancelable(false)
+//                            .setPositiveButton("Yes",
+//                                    new DialogInterface.OnClickListener() {
+//                                        public void onClick(DialogInterface dialog, int id) {
+//                                            lisImmage.remove(0);
+//                                            choseImage();
+//                                        }
+//                                    })
+//
+//                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
+//                                public void onClick(DialogInterface dialog, int id) {
+//
+//                                    dialog.cancel();
+//                                }
+//                            });
+//
+//                    AlertDialog alertDialog = alertDialogBuilder.create();
+//                    alertDialog.show();
+                    imagebook1.setEnabled(true);
+                    imagebook2.setEnabled(true);
+                    imagebook3.setEnabled(true);
+                    imagebook1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            numimageclick = 1;
+                            choseImage();
+                        }
+                    });
 
-                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-                                public void onClick(DialogInterface dialog, int id) {
+                    imagebook2.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            numimageclick = 2;
+                            choseImage();
+                        }
+                    });
 
-                                    dialog.cancel();
-                                }
-                            });
-
-                    AlertDialog alertDialog = alertDialogBuilder.create();
-                    alertDialog.show();
+                    imagebook3.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            choseImage();
+                           numimageclick = 3;
+                        }
+                    });
                 }
             case R.id.btn_menu_editlist_delete:
                 break;
             case R.id.btn_menu_editlisting_update:
+                addbook();
+                editbook editbook = new editbook();
+                editbook.execute();
                 break;
             case R.id.imageView33:
                 if (listTag.size() < 3){
@@ -540,6 +639,9 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
+        Log.d("lisststst",String.valueOf(lisImmage.size()));
+        Log.d("lisststst",String.valueOf(numclick));
+        Log.d("lisststst",String.valueOf(numimageclick));
 
     }
 
@@ -560,8 +662,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 imagesEncodedList = new ArrayList<String>();
                 if(data.getData()!=null){
 
-                    Uri mImageUri=data.getData();
-                    lisImmage.add(mImageUri);
+                    mImageUri=data.getData();
+//                    lisImmage.add(mImageUri);
 
                     // Get the cursor
                     Cursor cursor = getActivity().getContentResolver().query(mImageUri,
@@ -602,13 +704,35 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         } catch (Exception e) {
             return;
         }
-        if (lisImmage.size() == 1){
-            imagebook1.setImageURI(lisImmage.get(0));
-        }else if (lisImmage.size() == 2){
-            imagebook2.setImageURI(lisImmage.get(1));
-        }else if (lisImmage.size()==3){
-            imagebook3.setImageURI(lisImmage.get(2));
+
+        if (numclick == 1){
+            imagebook1.setImageURI(mImageUri);
+            lisImmage.add(mImageUri);
+        }else if (numclick == 2){
+            imagebook2.setImageURI(mImageUri);
+            lisImmage.add(mImageUri);
+        }else if (numclick ==3){
+            imagebook3.setImageURI(mImageUri);
+            lisImmage.add(mImageUri);
         }
+
+        if (numimageclick == 1){
+            imagebook1.setImageURI(mImageUri);
+            lisImmage.remove(0);
+            lisImmage.add(mImageUri);
+        }else if (numimageclick == 2){
+            imagebook2.setImageURI(mImageUri);
+            lisImmage.remove(1);
+            lisImmage.add(mImageUri);
+        }else if (numimageclick ==3){
+            imagebook3.setImageURI(mImageUri);
+            lisImmage.remove(2);
+            lisImmage.add(mImageUri);
+        }
+
+
+
+
 
 //        Log.d("dsdsds",String.valueOf(lisImmage.size()));
 //        Log.d("dsdsds",String.valueOf(imagebook1.getTag()));
@@ -724,6 +848,60 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 Toast.makeText(getActivity(),"Addbook Faile",Toast.LENGTH_LONG).show();
             }
             super.onPostExecute(bolean);
+        }
+    }
+
+
+    public class editbook extends AsyncTask<Void,Void,Boolean>{
+        ProgressDialog dialog = new ProgressDialog(getActivity());
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            BookController bookController = new BookController();
+            Boolean sucess = bookController.updatebook(book,session_id);
+            return sucess;
+        }
+
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean == true){
+                dialog.dismiss();
+                Toast.makeText(getActivity(),"Update Success",Toast.LENGTH_LONG).show();
+            }else {
+                dialog.dismiss();
+                Toast.makeText(getActivity(),"Update Faile",Toast.LENGTH_LONG).show();
+            }
+            super.onPostExecute(aBoolean);
+        }
+    }
+
+    public class deletebook extends AsyncTask<Void,Void,Boolean>{
+
+
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            return null;
+        }
+
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
         }
     }
 }
