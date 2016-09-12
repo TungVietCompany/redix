@@ -15,6 +15,7 @@ import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -41,6 +42,9 @@ public class MyProfileFragment extends Fragment {
     ArrayList<Explore> listEx= new ArrayList<>();
     GridView grid;
     ImageView img_component;
+    TextView txt_profile_email;
+    TextView txt_profile_phone;
+    TextView txt_profile_birthday;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -71,7 +75,13 @@ public class MyProfileFragment extends Fragment {
         SharedPreferences pref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
 
         String session_id =  pref.getString("session_id", null);
-        profile.execute("d56dc16833f41983beac5e040d1c5b8c");
+        profile.execute(session_id);
+
+        //profile
+        txt_profile_email = (TextView)view.findViewById(R.id.txt_profile_email);
+        txt_profile_phone = (TextView)view.findViewById(R.id.txt_profile_phone);
+        txt_profile_birthday = (TextView)view.findViewById(R.id.txt_profile_birthday);
+        //end
        // imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -202,12 +212,11 @@ public class MyProfileFragment extends Fragment {
             this.context=context;
         }
         ProgressDialog dialog;
-        List<User> str_profile;
         @Override
         protected List<User> doInBackground(String... strings) {
             UserController userController  = new UserController();
-            str_profile = userController.getprofile(strings[0]);
-            return str_profile;
+            List<User> profile = userController.getprofile(strings[0]);
+            return profile;
         }
 
         @Override
@@ -221,13 +230,23 @@ public class MyProfileFragment extends Fragment {
 
         @Override
         protected void onPostExecute(List<User> bookResult) {
-            if(bookResult ==null){
-                Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
-            }else {
-                Toast.makeText(context,"data"+bookResult.size(),Toast.LENGTH_LONG).show();
+            try {
+                if(bookResult.size() == 0){
+                    Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
+                    dialog.dismiss();
+                }else {
+                    txt_profile_email.setText(bookResult.get(0).getEmail());
+                    txt_profile_phone.setText(bookResult.get(0).getPhone());
+                    txt_profile_birthday.setText(bookResult.get(0).getBirthday());
+                    dialog.dismiss();
+                }
+                super.onPostExecute(bookResult);
+            }catch (Exception e){
+                Toast.makeText(context,"no data",Toast.LENGTH_LONG).show();
             }
-            dialog.dismiss();
-            super.onPostExecute(bookResult);
+
         }
     }
+
+
 }

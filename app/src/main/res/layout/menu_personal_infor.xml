@@ -53,8 +53,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0972781395"
-        android:id="@+id/textView79"
+        android:id="@+id/txt_profile_email"
         android:layout_below="@+id/textView77"
         android:layout_toRightOf="@+id/textView78"
         android:layout_alignBottom="@+id/textView78"
@@ -92,8 +91,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="0972781395"
-        android:id="@+id/textView82"
+        android:id="@+id/txt_profile_phone"
         android:layout_below="@+id/textView80"
         android:layout_toRightOf="@+id/textView81"
         android:layout_alignRight="@+id/textView80"
@@ -130,8 +128,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="12-Jan-1990"
-        android:id="@+id/textView85"
+        android:id="@+id/txt_profile_birthday"
         android:layout_alignTop="@+id/textView84"
         android:layout_toRightOf="@+id/textView84"
         android:layout_alignRight="@+id/textView83"
@@ -181,8 +178,6 @@
         android:layout_below="@+id/textView87"
         android:layout_alignLeft="@+id/textView87"
         android:layout_alignStart="@+id/textView87"
-        android:layout_alignRight="@+id/textView85"
-        android:layout_alignEnd="@+id/textView85"
         android:layout_marginTop="5dp"
         android:layout_marginBottom="10dp"
         android:background="@color/color_text_hint"/>
