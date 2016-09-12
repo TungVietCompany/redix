@@ -41,7 +41,7 @@ public class UserController {
                     }
                 }
                 catch (Exception ex){
-
+                    String ss=ex.toString();
                 }
         return null;
     }

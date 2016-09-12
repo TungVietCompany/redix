@@ -10,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
@@ -25,12 +26,15 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
+import redix.booxtown.adapter.ListBookAdapter;
+import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.custom.CustomTabbarExplore;
+import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.User;
 
@@ -39,12 +43,15 @@ public class MyProfileFragment extends Fragment {
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
     private LinearLayout linear_cart;
-    ArrayList<Explore> listEx= new ArrayList<>();
+    List<Book> listEx= new ArrayList<>();
     GridView grid;
+    ListBookAdapter adapter;
     ImageView img_component;
     TextView txt_profile_email;
     TextView txt_profile_phone;
     TextView txt_profile_birthday;
+
+    TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -82,6 +89,11 @@ public class MyProfileFragment extends Fragment {
         txt_profile_phone = (TextView)view.findViewById(R.id.txt_profile_phone);
         txt_profile_birthday = (TextView)view.findViewById(R.id.txt_profile_birthday);
         //end
+
+        //list book
+        listingAsync listingAsync = new listingAsync(getContext());
+        listingAsync.execute(session_id);
+        //end
        // imageView_back.setImageResource(R.drawable.btn_menu_locate);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,33 +103,14 @@ public class MyProfileFragment extends Fragment {
             }
         });
 
-        Explore e1= new Explore();
-        e1.setPrice_book(152.0f);
-        e1.setBuy(true);
-        e1.setSwap(true);
-
-        Explore e2= new Explore();
-        e2.setPrice_book(153.0f);
-        e2.setBuy(true);
-        e2.setFree(true);
-
-        Explore e3= new Explore();
-        e3.setPrice_book(154.0f);
-        e3.setFree(true);
-
-        Explore e4= new Explore();
-        e4.setPrice_book(155.0f);
-        e4.setSwap(true);
-
-        listEx.add(e1);
-        listEx.add(e2);
-        listEx.add(e3);
-        listEx.add(e4);
-
-        final AdapterListings adapter = new AdapterListings(getActivity(),listEx);
         grid=(GridView)view.findViewById(R.id.grid_myprofile);
-        grid.setAdapter(adapter);
-
+        grid.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                v.getParent().requestDisallowInterceptTouchEvent(true);
+                return false;
+            }
+        });
         View view_tab=(View)view.findViewById(R.id.tab_myprofile);
         final CustomTabbarExplore tab_custom=new CustomTabbarExplore(view_tab,getActivity());
         linear_all=(LinearLayout) view_tab.findViewById(R.id.linear_all);
@@ -125,10 +118,15 @@ public class MyProfileFragment extends Fragment {
         linear_free=(LinearLayout) view_tab.findViewById(R.id.linear_free);
         linear_cart=(LinearLayout) view_tab.findViewById(R.id.linear_cart);
 
+        tab_all_count = (TextView) view_tab.findViewById(R.id.tab_all_count);
+        tab_swap_count = (TextView) view_tab.findViewById(R.id.tab_swap_count);
+        tab_free_count = (TextView) view_tab.findViewById(R.id.tab_free_count);
+        tab_cart_count = (TextView) view_tab.findViewById(R.id.tab_cart_count);
+
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(1),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(1));
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -138,7 +136,7 @@ public class MyProfileFragment extends Fragment {
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(2),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(2));
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(2);
@@ -148,7 +146,7 @@ public class MyProfileFragment extends Fragment {
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(3),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(3));
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -159,7 +157,7 @@ public class MyProfileFragment extends Fragment {
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(4),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(4));
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
@@ -169,28 +167,31 @@ public class MyProfileFragment extends Fragment {
         return view;
     }
 
-    public ArrayList<Explore> filterExplore(int type){
-        ArrayList<Explore> list= new ArrayList<>();
+    public List<Book> filterBook(int type){
+        List<Book> list= new ArrayList<>();
         if(type==1){
             list=listEx;
         }
         else if(type==2){
             for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isSwap()){
+                char array[]=listEx.get(i).getAction().toCharArray();
+                if(String.valueOf(array[0]).contains("1")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else if(type==3){
             for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isFree()){
+                char array[]=listEx.get(i).getAction().toCharArray();
+                if(String.valueOf(array[1]).contains("1")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else{
             for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isBuy()){
+                char array[]=listEx.get(i).getAction().toCharArray();
+                if(String.valueOf(array[2]).contains("1")){
                     list.add(listEx.get(i));
                 }
             }
@@ -248,5 +249,51 @@ public class MyProfileFragment extends Fragment {
         }
     }
 
+    class listingAsync extends AsyncTask<String,Void,List<Book>>{
+
+        Context context;
+        ProgressDialog dialog;
+        List<Book> listemp;
+        public listingAsync(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected List<Book> doInBackground(String... strings) {
+            listemp = new ArrayList<>();
+            BookController bookController = new BookController();
+            listemp = bookController.getAllBookById(strings[0]);
+            return listemp;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(context);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Book> books) {
+            try {
+                if(books.size() >0){
+                    adapter = new ListBookAdapter(getActivity(), books);
+                    grid.setAdapter(adapter);
+                    adapter.notifyDataSetChanged();
+                    dialog.dismiss();
+                    listEx = books;
+                    tab_all_count.setText(" ("+filterBook(1).size()+")");
+                    tab_swap_count.setText(" ("+filterBook(2).size()+")");
+                    tab_free_count.setText(" ("+filterBook(3).size()+")");
+                    tab_cart_count.setText(" ("+filterBook(4).size()+")");
+                }
+                super.onPostExecute(books);
+            }catch (Exception e){
+                Toast.makeText(context, "No Data", Toast.LENGTH_LONG).show();
+            }
+        }
+    }
 
 }
