@@ -71,7 +71,7 @@ import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.Genre;
 
-public class ListingCollectionActivity extends Fragment implements LocationListener, OnMapReadyCallback, GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener, View.OnClickListener {
+public class ListingCollectionActivity extends Fragment implements OnMapReadyCallback, View.OnClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     ImageView btn_sellectimage, imagebook1, imagebook2, imagebook3, addtag;
@@ -547,36 +547,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         return gson.toJson(object);
     }
 
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-
-    }
-
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-
-    }
-
-    @Override
-    public void onMapLongClick(LatLng latLng) {
-
-    }
 
     @Override
     public void onMapReady(GoogleMap googleMap) {
