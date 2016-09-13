@@ -88,6 +88,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     String condition;
     Uri mImageUri;
     String s;
+    ArrayList<String> arrImage;
     CrystalSeekbar seekbar;
     //UserController userController;
     BookController bookController;
@@ -327,27 +328,37 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
 
 
             image = bookedit.getPhoto().split(";");
+            arrImage = new ArrayList<>();
+            for (int i = 0;i<image.length;i++){
+                arrImage.add(image[i]);
+            }
             if (image.length != 0) {
-                if (image.length == 1) {
+                if (arrImage.size() == 1) {
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook1);
-                } else if (image.length == 2) {
+                } else if (arrImage.size() == 2) {
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook2);
-                } else if (image.length == 3) {
+                } else{
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook2);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[2] + "").
+                            placeholder(R.drawable.img_temp1).
                             into(imagebook3);
                 }
             }
@@ -364,8 +375,8 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 numimageclick = 1;
                 choseImage();
                 if (s.equals("edit")) {
-                    if (image.length==1){
-                        image[0].isEmpty();
+                    if (arrImage.size()==1){
+                        arrImage.remove(0);
                     }
                 }
             }
@@ -377,9 +388,10 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 numimageclick = 2;
                 choseImage();
                 if (s.equals("edit")) {
-                    if (image.length==2){
-                        image[1].isEmpty();
+                    if (arrImage.size()==2){
+                        arrImage.remove(1);
                     }
+
                 }
             }
         });
@@ -387,11 +399,11 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         imagebook3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                choseImage();
                 numimageclick = 3;
+                choseImage();
                 if (s.equals("edit")) {
-                    if (image.length==3){
-                        image[2].isEmpty();
+                    if (arrImage.size()==3){
+                        arrImage.remove(2);
                     }
                 }
             }
@@ -501,12 +513,12 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 book.setPhoto(imagename);
             }else {
                 String imagenametem = "";
-                if (image.length != 0) {
-                    for (int i = 0; i < image.length; i++) {
-                        if (i != image.length - 1) {
-                            imagenametem = imagenametem + image[i] + ";";
+                if (arrImage.size() != 0) {
+                    for (int i = 0; i < arrImage.size(); i++) {
+                        if (i != arrImage.size() - 1) {
+                            imagenametem = imagenametem + arrImage.get(i) + ";";
                         } else {
-                            imagenametem = imagenametem + image[i];
+                            imagenametem = imagenametem + arrImage.get(i);
                         }
                     }
                 }
