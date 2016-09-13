@@ -375,7 +375,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 numimageclick = 1;
                 choseImage();
                 if (s.equals("edit")) {
-                    if (arrImage.size()==1){
+                    if (arrImage.size()>1){
                         arrImage.remove(0);
                     }
                 }
@@ -388,7 +388,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
                 numimageclick = 2;
                 choseImage();
                 if (s.equals("edit")) {
-                    if (arrImage.size()==2){
+                    if (arrImage.size()>2){
                         arrImage.remove(1);
                     }
 
