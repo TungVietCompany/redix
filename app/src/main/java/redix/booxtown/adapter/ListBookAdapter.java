@@ -101,7 +101,11 @@ public class ListBookAdapter extends BaseAdapter {
         }
         //String action[] = ex.getAction().split("");
         char array[]=ex.getAction().toCharArray();
-//        if(ex.getPrice() == null) {
+        if (ex.getPrice()!=0){
+            hoder.txt_price_book.setText(String.valueOf(ex.getPrice()));
+        }
+
+//        if(ex.getPrice() !=0) {
 //            hoder.txt_price_book.setVisibility(View.INVISIBLE);
 //        }else {
 //            hoder.txt_price_book.setText(ex.getPrice());
