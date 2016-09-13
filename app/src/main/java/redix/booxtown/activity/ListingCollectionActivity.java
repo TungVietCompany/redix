@@ -115,6 +115,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
 
+
         //map view
         mapFragment = (SupportMapFragment) this.getChildFragmentManager()
                 .findFragmentById(R.id.fragment_map_editlisting);
