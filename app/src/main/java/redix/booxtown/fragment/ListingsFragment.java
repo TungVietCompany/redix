@@ -141,10 +141,8 @@ public class ListingsFragment extends Fragment
         @Override
         protected void onPostExecute(List<Book> books) {
             if (books == null){
-                Toast.makeText(context,"khong co",Toast.LENGTH_LONG).show();
                 dialog.dismiss();
             }else {
-                Toast.makeText(context,"co"+books.size(),Toast.LENGTH_LONG).show();
                 adapter = new ListBookAdapter(getActivity(),books);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();

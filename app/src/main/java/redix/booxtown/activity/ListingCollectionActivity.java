@@ -42,6 +42,7 @@ import android.widget.ListView;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -106,6 +107,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     TableRow tb_menu;
     ImageView imageView_back;
     SupportMapFragment mapFragment;
+    String[] image;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -159,20 +162,21 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
         seekbar = (CrystalSeekbar) v.findViewById(R.id.seekBar2);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+
+                imageView.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
                 final Dialog dialog = new Dialog(getActivity());
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                final ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
-                final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(),genre);
+                final ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
+                final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(), genre);
                 listView_genre.setAdapter(adapter);
                 dialog.show();
 
-                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                Button button_spiner_genre = (Button) dialog.findViewById(R.id.button_spiner_genre);
                 button_spiner_genre.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -180,7 +184,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     }
                 });
 
-                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                ImageView img_close_dialoggenre = (ImageView) dialog.findViewById(R.id.img_close_dialoggenre);
                 Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
                 img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -202,24 +206,24 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 dialog.setContentView(R.layout.dialog_genre);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
-                ListView listView_genre=(ListView)dialog.findViewById(R.id.listView_genre);
-                if (s != null){
-                    String[] separated = book.getGenre().split(";");
-                    for (int i = 0;i<genre.size();i++){
-                        for (int j = 0;j<separated.length;j++){
-                            if (genre.get(i).getValue().equals(separated[j].trim())){
+                ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
+                if (s.equals("edit")) {
+                    String[] separated = bookedit.getGenre().split(";");
+                    for (int i = 0; i < genre.size(); i++) {
+                        for (int j = 0; j < separated.length; j++) {
+                            if (genre.get(i).getValue().equals(separated[j].trim())) {
                                 genre.get(i).setIscheck(true);
                             }
                         }
                     }
-                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
-                }else {
-                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(),genre));
+                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(), genre));
+                } else {
+                    listView_genre.setAdapter(new CustomListviewGenre(getActivity(), genre));
                 }
 
                 dialog.show();
 
-                Button button_spiner_genre = (Button)dialog.findViewById(R.id.button_spiner_genre);
+                Button button_spiner_genre = (Button) dialog.findViewById(R.id.button_spiner_genre);
                 button_spiner_genre.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -227,7 +231,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     }
                 });
 
-                ImageView img_close_dialoggenre = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                ImageView img_close_dialoggenre = (ImageView) dialog.findViewById(R.id.img_close_dialoggenre);
                 Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
                 img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -240,14 +244,14 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         });
         //end
         //show edittext when check to sell
-        final CheckBox checkBox = (CheckBox)v.findViewById(R.id.ck_sell_editlisting);
+        final CheckBox checkBox = (CheckBox) v.findViewById(R.id.ck_sell_editlisting);
         checkBox.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(checkBox.isChecked()){
+                if (checkBox.isChecked()) {
                     edt_editlisting_sell.setVisibility(View.VISIBLE);
 
-                }else {
+                } else {
                     edt_editlisting_sell.setVisibility(View.GONE);
                 }
             }
@@ -263,46 +267,40 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 addbook();
                 Addbook addbook = new Addbook();
                 addbook.execute();
-                MainAllActivity mainAllActivity = (MainAllActivity)getActivity();
+                uploaddata uploaddata  = new uploaddata();
+                uploaddata.execute();
+                MainAllActivity mainAllActivity = (MainAllActivity) getActivity();
                 mainAllActivity.callFragment(new ListingsFragment());
             }
         });
 
         //change color tab
-        TextView txt_add_book = (TextView)v.findViewById(R.id.txt_add_book1);
+        TextView txt_add_book = (TextView) v.findViewById(R.id.txt_add_book1);
         txt_add_book.setTextColor(getResources().getColor(R.color.color_text));
         txt_add_book.setBackgroundColor(getResources().getColor(R.color.dot_light_screen1));
 
-        TextView txt_my_listings = (TextView)v.findViewById(R.id.txt_my_listings1);
+        TextView txt_my_listings = (TextView) v.findViewById(R.id.txt_my_listings1);
         txt_my_listings.setTextColor(getResources().getColor(R.color.dot_light_screen1));
         txt_my_listings.setBackgroundColor(getResources().getColor(R.color.color_text));
 
         txt_my_listings.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainAllActivity main = (MainAllActivity)getActivity();
+                MainAllActivity main = (MainAllActivity) getActivity();
                 main.callFragment(new ListingsFragment());
             }
         });
-        tb_menu = (TableRow)v.findViewById(R.id.tableRow5);
-        imageView_back = (ImageView)getActivity().findViewById(R.id.img_menu);
-        //--------------------------------------------------
-//        View view_bottom = (View) v.findViewById(R.id.menu_bottom_listing_collec);
-//        menu_bottom=new MenuBottomCustom(view_bottom,this,3);
-//        menu_bottom.setDefaut(3);
-        //---------------------------------------------------------------
-
-
-        if (s.equals("edit")){
+        tb_menu = (TableRow) v.findViewById(R.id.tableRow5);
+        imageView_back = (ImageView) getActivity().findViewById(R.id.img_menu);
+        if (s.equals("edit")) {
             btn_menu_listing_addbook.setVisibility(View.GONE);
             row.setVisibility(View.VISIBLE);
             bookedit = (Book) getArguments().getSerializable("bookedit");
-            Log.d("boooook",String.valueOf(bookedit.getAction()));
+            Log.d("boooook", String.valueOf(bookedit.getPhoto()));
             edt_author.setText(bookedit.getAuthor().toString());
             edt_tilte.setText(bookedit.getTitle().toString());
             edt_tag.setText(bookedit.getHash_tag().toString());
-
-            tb_menu.setVisibility(View.GONE);
+                    tb_menu.setVisibility(View.GONE);
 
             Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
             imageView_back.setOnClickListener(new View.OnClickListener() {
@@ -312,31 +310,116 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             });
 
-            char array[]=bookedit.getAction().toCharArray();
-            if (String.valueOf(array[0]).contains("1")){
+            char array[] = bookedit.getAction().toCharArray();
+            if (String.valueOf(array[0]).contains("1")) {
                 swap.setChecked(true);
             }
-            if (String.valueOf(array[1]).contains("1")){
+            if (String.valueOf(array[1]).contains("1")) {
                 free.setChecked(true);
             }
-            if (String.valueOf(array[2]).contains("1")){
+            if (String.valueOf(array[2]).contains("1")) {
                 sell.setChecked(true);
                 edt_editlisting_sell.setVisibility(View.VISIBLE);
                 edt_editlisting_sell.setText(bookedit.getPrice().toString());
+                if (bookedit.getPrice()!=0){
+                    edt_editlisting_sell.setText(String.valueOf(bookedit.getPrice()));
+                }
+                else {
+                    edt_editlisting_sell.setText(String.valueOf(0));
+                }
             }
 
 //            seekbar.set(80);
 
 
-        }else {
+            image = bookedit.getPhoto().split(";");
+            arrImage = new ArrayList<>();
+            for (int i = 0;i<image.length;i++){
+                arrImage.add(image[i]);
+            }
+            if (image.length != 0) {
+                if (arrImage.size() == 1) {
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook1);
+                } else if (arrImage.size() == 2) {
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook1);
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook2);
+                } else{
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook1);
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook2);
+                    Picasso.with(getActivity()).
+                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[2] + "").
+                            placeholder(R.drawable.img_temp1).
+                            into(imagebook3);
+                }
+            }
+
+
+        } else {
             btn_menu_listing_addbook.setVisibility(View.VISIBLE);
             row.setVisibility(View.GONE);
         }
+
+        imagebook1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numimageclick = 1;
+                choseImage();
+                if (s.equals("edit")) {
+                    if (arrImage.size()>1){
+                        arrImage.remove(0);
+                    }
+                }
+            }
+        });
+
+        imagebook2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numimageclick = 2;
+                choseImage();
+                if (s.equals("edit")) {
+                    if (arrImage.size()>2){
+                        arrImage.remove(1);
+                    }
+
+                }
+            }
+        });
+
+        imagebook3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                numimageclick = 3;
+                choseImage();
+                if (s.equals("edit")) {
+                    if (arrImage.size()==3){
+                        arrImage.remove(2);
+                    }
+                }
+            }
+        });
+
+
         return v;
     }
 
 
-    public void callFragment(Fragment fragment ){
+    public void callFragment(Fragment fragment) {
         FragmentManager manager = ((AppCompatActivity) getActivity()).getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
@@ -345,49 +428,48 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         transaction.commit();
     }
 
-    public void addbook(){
+    public void addbook() {
         GPSTracker gps = new GPSTracker(getActivity());
-        for (int i = 0; i < lisImmage.size();i++){
+        for (int i = 0; i < lisImmage.size(); i++) {
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),lisImmage.get(i));
+                long time = System.currentTimeMillis();
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), lisImmage.get(i));
                 bmap.add(bitmap);
-                String fileName = getFileName(lisImmage.get(i));
+                String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
                 listFileName.add(fileName);
-                Log.d("dsmdhkshkd",listFileName.get(i));
+                Log.d("dsmdhkshkd", listFileName.get(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
         ArrayList<String> listvalueGenre = new ArrayList<>();
-        for (int i = 0;i<genre.size();i++){
-            if (genre.get(i).ischeck() == true){
+        for (int i = 0; i < genre.size(); i++) {
+            if (genre.get(i).ischeck() == true) {
                 listvalueGenre.add(genre.get(i).getValue());
             }
-            Log.d("dsmnndshk",String.valueOf(listvalueGenre.size()));
+            Log.d("dsmnndshk", String.valueOf(listvalueGenre.size()));
         }
 
         String auth = edt_author.getText().toString();
         titl = edt_tilte.getText().toString();
         String tag = "";
-        if (listTag.size()!=0){
-            for(int i=0;i<listTag.size(); i++){
-                if(i!=listTag.size()-1) {
+        if (listTag.size() != 0) {
+            for (int i = 0; i < listTag.size(); i++) {
+                if (i != listTag.size() - 1) {
                     tag = tag + listTag.get(i) + ";";
-                }
-                else{
+                } else {
                     tag = tag + listTag.get(i);
                 }
             }
         }
 
-        String genrel="";
+        String genrel = "";
 
-        if (listvalueGenre.size()!=0){
-            for(int i=0;i<listvalueGenre.size(); i++){
-                if(i!=listvalueGenre.size()-1) {
+        if (listvalueGenre.size() != 0) {
+            for (int i = 0; i < listvalueGenre.size(); i++) {
+                if (i != listvalueGenre.size() - 1) {
                     genrel = genrel + listvalueGenre.get(i) + ";";
-                }
-                else{
+                } else {
                     genrel = genrel + listvalueGenre.get(i);
                 }
             }
@@ -404,21 +486,22 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
 
         String imagename = "";
-        if (listFileName.size()!=0){
-            for(int i=0;i<listFileName.size(); i++){
-                if(i!=listFileName.size()-1) {
+        if (listFileName.size() != 0) {
+            for (int i = 0; i < listFileName.size(); i++) {
+                if (i != listFileName.size() - 1) {
                     imagename = imagename + listFileName.get(i) + ";";
-                }
-                else{
+                } else {
                     imagename = imagename + listFileName.get(i);
                 }
             }
         }
 
-        if(sell.isChecked()){
-            price = edt_editlisting_sell.getText().toString();
+        if (sell.isChecked()) {
+            if (edt_editlisting_sell.getText().toString()==""){
+                Toast.makeText(getActivity(),"Price no fill",Toast.LENGTH_LONG).show();
+            }
+            price = Float.valueOf(edt_editlisting_sell.getText().toString());
         }
-
 
 
         book = new Book();
@@ -430,16 +513,32 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         book.setHash_tag(tag);
         book.setLocation_latitude(Float.valueOf(String.valueOf(gps.getLatitude())));
         book.setLocation_longitude(Float.valueOf(String.valueOf(gps.getLongitude())));
-        book.setPhoto(imagename);
-        book.setPrice(price);
-        if (s!=null){
-            book.setId(bookedit.getId());
+        if (numclick!=0||numimageclick!=0){
+            if (!s.equals("edit")){
+                book.setPhoto(imagename);
+            }else {
+                String imagenametem = "";
+                if (arrImage.size() != 0) {
+                    for (int i = 0; i < arrImage.size(); i++) {
+                        if (i != arrImage.size() - 1) {
+                            imagenametem = imagenametem + arrImage.get(i) + ";";
+                        } else {
+                            imagenametem = imagenametem + arrImage.get(i);
+                        }
+                    }
+                }
+                String imageupdate = imagename+";"+imagenametem;
+                book.setId(bookedit.getId());
+                book.setPhoto(imageupdate);
+            }
         }
+        book.setPrice(price);
+
 
 
     }
 
-    public String getAction(){
+    public String getAction() {
         String s = "";
         s += swap.isChecked() == true ? "1" : "0";
         s += sell.isChecked() == true ? "1" : "0";
@@ -447,7 +546,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         return s;
     }
 
-    public String parseJson(Object object){
+    public String parseJson(Object object) {
         Gson gson = new Gson();
         return gson.toJson(object);
     }
@@ -505,79 +604,34 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.imageView32:
                 numclick = numclick + 1;
-                if (numclick > 3){
+                if (numclick > 3) {
                     numclick = 0;
                 }
-                if (lisImmage.size()<3){
+                if (lisImmage.size() < 3) {
                     choseImage();
-                    imagebook1.setEnabled(false);
-                    imagebook2.setEnabled(false);
-                    imagebook3.setEnabled(false);
-                break;
-                }else if (lisImmage.size() == 3){
-//                    AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
-//                    alertDialogBuilder.setTitle("you want to change other image");
-//                    alertDialogBuilder
-//                            .setMessage("Click yes to chose other image")
-//                            .setCancelable(false)
-//                            .setPositiveButton("Yes",
-//                                    new DialogInterface.OnClickListener() {
-//                                        public void onClick(DialogInterface dialog, int id) {
-//                                            lisImmage.remove(0);
-//                                            choseImage();
-//                                        }
-//                                    })
-//
-//                            .setNegativeButton("No", new DialogInterface.OnClickListener() {
-//                                public void onClick(DialogInterface dialog, int id) {
-//
-//                                    dialog.cancel();
-//                                }
-//                            });
-//
-//                    AlertDialog alertDialog = alertDialogBuilder.create();
-//                    alertDialog.show();
-                    imagebook1.setEnabled(true);
-                    imagebook2.setEnabled(true);
-                    imagebook3.setEnabled(true);
-                    imagebook1.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            numimageclick = 1;
-                            choseImage();
-                        }
-                    });
-
-                    imagebook2.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            numimageclick = 2;
-                            choseImage();
-                        }
-                    });
-
-                    imagebook3.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            choseImage();
-                           numimageclick = 3;
-                        }
-                    });
+                } else if (lisImmage.size() == 3) {
+                    btn_sellectimage.setEnabled(false);
                 }
+                break;
             case R.id.btn_menu_editlist_delete:
+                showdialog();
                 break;
             case R.id.btn_menu_editlisting_update:
                 addbook();
+                if (numclick!=0 || numimageclick!=0){
+                    Addbook addbook1 = new Addbook();
+                    addbook1.execute();
+                }
                 editbook editbook = new editbook();
                 editbook.execute();
                 break;
             case R.id.imageView33:
-                if (listTag.size() < 3){
+                if (listTag.size() < 3) {
                     addTag();
-                }else {
+                } else {
                     addtag.setEnabled(false);
                 }
 
@@ -587,7 +641,32 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     }
 
 
-    public void addTag(){
+    public void showdialog(){
+        AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
+        alertDialogBuilder.setTitle("You want to delete this book?");
+        alertDialogBuilder
+                .setMessage("Click yes to delete!")
+                .setCancelable(false)
+                .setPositiveButton("Yes",
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                deletebook deletebook =new deletebook();
+                                deletebook.execute();
+                            }
+                        })
+
+                .setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        dialog.cancel();
+                    }
+                });
+
+        AlertDialog alertDialog = alertDialogBuilder.create();
+        alertDialog.show();
+    }
+
+    public void addTag() {
 
         listTag.add(edt_tag.getText().toString());
         edt_tag.setText("");
@@ -598,10 +677,10 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         intent.setType("image/*");
         intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
-        startActivityForResult(Intent.createChooser(intent,"Select Picture"), PICK_IMAGE_MULTIPLE);
-        Log.d("lisststst",String.valueOf(lisImmage.size()));
-        Log.d("lisststst",String.valueOf(numclick));
-        Log.d("lisststst",String.valueOf(numimageclick));
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_MULTIPLE);
+        Log.d("lisststst", String.valueOf(lisImmage.size()));
+        Log.d("lisststst", String.valueOf(numclick));
+        Log.d("lisststst", String.valueOf(numimageclick));
 
     }
 
@@ -618,11 +697,11 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     && null != data) {
                 // Get the Image from data
 
-                String[] filePathColumn = { MediaStore.Images.Media.DATA };
+                String[] filePathColumn = {MediaStore.Images.Media.DATA};
                 imagesEncodedList = new ArrayList<String>();
-                if(data.getData()!=null){
+                if (data.getData() != null) {
 
-                    mImageUri=data.getData();
+                    mImageUri = data.getData();
 //                    lisImmage.add(mImageUri);
 
                     // Get the cursor
@@ -632,10 +711,10 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     cursor.moveToFirst();
 
                     int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                    imageEncoded  = cursor.getString(columnIndex);
+                    imageEncoded = cursor.getString(columnIndex);
                     cursor.close();
 
-                }else {
+                } else {
                     if (data.getClipData() != null) {
                         ClipData mClipData = data.getClipData();
                         ArrayList<Uri> mArrayUri = new ArrayList<Uri>();
@@ -650,7 +729,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                             cursor.moveToFirst();
 
                             int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
-                            imageEncoded  = cursor.getString(columnIndex);
+                            imageEncoded = cursor.getString(columnIndex);
                             imagesEncodedList.add(imageEncoded);
                             cursor.close();
 
@@ -665,40 +744,31 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             return;
         }
 
-        if (numclick == 1){
+        if (numclick == 1) {
             imagebook1.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
-        }else if (numclick == 2){
+        } else if (numclick == 2) {
             imagebook2.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
-        }else if (numclick ==3){
+        } else if (numclick == 3) {
             imagebook3.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         }
 
-        if (numimageclick == 1){
+        if (numimageclick == 1) {
             imagebook1.setImageURI(mImageUri);
-            lisImmage.remove(0);
+//            lisImmage.remove(0);
             lisImmage.add(mImageUri);
-        }else if (numimageclick == 2){
+        } else if (numimageclick == 2) {
             imagebook2.setImageURI(mImageUri);
-            lisImmage.remove(1);
+//            lisImmage.remove(1);
             lisImmage.add(mImageUri);
-        }else if (numimageclick ==3){
+        } else if (numimageclick == 3) {
             imagebook3.setImageURI(mImageUri);
-            lisImmage.remove(2);
+//            lisImmage.remove(2);
             lisImmage.add(mImageUri);
         }
 
-
-
-
-
-//        Log.d("dsdsds",String.valueOf(lisImmage.size()));
-//        Log.d("dsdsds",String.valueOf(imagebook1.getTag()));
-//        Log.d("dsdsds",String.valueOf(imagebook2.getTag()));
-//        Log.d("dsdsds",String.valueOf(imagebook3.getTag()));
-//        Log.d("dsdsds",String.valueOf(imagesEncodedList.size()));
         super.onActivityResult(requestCode, resultCode, data);
     }
 
@@ -729,22 +799,19 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     ArrayList<Uri> listImageTemp = new ArrayList<>();
     ArrayList<Bitmap> bmap = new ArrayList<>();
 
-    public class Addbook extends AsyncTask<Void,Void,Boolean>{
+    public class Addbook extends AsyncTask<Void, Void, Boolean> {
 
         public ProgressDialog dialog;
-
 
 
         @Override
         protected Boolean doInBackground(Void... params) {
 
-//            for (int i = 0;i<listImageTemp.size();i++){
-
 
             Thread thread = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (uploadFileController.uploadFile(bmap.get(0),""+username+"::"+listFileName.get(0))){
+                    if (uploadFileController.uploadFile(bmap.get(0), "" + username + "::" + listFileName.get(0))) {
                     }
                 }
             });
@@ -752,39 +819,29 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             Thread thread1 = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    if (uploadFileController.uploadFile(bmap.get(1),""+username+"::"+listFileName.get(1)));
+                    if (uploadFileController.uploadFile(bmap.get(1), "" + username + "::" + listFileName.get(1)))
+                        ;
                 }
             });
 
-            Thread thread2  =new Thread(new Runnable() {
+            Thread thread2 = new Thread(new Runnable() {
                 @Override
                 public void run() {
-                    uploadFileController.uploadFile(bmap.get(2),""+username+"::"+listFileName.get(2)+"");
+                    uploadFileController.uploadFile(bmap.get(2), "" + username + "::" + listFileName.get(2) + "");
 
                 }
             });
 
-            Thread content = new Thread(new Runnable() {
-                @Override
-                public void run() {
-                    bookController = new BookController();
-                    success = bookController.addbook(book,session_id);
-                }
-            });
-            content.start();
-            if (bmap.size() == 1){
+            if (bmap.size() == 1) {
                 thread.start();
-            }else if (bmap.size() == 2){
+            } else if (bmap.size() == 2) {
                 thread.start();
                 thread1.start();
-            }else if (bmap.size() == 3){
+            } else if (bmap.size() == 3) {
                 thread.start();
                 thread1.start();
                 thread2.start();
             }
-
-//                new UploadFileController().uploadFile(bmap.get(0),"duong::book.jpg");
-//            }
 
             return success;
         }
@@ -800,20 +857,42 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
         @Override
         protected void onPostExecute(Boolean bolean) {
-            if (bolean == true){
+            if (bolean == true) {
                 dialog.dismiss();
-                Toast.makeText(getActivity(),"Addbook Success",Toast.LENGTH_LONG).show();
-            }else {
+//                Toast.makeText(getActivity(),"Addbook Success",Toast.LENGTH_LONG).show();
+            } else {
                 dialog.dismiss();
-                Toast.makeText(getActivity(),"Addbook Faile",Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity(),"Addbook Faile",Toast.LENGTH_LONG).show();
             }
             super.onPostExecute(bolean);
         }
     }
 
 
-    public class editbook extends AsyncTask<Void,Void,Boolean>{
+    public class uploaddata extends AsyncTask<Void,Void,Boolean>{
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            bookController = new BookController();
+            success = bookController.addbook(book, session_id);
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+        }
+    }
+
+
+    public class editbook extends AsyncTask<Void, Void, Boolean> {
         ProgressDialog dialog = new ProgressDialog(getActivity());
+
         @Override
         protected void onPreExecute() {
             dialog = new ProgressDialog(getActivity());
@@ -826,26 +905,25 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         @Override
         protected Boolean doInBackground(Void... params) {
             BookController bookController = new BookController();
-            Boolean sucess = bookController.updatebook(book,session_id);
+            Boolean sucess = bookController.updatebook(book, session_id);
             return sucess;
         }
 
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
-            if (aBoolean == true){
+            if (aBoolean == true) {
                 dialog.dismiss();
-                Toast.makeText(getActivity(),"Update Success",Toast.LENGTH_LONG).show();
-            }else {
+                Toast.makeText(getActivity(), "Update Success", Toast.LENGTH_LONG).show();
+            } else {
                 dialog.dismiss();
-                Toast.makeText(getActivity(),"Update Faile",Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(), "Update Faile", Toast.LENGTH_LONG).show();
             }
             super.onPostExecute(aBoolean);
         }
     }
 
-    public class deletebook extends AsyncTask<Void,Void,Boolean>{
-
+    public class deletebook extends AsyncTask<Void, Void, Boolean> {
 
 
         @Override
@@ -855,13 +933,20 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            return null;
+            BookController bookController = new BookController();
+            Boolean successs = bookController.deletebook(bookedit.getId());
+            return success;
         }
 
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
+            if (aBoolean ==true){
+                Toast.makeText(getActivity(),"Delete Succsess",Toast.LENGTH_LONG).show();
+            }else {
+                Toast.makeText(getActivity(),"Delete Faile",Toast.LENGTH_LONG).show();
+            }
         }
     }
 }
