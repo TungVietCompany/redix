@@ -10,6 +10,7 @@ import redix.booxtown.model.User;
 import redix.booxtown.model.UserResult;
 import retrofit2.Call;
 import retrofit2.http.Body;
+import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
@@ -64,5 +65,8 @@ public interface ServiceInterface {
 
     @GET("/booxtown/rest/book/getallbookbyuser")
     Call<BookResult> getAllBookByUser(@Query("session_id") String session_id);
+
+    @POST("/booxtown/rest/book/book_delete")
+    Call<Result> deletebook(@Body Object book);
 
 }

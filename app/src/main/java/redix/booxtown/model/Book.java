@@ -27,12 +27,12 @@ public class Book implements Serializable{
     @Expose
     private String b_action;
     @Expose
-    private String price;
+    private float price;
     @Expose
     private String id;
 
     public Book(String id,String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
-                String price) {
+                float price) {
         this.id = id;
         this.title = title;
         this.author = author;
@@ -121,11 +121,11 @@ public class Book implements Serializable{
         this.b_action = action;
     }
 
-    public String getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 

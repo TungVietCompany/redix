@@ -3,6 +3,7 @@ package redix.booxtown.adapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
@@ -39,11 +40,19 @@ import redix.booxtown.model.Explore;
 public class ListBookAdapter extends BaseAdapter {
     private Context mContext;
     private List<Book> listBook;
+    SharedPreferences pref;
 
+    String username;
 
     public ListBookAdapter(Context c, List<Book> list_book) {
         mContext = c;
         this.listBook = list_book;
+        try {
+            pref = mContext.getSharedPreferences("MyPref",mContext.MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+        }catch (Exception e){
+
+        }
 
     }
 
@@ -71,6 +80,8 @@ public class ListBookAdapter extends BaseAdapter {
         LayoutInflater inflater = (LayoutInflater) mContext
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         final Book ex= listBook.get(position);
+        username = pref.getString("username", null);
+        String[] image = ex.getPhoto().split(";");
         Hoder hoder = new Hoder();
         convertView = inflater.inflate(R.layout.custom_gridview_listings, null);
         hoder.txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
@@ -82,20 +93,19 @@ public class ListBookAdapter extends BaseAdapter {
         hoder.img_free = (ImageView)convertView.findViewById(R.id.img_explore_free_listings);
         hoder.img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
-        if(position%2==0){
-            Picasso.with(mContext).load(R.drawable.img_temp1).resize(200,250).into(hoder.img_book);
-        }
-        else
-        {
-            Picasso.with(mContext).load(R.drawable.img_temp2).resize(200,250).into(hoder.img_book);
+        if (image.length!=0){
+            Picasso.with(mContext).load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.img_temp1).into(hoder.img_book);
+        }else {
+
+            Picasso.with(mContext).load(R.drawable.img_temp1).into(hoder.img_book);
         }
         //String action[] = ex.getAction().split("");
         char array[]=ex.getAction().toCharArray();
-        if(ex.getPrice() == null) {
-            hoder.txt_price_book.setVisibility(View.INVISIBLE);
-        }else {
-            hoder.txt_price_book.setText(ex.getPrice());
-        }
+//        if(ex.getPrice() == null) {
+//            hoder.txt_price_book.setVisibility(View.INVISIBLE);
+//        }else {
+//            hoder.txt_price_book.setText(ex.getPrice());
+//        }
         if(String.valueOf(array[0]).contains("1")){
             Picasso.with(mContext).load(R.drawable.explore_btn_swap_active).into(hoder.img_swap);
             //img_swap.setImageResource((R.drawable.explore_btn_swap_active));

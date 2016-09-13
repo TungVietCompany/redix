@@ -18,6 +18,7 @@ import retrofit2.Call;
  */
 public class BookController {
     private ServiceInterface service;
+    Boolean success;
     public BookController(){
         service = ServiceGenerator.GetInstance();
     }
@@ -76,5 +77,25 @@ public class BookController {
         } catch (Exception ex) {
         }
         return false;
+    }
+
+    public Boolean deletebook(String book_id){
+        Hashtable hashtable  = ObjectCommon.ObjectDymanic(book_id);
+        hashtable.put("book_id",book_id);
+        Call<Result> delte = service.deletebook(hashtable);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            Result str = delte.execute().body();
+            if (str.getCode() == 200){
+                success = true;
+            }
+        } catch (Exception ex) {
+            success = false;
+        }
+        return success;
     }
 }
