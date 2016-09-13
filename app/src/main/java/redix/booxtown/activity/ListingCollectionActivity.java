@@ -71,7 +71,7 @@ import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.Genre;
 
-public class ListingCollectionActivity extends Fragment implements OnMapReadyCallback, View.OnClickListener {
+public class ListingCollectionActivity extends Fragment implements OnMapReadyCallback,View.OnClickListener {
     private GoogleMap mMap;
     private SupportMapFragment mMapFragment;
     ImageView btn_sellectimage, imagebook1, imagebook2, imagebook3, addtag;
@@ -110,12 +110,20 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     Book bookedit;
     TableRow tb_menu;
     ImageView imageView_back;
+    SupportMapFragment mapFragment;
     String[] image;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection, container, false);
+
+
+        //map view
+        mapFragment = (SupportMapFragment) this.getChildFragmentManager()
+                .findFragmentById(R.id.fragment_map_editlisting);
+        mapFragment.getMapAsync(this);
+        //end
 
         edt_editlisting_sell = (EditText) v.findViewById(R.id.edt_editlisting_sell);
         swap = (CheckBox) v.findViewById(R.id.checkBox);
@@ -563,14 +571,10 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         // getting GPS status
         isGPSEnabled = service
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
         isNetworkEnabled = service
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-
-        System.out.print("GPS:" + isGPSEnabled);
-        System.out.print("net:" + isNetworkEnabled);
-        if (isGPSEnabled) {
+        if(isGPSEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
             if (location == null) {
@@ -596,8 +600,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             }
         }
     }
-
-    public void addMaker(Location location) {
+    public void addMaker(Location location){
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
         // Changing marker icon
@@ -605,7 +608,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
