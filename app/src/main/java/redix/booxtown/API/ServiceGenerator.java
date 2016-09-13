@@ -13,8 +13,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ServiceGenerator {
 
+<<<<<<< HEAD
+    public static final String API_BASE_URL = "http://103.237.147.54:3000/";
+//    public static final String API_BASE_URL = "http://192.168.1.69:3000";
+=======
 //    public static final String API_BASE_URL = "http://103.237.147.54:3000/";
     public static final String API_BASE_URL = "http://103.237.147.54:3000/";
+>>>>>>> origin/master
     static redix.booxtown.api.ServiceInterface git;
     private static OkHttpClient.Builder httpClient = new OkHttpClient.Builder();
 
