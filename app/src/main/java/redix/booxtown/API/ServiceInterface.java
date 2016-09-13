@@ -66,7 +66,7 @@ public interface ServiceInterface {
     @GET("/booxtown/rest/book/getallbookbyuser")
     Call<BookResult> getAllBookByUser(@Query("session_id") String session_id);
 
-    @DELETE("/booxtown/rest/book/book_delete")
-    Call<Result> deletebook(@Query("book_id") String bookid);
+    @POST("/booxtown/rest/book/book_delete")
+    Call<Result> deletebook(@Body Object book);
 
 }
