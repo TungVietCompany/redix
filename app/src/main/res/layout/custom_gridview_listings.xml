@@ -46,6 +46,8 @@
         android:layout_height="wrap_content"
         android:paddingLeft="5dp"
         android:text="by Gandalf"
+        android:maxLines="1"
+        android:ellipsize="end"
         android:id="@+id/txt_author_book_listings"
         android:layout_below="@+id/txt_title_book_listings"
         android:layout_alignParentLeft="true"
