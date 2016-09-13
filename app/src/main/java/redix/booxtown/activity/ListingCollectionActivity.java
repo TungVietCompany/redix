@@ -102,6 +102,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             "Crafts and Hobbies", "Education", "Family,Parenting and Relationships", "Fiction and Literature", "Food and Drink"
     };
 
+
     int PICK_IMAGE_MULTIPLE = 1;
     String imageEncoded;
     List<String> imagesEncodedList;
