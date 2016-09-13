@@ -70,9 +70,8 @@ import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 import redix.booxtown.model.Genre;
 
-public class ListingCollectionActivity extends Fragment implements LocationListener,OnMapReadyCallback,GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener ,View.OnClickListener {
+public class ListingCollectionActivity extends Fragment implements OnMapReadyCallback,View.OnClickListener {
     private GoogleMap mMap;
-    private SupportMapFragment mMapFragment;
     ImageView btn_sellectimage,imagebook1,imagebook2,imagebook3,addtag;
     UploadFileController uploadFileController;
     Button btn_menu_editlist_delete,btn_menu_editlisting_update,btn_menu_listing_addbook;
@@ -106,10 +105,17 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     Book bookedit;
     TableRow tb_menu;
     ImageView imageView_back;
+    SupportMapFragment mapFragment;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.activity_listing_collection,container,false);
+
+        //map view
+        mapFragment = (SupportMapFragment) this.getChildFragmentManager()
+                .findFragmentById(R.id.fragment_map_editlisting);
+        mapFragment.getMapAsync(this);
+        //end
 
         edt_editlisting_sell = (EditText) v.findViewById(R.id.edt_editlisting_sell);
         swap = (CheckBox) v.findViewById(R.id.checkBox);
@@ -316,7 +322,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
             if (String.valueOf(array[2]).contains("1")){
                 sell.setChecked(true);
                 edt_editlisting_sell.setVisibility(View.VISIBLE);
-                edt_editlisting_sell.setText(book.getPrice().toString());
+                edt_editlisting_sell.setText(bookedit.getPrice().toString());
             }
 
 //            seekbar.set(80);
@@ -447,37 +453,6 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
     }
 
 
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String s, int i, Bundle bundle) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String s) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String s) {
-
-    }
-
-    @Override
-    public void onInfoWindowClick(Marker marker) {
-
-    }
-
-    @Override
-    public void onMapLongClick(LatLng latLng) {
-
-    }
-
     @Override
     public void onMapReady(GoogleMap googleMap) {
         Location location;
@@ -486,29 +461,20 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         mMap = googleMap;
         if (Build.VERSION.SDK_INT >= 23 &&
                 ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED &&
-                ContextCompat.checkSelfPermission(getActivity(), Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            return;
+                ContextCompat.checkSelfPermission( getContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+            return  ;
         }
-        LocationManager service = (LocationManager) getActivity().getSystemService(getActivity().LOCATION_SERVICE);
+        LocationManager service = (LocationManager)getActivity().getSystemService(getContext().LOCATION_SERVICE);
         // getting GPS status
         isGPSEnabled = service
                 .isProviderEnabled(LocationManager.GPS_PROVIDER);
-
         isNetworkEnabled = service
                 .isProviderEnabled(LocationManager.NETWORK_PROVIDER);
 
-
-        System.out.print("GPS:"+isGPSEnabled);
-        System.out.print("net:"+isNetworkEnabled);
         if(isGPSEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location == null) {
-                {
-                    location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                    latitude =  location.getLatitude();
-                    longitude = location.getLongitude();
-                }
+            if (location != null) {
                 addMaker(location);
             }
 
@@ -516,17 +482,11 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         if(isNetworkEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location == null) {
-                location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-                {
-                    latitude =  location.getLatitude();
-                    longitude = location.getLongitude();
-                }
+            if (location != null) {
                 addMaker(location);
             }
         }
     }
-
     public void addMaker(Location location){
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
@@ -535,7 +495,7 @@ public class ListingCollectionActivity extends Fragment implements LocationListe
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
-        mMap.setMapType(GoogleMap.MAP_TYPE_TERRAIN);
+        mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
