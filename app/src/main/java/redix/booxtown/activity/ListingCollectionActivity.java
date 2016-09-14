@@ -438,7 +438,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             try {
                 long time = System.currentTimeMillis();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), lisImmage.get(i));
-                bmap.add(bitmap);
+                Bitmap photoBitMap = Bitmap.createScaledBitmap(bitmap,250,270, true);
+                bmap.add(photoBitMap);
                 String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
                 listFileName.add(fileName);
                 Log.d("dsmdhkshkd", listFileName.get(i));
