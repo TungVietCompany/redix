@@ -779,27 +779,33 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         }
 
         if (numclick == 1) {
-            imagebook1.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook1);
+//            imagebook1.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         } else if (numclick == 2) {
-            imagebook2.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook2);
+//            imagebook2.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         } else if (numclick == 3) {
-            imagebook3.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook3);
+//            imagebook3.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         }
 
         if (numimageclick == 1) {
-            imagebook1.setImageURI(mImageUri);
+//            imagebook1.setImageURI(mImageUri);
 //            lisImmage.remove(0);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook1);
             lisImmage.add(mImageUri);
         } else if (numimageclick == 2) {
-            imagebook2.setImageURI(mImageUri);
+//            imagebook2.setImageURI(mImageUri);
 //            lisImmage.remove(1);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook2);
             lisImmage.add(mImageUri);
         } else if (numimageclick == 3) {
-            imagebook3.setImageURI(mImageUri);
+//            imagebook3.setImageURI(mImageUri);
 //            lisImmage.remove(2);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook3);
             lisImmage.add(mImageUri);
         }
 
