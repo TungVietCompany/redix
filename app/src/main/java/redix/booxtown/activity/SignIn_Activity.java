@@ -55,13 +55,13 @@ Button mButtonForgotPass;
         mimgBack.setOnClickListener(this);
         mButtonBackSignIn.setOnClickListener(this);
         mButtonForgotPass.setOnClickListener(this);
-//        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-//        SharedPreferences.Editor editor  = pref.edit();
-//        session_id = pref.getString("session_id", null);
-//        if (session_id != null){
-//            Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
-//            startActivity(intent);
-//        }
+        SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        session_id = pref.getString("session_id", null);
+        if (session_id != null){
+            Intent intent = new Intent(SignIn_Activity.this, MainAllActivity.class);
+            startActivity(intent);
+        }
         if (isOnline() == false){
             Toast.makeText(getApplicationContext(),"Check network state please",Toast.LENGTH_LONG).show();
         }

@@ -80,7 +80,9 @@ public class BookController {
     }
 
     public Boolean deletebook(String book_id){
-        Call<Result> delte = service.deletebook(book_id);
+        Hashtable hashtable  = ObjectCommon.ObjectDymanic(book_id);
+        hashtable.put("book_id",book_id);
+        Call<Result> delte = service.deletebook(hashtable);
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =

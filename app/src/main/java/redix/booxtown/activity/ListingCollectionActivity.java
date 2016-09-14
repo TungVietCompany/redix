@@ -319,10 +319,10 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             if (String.valueOf(array[0]).contains("1")) {
                 swap.setChecked(true);
             }
-            if (String.valueOf(array[1]).contains("1")) {
+            if (String.valueOf(array[2]).contains("1")) {
                 free.setChecked(true);
             }
-            if (String.valueOf(array[2]).contains("1")) {
+            if (String.valueOf(array[1]).contains("1")) {
                 sell.setChecked(true);
                 edt_editlisting_sell.setVisibility(View.VISIBLE);
                 if (bookedit.getPrice()!=0){
@@ -438,7 +438,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             try {
                 long time = System.currentTimeMillis();
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), lisImmage.get(i));
-                bmap.add(bitmap);
+                Bitmap photoBitMap = Bitmap.createScaledBitmap(bitmap,250,270, true);
+                bmap.add(photoBitMap);
                 String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
                 listFileName.add(fileName);
                 Log.d("dsmdhkshkd", listFileName.get(i));
@@ -500,12 +501,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             }
         }
 
-        if (sell.isChecked()) {
-            if (edt_editlisting_sell.getText().toString()==""){
-                Toast.makeText(getActivity(),"Price no fill",Toast.LENGTH_LONG).show();
-            }
-            price = Float.valueOf(edt_editlisting_sell.getText().toString());
-        }
+
 
 
         book = new Book();
@@ -532,11 +528,35 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     }
                 }
                 String imageupdate = imagename+";"+imagenametem;
-                book.setId(bookedit.getId());
                 book.setPhoto(imageupdate);
+                book.setId(bookedit.getId());
+            }
+        }else {
+            if (s.equals("edit")){
+                book.setId(bookedit.getId());
+                String imagenametem = "";
+                if (arrImage.size() != 0) {
+                    for (int i = 0; i < arrImage.size(); i++) {
+                        if (i != arrImage.size() - 1) {
+                            imagenametem = imagenametem + arrImage.get(i) + ";";
+                        } else {
+                            imagenametem = imagenametem + arrImage.get(i);
+                        }
+                    }
+                }
+                book.setPhoto(imagenametem);
             }
         }
-        book.setPrice(price);
+        if (sell.isChecked()){
+            if (edt_editlisting_sell.getText().toString().isEmpty()){
+                Toast.makeText(getActivity(),"Price no fill",Toast.LENGTH_LONG).show();
+                return;
+            }else {
+                price = Float.valueOf(edt_editlisting_sell.getText().toString());
+                book.setPrice(price);
+            }
+
+        }
 
 
 
@@ -757,27 +777,33 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         }
 
         if (numclick == 1) {
-            imagebook1.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook1);
+//            imagebook1.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         } else if (numclick == 2) {
-            imagebook2.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook2);
+//            imagebook2.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         } else if (numclick == 3) {
-            imagebook3.setImageURI(mImageUri);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook3);
+//            imagebook3.setImageURI(mImageUri);
             lisImmage.add(mImageUri);
         }
 
         if (numimageclick == 1) {
-            imagebook1.setImageURI(mImageUri);
+//            imagebook1.setImageURI(mImageUri);
 //            lisImmage.remove(0);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook1);
             lisImmage.add(mImageUri);
         } else if (numimageclick == 2) {
-            imagebook2.setImageURI(mImageUri);
+//            imagebook2.setImageURI(mImageUri);
 //            lisImmage.remove(1);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook2);
             lisImmage.add(mImageUri);
         } else if (numimageclick == 3) {
-            imagebook3.setImageURI(mImageUri);
+//            imagebook3.setImageURI(mImageUri);
 //            lisImmage.remove(2);
+            Picasso.with(getActivity()).load(mImageUri).into(imagebook3);
             lisImmage.add(mImageUri);
         }
 
@@ -872,6 +898,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             if (bolean == true) {
                 dialog.dismiss();
 //                Toast.makeText(getActivity(),"Addbook Success",Toast.LENGTH_LONG).show();
+
             } else {
                 dialog.dismiss();
 //                Toast.makeText(getActivity(),"Addbook Faile",Toast.LENGTH_LONG).show();
@@ -897,6 +924,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
+            if (aBoolean==true){
+                callFragment(new ListingsFragment());
+            }
             super.onPostExecute(aBoolean);
         }
     }
@@ -927,6 +957,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             if (aBoolean == true) {
                 dialog.dismiss();
                 Toast.makeText(getActivity(), "Update Success", Toast.LENGTH_LONG).show();
+                callFragment(new ListingsFragment());
             } else {
                 dialog.dismiss();
                 Toast.makeText(getActivity(), "Update Faile", Toast.LENGTH_LONG).show();
@@ -947,7 +978,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         protected Boolean doInBackground(Void... params) {
             BookController bookController = new BookController();
             Boolean successs = bookController.deletebook(bookedit.getId());
-            return success;
+            return successs;
         }
 
 

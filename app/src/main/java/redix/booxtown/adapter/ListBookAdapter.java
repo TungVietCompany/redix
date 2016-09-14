@@ -47,8 +47,13 @@ public class ListBookAdapter extends BaseAdapter {
     public ListBookAdapter(Context c, List<Book> list_book) {
         mContext = c;
         this.listBook = list_book;
-        pref = mContext.getSharedPreferences("MyPref",mContext.MODE_PRIVATE);
-        SharedPreferences.Editor editor = pref.edit();
+        try {
+            pref = mContext.getSharedPreferences("MyPref",mContext.MODE_PRIVATE);
+            SharedPreferences.Editor editor = pref.edit();
+        }catch (Exception e){
+
+        }
+
     }
 
     @Override
@@ -96,7 +101,11 @@ public class ListBookAdapter extends BaseAdapter {
         }
         //String action[] = ex.getAction().split("");
         char array[]=ex.getAction().toCharArray();
-//        if(ex.getPrice() == null) {
+        if (ex.getPrice()!=0){
+            hoder.txt_price_book.setText(String.valueOf(ex.getPrice()));
+        }
+
+//        if(ex.getPrice() !=0) {
 //            hoder.txt_price_book.setVisibility(View.INVISIBLE);
 //        }else {
 //            hoder.txt_price_book.setText(ex.getPrice());
