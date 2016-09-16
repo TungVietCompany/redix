@@ -46,6 +46,7 @@ public class ListingsFragment extends Fragment
     ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
     Book book;
+    TextView txt_my_listings;
     ListBookAdapter adapter;
 
     @Nullable
@@ -56,6 +57,7 @@ public class ListingsFragment extends Fragment
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
         grid=(GridView)view.findViewById(R.id.grid_view_listings);
+        txt_my_listings = (TextView) view.findViewById(R.id.txt_my_listings);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -146,6 +148,7 @@ public class ListingsFragment extends Fragment
                 adapter = new ListBookAdapter(getActivity(),books);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                txt_my_listings.setText("My listings"+"("+String.valueOf(books.size())+")");
                 dialog.dismiss();
             }
             super.onPostExecute(books);

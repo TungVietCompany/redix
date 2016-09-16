@@ -2,6 +2,7 @@ package redix.booxtown.controller;
 
 import android.os.StrictMode;
 
+import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
@@ -97,5 +98,23 @@ public class BookController {
             success = false;
         }
         return success;
+    }
+
+    public List<Book> getallbook(){
+        Call<BookResult> getall = service.getAllBook();
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            BookResult str = getall.execute().body();
+            if (str.getCode() == 200){
+                return str.getBook();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
+
     }
 }
