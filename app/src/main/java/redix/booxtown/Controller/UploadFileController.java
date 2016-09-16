@@ -37,7 +37,7 @@ public class UploadFileController {
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         byte[] data2= null;
         try {
-            bm.compress(Bitmap.CompressFormat.JPEG
+            bm.compress(Bitmap.CompressFormat.PNG
                     , 80, bos);
             data2 = bos.toByteArray();
         }
