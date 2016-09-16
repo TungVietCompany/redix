@@ -7,7 +7,6 @@ import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -17,7 +16,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 import redix.booxtown.R;
-import redix.booxtown.adapter.AdapterInteract;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Interact;

@@ -5,26 +5,26 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.ListIterator;
+import java.util.List;
 
 import redix.booxtown.R;
 import redix.booxtown.model.Interact;
+import redix.booxtown.model.Topic;
 
 /**
  * Created by Administrator on 27/08/2016.
  */
-public class AdapterInteract extends RecyclerView.Adapter<AdapterInteract.RecyclerViewHolder> {
+public class AdapterTopic extends RecyclerView.Adapter<AdapterTopic.RecyclerViewHolder> {
     Context context;
-    private ArrayList<Interact> listInteract;
-    public AdapterInteract(Context context,ArrayList<Interact> listInteract) {
-        this.listInteract = listInteract;
+    private List<Topic> listTopic;
+    public AdapterTopic(Context context, ArrayList<Topic> listTopic) {
+        this.listTopic = listTopic;
         this.context = context;
 
     }
@@ -37,18 +37,18 @@ public class AdapterInteract extends RecyclerView.Adapter<AdapterInteract.Recycl
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Interact interact= listInteract.get(position);
-        holder.txt_title_interact.setText(interact.getInteractTitle());
-        holder.txt_count_interact.setText("("+interact.getInteractCount()+")");
-        if(interact.isStatus()) {
-            holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_text));
-        }
-        holder.txt_dateUpdate_interact.setText("Last Updated on "+ interact.getInteractUpdatetime());
+        Topic interact= listTopic.get(position);
+        holder.txt_title_interact.setText(interact.getTitle());
+//        holder.txt_count_interact.setText("("+interact.getInteractCount()+")");
+//        if(interact.isStatus()) {
+//            holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_text));
+//        }
+        holder.txt_dateUpdate_interact.setText("Last Updated on "+ interact.getCreate_date());
     }
 
     @Override
     public int getItemCount() {
-        return listInteract.size();
+        return listTopic.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{
