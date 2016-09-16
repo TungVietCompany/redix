@@ -1,6 +1,8 @@
 package redix.booxtown.fragment;
 
 
+import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -15,7 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
@@ -23,12 +25,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import redix.booxtown.R;
-import redix.booxtown.controller.BookController;
+import redix.booxtown.controller.TopicController;
 import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
-import redix.booxtown.adapter.AdapterInteract;
-import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.adapter.AdapterTopic;
 import redix.booxtown.model.Interact;
 
 /**
@@ -37,10 +38,9 @@ import redix.booxtown.model.Interact;
 public class InteractFragment extends Fragment
 {
 
-    ArrayList<Interact> listInteract= new ArrayList<>();
-    ListView listView;
-    private MenuBottomCustom menu_bottom;
-
+    List<Topic> listtopic= new ArrayList<>();
+    RecyclerView lv_recycler;
+    AdapterTopic interact;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class InteractFragment extends Fragment
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
 //        imageView_back.setImageResource(R.drawable.btn_menu_locate);
-        getalltopic getalltopic = new getalltopic();
+        topicSync getalltopic = new topicSync(getContext());
         getalltopic.execute();
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -58,57 +58,11 @@ public class InteractFragment extends Fragment
                 startActivity(intent);
             }
         });
-        Interact interact1= new Interact();
-        interact1.setInteractTitle("Topic Name goes here");
-        interact1.setInteractCount("20");
-        interact1.setStatus(true);
-        interact1.setInteractUpdatetime("27-08-2016");
-
-        Interact interact2= new Interact();
-        interact2.setInteractTitle("The Last Painting");
-        interact2.setInteractCount("22");
-        interact2.setStatus(true);
-        interact2.setInteractUpdatetime("27-08-2016");
-
-        Interact interact3= new Interact();
-        interact3.setInteractTitle("A Nation on the Brink");
-        interact3.setInteractCount("33");
-        interact3.setStatus(false);
-        interact3.setInteractUpdatetime("29-08-2016");
-
-        Interact interact4= new Interact();
-        interact4.setInteractTitle("The Last Painting");
-        interact4.setInteractCount("69");
-        interact4.setStatus(false);
-        interact4.setInteractUpdatetime("30-08-2016");
-
-        listInteract.add(interact1);
-        listInteract.add(interact2);
-        listInteract.add(interact3);
-        listInteract.add(interact4);
 
         //-----------------------------------------------------------
-        RecyclerView lv_recycler=(RecyclerView) view.findViewById(R.id.list_view_interact);
+        lv_recycler=(RecyclerView) view.findViewById(R.id.list_view_interact);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getActivity());
         lv_recycler.setLayoutManager(layoutManager);
-
-        //set adapter
-        AdapterInteract interact = new AdapterInteract(getActivity(),listInteract);
-        lv_recycler.setAdapter(interact);
-        //end
-        lv_recycler.addOnItemTouchListener(
-                new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(View view, int position) {
-                        Interact item = (Interact) listInteract.get(position);
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("thread", item);
-                        InteractThreadFragment fragment= new InteractThreadFragment();
-                        fragment.setArguments(bundle);
-                        callFragment(fragment);
-                    }
-                })
-        );
 
         return view;
     }
@@ -119,17 +73,58 @@ public class InteractFragment extends Fragment
         transaction.commit();
     }
 
-    public class getalltopic extends AsyncTask<Void,Void,List<Topic>>{
-
-        @Override
-        protected List<Topic> doInBackground(Void... params) {
-            BookController bookController = new BookController();
-            return bookController.getalltopic();
+    public class topicSync extends AsyncTask<Void,Void,List<Topic>>{
+        ProgressDialog dialog;
+        Context context;
+        public topicSync(Context context){
+            this.context = context;
         }
 
         @Override
-        protected void onPostExecute(List<Topic> topics) {
-            Log.d("dsdhsjkdhksjhdjks",String.valueOf(topics.size()));
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(context);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<Topic> doInBackground(Void... params) {
+            TopicController topicController = new TopicController();
+            return topicController.getalltopic();
+        }
+
+        @Override
+        protected void onPostExecute(final List<Topic> topics) {
+            try{
+                if(topics.size() >0){
+                    //set adapter
+                    interact = new AdapterTopic(context,topics);
+                    lv_recycler.setAdapter(interact);
+
+                    lv_recycler.addOnItemTouchListener(
+                            new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(View view, int position) {
+                                    Topic item = (Topic) topics.get(position);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("thread", item);
+                                    InteractThreadFragment fragment= new InteractThreadFragment();
+                                    fragment.setArguments(bundle);
+                                    callFragment(fragment);
+                                }
+                            })
+                    );
+
+                    //end
+                }else {
+                    Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+
+            }
+            dialog.dismiss();
             super.onPostExecute(topics);
         }
     }

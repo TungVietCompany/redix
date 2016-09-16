@@ -282,7 +282,7 @@ public class MyProfileFragment extends Fragment {
                     adapter = new ListBookAdapter(getActivity(), books);
                     grid.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
-                    dialog.dismiss();
+
                     listEx = books;
                     tab_all_count.setText(" ("+filterBook(1).size()+")");
                     tab_swap_count.setText(" ("+filterBook(2).size()+")");
@@ -293,6 +293,7 @@ public class MyProfileFragment extends Fragment {
             }catch (Exception e){
                 Toast.makeText(context, "No Data", Toast.LENGTH_LONG).show();
             }
+            dialog.dismiss();
         }
     }
 

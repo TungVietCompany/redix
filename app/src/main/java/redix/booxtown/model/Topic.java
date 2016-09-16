@@ -1,9 +1,11 @@
 package redix.booxtown.model;
 
+import java.io.Serializable;
+
 /**
  * Created by duong on 9/16/2016.
  */
-public class Topic {
+public class Topic implements Serializable {
             public String id;
             public String title;
             public String description;

@@ -120,21 +120,4 @@ public class BookController {
 
     }
 
-    public List<Topic> getalltopic(){
-        Call<TopicResult> getall = service.topic_getall();
-        try {
-            if (android.os.Build.VERSION.SDK_INT > 9) {
-                StrictMode.ThreadPolicy policy =
-                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                StrictMode.setThreadPolicy(policy);
-            }
-            TopicResult str = getall.execute().body();
-            if (str.getCode()==200){
-                return str.getTopic();
-            }
-        } catch (Exception ex) {
-        }
-        return null;
-    }
-
 }
