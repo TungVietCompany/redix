@@ -919,7 +919,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         protected Boolean doInBackground(Void... params) {
             bookController = new BookController();
             success = bookController.addbook(book, session_id);
-            return null;
+            return success;
         }
 
         @Override

@@ -276,9 +276,12 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                     String free = String.valueOf(array[1]);
                     String buy = String.valueOf(array[2]);
                     String icon = IconMapController.icon(swap,free,buy);
-                    marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(icon,110, 150)));
-                    // adding marker
-                    mMap.addMarker(marker);
+                    if (icon!=null){
+                        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(icon,110, 150)));
+                        // adding marker
+                        mMap.addMarker(marker);
+                    }
+
                 }
                 dialog.dismiss();
             }

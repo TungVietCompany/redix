@@ -14,6 +14,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -37,16 +39,19 @@ import redix.booxtown.model.Explore;
 /**
  * Created by Administrator on 29/08/2016.
  */
-public class ListBookAdapter extends BaseAdapter {
+public class ListBookAdapter extends BaseAdapter implements Filterable{
     private Context mContext;
     private List<Book> listBook;
+    private List<Book> originbook;
     SharedPreferences pref;
+    private ItemFilter mFilter = new ItemFilter();
 
     String username;
 
     public ListBookAdapter(Context c, List<Book> list_book) {
         mContext = c;
         this.listBook = list_book;
+        this.originbook = list_book;
         try {
             pref = mContext.getSharedPreferences("MyPref",mContext.MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
@@ -193,6 +198,11 @@ public class ListBookAdapter extends BaseAdapter {
         transaction.commit();
     }
 
+    @Override
+    public Filter getFilter() {
+        return mFilter;
+    }
+
     public class Hoder{
 
         TextView txt_title_book ;
@@ -205,5 +215,43 @@ public class ListBookAdapter extends BaseAdapter {
         ImageView img_buy ;
         ImageView img_edit ;
 
+    }
+
+    private class ItemFilter extends Filter{
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults result = new FilterResults();
+            if(constraint != null && constraint.toString().length() > 0)
+            {
+                ArrayList<Book> filteredItems = new ArrayList<Book>();
+
+                for(int i = 0, l = originbook.size(); i < l; i++)
+                {
+                    Book country = originbook.get(i);
+                    if(country.toString().toLowerCase().contains(constraint))
+                        filteredItems.add(country);
+                }
+                result.count = filteredItems.size();
+                result.values = filteredItems;
+            }
+            else
+            {
+                synchronized(this)
+                {
+                    result.values = originbook;
+                    result.count = originbook.size();
+                }
+            }
+            return result;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            listBook = (ArrayList<Book>)results.values;
+            notifyDataSetChanged();
+//            for(int i = 0, l = listBook.size(); i < l; i++)
+//                add(countryList.get(i));
+            notifyDataSetInvalidated();
+        }
     }
 }

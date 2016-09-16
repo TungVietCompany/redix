@@ -11,11 +11,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +49,9 @@ public class ListingsFragment extends Fragment
     ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
     Book book;
+    TextView txt_my_listings;
     ListBookAdapter adapter;
+    EditText editSearch;
 
     @Nullable
     @Override
@@ -56,11 +61,29 @@ public class ListingsFragment extends Fragment
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
         grid=(GridView)view.findViewById(R.id.grid_view_listings);
+        txt_my_listings = (TextView) view.findViewById(R.id.txt_my_listings);
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),MenuActivity.class);
                 startActivity(intent);
+            }
+        });
+        editSearch = (EditText) view.findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
@@ -146,6 +169,7 @@ public class ListingsFragment extends Fragment
                 adapter = new ListBookAdapter(getActivity(),books);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                txt_my_listings.setText("My listings"+"("+String.valueOf(books.size())+")");
                 dialog.dismiss();
             }
             super.onPostExecute(books);

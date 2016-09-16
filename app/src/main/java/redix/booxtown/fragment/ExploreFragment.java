@@ -4,17 +4,21 @@ import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -37,9 +41,13 @@ import redix.booxtown.R;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.adapter.AdapterFilter;
+import redix.booxtown.adapter.AdapterListings;
+import redix.booxtown.adapter.ListBookAdapter;
+import redix.booxtown.controller.BookController;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 
 /**
@@ -51,7 +59,10 @@ public class ExploreFragment extends Fragment
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
     private LinearLayout linear_cart;
-    ArrayList<Explore> listEx= new ArrayList<>();
+    EditText editSearch;
+    ListBookAdapter adapter;
+    public TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
+    List<Book> listbook= new ArrayList<>();
     GridView grid;
     ImageView img_component;
     private MenuBottomCustom bottomExplore;
@@ -70,58 +81,15 @@ public class ExploreFragment extends Fragment
                 startActivity(intent);
             }
         });
-
-//        img_component=(ImageView) getActivity().findViewById(R.id.img_menu_component);
-//        img_component.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                callFragment(new MainFragment());
-//                img_component.setImageResource(R.drawable.btn_explore);
-////                img_component.setOnClickListener(new View.OnClickListener() {
-////                    @Override
-////                    public void onClick(View v) {
-////                        img_component.setImageResource(R.drawable.btn_location);
-////                    }
-////                });
-//            }});
-
+        grid=(GridView)view.findViewById(R.id.gridView);
         View view_search= (View)view.findViewById(R.id.explore_search);
         new CustomSearch(view_search,getActivity());
 
         //-----------------------------------------------------------
-        final AdapterExplore adapter = new AdapterExplore(getActivity(),listEx,1);
-        grid=(GridView)view.findViewById(R.id.gridView);
-        grid.setAdapter(adapter);
-        //filter/sort--------------------------------
+        Getallbook getallbook = new Getallbook();
+        getallbook.execute();
         filterSort(view);
         //end-------------------------------------
-
-        Explore e1= new Explore();
-        e1.setSwap(true);
-        e1.setFree(true);
-        e1.setBuy(false);
-
-        Explore e2= new Explore();
-        e2.setSwap(true);
-        e2.setFree(false);
-        e2.setBuy(true);
-
-        Explore e3= new Explore();
-        e3.setSwap(false);
-        e3.setFree(true);
-        e3.setBuy(false);
-
-
-        Explore e4= new Explore();
-        e4.setSwap(false);
-        e4.setFree(false);
-        e4.setBuy(true);
-
-
-        listEx.add(e1);
-        listEx.add(e2);
-        listEx.add(e3);
-        listEx.add(e4);
 
         //---------------------------------------------------------------
         View view_tab=(View) view.findViewById(R.id.tab_explore);
@@ -131,11 +99,32 @@ public class ExploreFragment extends Fragment
         linear_swap=(LinearLayout) view_tab.findViewById(R.id.linear_swap);
         linear_free=(LinearLayout) view_tab.findViewById(R.id.linear_free);
         linear_cart=(LinearLayout) view_tab.findViewById(R.id.linear_cart);
+        tab_all_count = (TextView) view_tab.findViewById(R.id.tab_all_count) ;
+        tab_cart_count = (TextView) view_tab.findViewById(R.id.tab_cart_count) ;
+        tab_free_count = (TextView) view_tab.findViewById(R.id.tab_free_count) ;
+        tab_swap_count = (TextView) view_tab.findViewById(R.id.tab_swap_count) ;
+        editSearch = (EditText) view.findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(1),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(1));
                 grid=(GridView) view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -145,7 +134,7 @@ public class ExploreFragment extends Fragment
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(2),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(2));
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
 
@@ -156,7 +145,7 @@ public class ExploreFragment extends Fragment
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(3),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(3));
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -167,7 +156,7 @@ public class ExploreFragment extends Fragment
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(4),1);
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(4));
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
@@ -179,29 +168,29 @@ public class ExploreFragment extends Fragment
     }
 
 
-    public ArrayList<Explore> filterExplore(int type){
-        ArrayList<Explore> list= new ArrayList<>();
+    public List<Book> filterExplore(int type){
+        List<Book> list= new ArrayList<>();
         if(type==1){
-            list=listEx;
+            list = listbook;
         }
         else if(type==2){
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isSwap()){
-                    list.add(listEx.get(i));
+            for (int i=0; i<listbook.size(); i++){
+                if(listbook.get(i).getAction().equals("100")){
+                    list.add(listbook.get(i));
                 }
             }
         }
         else if(type==3){
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isFree()){
-                    list.add(listEx.get(i));
+            for (int i=0; i<listbook.size(); i++){
+                if(listbook.get(i).getAction().equals("010")){
+                    list.add(listbook.get(i));
                 }
             }
         }
         else{
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isBuy()){
-                    list.add(listEx.get(i));
+            for (int i=0; i<listbook.size(); i++){
+                if(listbook.get(i).getAction().equals("001")){
+                    list.add(listbook.get(i));
                 }
             }
         }
@@ -282,5 +271,30 @@ public class ExploreFragment extends Fragment
                 spinner2.setAdapter(dataAdapter);
             }
         });
+    }
+
+    public class Getallbook extends AsyncTask<Void,Void,List<Book>>{
+        @Override
+        protected List<Book> doInBackground(Void... params) {
+            BookController bookController = new BookController();
+            listbook  =  bookController.getallbook();
+            return listbook;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Book> list) {
+            super.onPostExecute(list);
+            adapter = new ListBookAdapter(getActivity(),list);
+            grid.setAdapter(adapter);
+            tab_all_count.setText("("+String.valueOf(filterExplore(1).size()+")"));
+            tab_swap_count.setText("("+String.valueOf(filterExplore(2).size()+")"));
+            tab_free_count.setText("("+String.valueOf(filterExplore(3).size()+")"));
+            tab_cart_count.setText("("+String.valueOf(filterExplore(4).size()+")"));
+        }
     }
 }
