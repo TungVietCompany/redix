@@ -11,11 +11,14 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -48,6 +51,7 @@ public class ListingsFragment extends Fragment
     Book book;
     TextView txt_my_listings;
     ListBookAdapter adapter;
+    EditText editSearch;
 
     @Nullable
     @Override
@@ -63,6 +67,23 @@ public class ListingsFragment extends Fragment
             public void onClick(View v) {
                 Intent intent = new Intent(getActivity(),MenuActivity.class);
                 startActivity(intent);
+            }
+        });
+        editSearch = (EditText) view.findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
         ImageView btn_filter_explore = (ImageView)view.findViewById(R.id.btn_filter_explore);
