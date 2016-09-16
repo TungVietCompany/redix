@@ -625,7 +625,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
         // adding marker
         mMap.addMarker(marker);
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 20));
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
