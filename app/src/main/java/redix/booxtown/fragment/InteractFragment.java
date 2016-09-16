@@ -2,6 +2,7 @@ package redix.booxtown.fragment;
 
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +20,11 @@ import android.widget.ListView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import redix.booxtown.R;
+import redix.booxtown.controller.BookController;
+import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterInteract;
@@ -44,6 +49,8 @@ public class InteractFragment extends Fragment
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
 //        imageView_back.setImageResource(R.drawable.btn_menu_locate);
+        getalltopic getalltopic = new getalltopic();
+        getalltopic.execute();
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,6 +118,23 @@ public class InteractFragment extends Fragment
         transaction.add(R.id.frame_main_all, fragment);
         transaction.commit();
     }
+
+    public class getalltopic extends AsyncTask<Void,Void,List<Topic>>{
+
+        @Override
+        protected List<Topic> doInBackground(Void... params) {
+            BookController bookController = new BookController();
+            return bookController.getalltopic();
+        }
+
+        @Override
+        protected void onPostExecute(List<Topic> topics) {
+            Log.d("dsdhsjkdhksjhdjks",String.valueOf(topics.size()));
+            super.onPostExecute(topics);
+        }
+    }
+
+
 
 
 }

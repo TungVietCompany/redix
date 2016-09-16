@@ -6,6 +6,7 @@ import redix.booxtown.model.Book;
 import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.BookResult;
+import redix.booxtown.model.TopicResult;
 import redix.booxtown.model.User;
 import redix.booxtown.model.UserResult;
 import retrofit2.Call;
@@ -68,5 +69,8 @@ public interface ServiceInterface {
 
     @POST("/booxtown/rest/book/book_delete")
     Call<Result> deletebook(@Body Object book);
+
+    @GET("/booxtown/topic/topic_getall")
+    Call<TopicResult> topic_getall();
 
 }
