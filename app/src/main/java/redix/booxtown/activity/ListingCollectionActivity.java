@@ -597,9 +597,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         if(isGPSEnabled){
             location = service
                     .getLastKnownLocation(LocationManager.GPS_PROVIDER);
-            if (location == null) {
+            if (location != null) {
                 {
-                    location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();
                 }
@@ -610,8 +609,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         if (isNetworkEnabled) {
             location = service
                     .getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-            if (location == null) {
-                location = service.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+            if (location != null) {
                 {
                     latitude = location.getLatitude();
                     longitude = location.getLongitude();

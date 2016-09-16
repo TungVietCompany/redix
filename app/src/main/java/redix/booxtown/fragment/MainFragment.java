@@ -1,6 +1,7 @@
 package redix.booxtown.fragment;
 
 import android.app.Dialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -8,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CoordinatorLayout;
@@ -48,8 +50,12 @@ import redix.booxtown.R;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterFilter;
+import redix.booxtown.adapter.ListBookAdapter;
+import redix.booxtown.controller.BookController;
+import redix.booxtown.controller.IconMapController;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.Book;
 
 public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
     private CoordinatorLayout coordinatorLayout;
@@ -64,7 +70,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
     private MenuBottomCustom bottom;
     private LatLng latLngBounds;
-
+    MarkerOptions marker;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -180,17 +186,8 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
     public void onMapLongClick(LatLng latLng) {
     }
 
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(getApplicationContext());
-//        if (resultCode == ConnectionResult.SUCCESS){
-//        }else{
-//            GooglePlayServicesUtil.getErrorDialog(resultCode, this, RQS_GooglePlayServices);
-//        }
-//    }
-    public Bitmap resizeMapIcons(int width, int height){
-        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier("icon_swap", "drawable", getActivity().getPackageName()));
+    public Bitmap resizeMapIcons(String icon,int width, int height){
+        Bitmap imageBitmap = BitmapFactory.decodeResource(getResources(),getResources().getIdentifier(icon, "drawable", getActivity().getPackageName()));
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(imageBitmap, width, height, false);
         return resizedBitmap;
     }
@@ -200,32 +197,18 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap = googleMap;
         // Add a marker in Sydney and move the camera
         // latitude and longitude
-        double latitude = 17.385044;
-        double longitude = 78.486671;
-
-        latLngBounds = new LatLng(latitude,longitude);
-        // create marker
-        MarkerOptions marker = new MarkerOptions().position(new LatLng(latitude, longitude)).title("Hello Maps");
-
-        // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(110,150)));
-
-        // adding marker
-        mMap.addMarker(marker);
-
-
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        String session_id = pref.getString("session_id", null);
+        listingAsync listingAsync = new listingAsync(getContext());
+        listingAsync.execute(session_id);
         mMap.setMapType(GoogleMap.MAP_TYPE_NORMAL);
-
         mMap.getUiSettings().setZoomControlsEnabled(true);
         mMap.getUiSettings().setCompassEnabled(true);
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
-
         mMap.getUiSettings().setAllGesturesEnabled(true);
-
         mMap.setTrafficEnabled(true);
-
-        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
-
+//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
         mMap.setOnInfoWindowClickListener(this);
@@ -241,11 +224,6 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         @Override
         public View getInfoContents(Marker marker) {
-//            TextView tvTitle = ((TextView)myContentsView.findViewById(R.id.title_locate));
-//            tvTitle.setText(marker.getTitle());
-//            TextView tvSnippet = ((TextView)myContentsView.findViewById(R.id.snippet_locate));
-//            tvSnippet.setText(marker.getSnippet());
-
             return myContentsView;
         }
 
@@ -257,4 +235,54 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
     }
 
+    class listingAsync extends AsyncTask<String,Void,List<Book>> {
+
+        Context context;
+        ProgressDialog dialog;
+        List<Book> listemp;
+        public listingAsync(Context context){
+            this.context = context;
+        }
+
+        @Override
+        protected List<Book> doInBackground(String... strings) {
+            listemp = new ArrayList<>();
+            BookController bookController = new BookController();
+            listemp = bookController.getAllBookById(strings[0]);
+            return listemp;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(context);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Book> books) {
+            if (books == null){
+                dialog.dismiss();
+            }else {
+                // create marker
+                for(int i = 0;i<books.size();i++) {
+                    marker = new MarkerOptions().position(new LatLng(books.get(i).getLocation_latitude(),books.get(i).getLocation_longitude())).title("Hello Maps");
+                    latLngBounds = new LatLng(books.get(i).getLocation_latitude(),books.get(i).getLocation_longitude());
+                    // Changing marker icon
+                    char array[] = books.get(i).getAction().toCharArray();
+                    String swap = String.valueOf(array[0]);
+                    String free = String.valueOf(array[1]);
+                    String buy = String.valueOf(array[2]);
+                    String icon = IconMapController.icon(swap,free,buy);
+                    marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(icon,110, 150)));
+                    // adding marker
+                    mMap.addMarker(marker);
+                }
+                dialog.dismiss();
+            }
+            super.onPostExecute(books);
+        }
+    }
 }

@@ -108,7 +108,7 @@ Button mButtonForgotPass;
             super.onPreExecute();
             dialog = new ProgressDialog(SignIn_Activity.this);
             dialog.setMessage("Please wait...");
-            dialog.setIndeterminate(true);
+//            dialog.setIndeterminate(true);
             dialog.show();
         }
 
