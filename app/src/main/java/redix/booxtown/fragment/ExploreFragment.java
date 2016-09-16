@@ -10,12 +10,15 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -56,6 +59,8 @@ public class ExploreFragment extends Fragment
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
     private LinearLayout linear_cart;
+    EditText editSearch;
+    ListBookAdapter adapter;
     public TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
     List<Book> listbook= new ArrayList<>();
     GridView grid;
@@ -98,6 +103,23 @@ public class ExploreFragment extends Fragment
         tab_cart_count = (TextView) view_tab.findViewById(R.id.tab_cart_count) ;
         tab_free_count = (TextView) view_tab.findViewById(R.id.tab_free_count) ;
         tab_swap_count = (TextView) view_tab.findViewById(R.id.tab_swap_count) ;
+        editSearch = (EditText) view.findViewById(R.id.editSearch);
+        editSearch.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                    adapter.getFilter().filter(s);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
 
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -267,7 +289,7 @@ public class ExploreFragment extends Fragment
         @Override
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
-            ListBookAdapter adapter = new ListBookAdapter(getActivity(),list);
+            adapter = new ListBookAdapter(getActivity(),list);
             grid.setAdapter(adapter);
             tab_all_count.setText("("+String.valueOf(filterExplore(1).size()+")"));
             tab_swap_count.setText("("+String.valueOf(filterExplore(2).size()+")"));
