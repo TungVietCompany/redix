@@ -23,7 +23,7 @@ import redix.booxtown.model.Topic;
 public class AdapterTopic extends RecyclerView.Adapter<AdapterTopic.RecyclerViewHolder> {
     Context context;
     private List<Topic> listTopic;
-    public AdapterTopic(Context context, ArrayList<Topic> listTopic) {
+    public AdapterTopic(Context context, List<Topic> listTopic) {
         this.listTopic = listTopic;
         this.context = context;
 
