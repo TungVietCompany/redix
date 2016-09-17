@@ -144,11 +144,11 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
 
 
         //-----------------------------------------------------------
-        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(getActivity(),list);
+        //final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(getActivity(),list);
         RelativeLayout.LayoutParams paramslist = (RelativeLayout.LayoutParams)tbTypebook.getLayoutParams();
         listView=(ListView) v.findViewById(R.id.listView_comment);
         listView.setDivider(null);
-        listView.setAdapter(adapter);
+        //listView.setAdapter(adapter);
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {

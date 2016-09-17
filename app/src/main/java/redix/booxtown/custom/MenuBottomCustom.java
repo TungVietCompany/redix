@@ -6,7 +6,7 @@ import android.view.View;
 import android.widget.ImageView;
 
 import redix.booxtown.R;
-import redix.booxtown.fragment.InteractFragment;
+import redix.booxtown.fragment.TopicFragment;
 import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
@@ -49,7 +49,7 @@ public class MenuBottomCustom{
             @Override
             public void onClick(View v) {
                 if(type!=2){
-                    Intent itent = new Intent(context, InteractFragment.class);
+                    Intent itent = new Intent(context, TopicFragment.class);
                     context.startActivity(itent);
                 }
                 setDefaut(2);

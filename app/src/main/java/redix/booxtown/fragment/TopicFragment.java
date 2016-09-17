@@ -12,7 +12,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,12 +29,11 @@ import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterTopic;
-import redix.booxtown.model.Interact;
 
 /**
  * Created by Administrator on 27/08/2016.
  */
-public class InteractFragment extends Fragment
+public class TopicFragment extends Fragment
 {
 
     List<Topic> listtopic= new ArrayList<>();
@@ -110,7 +108,7 @@ public class InteractFragment extends Fragment
                                     Topic item = (Topic) topics.get(position);
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("thread", item);
-                                    InteractThreadFragment fragment= new InteractThreadFragment();
+                                    ThreadFragment fragment= new ThreadFragment();
                                     fragment.setArguments(bundle);
                                     callFragment(fragment);
                                 }

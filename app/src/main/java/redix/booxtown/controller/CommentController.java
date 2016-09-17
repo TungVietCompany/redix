@@ -7,60 +7,56 @@ import java.util.List;
 
 import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
+import redix.booxtown.model.Comment;
+import redix.booxtown.model.CommentResult;
 import redix.booxtown.model.Result;
-import redix.booxtown.model.Thread;
-import redix.booxtown.model.ThreadResult;
 import redix.booxtown.model.Topic;
 import redix.booxtown.model.TopicResult;
 import retrofit2.Call;
 
 /**
- * Created by thuyetpham94 on 16/09/2016.
+ * Created by thuyetpham94 on 17/09/2016.
  */
-public class ThreadController {
+public class CommentController {
     private ServiceInterface service;
-    Boolean success;
-    public ThreadController(){
+    public CommentController(){
         service = ServiceGenerator.GetInstance();
     }
 
-    public List<Thread> getAllThread(String topic_id){
-        Call<ThreadResult> getAllThread = service.getAllThread(topic_id);
+    public List<Comment> getallcomment(String thread_id){
+        Call<CommentResult> getall = service.getAllComment(thread_id);
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =
                         new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
             }
-            ThreadResult str = getAllThread.execute().body();
+            CommentResult str = getall.execute().body();
             if (str.getCode()==200){
-                return str.getListThread();
+                return str.getComment();
             }
         } catch (Exception ex) {
         }
         return null;
     }
 
-    public boolean insertThread(String title,String description,String topic_id,String session_id){
+    public Boolean insertComment(String session_id,String content,String thread_id){
         Hashtable obj = new Hashtable();
-        obj.put("title",title);
-        obj.put("description",description);
-        obj.put("topic_id",topic_id);
         obj.put("session_id",session_id);
-        Call<Result> callService = service.insertThread(obj);
-        try{
+        obj.put("content",content);
+        obj.put("thread_id",thread_id);
+        Call<Result> insertComment = service.inser_comment_thread(obj);
+        try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =
                         new StrictMode.ThreadPolicy.Builder().permitAll().build();
                 StrictMode.setThreadPolicy(policy);
             }
-            Result result = callService.execute().body();
-            if (result.getCode()==200){
+            Result str = insertComment.execute().body();
+            if (str.getCode()==200){
                 return true;
             }
-        }
-        catch (Exception ex){
-
+        } catch (Exception ex) {
         }
         return false;
     }

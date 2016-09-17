@@ -3,9 +3,11 @@ package redix.booxtown.api;
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import redix.booxtown.model.Book;
+import redix.booxtown.model.CommentResult;
 import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.BookResult;
+import redix.booxtown.model.Thread;
 import redix.booxtown.model.ThreadResult;
 import redix.booxtown.model.TopicResult;
 import redix.booxtown.model.User;
@@ -75,5 +77,14 @@ public interface ServiceInterface {
     Call<TopicResult> topic_getall();
 
     @GET("/booxtown/rest/thread/thread_getbytopic")
-    Call<ThreadResult> getAllThread();
+    Call<ThreadResult> getAllThread(@Query("topic_id") String topic_id);
+
+    @POST("/booxtown/rest/thread/thread_insert")
+    Call<Result> insertThread(@Body Object thread);
+
+    @GET("/booxtown/rest/comment/comment_getbythread")
+    Call<CommentResult> getAllComment(@Query("thread_id") String thread_id);
+
+    @POST("/booxtown/rest/comment/comment_insert")
+    Call<Result> inser_comment_thread(@Body Object comment);
 }

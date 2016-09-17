@@ -7,10 +7,10 @@ import java.util.List;
  */
 public class ThreadResult {
     private int code;
-    private List<Thread> listThread;
+    private List<Thread> thread;
 
-    public ThreadResult(List<Thread> listThread, int code) {
-        this.listThread = listThread;
+    public ThreadResult(List<Thread> thread, int code) {
+        this.thread = thread;
         this.code = code;
     }
 
@@ -23,10 +23,10 @@ public class ThreadResult {
     }
 
     public List<Thread> getListThread() {
-        return listThread;
+        return thread;
     }
 
     public void setListThread(List<Thread> listThread) {
-        this.listThread = listThread;
+        this.thread = listThread;
     }
 }

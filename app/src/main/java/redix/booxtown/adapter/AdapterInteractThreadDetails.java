@@ -16,9 +16,11 @@ import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.UserProfileActivity;
+import redix.booxtown.model.Comment;
 import redix.booxtown.model.InteractComment;
 
 /**
@@ -26,19 +28,19 @@ import redix.booxtown.model.InteractComment;
  */
 public class AdapterInteractThreadDetails extends BaseAdapter {
     private Context mContext;
-    private ArrayList<InteractComment> listInteractComments;
+    private List<Comment> listComments;
 
 
-    public AdapterInteractThreadDetails(Context c, ArrayList<InteractComment> list_interact) {
+    public AdapterInteractThreadDetails(Context c, List<Comment> listComments) {
         mContext = c;
-        this.listInteractComments = list_interact;
+        this.listComments = listComments;
 
     }
 
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return listInteractComments.size();
+        return listComments.size();
     }
 
     @Override
@@ -61,7 +63,7 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         Hoder hoder = new Hoder();
 
-            InteractComment interactComments= listInteractComments.get(position);
+        Comment Comments= listComments.get(position);
         convertView = inflater.inflate(R.layout.custom_commnents_interact, null);
 
         hoder.img_icon=(ImageView) convertView.findViewById(R.id.icon_user_listing_detail);
@@ -87,32 +89,30 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 //            NotificationAccept notificationAccept = new NotificationAccept();
 //            notificationAccept.accept(mContext, mResources, mBitmap, img_icon);
 
-            if(interactComments.isRank_one()){
-                hoder.img_rank_one.setVisibility(View.VISIBLE);
-            }
-            else{
-                hoder.img_rank_one.setVisibility(View.INVISIBLE);
-            }
-
-            if(interactComments.isRank_two()){
-                hoder.img_rank_two.setVisibility(View.VISIBLE);
-            }
-            else{
-                hoder.img_rank_two.setVisibility(View.INVISIBLE);
-            }
-
-            if(interactComments.isRank_three()){
-                hoder.img_rank_three.setVisibility(View.VISIBLE);
-            }
-            else{
-                hoder.img_rank_three.setVisibility(View.INVISIBLE);
-            }
-
-        hoder.txt_userName.setText(interactComments.getUser_name());
-        hoder.txt_contents.setText(interactComments.getContent());
-        hoder.txt_datetime.setText(interactComments.getDate_time());
-
-
+//            if(interactComments.isRank_one()){
+//                hoder.img_rank_one.setVisibility(View.VISIBLE);
+//            }
+//            else{
+//                hoder.img_rank_one.setVisibility(View.INVISIBLE);
+//            }
+//
+//            if(interactComments.isRank_two()){
+//                hoder.img_rank_two.setVisibility(View.VISIBLE);
+//            }
+//            else{
+//                hoder.img_rank_two.setVisibility(View.INVISIBLE);
+//            }
+//
+//            if(interactComments.isRank_three()){
+//                hoder.img_rank_three.setVisibility(View.VISIBLE);
+//            }
+//            else{
+//                hoder.img_rank_three.setVisibility(View.INVISIBLE);
+//            }
+//
+//        hoder.txt_userName.setText(interactComments.getUser_name());
+        hoder.txt_contents.setText(Comments.getContent());
+        hoder.txt_datetime.setText(Comments.getCreate_date());
         return convertView;
     }
 

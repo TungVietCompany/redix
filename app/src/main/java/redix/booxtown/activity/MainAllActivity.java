@@ -6,13 +6,11 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.app.ListFragment;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
@@ -20,13 +18,11 @@ import com.squareup.picasso.Picasso;
 
 
 import redix.booxtown.R;
-import redix.booxtown.fragment.AboutFragment;
 import redix.booxtown.fragment.ExploreFragment;
-import redix.booxtown.fragment.InteractFragment;
+import redix.booxtown.fragment.TopicFragment;
 import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.fragment.MainFragment;
 import redix.booxtown.fragment.MyProfileFragment;
-import redix.booxtown.fragment.RateFragment;
 import redix.booxtown.fragment.WishboardFragment;
 
 /**
@@ -66,7 +62,7 @@ public class MainAllActivity extends AppCompatActivity{
                 setDefaut(1);
             }else if(i==2){
                 initLayout();
-                callFragment(new InteractFragment());
+                callFragment(new TopicFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Interact");
                 setDefaut(2);
@@ -147,7 +143,7 @@ public class MainAllActivity extends AppCompatActivity{
         btn_commnet.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                callFragment(new InteractFragment());
+                callFragment(new TopicFragment());
                 img_component.setVisibility(View.GONE);
                 txtTitle.setText("Interact");
                 setDefaut(2);

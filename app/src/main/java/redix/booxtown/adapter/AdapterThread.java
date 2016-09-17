@@ -10,21 +10,20 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import redix.booxtown.R;
-import redix.booxtown.model.Interact;
+import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
 
 /**
- * Created by Administrator on 27/08/2016.
+ * Created by thuyetpham94 on 16/09/2016.
  */
-public class AdapterTopic extends RecyclerView.Adapter<AdapterTopic.RecyclerViewHolder> {
+public class AdapterThread extends RecyclerView.Adapter<AdapterThread.RecyclerViewHolder> {
     Context context;
-    private List<Topic> listTopic;
-    public AdapterTopic(Context context, List<Topic> listTopic) {
-        this.listTopic = listTopic;
+    private List<Thread> listThread;
+    public AdapterThread(Context context, List<Thread> listThread) {
+        this.listThread = listThread;
         this.context = context;
 
     }
@@ -37,18 +36,13 @@ public class AdapterTopic extends RecyclerView.Adapter<AdapterTopic.RecyclerView
 
     @Override
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
-        Topic interact= listTopic.get(position);
-        holder.txt_title_interact.setText(interact.getTitle());
-        holder.txt_count_interact.setText("("+interact.getNum_thread()+")");
-//        if(interact.isStatus()) {
-//            holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_text));
-//        }
-        holder.txt_dateUpdate_interact.setText("Last Updated on "+ interact.getCreate_date());
+        holder.txt_title_interact.setText(listThread.get(position).getTitle());
+        holder.txt_dateUpdate_interact.setText("Added by "+ listThread.get(position).getUsername());
     }
 
     @Override
     public int getItemCount() {
-        return listTopic.size();
+        return listThread.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{

@@ -101,11 +101,11 @@ public class RespondActivity extends AppCompatActivity implements View.OnClickLi
         //-----------------------------------------------------------
         View view_comment= (View) findViewById(R.id.gridview_comments_respond);
         ListView listView= (ListView) view_comment.findViewById(R.id.listView_comment);
-        final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(RespondActivity.this,list);
+        //final AdapterInteractThreadDetails adapter = new AdapterInteractThreadDetails(RespondActivity.this,list);
 
         listView.setDivider(null);
-        listView.setAdapter(adapter);
-        Log.d("adapterRespone",String.valueOf(adapter.getCount()));
+        //listView.setAdapter(adapter);
+        //Log.d("adapterRespone",String.valueOf(adapter.getCount()));
 
         listView.setOnTouchListener(new View.OnTouchListener() {
             @Override

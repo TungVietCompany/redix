@@ -2,10 +2,12 @@ package redix.booxtown.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.io.Serializable;
+
 /**
  * Created by thuyetpham94 on 16/09/2016.
  */
-public class Thread {
+public class Thread implements Serializable {
     @Expose
     private String id;
     @Expose

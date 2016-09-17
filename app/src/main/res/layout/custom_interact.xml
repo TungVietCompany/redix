@@ -71,9 +71,20 @@
         android:layout_width="11dp"
         android:layout_height="24dp"
         android:id="@+id/imageView_next_interac"
-        android:layout_alignParentTop="true"
+        android:layout_alignParentTop="false"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="false"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="15dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="1dp"
+        android:id="@+id/textView79"
+        android:layout_below="@+id/tableLayout"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_marginRight="10dp"
-        android:layout_above="@+id/tableLayout" />
+        android:background="@color/background_listing"/>
 </RelativeLayout>
