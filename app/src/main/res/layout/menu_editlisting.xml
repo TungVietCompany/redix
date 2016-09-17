@@ -34,7 +34,7 @@
         android:layout_below="@+id/textView103"
         android:layout_alignLeft="@+id/textView103"
         android:layout_alignStart="@+id/textView103"
-        android:src="@drawable/img_temp1"
+        android:src="@drawable/blank_image"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp" />
 
@@ -45,7 +45,7 @@
         android:layout_alignTop="@+id/imageView29"
         android:layout_toRightOf="@+id/imageView29"
         android:layout_toEndOf="@+id/imageView29"
-        android:src="@drawable/img_temp1" />
+        android:src="@drawable/blank_image" />
 
     <ImageView
         android:layout_width="70dp"
@@ -54,7 +54,7 @@
         android:layout_alignTop="@+id/imageView30"
         android:layout_toRightOf="@+id/imageView30"
         android:layout_toEndOf="@+id/imageView30"
-        android:src="@drawable/img_temp1" />
+        android:src="@drawable/blank_image" />
 
     <ImageView
         android:layout_width="28dp"
@@ -243,14 +243,33 @@
         android:layout_toRightOf="@+id/textView113"
         android:layout_toEndOf="@+id/textView113"
         android:layout_marginTop="5dp" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tag1"
+        android:layout_below="@+id/textView113" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tag2"
+        android:layout_below="@+id/textView113"
+        android:layout_toRightOf="@+id/tag1" />
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/tag3"
+        android:layout_below="@+id/textView113"
+        android:layout_toRightOf="@+id/tag2" />
 
     <EditText
         android:layout_width="100dp"
         android:layout_height="wrap_content"
         android:id="@+id/editText10"
         android:layout_below="@+id/textView113"
-        android:layout_alignLeft="@+id/textView113"
-        android:layout_alignStart="@+id/textView113" />
+        android:layout_toRightOf="@id/tag3" />
 
     <ImageView
         android:layout_width="28dp"
