@@ -243,53 +243,60 @@
         android:layout_toRightOf="@+id/textView113"
         android:layout_toEndOf="@+id/textView113"
         android:layout_marginTop="5dp" />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
+    <TableRow
+        android:layout_width="match_parent"
+        android:id="@+id/table"
         android:layout_height="wrap_content"
-        android:id="@+id/tag1"
-        android:layout_below="@+id/textView113" />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tag2"
-        android:layout_below="@+id/textView113"
-        android:layout_toRightOf="@+id/tag1" />
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/tag3"
-        android:layout_below="@+id/textView113"
-        android:layout_toRightOf="@+id/tag2" />
+        android:layout_below="@+id/textView113">
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tag1"
+            android:layout_below="@+id/textView113" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tag2"
+            android:layout_below="@+id/textView113"
+            android:layout_toRightOf="@+id/tag1" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tag3"
+            android:layout_below="@+id/textView113"
+            android:layout_toRightOf="@+id/tag2" />
 
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText10"
-        android:layout_below="@+id/textView113"
-        android:layout_toRightOf="@id/tag3" />
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText10"
+            android:layout_below="@+id/textView113"
+            android:layout_toRightOf="@id/tag3" />
 
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:id="@+id/imageView33"
-        android:layout_alignTop="@+id/editText10"
-        android:layout_toRightOf="@+id/editText10"
-        android:layout_toEndOf="@+id/editText10"
-        android:src="@drawable/btn_add"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp" />
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/imageView33"
+            android:layout_alignTop="@+id/editText10"
+            android:layout_toRightOf="@+id/editText10"
+            android:layout_toEndOf="@+id/editText10"
+            android:src="@drawable/btn_add"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp" />
 
+
+    </TableRow>
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:text="New Text"
         android:id="@+id/textView115"
-        android:layout_below="@+id/editText10"
-        android:layout_alignLeft="@+id/editText10"
-        android:layout_alignStart="@+id/editText10"
+        android:layout_below="@+id/table"
+        android:layout_alignLeft="@+id/table"
+        android:layout_alignStart="@+id/table"
         android:layout_alignRight="@+id/textView112"
         android:layout_alignEnd="@+id/textView112"
         android:layout_marginTop="5dp"
