@@ -22,6 +22,7 @@ import android.os.Build;
 import android.provider.MediaStore;
 import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -95,6 +96,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     boolean success;
     Book book;
     String titl;
+    TextView tag1,tag2,tag3;
     public int numclick = 0;
     public int numimageclick = 0;
     String listeditimage;
@@ -134,6 +136,12 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         edt_tag = (EditText) v.findViewById(R.id.editText10);
         addtag = (ImageView) v.findViewById(R.id.imageView33);
         addtag.setOnClickListener(this);
+        tag1 = (TextView) v.findViewById(R.id.tag1);
+        tag2 = (TextView) v.findViewById(R.id.tag2);
+        tag3 = (TextView) v.findViewById(R.id.tag3);
+        tag1.setOnClickListener(this);
+        tag2.setOnClickListener(this);
+        tag3.setOnClickListener(this);
         btn_menu_listing_addbook = (Button) v.findViewById(R.id.btn_menu_listing_addbook);
         btn_menu_editlist_delete = (Button) v.findViewById(R.id.btn_menu_editlist_delete);
         btn_menu_editlisting_update = (Button) v.findViewById(R.id.btn_menu_editlisting_update);
@@ -172,9 +180,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     @Override
                     public void onClick(View v) {
                 final Dialog dialog = new Dialog(getActivity());
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
-                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 final ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
                 final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(), genre);
@@ -190,7 +198,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 });
 
                 ImageView img_close_dialoggenre = (ImageView) dialog.findViewById(R.id.img_close_dialoggenre);
-                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
+//                Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialoggenre);
+                        img_close_dialoggenre.setImageResource(R.drawable.close_popup);
                 img_close_dialoggenre.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -304,8 +313,19 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             Log.d("boooook", String.valueOf(bookedit.getPhoto()));
             edt_author.setText(bookedit.getAuthor().toString());
             edt_tilte.setText(bookedit.getTitle().toString());
-            edt_tag.setText(bookedit.getHash_tag().toString());
-                    tb_menu.setVisibility(View.GONE);
+            String[] listtag = bookedit.getHash_tag().split(";");
+            if (listtag.length==1){
+                tag1.setText(listtag[0]);
+            }else if (listtag.length==2){
+                tag1.setText(listtag[0]+"|");
+                tag2.setText(listtag[1]);
+            }else {
+                tag1.setText(listtag[0]+"|");
+                tag2.setText(listtag[1]+"|");
+                tag3.setText(listtag[2]+"|");
+            }
+//            edt_tag.setText(bookedit.getHash_tag().toString());
+//                    tb_menu.setVisibility(View.GONE);
 
             Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
             imageView_back.setOnClickListener(new View.OnClickListener() {
@@ -345,29 +365,29 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 if (arrImage.size() == 1) {
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                 } else if (arrImage.size() == 2) {
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook2);
                 } else{
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook2);
                     Picasso.with(getActivity()).
                             load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[2] + "").
-                            placeholder(R.drawable.img_temp1).
+                            placeholder(R.drawable.blank_image).
                             into(imagebook3);
                 }
             }
@@ -461,9 +481,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         if (listTag.size() != 0) {
             for (int i = 0; i < listTag.size(); i++) {
                 if (i != listTag.size() - 1) {
-                    tag = tag + listTag.get(i) + ";";
+                    tag = tag + listTag.get(i).replace("|","") + ";";
                 } else {
-                    tag = tag + listTag.get(i);
+                    tag = tag + listTag.get(i).replace("|","");
                 }
             }
         }
@@ -668,10 +688,29 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
 
                 break;
-
+            case R.id.tag1:
+                showSnack(tag1.getText().toString(),0);
+                break;
+            case R.id.tag2:
+                showSnack(tag2.getText().toString(),1);
+                break;
+            case R.id.tag3:
+                showSnack(tag3.getText().toString(),2);
+                break;
         }
     }
 
+    public void showSnack(String tag, final int position){
+        final Snackbar snackbar = Snackbar.make(getView(),"Do you want remove "+tag+"",Snackbar.LENGTH_INDEFINITE);
+        snackbar.setAction("OK", new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listTag.remove(position);
+                settag();
+                snackbar.dismiss();
+            }
+        }).show();
+    }
 
     public void showdialog(){
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(getActivity());
@@ -702,6 +741,28 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
         listTag.add(edt_tag.getText().toString());
         edt_tag.setText("");
+        settag();
+    }
+
+    public void settag(){
+        if (listTag.size()==0){
+            tag1.setText("");
+            tag2.setText("");
+            tag3.setText("");
+        }
+        else if (listTag.size()==1){
+            tag1.setText(listTag.get(0));
+            tag2.setText("");
+            tag3.setText("");
+        }else if(listTag.size()==2){
+            tag1.setText(listTag.get(0)+"|");
+            tag2.setText(listTag.get(1)+"|");
+            tag3.setText("");
+        }else {
+            tag1.setText(listTag.get(0)+"|");
+            tag2.setText(listTag.get(1)+"|");
+            tag3.setText(listTag.get(2)+"|");
+        }
     }
 
     public void choseImage() {
