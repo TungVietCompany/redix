@@ -314,16 +314,20 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             edt_author.setText(bookedit.getAuthor().toString());
             edt_tilte.setText(bookedit.getTitle().toString());
             String[] listtag = bookedit.getHash_tag().split(";");
-            if (listtag.length==1){
-                tag1.setText(listtag[0]);
-            }else if (listtag.length==2){
-                tag1.setText(listtag[0]+"|");
-                tag2.setText(listtag[1]);
-            }else {
-                tag1.setText(listtag[0]+"|");
-                tag2.setText(listtag[1]+"|");
-                tag3.setText(listtag[2]+"|");
+            for (int i=0;i<listtag.length;i++){
+                listTag.add(listtag[i]);
             }
+            settag();
+//            if (listtag.length==1){
+//                tag1.setText(listtag[0]);
+//            }else if (listtag.length==2){
+//                tag1.setText(listtag[0]+"|");
+//                tag2.setText(listtag[1]);
+//            }else {
+//                tag1.setText(listtag[0]+"|");
+//                tag2.setText(listtag[1]+"|");
+//                tag3.setText(listtag[2]+"|");
+//            }
 //            edt_tag.setText(bookedit.getHash_tag().toString());
 //                    tb_menu.setVisibility(View.GONE);
 
