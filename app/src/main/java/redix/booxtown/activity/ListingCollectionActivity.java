@@ -61,11 +61,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import redix.booxtown.R;
 import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.controller.UploadFileController;
-import redix.booxtown.controller.UserController;
-import redix.booxtown.R;
+
 import redix.booxtown.custom.CustomListviewGenre;
 import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.model.Book;
