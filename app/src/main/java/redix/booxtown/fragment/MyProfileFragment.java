@@ -170,28 +170,25 @@ public class MyProfileFragment extends Fragment {
     public List<Book> filterBook(int type){
         List<Book> list= new ArrayList<>();
         if(type==1){
-            list=listEx;
+            list = listEx;
         }
         else if(type==2){
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[0]).contains("1")){
+                if(listEx.get(i).getAction().equals("100")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else if(type==3){
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[1]).contains("1")){
+                if(listEx.get(i).getAction().equals("010")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else{
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[2]).contains("1")){
+                if(listEx.get(i).getAction().equals("001")){
                     list.add(listEx.get(i));
                 }
             }
