@@ -124,7 +124,7 @@ public class ExploreFragment extends Fragment
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(1));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(1),2);
                 grid=(GridView) view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -134,7 +134,7 @@ public class ExploreFragment extends Fragment
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(2));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(2),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
 
@@ -145,7 +145,7 @@ public class ExploreFragment extends Fragment
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(3));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(3),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -156,7 +156,7 @@ public class ExploreFragment extends Fragment
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(4));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(4),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
@@ -289,7 +289,7 @@ public class ExploreFragment extends Fragment
         @Override
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
-            adapter = new ListBookAdapter(getActivity(),list);
+            adapter = new ListBookAdapter(getActivity(),list,2);
             grid.setAdapter(adapter);
             tab_all_count.setText("("+String.valueOf(filterExplore(1).size()+")"));
             tab_swap_count.setText("("+String.valueOf(filterExplore(2).size()+")"));
