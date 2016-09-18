@@ -45,13 +45,15 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
     private List<Book> originbook;
     SharedPreferences pref;
     private ItemFilter mFilter = new ItemFilter();
+    int type;
 
     String username;
 
-    public ListBookAdapter(Context c, List<Book> list_book) {
+    public ListBookAdapter(Context c, List<Book> list_book,int type) {
         mContext = c;
         this.listBook = list_book;
         this.originbook = list_book;
+        this.type = type;
         try {
             pref = mContext.getSharedPreferences("MyPref",mContext.MODE_PRIVATE);
             SharedPreferences.Editor editor = pref.edit();
@@ -99,10 +101,10 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
         hoder.img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
         if (image.length!=0){
-            Picasso.with(mContext).load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.img_temp1).into(hoder.img_book);
+            Picasso.with(mContext).load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
         }else {
 
-            Picasso.with(mContext).load(R.drawable.img_temp1).into(hoder.img_book);
+            Picasso.with(mContext).load(R.drawable.blank_image).into(hoder.img_book);
         }
         //String action[] = ex.getAction().split("");
         char array[]=ex.getAction().toCharArray();
@@ -146,8 +148,12 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
 //            Glide.with(mContext).load(R.drawable.explore_btn_buy_dis_active).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_buy);
             //img_buy.setImageResource((R.drawable.explore_btn_buy_dis_active));
         }
-
-        Picasso.with(mContext).load(R.drawable.listing_btn_edit).into(hoder.img_edit);
+        if (type==1){
+            Picasso.with(mContext).load(R.drawable.listing_btn_edit).into(hoder.img_edit);
+        }
+        else {
+            hoder.img_edit.setVisibility(View.GONE);
+        }
 //        Glide.with(mContext).load(R.drawable.listing_btn_edit).diskCacheStrategy(DiskCacheStrategy.ALL).into(img_edit);
         //img_edit.setImageResource((R.drawable.listing_btn_edit));
 

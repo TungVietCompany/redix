@@ -166,7 +166,7 @@ public class ListingsFragment extends Fragment
             if (books == null){
                 dialog.dismiss();
             }else {
-                adapter = new ListBookAdapter(getActivity(),books);
+                adapter = new ListBookAdapter(getActivity(),books,1);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
                 txt_my_listings.setText("My listings"+"("+String.valueOf(books.size())+")");

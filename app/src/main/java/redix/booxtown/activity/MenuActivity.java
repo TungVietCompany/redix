@@ -100,6 +100,9 @@ public class MenuActivity extends AppCompatActivity {
                         }else if(i==8){
                             LogoutAsynTask logoutAsynTask = new LogoutAsynTask();
                             logoutAsynTask.execute(session_id);
+                            Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
+                            startActivity(intent);
+
                         }else if(i==9){
                             final Dialog dialog = new Dialog(MenuActivity.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -161,11 +164,6 @@ public class MenuActivity extends AppCompatActivity {
                 editor.remove("session_id");
                 editor.commit();
                 finish();
-                dialog.hide();
-            }else
-            {
-                Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
-                startActivity(intent);
                 dialog.hide();
             }
         }

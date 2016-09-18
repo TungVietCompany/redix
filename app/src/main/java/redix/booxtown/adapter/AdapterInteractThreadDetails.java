@@ -113,6 +113,7 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 //        hoder.txt_userName.setText(interactComments.getUser_name());
         hoder.txt_contents.setText(Comments.getContent());
         hoder.txt_datetime.setText(Comments.getCreate_date());
+        //hoder.txt_userName.setText(Comments.);
         return convertView;
     }
 

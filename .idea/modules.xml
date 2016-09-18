@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/redix.iml" filepath="$PROJECT_DIR$/redix.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/Booxtown.iml" filepath="$PROJECT_DIR$/Booxtown.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+>>>>>>> origin/master
     </modules>
   </component>
 </project>

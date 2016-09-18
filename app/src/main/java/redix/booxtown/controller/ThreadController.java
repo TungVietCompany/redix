@@ -5,13 +5,10 @@ import android.os.StrictMode;
 import java.util.Hashtable;
 import java.util.List;
 
-import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.ThreadResult;
-import redix.booxtown.model.Topic;
-import redix.booxtown.model.TopicResult;
 import retrofit2.Call;
 
 /**
@@ -21,7 +18,7 @@ public class ThreadController {
     private ServiceInterface service;
     Boolean success;
     public ThreadController(){
-        service = ServiceGenerator.GetInstance();
+        //service = ServiceGenerator.GetInstance();
     }
 
     public List<Thread> getAllThread(String topic_id){

@@ -126,7 +126,7 @@ public class MyProfileFragment extends Fragment {
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(1));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(1),1);
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -136,7 +136,7 @@ public class MyProfileFragment extends Fragment {
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(2));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(2),1);
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(2);
@@ -146,7 +146,7 @@ public class MyProfileFragment extends Fragment {
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(3));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(3),1);
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -157,7 +157,7 @@ public class MyProfileFragment extends Fragment {
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(4));
+                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterBook(4),1);
                 grid=(GridView)view.findViewById(R.id.grid_myprofile);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
@@ -170,28 +170,25 @@ public class MyProfileFragment extends Fragment {
     public List<Book> filterBook(int type){
         List<Book> list= new ArrayList<>();
         if(type==1){
-            list=listEx;
+            list = listEx;
         }
         else if(type==2){
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[0]).contains("1")){
+                if(listEx.get(i).getAction().equals("100")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else if(type==3){
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[1]).contains("1")){
+                if(listEx.get(i).getAction().equals("010")){
                     list.add(listEx.get(i));
                 }
             }
         }
         else{
             for (int i=0; i<listEx.size(); i++){
-                char array[]=listEx.get(i).getAction().toCharArray();
-                if(String.valueOf(array[2]).contains("1")){
+                if(listEx.get(i).getAction().equals("001")){
                     list.add(listEx.get(i));
                 }
             }
@@ -279,7 +276,7 @@ public class MyProfileFragment extends Fragment {
         protected void onPostExecute(List<Book> books) {
             try {
                 if(books.size() >0){
-                    adapter = new ListBookAdapter(getActivity(), books);
+                    adapter = new ListBookAdapter(getActivity(), books,1);
                     grid.setAdapter(adapter);
                     adapter.notifyDataSetChanged();
 

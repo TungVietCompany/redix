@@ -2,18 +2,13 @@ package redix.booxtown.controller;
 
 import android.os.StrictMode;
 
-import java.util.ArrayList;
 import java.util.Hashtable;
 import java.util.List;
 
-import okhttp3.ResponseBody;
-import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.BookResult;
 import redix.booxtown.model.Result;
-import redix.booxtown.model.Topic;
-import redix.booxtown.model.TopicResult;
 import retrofit2.Call;
 
 /**
@@ -23,7 +18,7 @@ public class BookController {
     private ServiceInterface service;
     Boolean success;
     public BookController(){
-        service = ServiceGenerator.GetInstance();
+        //service = ServiceGenerator.GetInstance();
     }
     public boolean addbook(Book book, String session_id){
         Hashtable obj = ObjectCommon.ObjectDymanic(book);

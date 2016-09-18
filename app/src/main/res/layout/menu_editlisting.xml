@@ -21,6 +21,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="(Max 3)"
+        android:textColor="@color/color_text_hint"
         android:id="@+id/textView104"
         android:layout_alignParentTop="true"
         android:layout_toRightOf="@+id/textView103"
@@ -34,7 +35,7 @@
         android:layout_below="@+id/textView103"
         android:layout_alignLeft="@+id/textView103"
         android:layout_alignStart="@+id/textView103"
-        android:src="@drawable/img_temp1"
+        android:background="@drawable/border"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="5dp" />
 
@@ -45,7 +46,9 @@
         android:layout_alignTop="@+id/imageView29"
         android:layout_toRightOf="@+id/imageView29"
         android:layout_toEndOf="@+id/imageView29"
-        android:src="@drawable/img_temp1" />
+        android:background="@drawable/border"
+        android:layout_marginLeft="2dp"
+        android:layout_marginRight="2dp" />
 
     <ImageView
         android:layout_width="70dp"
@@ -54,12 +57,13 @@
         android:layout_alignTop="@+id/imageView30"
         android:layout_toRightOf="@+id/imageView30"
         android:layout_toEndOf="@+id/imageView30"
-        android:src="@drawable/img_temp1" />
+        android:background="@drawable/border" />
 
     <ImageView
         android:layout_width="28dp"
         android:layout_height="28dp"
         android:id="@+id/imageView32"
+        android:layout_marginLeft="5dp"
         android:layout_alignBottom="@+id/imageView31"
         android:layout_toRightOf="@+id/imageView31"
         android:layout_toEndOf="@+id/imageView31"
@@ -146,7 +150,10 @@
         android:layout_alignStart="@+id/textView107"
         android:layout_marginTop="5dp"
         android:text="Genre"
-        android:paddingLeft="10dp"
+        android:fontFamily="sans-serif-thin"
+        android:layout_marginBottom="5dp"
+        android:textColorHint="@color/color_text_hint"
+        android:background="@android:color/transparent"
         android:layout_toLeftOf="@+id/img_menu_genre"
         android:layout_toStartOf="@+id/img_menu_genre" />
 
@@ -167,6 +174,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Book codition"
+        android:fontFamily="sans-serif-thin"
+        android:textColorHint="@color/color_text_hint"
+        android:background="@android:color/transparent"
         android:id="@+id/textView109"
         android:layout_below="@+id/textView108"
         android:layout_alignLeft="@+id/textView108"
@@ -174,7 +184,7 @@
         android:layout_marginTop="5dp" />
 
     <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/seekBar2"
         android:layout_below="@+id/textView109"
@@ -197,6 +207,10 @@
         android:layout_height="wrap_content"
         android:text="Poor"
         android:id="@+id/textView110"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif-thin"
+        android:textColorHint="@color/color_text_hint"
+        android:background="@android:color/transparent"
         android:layout_below="@+id/seekBar2"
         android:layout_alignLeft="@+id/seekBar2"
         android:layout_alignStart="@+id/seekBar2"
@@ -206,6 +220,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Good"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif-thin"
+        android:textColorHint="@color/color_text_hint"
+        android:background="@android:color/transparent"
         android:id="@+id/textView111"
         android:layout_alignTop="@+id/textView110"
         android:layout_alignRight="@+id/seekBar2"
@@ -244,35 +262,18 @@
         android:layout_toEndOf="@+id/textView113"
         android:layout_marginTop="5dp" />
 
-    <EditText
-        android:layout_width="100dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/editText10"
-        android:layout_below="@+id/textView113"
-        android:layout_alignLeft="@+id/textView113"
-        android:layout_alignStart="@+id/textView113" />
 
-    <ImageView
-        android:layout_width="28dp"
-        android:layout_height="28dp"
-        android:id="@+id/imageView33"
-        android:layout_alignTop="@+id/editText10"
-        android:layout_toRightOf="@+id/editText10"
-        android:layout_toEndOf="@+id/editText10"
-        android:src="@drawable/btn_add"
-        android:layout_marginTop="5dp"
-        android:layout_marginLeft="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="1dp"
         android:text="New Text"
         android:id="@+id/textView115"
-        android:layout_below="@+id/editText10"
-        android:layout_alignLeft="@+id/editText10"
-        android:layout_alignStart="@+id/editText10"
-        android:layout_alignRight="@+id/textView112"
-        android:layout_alignEnd="@+id/textView112"
+        android:layout_below="@+id/row"
+        android:layout_alignLeft="@+id/row"
+        android:layout_alignStart="@+id/row"
+        android:layout_alignRight="@+id/row"
+        android:layout_alignEnd="@+id/row"
         android:layout_marginTop="5dp"
         android:background="@color/color_text_hint"/>
 
@@ -282,9 +283,11 @@
         android:text="Find your location on map"
         android:id="@+id/textView116"
         android:layout_below="@+id/textView115"
-        android:layout_alignLeft="@+id/textView115"
-        android:layout_alignStart="@+id/textView115"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="10dp" />
 <RadioGroup
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -294,6 +297,7 @@
     android:layout_alignEnd="@+id/textView115"
     android:layout_alignLeft="@+id/textView116"
     android:layout_alignStart="@+id/textView116"
+    android:weightSum="2"
     android:orientation="horizontal">
     <RadioButton
         android:layout_width="wrap_content"
@@ -303,6 +307,7 @@
         android:layout_below="@+id/textView116"
         android:layout_alignLeft="@+id/textView116"
         android:layout_alignStart="@+id/textView116"
+        android:layout_weight="1"
         android:checked="true" />
 
     <RadioButton
@@ -310,7 +315,7 @@
         android:layout_height="wrap_content"
         android:text="choose another"
         android:id="@+id/radioButton2"
-
+        android:layout_weight="1"
         android:checked="false" />
 </RadioGroup>
     <fragment
@@ -319,11 +324,12 @@
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:id="@+id/fragment_map_editlisting"
         android:layout_below="@+id/groupradio"
-        android:layout_alignLeft="@+id/groupradio"
-        android:layout_alignStart="@+id/groupradio"
+        android:layout_marginTop="5dp"
         android:layout_alignRight="@+id/groupradio"
         android:layout_alignEnd="@+id/groupradio"
-        android:layout_marginTop="5dp" />
+
+        android:layout_alignLeft="@+id/textView103"
+        android:layout_alignStart="@+id/textView103" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -429,5 +435,69 @@
         android:layout_alignBottom="@+id/txt_menu_genre1"
         android:layout_alignRight="@+id/textView107"
         android:layout_alignEnd="@+id/textView107" />
+
+    <TableRow
+        android:id="@+id/row"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView113"
+        android:layout_alignLeft="@+id/textView113"
+        android:layout_alignStart="@+id/textView113">
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tag1"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/border_image"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/textView113" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tag2"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/border_image"
+            android:gravity="center_vertical"
+            android:layout_marginLeft="2dp"
+            android:layout_marginRight="2dp"
+            android:layout_below="@+id/textView113"
+            android:layout_toRightOf="@+id/tag1" />
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:id="@+id/tag3"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:background="@drawable/border_image"
+            android:gravity="center_vertical"
+            android:layout_below="@+id/textView113"
+            android:layout_toRightOf="@+id/tag2" />
+
+        <EditText
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:id="@+id/editText10"
+            android:layout_below="@+id/textView113"
+            android:layout_alignLeft="@+id/textView113"
+            android:layout_alignStart="@+id/textView113" />
+
+        <ImageView
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:id="@+id/imageView33"
+            android:layout_alignTop="@+id/editText10"
+            android:layout_toRightOf="@+id/editText10"
+            android:layout_toEndOf="@+id/editText10"
+            android:src="@drawable/btn_add"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="5dp" />
+
+    </TableRow>
 
 </RelativeLayout>

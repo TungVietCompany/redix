@@ -22,5 +22,7 @@
     <dimen name="layout_parent_bottom">8dp</dimen>
     <dimen name="btn_w">223dp</dimen>
     <dimen name="btn_h">36dp</dimen>
+    <dimen name="btn_signin">140dp</dimen>
+    <dimen name="btn_signin_maginleft">10dp</dimen>
 
 </resources>
