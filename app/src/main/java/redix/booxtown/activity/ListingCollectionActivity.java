@@ -101,7 +101,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     public int numimageclick = 0;
     String listeditimage;
     String[] genravalue = {"Architecture", "Business and Economics", "Boy,Mid and Spirit", "Children", "Computers and Technology",
-            "Crafts and Hobbies", "Education", "Family,Parenting and Relationships", "Fiction and Literature", "Food and Drink"
+            "Crafts and Hobbies", "Education", "Family,Parenting and Relationships", "Fiction and Literature", "Food and Drink",
+            "Health and Fitness","History and Politics","Homes Gaedens and DIY","Humor and Comedy","Languages","Manuals and Guides"
     };
 
 
@@ -759,13 +760,13 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             tag2.setText("");
             tag3.setText("");
         }else if(listTag.size()==2){
-            tag1.setText(listTag.get(0)+"|");
-            tag2.setText(listTag.get(1)+"|");
+            tag1.setText(listTag.get(0));
+            tag2.setText(listTag.get(1));
             tag3.setText("");
         }else {
-            tag1.setText(listTag.get(0)+"|");
-            tag2.setText(listTag.get(1)+"|");
-            tag3.setText(listTag.get(2)+"|");
+            tag1.setText(listTag.get(0));
+            tag2.setText(listTag.get(1));
+            tag3.setText(listTag.get(2));
         }
     }
 

@@ -52,6 +52,7 @@ import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterFilter;
 import redix.booxtown.adapter.ListBookAdapter;
 import redix.booxtown.controller.BookController;
+import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.controller.IconMapController;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -208,7 +209,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.getUiSettings().setMyLocationButtonEnabled(true);
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.setTrafficEnabled(true);
-//        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(latLngBounds,10));
+        mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(new GPSTracker(getActivity()).getLatitude(),new GPSTracker(getActivity()).getLongitude()),10));
         mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
         mMap.setOnInfoWindowClickListener(this);
