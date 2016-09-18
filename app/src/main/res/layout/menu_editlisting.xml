@@ -47,8 +47,8 @@
         android:layout_toRightOf="@+id/imageView29"
         android:layout_toEndOf="@+id/imageView29"
         android:background="@drawable/border"
-        android:layout_marginLeft="2dp"
-        android:layout_marginRight="2dp" />
+        android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp" />
 
     <ImageView
         android:layout_width="70dp"
@@ -68,35 +68,32 @@
         android:layout_toRightOf="@+id/imageView31"
         android:layout_toEndOf="@+id/imageView31"
          />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <View
+        android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:text="New Text"
-        android:id="@+id/textView105"
+        android:background="#f06667"
+        android:id="@+id/view"
         android:layout_below="@+id/imageView29"
         android:layout_alignLeft="@+id/imageView29"
-        android:layout_alignStart="@+id/imageView29"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
         android:layout_marginTop="5dp"
-        android:background="@color/color_text_hint"
-        android:layout_marginRight="10dp" />
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editText8"
-        android:layout_below="@+id/textView105"
-        android:layout_alignLeft="@+id/textView105"
-        android:layout_alignStart="@+id/textView105"
-        android:layout_alignRight="@+id/textView105"
-        android:layout_alignEnd="@+id/textView105"
+        android:layout_below="@+id/view"
+        android:layout_alignLeft="@+id/view"
+        android:layout_alignStart="@+id/view"
         android:hint="The last paiting"
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-thin"
         android:textColorHint="@color/color_text_hint"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="5dp"
+        android:layout_alignRight="@+id/view"
+        android:layout_alignEnd="@+id/view" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -173,7 +170,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Book codition"
+        android:text="Book condition"
         android:fontFamily="sans-serif-thin"
         android:textColorHint="@color/color_text_hint"
         android:background="@android:color/transparent"
@@ -196,6 +193,8 @@
         app:min_value="0"
         app:max_value="100"
         app:steps="5"
+        android:layout_marginLeft="-10dp"
+        android:layout_marginRight="-10dp"
         app:bar_color="@color/color_text_hint"
         app:bar_highlight_color="@color/color_text"
         app:left_thumb_image="@drawable/icon_filer"
@@ -209,11 +208,12 @@
         android:id="@+id/textView110"
         android:textSize="11sp"
         android:fontFamily="sans-serif-thin"
+        android:layout_marginBottom="5dp"
         android:textColorHint="@color/color_text_hint"
         android:background="@android:color/transparent"
         android:layout_below="@+id/seekBar2"
-        android:layout_alignLeft="@+id/seekBar2"
-        android:layout_alignStart="@+id/seekBar2"
+        android:layout_alignLeft="@+id/textView109"
+        android:layout_alignStart="@+id/textView109"
         />
 
     <TextView
@@ -222,12 +222,13 @@
         android:text="Good"
         android:textSize="11sp"
         android:fontFamily="sans-serif-thin"
+        android:layout_marginBottom="5dp"
         android:textColorHint="@color/color_text_hint"
         android:background="@android:color/transparent"
         android:id="@+id/textView111"
         android:layout_alignTop="@+id/textView110"
-        android:layout_alignRight="@+id/seekBar2"
-        android:layout_alignEnd="@+id/seekBar2" />
+        android:layout_alignRight="@+id/img_menu_genre"
+        android:layout_alignEnd="@+id/img_menu_genre" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -275,7 +276,8 @@
         android:layout_alignRight="@+id/row"
         android:layout_alignEnd="@+id/row"
         android:layout_marginTop="5dp"
-        android:background="@color/color_text_hint"/>
+        android:background="@color/color_text_hint"
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -325,11 +327,11 @@
         android:id="@+id/fragment_map_editlisting"
         android:layout_below="@+id/groupradio"
         android:layout_marginTop="5dp"
+
         android:layout_alignRight="@+id/groupradio"
         android:layout_alignEnd="@+id/groupradio"
-
-        android:layout_alignLeft="@+id/textView103"
-        android:layout_alignStart="@+id/textView103" />
+        android:layout_alignLeft="@+id/groupradio"
+        android:layout_alignStart="@+id/groupradio" />
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -356,9 +358,9 @@
         android:text="Free"
         android:id="@+id/checkBox3"
         android:layout_alignTop="@+id/ck_sell_editlisting"
-        android:layout_alignRight="@+id/fragment_map_editlisting"
-        android:layout_alignEnd="@+id/fragment_map_editlisting"
-        android:checked="false" />
+        android:checked="false"
+        android:layout_alignRight="@+id/img_menu_genre"
+        android:layout_alignEnd="@+id/img_menu_genre" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -449,8 +451,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/tag1"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="#tag"
             android:background="@drawable/border_image"
             android:gravity="center_vertical"
             android:layout_below="@+id/textView113" />
@@ -459,12 +462,13 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/tag2"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="#tag"
             android:background="@drawable/border_image"
             android:gravity="center_vertical"
-            android:layout_marginLeft="2dp"
-            android:layout_marginRight="2dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
             android:layout_below="@+id/textView113"
             android:layout_toRightOf="@+id/tag1" />
         <TextView
@@ -472,8 +476,9 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:id="@+id/tag3"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:text="#tag"
             android:background="@drawable/border_image"
             android:gravity="center_vertical"
             android:layout_below="@+id/textView113"
@@ -483,6 +488,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText10"
+            android:visibility="gone"
             android:layout_below="@+id/textView113"
             android:layout_alignLeft="@+id/textView113"
             android:layout_alignStart="@+id/textView113" />
@@ -496,7 +502,7 @@
             android:layout_toEndOf="@+id/editText10"
             android:src="@drawable/btn_add"
             android:layout_marginTop="5dp"
-            android:layout_marginLeft="5dp" />
+            android:layout_marginLeft="10dp" />
 
     </TableRow>
 
