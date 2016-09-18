@@ -30,6 +30,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AlertDialog;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Spannable;
+import android.text.SpannableString;
+import android.text.style.ForegroundColorSpan;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -132,8 +135,18 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         swap = (CheckBox) v.findViewById(R.id.checkBox);
         sell = (CheckBox) v.findViewById(R.id.ck_sell_editlisting);
         free = (CheckBox) v.findViewById(R.id.checkBox3);
+
         edt_author = (EditText) v.findViewById(R.id.editText9);
+        Spannable wordtoSpan1 = new SpannableString("Author *");
+        wordtoSpan1.setSpan(new ForegroundColorSpan(Color.RED),7, 8, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        edt_author.setHint(wordtoSpan1);
+
+
         edt_tilte = (EditText) v.findViewById(R.id.editText8);
+        Spannable wordtoSpan = new SpannableString("Book Title *");
+        wordtoSpan.setSpan(new ForegroundColorSpan(Color.RED), 11, 12, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+        edt_tilte.setHint(wordtoSpan);
+
         edt_tag = (EditText) v.findViewById(R.id.editText10);
         addtag = (ImageView) v.findViewById(R.id.imageView33);
         addtag.setOnClickListener(this);
