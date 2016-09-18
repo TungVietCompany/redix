@@ -4,6 +4,7 @@ import android.os.StrictMode;
 
 import java.util.List;
 
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Topic;
 import redix.booxtown.model.TopicResult;
@@ -16,7 +17,7 @@ public class TopicController {
     private ServiceInterface service;
     Boolean success;
     public TopicController(){
-        //service = ServiceGenerator.GetInstance();
+        service = ServiceGenerator.GetInstance();
     }
 
     public List<Topic> getalltopic(){

@@ -99,6 +99,8 @@ public class ThreadFragment extends Fragment
                         insertthreadAsync insertthread = new insertthreadAsync(getContext());
                         insertthread.execute(edit_title_insert_thread.getText().toString(),edit_description_insert_thread.getText().toString(),
                                 topic.getId(),session_id);
+                        threadAsync threadAsync = new threadAsync(getContext());
+                        threadAsync.execute(topic.getId());
                         dialog.dismiss();
                     }
                 });

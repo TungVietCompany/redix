@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import java.util.Hashtable;
 import java.util.List;
 
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.BookResult;
@@ -18,7 +19,7 @@ public class BookController {
     private ServiceInterface service;
     Boolean success;
     public BookController(){
-        //service = ServiceGenerator.GetInstance();
+        service = ServiceGenerator.GetInstance();
     }
     public boolean addbook(Book book, String session_id){
         Hashtable obj = ObjectCommon.ObjectDymanic(book);

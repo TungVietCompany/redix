@@ -111,18 +111,21 @@ public class InteractThreadDetailsFragment extends Fragment
         SharedPreferences.Editor editor  = pref.edit();
         final String session_id = pref.getString("session_id", null);
 
-
         final EditText edit_message = (EditText)view.findViewById(R.id.edit_message);
 
         final ImageView btn_send_comment_interact = (ImageView)view.findViewById(R.id.btn_send_comment_interact);
-        btn_send_comment_interact.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                insertComment insertComment1 = new insertComment(getContext());
-                insertComment1.execute(session_id,edit_message.getText().toString(),threads.getId());
-                edit_message.setText("");
-            }
-        });
+            btn_send_comment_interact.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    insertComment insertComment1 = new insertComment(getContext());
+                    insertComment1.execute(session_id,edit_message.getText().toString(),threads.getId());
+                    edit_message.setText("");
+                    commentAsync commentAsync1 = new commentAsync(getContext());
+                    commentAsync1.execute(threads.getId());
+                }
+            });
+
+
         //---------------------------------------------------------------
 
         return view;
@@ -160,6 +163,9 @@ public class InteractThreadDetailsFragment extends Fragment
                 if(comments.size() >0){
                     adapter = new AdapterInteractThreadDetails(context,comments);
                     listView.setAdapter(adapter);
+                    dialog.dismiss();
+                }else {
+                    Toast.makeText(context,"no data",Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             }catch (Exception e){
@@ -201,7 +207,6 @@ public class InteractThreadDetailsFragment extends Fragment
             }catch (Exception e){
                 dialog.dismiss();
             }
-
         }
     }
 }

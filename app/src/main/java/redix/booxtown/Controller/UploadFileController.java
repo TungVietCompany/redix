@@ -14,6 +14,7 @@ import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Result;
 import retrofit2.Call;
@@ -28,7 +29,7 @@ public class UploadFileController {
 
     public UploadFileController()
     {
-        //service = ServiceGenerator.GetInstance();
+        service = ServiceGenerator.GetInstance();
     }
 
     public boolean uploadFile(Bitmap bm, List<String> fileName){

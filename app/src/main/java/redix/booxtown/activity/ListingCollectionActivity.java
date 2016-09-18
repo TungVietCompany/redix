@@ -11,8 +11,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -189,6 +194,16 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
         seekbar = (CrystalSeekbar) v.findViewById(R.id.seekBar2);
+
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
+        Bitmap thumb=Bitmap.createBitmap(64,64, Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(thumb);
+        canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
+                new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
+        Drawable drawable = new BitmapDrawable(getResources(),thumb);
+        seekbar.setLeftThumbDrawable(drawable);
+
+        //seekbar.setLeftThumbHighlightDrawable(drawable);
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
