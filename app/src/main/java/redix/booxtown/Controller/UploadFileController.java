@@ -8,12 +8,12 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.List;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
-import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Result;
 import retrofit2.Call;
@@ -28,10 +28,10 @@ public class UploadFileController {
 
     public UploadFileController()
     {
-        service = ServiceGenerator.GetInstance();
+        //service = ServiceGenerator.GetInstance();
     }
 
-    public boolean uploadFile(Bitmap bm, String fileName){
+    public boolean uploadFile(Bitmap bm, List<String> fileName){
 
 
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
@@ -45,8 +45,24 @@ public class UploadFileController {
 
         }
         RequestBody reqFile = RequestBody.create(MediaType.parse("application/octet-stream"), data2);
-        MultipartBody.Part body = MultipartBody.Part.createFormData("", fileName, reqFile);
-        Call<Result> req = service.postImage(body);
+        MultipartBody.Part body,body1,body2;
+        Call<Result> req = null;
+        if(fileName.size() ==1){
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
+            req = service.postImage(body);
+        }
+        if(fileName.size() ==2){
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
+            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile);
+            req = service.postImage1(body,body1);
+        }
+        if(fileName.size() ==3){
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
+            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile);
+            body2 = MultipartBody.Part.createFormData("images",fileName.get(2), reqFile);
+            req = service.postImage2(body,body1,body2);
+        }
+
         req.enqueue(new Callback<Result>() {
             @Override
             public void onResponse(Call<Result> call, Response<Result> response) {

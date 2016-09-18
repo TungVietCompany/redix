@@ -28,6 +28,13 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/uploadimage")
     Call<Result> postImage(@Part MultipartBody.Part image);
 
+    @Multipart
+    @POST("/booxtown/rest/uploadimage")
+    Call<Result> postImage1(@Part MultipartBody.Part image,@Part MultipartBody.Part image1);
+    @Multipart
+    @POST("/booxtown/rest/uploadimage")
+    Call<Result> postImage2(@Part MultipartBody.Part image,@Part MultipartBody.Part image1,@Part MultipartBody.Part image2);
+
     @GET("/booxtown/rest/getimage")
     Call<ResponseBody> getImage(@Query("username") String username ,@Query("image") String image);
 
