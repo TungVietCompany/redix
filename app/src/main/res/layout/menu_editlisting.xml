@@ -71,8 +71,22 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
+        android:background="@color/color_text_hint"
+        android:id="@+id/view_listing"
+
+
+        android:layout_alignLeft="@+id/imageView29"
+        android:layout_alignStart="@+id/imageView29"
+        android:layout_below="@+id/imageView29"
+        android:layout_alignRight="@+id/img_menu_genre"
+        android:layout_alignEnd="@+id/img_menu_genre"
+        android:layout_marginTop="5dp" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="1dp"
         android:background="#f06667"
         android:id="@+id/view"
+        android:visibility="invisible"
         android:layout_below="@+id/imageView29"
         android:layout_alignLeft="@+id/imageView29"
         android:layout_marginTop="5dp"
