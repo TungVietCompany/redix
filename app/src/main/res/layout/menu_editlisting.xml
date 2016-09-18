@@ -105,9 +105,10 @@
         android:background="@android:color/transparent"
         android:fontFamily="sans-serif-thin"
         android:textColorHint="@color/color_text_hint"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:layout_alignRight="@+id/view"
-        android:layout_alignEnd="@+id/view" />
+        android:layout_alignEnd="@+id/view"
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -137,7 +138,8 @@
         android:textColorHint="@color/color_text_hint"
         android:hint="Author"
         android:background="@android:color/transparent"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -159,14 +161,15 @@
         android:layout_below="@+id/textView107"
         android:layout_alignLeft="@+id/textView107"
         android:layout_alignStart="@+id/textView107"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="10dp"
         android:text="Genre"
         android:fontFamily="sans-serif-thin"
         android:layout_marginBottom="5dp"
         android:textColorHint="@color/color_text_hint"
         android:background="@android:color/transparent"
         android:layout_toLeftOf="@+id/img_menu_genre"
-        android:layout_toStartOf="@+id/img_menu_genre" />
+        android:layout_toStartOf="@+id/img_menu_genre"
+        android:textSize="17sp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -192,7 +195,9 @@
         android:layout_below="@+id/textView108"
         android:layout_alignLeft="@+id/textView108"
         android:layout_alignStart="@+id/textView108"
-        android:layout_marginTop="5dp" />
+        android:layout_marginTop="10dp"
+        android:textSize="17sp"
+        android:layout_marginBottom="5dp" />
 
     <com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar
         android:layout_width="match_parent"
@@ -458,7 +463,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView113"
         android:layout_alignLeft="@+id/textView113"
-        android:layout_alignStart="@+id/textView113">
+        android:layout_alignStart="@+id/textView113"
+        android:layout_marginBottom="5dp">
 
         <TextView
             android:layout_marginTop="10dp"
