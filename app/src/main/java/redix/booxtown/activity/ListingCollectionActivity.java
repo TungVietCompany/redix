@@ -211,9 +211,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     @Override
                     public void onClick(View v) {
                 final Dialog dialog = new Dialog(getActivity());
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 final ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
                 final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(), genre);
@@ -393,7 +393,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
 
-            seekbar.setPosition(80);
+//            seekbar.set(80);
 
 
             image = bookedit.getPhoto().split(";");
@@ -682,7 +682,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
         // Changing marker icon
-        marker.icon((BitmapDescriptorFactory.fromBitmap(ResizeImage.resizeMapIcons(getContext(),"icon_buy",110, 150))));
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_buy));
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 20));
