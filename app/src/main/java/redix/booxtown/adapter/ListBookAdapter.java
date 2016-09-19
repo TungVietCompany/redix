@@ -104,16 +104,14 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
         hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
         if (image.length!=0){
             int index=image[0].indexOf("_+_");
-            if(index!=0) {
+            if(index!=0 && image[0].length() >3 ) {
                 String img = image[0].substring(index+3, image[0].length());
                 Picasso.with(mContext).load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + img + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
             }
             else{
                 Picasso.with(mContext).load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
             }
-
         }else {
-
             Picasso.with(mContext).load(R.drawable.blank_image).into(hoder.img_book);
         }
         //String action[] = ex.getAction().split("");

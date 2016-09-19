@@ -39,6 +39,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import java.util.Calendar;
 
 import redix.booxtown.R;
+import redix.booxtown.controller.ResizeImage;
 import redix.booxtown.custom.MenuBottomCustom;
 
 public class SettingFragment extends android.support.v4.app.Fragment implements OnMapReadyCallback{
@@ -254,7 +255,7 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
             // create marker
             MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
             // Changing marker icon
-            marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_buy));
+            marker.icon(BitmapDescriptorFactory.fromBitmap(ResizeImage.resizeMapIcons(getContext(),"icon_buy",110, 150)));
             // adding marker
             mMap.addMarker(marker);
             mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));

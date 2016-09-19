@@ -73,6 +73,7 @@ import redix.booxtown.R;
 import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.GPSTracker;
+import redix.booxtown.controller.ResizeImage;
 import redix.booxtown.controller.UploadFileController;
 
 import redix.booxtown.custom.CustomListviewGenre;
@@ -350,17 +351,19 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             for (int i=0;i<listtag.length;i++){
                 listTag.add(listtag[i]);
             }
-            settag();
-//            if (listtag.length==1){
-//                tag1.setText(listtag[0]);
-//            }else if (listtag.length==2){
-//                tag1.setText(listtag[0]+"|");
-//                tag2.setText(listtag[1]);
-//            }else {
-//                tag1.setText(listtag[0]+"|");
-//                tag2.setText(listtag[1]+"|");
-//                tag3.setText(listtag[2]+"|");
-//            }
+            //settag();
+            if (listtag.length==1){
+                tag1.setText(listtag[0]);
+            }else if (listtag.length==2){
+                tag1.setText(listtag[0]+"");
+                tag2.setText(listtag[1]);
+            }else {
+                tag1.setText(listtag[0]+"");
+                tag2.setText(listtag[1]+"");
+                tag3.setText(listtag[2]+"");
+                addtag.setVisibility(View.GONE);
+                edt_tag.setVisibility(View.GONE);
+            }
 //            edt_tag.setText(bookedit.getHash_tag().toString());
 //                    tb_menu.setVisibility(View.GONE);
 
@@ -390,7 +393,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
 
-//            seekbar.set(80);
+            seekbar.setPosition(80);
 
 
             image = bookedit.getPhoto().split(";");
@@ -398,7 +401,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             int index=0;
             for (int i = 0;i<image.length;i++){
                 index=image[i].indexOf("_+_");
-                if(index!=0) {
+                if(index>0 && image[i].length()>3) {
                     String sss = image[i].substring(index+3, image[i].length());
                     arrImage.add(sss);
                 }
@@ -422,7 +425,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                             placeholder(R.drawable.blank_image).
                             into(imagebook2);
                 } else{
-                    String tmp= ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "";
+                    //String tmp= ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "";
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
                             placeholder(R.drawable.blank_image).
@@ -679,7 +682,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_buy));
+        marker.icon((BitmapDescriptorFactory.fromBitmap(ResizeImage.resizeMapIcons(getContext(),"icon_buy",110, 150))));
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 20));
