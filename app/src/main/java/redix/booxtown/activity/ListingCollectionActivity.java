@@ -495,7 +495,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 Bitmap photoBitMap = Bitmap.createScaledBitmap(bitmap,250,270, true);
                 bmap.add(photoBitMap);
                 String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
-                listFileName.add(fileName);
+                listFileName.add(username+"::"+fileName);
                 Log.d("dsmdhkshkd", listFileName.get(i));
             } catch (IOException e) {
                 e.printStackTrace();
