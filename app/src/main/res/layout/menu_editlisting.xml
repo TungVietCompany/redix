@@ -71,7 +71,7 @@
     <View
         android:layout_width="fill_parent"
         android:layout_height="1dp"
-        android:background="@color/color_text_hint"
+        android:background="@color/color_line"
         android:id="@+id/view_listing"
 
 
@@ -120,7 +120,7 @@
         android:layout_alignStart="@+id/editText8"
         android:layout_alignRight="@+id/editText8"
         android:layout_alignEnd="@+id/editText8"
-        android:background="@color/color_text_hint"
+        android:background="@color/color_line"
         android:layout_marginTop="5dp" />
 
     <EditText
@@ -151,7 +151,7 @@
         android:layout_alignStart="@+id/editText9"
         android:layout_alignRight="@+id/editText9"
         android:layout_alignEnd="@+id/editText9"
-        android:background="@color/color_text_hint"
+        android:background="@color/color_line"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -181,7 +181,7 @@
         android:layout_alignStart="@+id/txt_menu_genre1"
         android:layout_alignRight="@+id/textView107"
         android:layout_alignEnd="@+id/textView107"
-        android:background="@color/color_text_hint"
+        android:background="@color/color_line"
         android:layout_marginTop="5dp" />
 
     <TextView
@@ -217,7 +217,7 @@
         app:bar_color="@color/color_text_hint"
         app:bar_highlight_color="@color/color_text"
         app:left_thumb_image="@drawable/icon_filer"
-        app:left_thumb_image_pressed="@drawable/icon_filer"
+
         app:data_type="_integer"/>
 
     <TextView
@@ -260,7 +260,7 @@
         android:layout_alignRight="@+id/textView111"
         android:layout_alignEnd="@+id/textView111"
         android:layout_marginTop="5dp"
-        android:background="@color/color_text_hint"/>
+        android:background="@color/color_line"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -295,7 +295,7 @@
         android:layout_alignRight="@+id/row"
         android:layout_alignEnd="@+id/row"
         android:layout_marginTop="5dp"
-        android:background="@color/color_text_hint"
+        android:background="@color/color_line"
         android:layout_marginRight="10dp" />
 
     <TextView

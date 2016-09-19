@@ -2,8 +2,14 @@ package redix.booxtown.fragment;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -224,6 +230,17 @@ public class ExploreFragment extends Fragment
                 lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),prgmNameList1));
 
                 final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
+
+                Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
+                Bitmap thumb=Bitmap.createBitmap(38,38, Bitmap.Config.ARGB_8888);
+                Canvas canvas=new Canvas(thumb);
+                canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
+                        new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
+                Drawable drawable = new BitmapDrawable(getResources(),thumb);
+                rangeSeekbar.setLeftThumbDrawable(drawable);
+                rangeSeekbar.setRightThumbDrawable(drawable);
+
+
                 final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
                 final TextView tvMax = (TextView) dialog.findViewById(R.id.txt_filter_rangemax);
 
@@ -237,6 +254,7 @@ public class ExploreFragment extends Fragment
 
                 final TextView txt_filter_proximity = (TextView)dialog.findViewById(R.id.txt_filter_proximity);
                 final CrystalSeekbar seekbar = (CrystalSeekbar) dialog.findViewById(R.id.rangeSeekbar8);
+                seekbar.setLeftThumbDrawable(drawable);
                 seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
                     @Override
                     public void valueChanged(Number minValue) {

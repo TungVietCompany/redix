@@ -32,6 +32,7 @@ import redix.booxtown.activity.EditListingActivity;
 import redix.booxtown.activity.ListingCollectionActivity;
 import redix.booxtown.activity.ListingsDetailActivity;
 import redix.booxtown.activity.UserProfileActivity;
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.fragment.ListingsFragment;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
@@ -89,6 +90,7 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
         final Book ex= listBook.get(position);
         username = pref.getString("username", null);
         String[] image = ex.getPhoto().split(";");
+
         Hoder hoder = new Hoder();
         convertView = inflater.inflate(R.layout.custom_gridview_listings, null);
         hoder.txt_title_book = (TextView) convertView.findViewById(R.id.txt_title_book_listings);
@@ -101,7 +103,15 @@ public class ListBookAdapter extends BaseAdapter implements Filterable{
         hoder.img_buy = (ImageView)convertView.findViewById(R.id.img_explore_buy_listing);
         hoder.img_edit = (ImageView)convertView.findViewById(R.id.img_listings_edit);
         if (image.length!=0){
-            Picasso.with(mContext).load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
+            int index=image[0].indexOf("_+_");
+            if(index!=0) {
+                String img = image[0].substring(index+3, image[0].length());
+                Picasso.with(mContext).load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + img + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
+            }
+            else{
+                Picasso.with(mContext).load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").placeholder(R.drawable.blank_image).into(hoder.img_book);
+            }
+
         }else {
 
             Picasso.with(mContext).load(R.drawable.blank_image).into(hoder.img_book);

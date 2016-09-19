@@ -11,8 +11,13 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
@@ -65,6 +70,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import redix.booxtown.R;
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.controller.UploadFileController;
@@ -189,6 +195,16 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
         seekbar = (CrystalSeekbar) v.findViewById(R.id.seekBar2);
+
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
+        Bitmap thumb=Bitmap.createBitmap(64,64, Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(thumb);
+        canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
+                new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
+        Drawable drawable = new BitmapDrawable(getResources(),thumb);
+        seekbar.setLeftThumbDrawable(drawable);
+
+        //seekbar.setLeftThumbHighlightDrawable(drawable);
 
                 imageView.setOnClickListener(new View.OnClickListener() {
                     @Override
@@ -379,35 +395,44 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
             image = bookedit.getPhoto().split(";");
             arrImage = new ArrayList<>();
+            int index=0;
             for (int i = 0;i<image.length;i++){
-                arrImage.add(image[i]);
+                index=image[i].indexOf("_+_");
+                if(index!=0) {
+                    String sss = image[i].substring(index+3, image[i].length());
+                    arrImage.add(sss);
+                }
+                else{
+                    arrImage.add(image[i]);
+                }
             }
             if (image.length != 0) {
                 if (arrImage.size() == 1) {
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook1);
                 } else if (arrImage.size() == 2) {
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook2);
                 } else{
+                    String tmp= ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "";
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[0] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[1] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook2);
                     Picasso.with(getActivity()).
-                            load("http://103.237.147.54:3000/booxtown/rest/getImage?username=" + username + "&image=" + image[2] + "").
+                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(2) + "").
                             placeholder(R.drawable.blank_image).
                             into(imagebook3);
                 }
@@ -479,7 +504,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 Bitmap photoBitMap = Bitmap.createScaledBitmap(bitmap,250,270, true);
                 bmap.add(photoBitMap);
                 String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
-                listFileName.add(fileName);
+                listFileName.add(username+"_+_"+fileName);
                 Log.d("dsmdhkshkd", listFileName.get(i));
             } catch (IOException e) {
                 e.printStackTrace();
@@ -910,13 +935,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     ArrayList<Bitmap> bmap = new ArrayList<>();
 
     public void addImages(){
-        if (bmap.size() == 1) {
-            uploadFileController.uploadFile(bmap.get(0),listFileName);
-        } else if (bmap.size() == 2) {
-            uploadFileController.uploadFile(bmap.get(1),listFileName);
-        } else if (bmap.size() == 3) {
-            uploadFileController.uploadFile(bmap.get(2),listFileName);
-        }
+        uploadFileController.uploadFile(bmap,listFileName);
+
     }
 
 //    public class Addbook extends AsyncTask<Void, Void, Boolean> {

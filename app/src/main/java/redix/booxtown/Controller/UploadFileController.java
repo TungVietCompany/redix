@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.MediaType;
@@ -32,35 +33,36 @@ public class UploadFileController {
         service = ServiceGenerator.GetInstance();
     }
 
-    public boolean uploadFile(Bitmap bm, List<String> fileName){
+    public boolean uploadFile(ArrayList<Bitmap> bm, List<String> fileName){
 
+        ArrayList<byte[]> data2= new ArrayList<>();
+        ArrayList<RequestBody> reqFile= new ArrayList<>();
+        for (int i=0; i< bm.size(); i++) {
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            try {
+                bm.get(i).compress(Bitmap.CompressFormat.PNG
+                        , 80, bos);
+                reqFile.add( RequestBody.create(MediaType.parse("application/octet-stream"), bos.toByteArray()));
+            } catch (Exception ex) {
 
-        ByteArrayOutputStream bos = new ByteArrayOutputStream();
-        byte[] data2= null;
-        try {
-            bm.compress(Bitmap.CompressFormat.PNG
-                    , 80, bos);
-            data2 = bos.toByteArray();
+            }
         }
-        catch (Exception ex){
 
-        }
-        RequestBody reqFile = RequestBody.create(MediaType.parse("application/octet-stream"), data2);
         MultipartBody.Part body,body1,body2;
         Call<Result> req = null;
         if(fileName.size() ==1){
-            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile.get(0));
             req = service.postImage(body);
         }
         if(fileName.size() ==2){
-            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
-            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile);
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile.get(0));
+            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile.get(1));
             req = service.postImage1(body,body1);
         }
         if(fileName.size() ==3){
-            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile);
-            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile);
-            body2 = MultipartBody.Part.createFormData("images",fileName.get(2), reqFile);
+            body = MultipartBody.Part.createFormData("images", fileName.get(0), reqFile.get(0));
+            body1 = MultipartBody.Part.createFormData("images",fileName.get(1), reqFile.get(1));
+            body2 = MultipartBody.Part.createFormData("images",fileName.get(2), reqFile.get(2));
             req = service.postImage2(body,body1,body2);
         }
 

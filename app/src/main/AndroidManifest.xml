@@ -59,7 +59,7 @@
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyAGgKk_NkwjdhtjRNjCvZZiYqNUSe4M3wU" />
+            android:value="AIzaSyBN4rdozjYTxjEm_coEEjVcypH7Xd1Xqbc" />
         <activity android:name=".activity.Faq_content" />
         <!-- activity for Explore -->
 
