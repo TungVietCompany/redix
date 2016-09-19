@@ -52,6 +52,7 @@ public class ListingsFragment extends Fragment
     TextView txt_my_listings;
     ListBookAdapter adapter;
     EditText editSearch;
+    public static int num_list;
 
     @Nullable
     @Override
@@ -105,6 +106,7 @@ public class ListingsFragment extends Fragment
             public void onClick(View view) {
                 Bundle bundle = new Bundle();
                 bundle.putString("activity","add");
+                bundle.putInt("num_list",num_list);
 //                bundle.putSerializable("book",book);
                 ListingCollectionActivity listingCollectionActivity = new ListingCollectionActivity();
                 listingCollectionActivity.setArguments(bundle);
@@ -169,6 +171,7 @@ public class ListingsFragment extends Fragment
                 adapter = new ListBookAdapter(getActivity(),books,1);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
+                num_list = books.size();
                 txt_my_listings.setText("My listings"+"("+String.valueOf(books.size())+")");
                 dialog.dismiss();
             }

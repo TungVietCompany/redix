@@ -21,7 +21,7 @@ public class ServiceAPI {
     private String result="";
     private  Bitmap bmGet=null;
     public ServiceAPI() {
-        //this.git =  ServiceGenerator.createService(ServiceInterface.class);
+        this.git =  ServiceGenerator.createService(ServiceInterface.class);
 
     }
     // up ảnh lên server

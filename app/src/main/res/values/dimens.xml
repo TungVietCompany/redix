@@ -22,7 +22,7 @@
     <dimen name="btn_h">36dp</dimen>
     <dimen name="btn_w_181">181dp</dimen>
     <dimen name="btn_signin">140dp</dimen>
-    <dimen name="btn_signin_maginleft">10dp</dimen>
+    <dimen name="btn_signin_maginleft">15dp</dimen>
 
 
 </resources>

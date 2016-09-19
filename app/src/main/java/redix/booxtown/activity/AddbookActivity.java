@@ -269,7 +269,7 @@ public class AddbookActivity extends AppCompatActivity implements LocationListen
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_buy));
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 8));

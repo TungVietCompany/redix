@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import java.util.Hashtable;
 import java.util.List;
 
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.User;
@@ -17,7 +18,7 @@ import retrofit2.Call;
 public class UserController {
     private ServiceInterface service;
     public UserController(){
-        //service = ServiceGenerator.GetInstance();
+        service = ServiceGenerator.GetInstance();
     }
 
     public String checkLoginValidate(String username, String password, String device_type){

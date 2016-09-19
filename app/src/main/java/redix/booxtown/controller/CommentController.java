@@ -5,6 +5,7 @@ import android.os.StrictMode;
 import java.util.Hashtable;
 import java.util.List;
 
+import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Comment;
 import redix.booxtown.model.CommentResult;
@@ -17,7 +18,7 @@ import retrofit2.Call;
 public class CommentController {
     private ServiceInterface service;
     public CommentController(){
-        //service = ServiceGenerator.GetInstance();
+        service = ServiceGenerator.GetInstance();
     }
 
     public List<Comment> getallcomment(String thread_id){

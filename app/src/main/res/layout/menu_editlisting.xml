@@ -508,7 +508,7 @@
             android:layout_width="100dp"
             android:layout_height="wrap_content"
             android:id="@+id/editText10"
-            android:visibility="gone"
+            android:visibility="visible"
             android:layout_below="@+id/textView113"
             android:layout_alignLeft="@+id/textView113"
             android:layout_alignStart="@+id/textView113" />
@@ -517,6 +517,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:id="@+id/imageView33"
+            android:visibility="visible"
             android:layout_alignTop="@+id/editText10"
             android:layout_toRightOf="@+id/editText10"
             android:layout_toEndOf="@+id/editText10"

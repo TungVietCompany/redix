@@ -319,6 +319,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 main.callFragment(new ListingsFragment());
             }
         });
+
+        txt_my_listings.setText("My listings"+"("+getArguments().getInt("num_list")+")");
         tb_menu = (TableRow) v.findViewById(R.id.tableRow5);
         imageView_back = (ImageView) getActivity().findViewById(R.id.img_menu);
         if (s.equals("edit")) {
@@ -439,7 +441,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     if (arrImage.size()>2){
                         arrImage.remove(1);
                     }
-
                 }
             }
         });
@@ -456,8 +457,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
         });
-
-
         return v;
     }
 
@@ -540,9 +539,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             }
         }
 
-
-
-
         book = new Book();
         book.setAction(action);
         book.setAuthor(auth);
@@ -596,9 +592,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             }
 
         }
-
-
-
     }
 
     public String getAction() {
@@ -661,7 +654,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         // create marker
         MarkerOptions marker = new MarkerOptions().position(new LatLng(location.getLatitude(), location.getLongitude())).title("Hello Maps");
         // Changing marker icon
-        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_sell));
+        marker.icon(BitmapDescriptorFactory.fromResource(R.drawable.icon_buy));
         // adding marker
         mMap.addMarker(marker);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(location.getLatitude(), location.getLongitude()), 20));
@@ -703,10 +696,10 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             case R.id.imageView33:
                 if (listTag.size() < 3) {
                     addTag();
-                } else {
-                    addtag.setEnabled(false);
                 }
-
+                if(listTag.size() == 3){
+                    addtag.setVisibility(View.GONE);
+                }
                 break;
             case R.id.tag1:
                 showSnack(tag1.getText().toString(),0);
@@ -727,6 +720,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             public void onClick(View v) {
                 listTag.remove(position);
                 settag();
+                edt_tag.setVisibility(View.VISIBLE);
+                addtag.setVisibility(View.VISIBLE);
                 snackbar.dismiss();
             }
         }).show();
@@ -758,7 +753,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     }
 
     public void addTag() {
-
         listTag.add(edt_tag.getText().toString());
         edt_tag.setText("");
         settag();
@@ -782,6 +776,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             tag1.setText(listTag.get(0));
             tag2.setText(listTag.get(1));
             tag3.setText(listTag.get(2));
+            edt_tag.setVisibility(View.GONE);
         }
     }
 
@@ -794,9 +789,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         Log.d("lisststst",String.valueOf(lisImmage.size()));
         Log.d("lisststst",String.valueOf(numclick));
         Log.d("lisststst",String.valueOf(numimageclick));
-
     }
-
 
     ArrayList<Uri> lisImmage = new ArrayList<>();
 
