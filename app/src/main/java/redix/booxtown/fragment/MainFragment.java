@@ -83,6 +83,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         View view = inflater.inflate(R.layout.main_fragment, container, false);
 
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
+        Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -90,6 +91,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                 startActivity(intent);
             }
         });
+
 
         View view_search= (View)view.findViewById(R.id.custom_search);
 //        new CustomSearch(view_search,getActivity());
