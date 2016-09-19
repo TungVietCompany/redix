@@ -18,6 +18,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -38,9 +39,14 @@ import com.crystal.crystalrangeseekbar.interfaces.OnRangeSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalRangeSeekbar;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
+import com.google.android.gms.maps.model.LatLng;
 import com.squareup.picasso.Picasso;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 import redix.booxtown.R;
@@ -50,11 +56,13 @@ import redix.booxtown.adapter.AdapterFilter;
 import redix.booxtown.adapter.AdapterListings;
 import redix.booxtown.adapter.ListBookAdapter;
 import redix.booxtown.controller.BookController;
+import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
+import redix.booxtown.model.Filter;
 
 /**
  * Created by Administrator on 26/08/2016.
@@ -65,6 +73,17 @@ public class ExploreFragment extends Fragment
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
     private LinearLayout linear_cart;
+    private AdapterFilter adaper;
+    private List<Filter> filterList;
+    private TextView tvMin,tvMax,txt_filter_proximity;
+    private Spinner spinner2;
+    private CrystalRangeSeekbar rangeSeekbar;
+    private CrystalSeekbar seekbar;
+    List<Book> listfilter;
+    List<Book> listsort;
+    List<Book> lisfilter_temp;
+    String proximity;
+    private  ArrayAdapter<String> dataAdapter;
     EditText editSearch;
     ListBookAdapter adapter;
     public TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
@@ -227,9 +246,17 @@ public class ExploreFragment extends Fragment
                 dialog.show();
 
                 ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
-                lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),prgmNameList1));
+                filterList = new ArrayList<>();
+                for (int i =0;i<prgmNameList1.length;i++){
+                    Filter filter = new Filter();
+                    filter.setTitle(prgmNameList1[i]);
+                    filter.setCheck(false);
+                    filterList.add(filter);
+                }
+                adaper = new AdapterFilter(getActivity(),filterList);
+                lv_dialog_filter.setAdapter(adaper);
 
-                final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
+                 rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
 
                 Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
                 Bitmap thumb=Bitmap.createBitmap(38,38, Bitmap.Config.ARGB_8888);
@@ -241,8 +268,8 @@ public class ExploreFragment extends Fragment
                 rangeSeekbar.setRightThumbDrawable(drawable);
 
 
-                final TextView tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
-                final TextView tvMax = (TextView) dialog.findViewById(R.id.txt_filter_rangemax);
+                tvMin = (TextView) dialog.findViewById(R.id.txt_filter_rangemin);
+                tvMax = (TextView) dialog.findViewById(R.id.txt_filter_rangemax);
 
                 rangeSeekbar.setOnRangeSeekbarChangeListener(new OnRangeSeekbarChangeListener() {
                     @Override
@@ -252,13 +279,14 @@ public class ExploreFragment extends Fragment
                     }
                 });
 
-                final TextView txt_filter_proximity = (TextView)dialog.findViewById(R.id.txt_filter_proximity);
-                final CrystalSeekbar seekbar = (CrystalSeekbar) dialog.findViewById(R.id.rangeSeekbar8);
+                txt_filter_proximity = (TextView)dialog.findViewById(R.id.txt_filter_proximity);
+                seekbar = (CrystalSeekbar) dialog.findViewById(R.id.rangeSeekbar8);
                 seekbar.setLeftThumbDrawable(drawable);
                 seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
                     @Override
                     public void valueChanged(Number minValue) {
-                        txt_filter_proximity.setText(String.valueOf(minValue)+" KM");
+                        txt_filter_proximity.setText(String.valueOf(minValue)+"KM");
+                        proximity = String.valueOf(minValue);
                     }
                 });
 
@@ -276,20 +304,123 @@ public class ExploreFragment extends Fragment
                     @Override
                     public void onClick(View view) {
                         dialog.dismiss();
+                        filter(spinner2.getSelectedItem().toString());
                     }
                 });
-                Spinner spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
+                spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
+                String[] genravalue = {"Architecture", "Business and Economics", "Boy,Mid and Spirit", "Children", "Computers and Technology",
+                        "Crafts and Hobbies", "Education", "Family,Parenting and Relationships", "Fiction and Literature", "Food and Drink",
+                        "Health and Fitness","History and Politics","Homes Gaedens and DIY","Humor and Comedy","Languages","Manuals and Guides"
+                };
                 List<String> list = new ArrayList<String>();
-                list.add("Nearest distance");
-                list.add("list 2");
-                list.add("list 3");
-                ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(getActivity(),
+                for (int i = 0; i < genravalue.length;i++){
+                    list.add(genravalue[i]);
+                }
+
+
+                dataAdapter = new ArrayAdapter<String>(getActivity(),
                         android.R.layout.simple_spinner_item, list);
                 dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
                 spinner2.setAdapter(dataAdapter);
+
             }
         });
     }
+
+    public void filter(String filter){
+        lisfilter_temp = new ArrayList<>();
+        listfilter = new ArrayList<>();
+        LatLng latLngSt = new LatLng(new GPSTracker(getActivity()).getLatitude(),new GPSTracker(getActivity()).getLongitude());
+        Double distance = Double.valueOf(proximity);
+        for (int i = 0; i < listbook.size();i++){
+            String[] genrel = listbook.get(i).getGenre().split(";");
+            for (int j = 0;j<genrel.length;j++){
+                if (genrel[j].contains(filter)) {
+                    LatLng latLngEnd = new LatLng(listbook.get(i).getLocation_latitude(),listbook.get(i).getLocation_longitude());
+                    if (CalculationByDistance(latLngSt,latLngEnd)<=distance){
+                        listfilter.add(listbook.get(i));
+                    }
+                }
+            }
+        }
+
+
+        if (listfilter.size()!=0){
+            for (int i = 0;i<listfilter.size();i++){
+                if (listfilter.get(i).getPrice()>=Float.valueOf(tvMin.getText().toString()) &&
+                        listfilter.get(i).getPrice()<= Float.valueOf(tvMax.getText().toString())){
+                    lisfilter_temp.add(listfilter.get(i));
+                }
+            }
+        }
+
+        if (filterList.get(0).getCheck()== true){
+            BookController bookController = new BookController(getActivity());
+            Collections.sort(lisfilter_temp,bookController.distance);
+        }
+        else if (filterList.get(1).getCheck()== true){
+            Collections.sort(lisfilter_temp,Book.priceasen);
+        }
+        else if (filterList.get(2).getCheck()== true){
+            Collections.sort(lisfilter_temp,Book.pricedcen);
+        }
+        else{
+            Collections.sort(lisfilter_temp,Book.recently);
+        }
+        Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(0).getCheck()));
+        Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(1).getCheck()));
+        Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(2).getCheck()));
+        Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(3).getCheck()));
+        ListBookAdapter adapter = new ListBookAdapter(getActivity(),lisfilter_temp,2);
+        grid.setAdapter(adapter);
+
+    }
+
+
+    public Comparator<Book> distance = new Comparator<Book>() {
+        @Override
+        public int compare(Book lhs, Book rhs) {
+
+            ExploreFragment exploreFragment = new ExploreFragment();
+            LatLng latLng1 = new LatLng(new GPSTracker(getActivity()).getLatitude(),new GPSTracker(getActivity()).getLongitude());
+            LatLng latLng1_2 = new LatLng(lhs.getLocation_latitude(),lhs.getLocation_longitude());
+            LatLng latLng2 = new LatLng(rhs.getLocation_latitude(),rhs.getLocation_longitude());
+            Double dist1 = exploreFragment.CalculationByDistance(latLng1,latLng1_2);
+            Double dist2 = exploreFragment.CalculationByDistance(latLng1,latLng2);
+            int i1 = dist1.intValue();
+            int i2 = dist2.intValue();
+            return i1 - i2;
+        }
+    };
+
+
+
+
+    public double CalculationByDistance(LatLng StartP, LatLng EndP) {
+        int Radius = 6371;// radius of earth in Km
+        double lat1 = StartP.latitude;
+        double lat2 = EndP.latitude;
+        double lon1 = StartP.longitude;
+        double lon2 = EndP.longitude;
+        double dLat = Math.toRadians(lat2 - lat1);
+        double dLon = Math.toRadians(lon2 - lon1);
+        double a = Math.sin(dLat / 2) * Math.sin(dLat / 2)
+                + Math.cos(Math.toRadians(lat1))
+                * Math.cos(Math.toRadians(lat2)) * Math.sin(dLon / 2)
+                * Math.sin(dLon / 2);
+        double c = 2 * Math.asin(Math.sqrt(a));
+        double valueResult = Radius * c;
+        double km = valueResult / 1;
+        DecimalFormat newFormat = new DecimalFormat("####");
+        Double kmInDec = Double.valueOf(newFormat.format(km));
+        double meter = valueResult % 1000;
+        int meterInDec = Integer.valueOf(newFormat.format(meter));
+        Log.i("Radius Value", "" + valueResult + "   KM  " + kmInDec
+                + " Meter   " + meterInDec);
+
+        return kmInDec;
+    }
+
 
     public class Getallbook extends AsyncTask<Void,Void,List<Book>>{
         @Override

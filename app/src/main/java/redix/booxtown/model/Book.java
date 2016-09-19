@@ -1,13 +1,22 @@
 package redix.booxtown.model;
 
+import android.app.Activity;
+import android.content.Context;
+
+import com.google.android.gms.maps.model.LatLng;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
+import java.util.Comparator;
+
+import redix.booxtown.controller.GPSTracker;
+import redix.booxtown.fragment.ExploreFragment;
 
 /**
  * Created by vietp on 04/09/2016.
  */
 public class Book implements Serializable{
+
     @Expose
     private String title;
     @Expose
@@ -31,7 +40,33 @@ public class Book implements Serializable{
     @Expose
     private String id;
 
-    public Book(String id,String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
+    private String create_date;
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
+
+
+    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action, float price, String id, String create_date) {
+        this.title = title;
+        this.author = author;
+        this.photo = photo;
+        this.hash_tag = hash_tag;
+        this.location_longitude = location_longitude;
+        this.location_latitude = location_latitude;
+        this.genre = genre;
+        this.b_condition = b_condition;
+        this.b_action = b_action;
+        this.price = price;
+        this.id = id;
+        this.create_date = create_date;
+    }
+
+    public Book(String id, String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
                 float price) {
         this.id = id;
         this.title = title;
@@ -154,4 +189,35 @@ public class Book implements Serializable{
                 ", id='" + id + '\'' +
                 '}';
     }
+
+    public static Comparator<Book> priceasen = new Comparator<Book>() {
+        @Override
+        public int compare(Book lhs, Book rhs) {
+            int value1 = (int) Math.round(lhs.getPrice());
+            int value2 =  (int)Math.round(rhs.getPrice());
+            return value1 - value2;
+        }
+    };
+
+    public static Comparator<Book> pricedcen = new Comparator<Book>() {
+        @Override
+        public int compare(Book lhs, Book rhs) {
+            int value1 = (int) Math.round(lhs.getPrice());
+            int value2 =  (int)Math.round(rhs.getPrice());
+            return value2 - value1;
+        }
+    };
+
+    public static Comparator<Book> recently = new Comparator<Book>() {
+        @Override
+        public int compare(Book lhs, Book rhs) {
+            String date[] = lhs.getCreate_date().split("-");
+            String date1[] = rhs.getCreate_date().split("-");
+            int dt1 = Integer.valueOf(date[0]+date[1]+date[2].substring(0,2));
+            int dt2 = Integer.valueOf(date1[0]+date1[1]+date1[2].substring(0,2));
+
+            return dt2 - dt1;
+        }
+    };
+
 }

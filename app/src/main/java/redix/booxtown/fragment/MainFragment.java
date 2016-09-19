@@ -61,6 +61,7 @@ import redix.booxtown.controller.IconMapController;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Book;
+import redix.booxtown.model.Filter;
 
 public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
     private CoordinatorLayout coordinatorLayout;
@@ -121,9 +122,15 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 dialog.show();
-
+                List<Filter> listft = new ArrayList<Filter>();
+                for (int i = 0;i<prgmNameList1.length;i++){
+                    Filter filter = new Filter();
+                    filter.setCheck(false);
+                    filter.setTitle(prgmNameList1[i]);
+                    listft.add(filter);
+                }
                 ListView lv_dialog_filter = (ListView)dialog.findViewById(R.id.lv_dialog_filter);
-                lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),prgmNameList1));
+                lv_dialog_filter.setAdapter(new AdapterFilter(getActivity(),listft));
 
                 final CrystalRangeSeekbar rangeSeekbar = (CrystalRangeSeekbar) dialog.findViewById(R.id.rangeSeekbar3);
                 Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
