@@ -210,9 +210,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     @Override
                     public void onClick(View v) {
                 final Dialog dialog = new Dialog(getActivity());
-//                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
-//                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
 
                 final ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
                 final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(), genre);
@@ -350,19 +350,19 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             for (int i=0;i<listtag.length;i++){
                 listTag.add(listtag[i]);
             }
-            settag();
-//            if (listtag.length==1){
-//                tag1.setText(listtag[0]);
-//            }else if (listtag.length==2){
-//                tag1.setText(listtag[0]+"|");
-//                tag2.setText(listtag[1]);
-//            }else {
-//                tag1.setText(listtag[0]+"|");
-//                tag2.setText(listtag[1]+"|");
-//                tag3.setText(listtag[2]+"|");
-//            }
-//            edt_tag.setText(bookedit.getHash_tag().toString());
-//                    tb_menu.setVisibility(View.GONE);
+            //settag();
+            if (listtag.length==1){
+                tag1.setText(listtag[0]);
+            }else if (listtag.length==2){
+                tag1.setText(listtag[0]+"");
+                tag2.setText(listtag[1]);
+            }else {
+                tag1.setText(listtag[0]+"");
+                tag2.setText(listtag[1]+"");
+                tag3.setText(listtag[2]+"");
+            }
+            //edt_tag.setText(bookedit.getHash_tag().toString());
+            edt_tag.setVisibility(View.GONE);
 
             Picasso.with(getContext()).load(R.drawable.btn_sign_in_back).into(imageView_back);
             imageView_back.setOnClickListener(new View.OnClickListener() {
