@@ -394,8 +394,9 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
 
-            seekbar.setProgress(Integer.valueOf(bookedit.getCondition()));
-
+            if (Integer.valueOf(bookedit.getCondition())!=0){
+                seekbar.setProgress(Integer.valueOf(bookedit.getCondition()));
+            }
 
             image = bookedit.getPhoto().split(";");
             arrImage = new ArrayList<>();
@@ -414,30 +415,24 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 if (arrImage.size() == 1) {
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                 } else if (arrImage.size() == 2) {
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook2);
                 } else{
                     //String tmp= ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "";
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook1);
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook2);
                     Picasso.with(getActivity()).
                             load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(2) + "").
-                            placeholder(R.drawable.blank_image).
                             into(imagebook3);
                 }
             }
@@ -555,11 +550,14 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 //            }
 //        });
         seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            int progress = 0;
+//            int progress = 0;
             @Override
             public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
-                progress = i;
+//                progress = i;
                 //Toast.makeText(getContext(),"p111:"+i,Toast.LENGTH_LONG).show();
+                condition = String.valueOf(i);
+
+                Log.d("hihihihi","valueseeekbar"+i);
             }
 
             @Override
@@ -569,7 +567,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-                condition = String.valueOf(progress);
+                condition = String.valueOf(seekBar.getProgress());
                 //Toast.makeText(getContext(),"p"+progress,Toast.LENGTH_LONG).show();
             }
         });
@@ -589,7 +587,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         book.setAction(action);
         book.setAuthor(auth);
         book.setTitle(titl);
-        book.setCondition(condition);
+        book.setCondition(String.valueOf(seekbar.getProgress()));
         book.setGenre(genrel);
         book.setHash_tag(tag);
         book.setLocation_latitude(Float.valueOf(String.valueOf(gps.getLatitude())));
