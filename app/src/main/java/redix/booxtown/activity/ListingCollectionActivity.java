@@ -48,6 +48,7 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.SeekBar;
 import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -100,7 +101,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     Uri mImageUri;
     String s;
     ArrayList<String> arrImage;
-    CrystalSeekbar seekbar;
+    SeekBar seekbar;
     //UserController userController;
     BookController bookController;
     boolean success;
@@ -195,15 +196,15 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         imagebook1 = (ImageView) v.findViewById(R.id.imageView29);
         imagebook2 = (ImageView) v.findViewById(R.id.imageView30);
         imagebook3 = (ImageView) v.findViewById(R.id.imageView31);
-        seekbar = (CrystalSeekbar) v.findViewById(R.id.seekBar2);
+        seekbar = (SeekBar) v.findViewById(R.id.seekBar2);
 
-        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
-        Bitmap thumb=Bitmap.createBitmap(64,64, Bitmap.Config.ARGB_8888);
-        Canvas canvas=new Canvas(thumb);
-        canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
-                new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
-        Drawable drawable = new BitmapDrawable(getResources(),thumb);
-        seekbar.setLeftThumbDrawable(drawable);
+//        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.abc);
+//        Bitmap thumb=Bitmap.createBitmap(64,64, Bitmap.Config.ARGB_8888);
+//        Canvas canvas=new Canvas(thumb);
+//        canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
+//                new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
+//        Drawable drawable = new BitmapDrawable(getResources(),thumb);
+        //seekbar.setLeftThumbDrawable(drawable);
 
         //seekbar.setLeftThumbHighlightDrawable(drawable);
 
@@ -393,7 +394,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
 
-//            seekbar.set(80);
+            seekbar.setProgress(Integer.valueOf(bookedit.getCondition()));
 
 
             image = bookedit.getPhoto().split(";");
@@ -485,6 +486,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 }
             }
         });
+        addbook();
         return v;
     }
 
@@ -508,7 +510,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 bmap.add(photoBitMap);
                 String fileName = String.valueOf(time) + getFileName(lisImmage.get(i));
                 listFileName.add(username+"_+_"+fileName);
-                Log.d("dsmdhkshkd", listFileName.get(i));
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -518,7 +519,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             if (genre.get(i).ischeck() == true) {
                 listvalueGenre.add(genre.get(i).getValue());
             }
-            Log.d("dsmnndshk", String.valueOf(listvalueGenre.size()));
         }
 
         String auth = edt_author.getText().toString();
@@ -548,13 +548,31 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 
         String action = getAction();
 
-        seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
+//        seekbar.setOnSeekbarChangeListener(new OnSeekbarChangeListener() {
+//            @Override
+//            public void valueChanged(Number minValue) {
+//                condition = String.valueOf(minValue);
+//            }
+//        });
+        seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            int progress = 0;
             @Override
-            public void valueChanged(Number minValue) {
-                condition = String.valueOf(minValue);
+            public void onProgressChanged(SeekBar seekBar, int i, boolean b) {
+                progress = i;
+                //Toast.makeText(getContext(),"p111:"+i,Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+                condition = String.valueOf(progress);
+                //Toast.makeText(getContext(),"p"+progress,Toast.LENGTH_LONG).show();
             }
         });
-
 
         String imagename = "";
         if (listFileName.size() != 0) {
@@ -618,7 +636,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 price = Float.valueOf(edt_editlisting_sell.getText().toString());
                 book.setPrice(price);
             }
-
         }
     }
 
