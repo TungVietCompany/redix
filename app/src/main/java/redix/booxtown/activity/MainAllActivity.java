@@ -8,12 +8,14 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 
@@ -53,6 +55,8 @@ public class MainAllActivity extends AppCompatActivity{
         txtTitle.setText("Locate");
         flag=true;
         Intent intent = getIntent();
+
+        Log.d("fikjkjkjkjkjkjkjkjk",String.valueOf(FirebaseInstanceId.getInstance().getToken()));
 
         if(intent.getStringExtra("key")!=null){
             int i =Integer.parseInt(intent.getStringExtra("key"));
