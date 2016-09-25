@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "1095716740272",
+    "firebase_url": "https://booktown-146d9.firebaseio.com",
+    "project_id": "booktown-146d9",
+    "storage_bucket": "booktown-146d9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1095716740272:android:cb49499b621b3477",
+        "android_client_info": {
+          "package_name": "redix.booxtown"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1095716740272-du2cfkdj1p3i8au1nmb9f25pf6hugljo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCuQ3qO2ndXEUdbxY6DSvXicjQvvQ8lmDw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
