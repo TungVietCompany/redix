@@ -1,27 +1,27 @@
 {
   "project_info": {
-    "project_number": "1095716740272",
-    "firebase_url": "https://booktown-146d9.firebaseio.com",
-    "project_id": "booktown-146d9",
-    "storage_bucket": "booktown-146d9.appspot.com"
+    "project_number": "65369119358",
+    "firebase_url": "https://booxtown-2e384.firebaseio.com",
+    "project_id": "booxtown-2e384",
+    "storage_bucket": "booxtown-2e384.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1095716740272:android:cb49499b621b3477",
+        "mobilesdk_app_id": "1:65369119358:android:cb49499b621b3477",
         "android_client_info": {
           "package_name": "redix.booxtown"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1095716740272-du2cfkdj1p3i8au1nmb9f25pf6hugljo.apps.googleusercontent.com",
+          "client_id": "65369119358-67cop7gs3mv3lgv1s1jbleksr9f570vg.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCuQ3qO2ndXEUdbxY6DSvXicjQvvQ8lmDw"
+          "current_key": "AIzaSyDpCOm5h1me40T2K3Reju8ytbILl8bA1-Y"
         }
       ],
       "services": {

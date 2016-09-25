@@ -6,11 +6,13 @@ import android.app.DialogFragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.DatePicker;
@@ -19,6 +21,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 import java.util.Calendar;
@@ -35,6 +38,7 @@ public class SigUp_Activity extends AppCompatActivity implements View.OnClickLis
     EditText edt_birthday;
     String birthday;
     TextView signUp;
+    String session_id;
     public static final Pattern EMAIL_ADDRESS_PATTERN = Pattern.compile(
             "[a-zA-Z0-9\\+\\.\\_\\%\\-\\+]{1,256}" +
                     "\\@" +
@@ -70,6 +74,7 @@ public class SigUp_Activity extends AppCompatActivity implements View.OnClickLis
         edt_confirmpass = (EditText) findViewById(R.id.confirmpassword);
         checkSignup = (CheckBox) findViewById(R.id.checksignup);
         edt_birthday.setOnClickListener(this);
+        session_id = FirebaseInstanceId.getInstance().getToken().toString();
 
 
         if (isOnline() == false){
@@ -106,6 +111,7 @@ public class SigUp_Activity extends AppCompatActivity implements View.OnClickLis
                 user.setPhone(edt_phone.getText().toString());
                 user.setUsername(edt_name.getText().toString());
                 user.setPassword(edt_password.getText().toString());
+                user.setSession_id(session_id);
                 if (edt_name.getText().toString().equals("")){
                     Toast.makeText(getApplicationContext(),"User name not null",Toast.LENGTH_LONG).show();
                 }else if(edt_lastname.getText().toString().equals("")){
@@ -127,6 +133,7 @@ public class SigUp_Activity extends AppCompatActivity implements View.OnClickLis
 
                 }else {
                     SignupAsyntask signupAsyntask = new SignupAsyntask();
+
                     signupAsyntask.execute(user);
                 }
 
@@ -200,6 +207,11 @@ public class SigUp_Activity extends AppCompatActivity implements View.OnClickLis
                 Intent intent = new Intent(SigUp_Activity.this,MainAllActivity.class);
                 startActivity(intent);
                 Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_LONG).show();
+                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                SharedPreferences.Editor editor = pref.edit();
+                editor.putString("session_id", session_id);
+                editor.putString("username",edt_name.getText().toString());
+                editor.commit();
                 dialog.dismiss();
             }else if (aBoolean ==false){
                 Toast.makeText(getApplicationContext(), "Username has already been taken", Toast.LENGTH_LONG).show();

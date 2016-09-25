@@ -56,7 +56,7 @@ public class MainAllActivity extends AppCompatActivity{
         flag=true;
         Intent intent = getIntent();
 
-        Log.d("fikjkjkjkjkjkjkjkjk",String.valueOf(FirebaseInstanceId.getInstance().getToken()));
+
 
         if(intent.getStringExtra("key")!=null){
             int i =Integer.parseInt(intent.getStringExtra("key"));

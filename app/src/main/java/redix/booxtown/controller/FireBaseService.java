@@ -4,6 +4,12 @@ import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Rect;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.support.v4.app.NotificationCompat;
@@ -36,10 +42,18 @@ public class FireBaseService extends FirebaseMessagingService {
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
+        Bitmap bitmap= BitmapFactory.decodeResource(getResources(), R.drawable.icon_buy);
+        Bitmap thumb=Bitmap.createBitmap(72,96, Bitmap.Config.ARGB_8888);
+        Canvas canvas=new Canvas(thumb);
+        canvas.drawBitmap(bitmap,new Rect(0,0,bitmap.getWidth(),bitmap.getHeight()),
+                new Rect(0,0,thumb.getWidth(),thumb.getHeight()),null);
+        Drawable drawable = new BitmapDrawable(getResources(),thumb);
+
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
                 .setSmallIcon(R.drawable.icon_buy)
-                .setContentTitle("FCM Message")
+                .setLargeIcon(((BitmapDrawable)drawable).getBitmap())
+                .setContentTitle("Booxtown Notification")
                 .setContentText(messageBody)
                 .setAutoCancel(true)
                 .setSound(defaultSoundUri)

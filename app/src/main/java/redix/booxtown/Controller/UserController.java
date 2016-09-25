@@ -21,27 +21,32 @@ public class UserController {
         service = ServiceGenerator.GetInstance();
     }
 
-    public String checkLoginValidate(String username, String password, String device_type){
-        Hashtable obj = new Hashtable();
-        obj.put("username",username);
-        obj.put("password",password);
-        obj.put("device_type",device_type);
-                Call<Result> callService = service.login(obj);
-                try{
-                    if (android.os.Build.VERSION.SDK_INT > 9) {
-                        StrictMode.ThreadPolicy policy =
-                                new StrictMode.ThreadPolicy.Builder().permitAll().build();
-                        StrictMode.setThreadPolicy(policy);
-                    }
-                    Result result = callService.execute().body();
-                    if (result.getCode() == 200){
-                        return result.getSession_id();
-                    }
+    public String checkLoginValidate(String username, String password, String device_type,String session_id){
+        try {
+            Hashtable obj = new Hashtable();
+            obj.put("username", username);
+            obj.put("password", password);
+            obj.put("device_type", device_type);
+            obj.put("session_id", session_id);
+            Call<Result> callService = service.login(obj);
+            try {
+                if (android.os.Build.VERSION.SDK_INT > 9) {
+                    StrictMode.ThreadPolicy policy =
+                            new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                    StrictMode.setThreadPolicy(policy);
                 }
-                catch (Exception ex){
-                    String ss=ex.toString();
+                Result result = callService.execute().body();
+                if (result.getCode() == 200) {
+                    return result.getSession_id();
                 }
-        return null;
+            } catch (Exception ex) {
+                String ss = ex.toString();
+            }
+            return null;
+        }catch (Exception exx){
+
+            return null;
+        }
     }
 
 

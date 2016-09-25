@@ -19,10 +19,10 @@ public class User {
     private String phone;
     @Expose
     private String password;
+    @Expose
+    private String session_id;
 
-
-
-    public User(String first_name, String last_name, String username, String email, String birthday, String phone, String password) {
+    public User(String first_name, String last_name, String username, String email, String birthday, String phone, String password,String session_id) {
         this.first_name = first_name;
         this.last_name = last_name;
         this.username = username;
@@ -30,6 +30,7 @@ public class User {
         this.birthday = birthday;
         this.phone = phone;
         this.password = password;
+        this.session_id= session_id;
     }
 
     public User() {
@@ -90,4 +91,14 @@ public class User {
     public void setPassword(String password) {
         this.password = password;
     }
+
+    public String getSession_id() {
+        return session_id;
+    }
+
+    public void setSession_id(String session_id) {
+        this.session_id = session_id;
+    }
+
+
 }

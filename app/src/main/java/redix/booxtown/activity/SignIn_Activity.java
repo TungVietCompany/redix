@@ -16,6 +16,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.squareup.picasso.Picasso;
 
 
@@ -84,7 +85,8 @@ Button mButtonForgotPass;
                 Toast.makeText(getApplicationContext(),"Enter password please",Toast.LENGTH_LONG).show();
                 }else {
                     SiginAsystask siginAsystask = new SiginAsystask();
-                    siginAsystask.execute(edt_username.getText().toString(), edt_pass.getText().toString(), "iphonecuatung");
+                    session_id = FirebaseInstanceId.getInstance().getToken().toString();
+                    siginAsystask.execute(edt_username.getText().toString(), edt_pass.getText().toString(), "iphonecuatung",session_id);
                 }
             default:
                 break;
@@ -98,9 +100,13 @@ Button mButtonForgotPass;
 
         @Override
         protected String doInBackground(String... params) {
-            UserController userController  = new UserController();
-            String session_id = userController.checkLoginValidate(params[0],params[1],params[2]);
-            return session_id;
+            try {
+                UserController userController = new UserController();
+                String session_id = userController.checkLoginValidate(params[0], params[1], params[2], params[3]);
+                return session_id;
+            }catch (Exception ex){
+                return null;
+            }
         }
 
         @Override

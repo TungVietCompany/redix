@@ -46,7 +46,7 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/book/update")
     Call<Result> update(@Body Object book);
 
-    @POST("/booxtown/rest/user/login")
+    @POST("/booxtown/rest/user/login_firebase")
     Call<Result> login(@Body Object user);
 
     @GET("/booxtown/rest/user/getprofile")
