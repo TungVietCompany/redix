@@ -198,14 +198,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
     @Override
     public void onInfoWindowClick(Marker marker) {
-        FragmentManager manager = getActivity().getSupportFragmentManager();
-        Bundle bundle = new Bundle();
-        bundle.putString(String.valueOf(R.string.valueListings),"1");
-        FragmentTransaction transaction = manager.beginTransaction();
-        ListingsDetailActivity fra = new ListingsDetailActivity();
-        fra.setArguments(bundle);
-        transaction.replace(R.id.map,fra);
-        transaction.commit();
+
     }
 
     @Override
@@ -235,9 +228,9 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mMap.getUiSettings().setAllGesturesEnabled(true);
         mMap.setTrafficEnabled(true);
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(new LatLng(new GPSTracker(getActivity()).getLatitude(),new GPSTracker(getActivity()).getLongitude()),10));
-        mMap.setOnMapLongClickListener(this);
+        //mMap.setOnMapLongClickListener(this);
         mMap.setInfoWindowAdapter(new MyInfoWindowAdapter());
-        mMap.setOnInfoWindowClickListener(this);
+
     }
 
     class MyInfoWindowAdapter implements GoogleMap.InfoWindowAdapter {
@@ -274,7 +267,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         protected List<Book> doInBackground(String... strings) {
             listemp = new ArrayList<>();
             BookController bookController = new BookController();
-            listemp = bookController.getAllBookById(strings[0]);
+            listemp = bookController.getallbook();
             return listemp;
         }
 
@@ -288,7 +281,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         }
 
         @Override
-        protected void onPostExecute(List<Book> books) {
+        protected void onPostExecute(final List<Book> books) {
             if (books == null){
                 dialog.dismiss();
             }else {
@@ -302,10 +295,25 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
                     String free = String.valueOf(array[1]);
                     String buy = String.valueOf(array[2]);
                     String icon = IconMapController.icon(swap,free,buy);
+                    final Book book = books.get(i);
                     if (icon!=null){
                         marker.icon(BitmapDescriptorFactory.fromBitmap(resizeMapIcons(icon,110, 150)));
                         // adding marker
                         mMap.addMarker(marker);
+                        mMap.setOnInfoWindowClickListener(new GoogleMap.OnInfoWindowClickListener() {
+                            @Override
+                            public void onInfoWindowClick(Marker marker) {
+                                FragmentManager manager = getActivity().getSupportFragmentManager();
+                                Bundle bundle = new Bundle();
+                                bundle.putString(String.valueOf(R.string.valueListings),"1");
+                                bundle.putSerializable("item",book);
+                                FragmentTransaction transaction = manager.beginTransaction();
+                                ListingsDetailActivity fra = new ListingsDetailActivity();
+                                fra.setArguments(bundle);
+                                transaction.replace(R.id.map,fra);
+                                transaction.commit();
+                            }
+                        });
                     }
 
                 }

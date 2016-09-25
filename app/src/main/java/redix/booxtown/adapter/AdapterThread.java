@@ -38,6 +38,7 @@ public class AdapterThread extends RecyclerView.Adapter<AdapterThread.RecyclerVi
     public void onBindViewHolder(RecyclerViewHolder holder, int position) {
         holder.txt_title_interact.setText(listThread.get(position).getTitle());
         holder.txt_dateUpdate_interact.setText("Added by "+ listThread.get(position).getUsername());
+        holder.txt_count_interact.setText("("+listThread.get(position).getNum_comment()+")");
     }
 
     @Override

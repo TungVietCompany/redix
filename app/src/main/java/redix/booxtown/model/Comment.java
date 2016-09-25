@@ -16,13 +16,24 @@ public class Comment {
     private String thread_id;
     @Expose
     private String user_id;
+    @Expose
+    private String username;
 
-    public Comment(String id, String content, String create_date, String thread_id, String user_id) {
+    public Comment(String id, String content, String create_date, String thread_id, String user_id, String username) {
         this.id = id;
         this.content = content;
         this.create_date = create_date;
         this.thread_id = thread_id;
         this.user_id = user_id;
+        this.username = username;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getId() {

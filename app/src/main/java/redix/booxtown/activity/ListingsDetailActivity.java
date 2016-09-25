@@ -65,6 +65,13 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
     GridView grid;
     private MenuBottomCustom bottomListings;
 
+    TextView txt_title_listings_detail;
+    TextView txt_author_listings_detail;
+    TextView txt_price_listings_detail;
+    TextView txt_time_post_listings;
+    TextView txt_genre_listing_detail;
+    ProgressBar progressBar;
+    TextView txt_tag;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -78,6 +85,8 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
                 callFragment(new ListingsFragment());
             }
         });
+
+        init(v);
 
         //btn_rank
         ImageView btn_rank_one = (ImageView)v.findViewById(R.id.img_rank1_listings);
@@ -106,6 +115,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         imSwap.setOnClickListener(this);
         activity.gettitle().setText("Listings");
         if (type.equals("1")){
+            Book book = (Book)getArguments().getSerializable("item");
             imFree.setVisibility(View.GONE);
             ImageView img_close_dialog_unsubcribe = (ImageView) v.findViewById(R.id.img_close_dialog_unsubcribe);
             Picasso.with(getContext()).load(R.drawable.btn_close_filter).into(img_close_dialog_unsubcribe);
@@ -116,6 +126,13 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             ImageView img_menu_component = (ImageView)getActivity().findViewById(R.id.img_menu_component);
             img_menu_component.setVisibility(View.GONE);
             tbTypebook.setLayoutParams(params);
+            txt_title_listings_detail.setText(book.getTitle());
+            txt_author_listings_detail.setText(book.getAuthor());
+            txt_price_listings_detail.setText("AED "+book.getPrice());
+            txt_time_post_listings.setText(book.getCreate_date());
+            txt_genre_listing_detail.setText(book.getGenre());
+            txt_tag.setText(book.getHash_tag());
+            progressBar.setProgress(Integer.valueOf(book.getCondition()));
         }else {
             Book book = (Book) getArguments().getSerializable("bookedit");
             Log.d("dksdksdslkd",book.toString());
@@ -158,6 +175,16 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
         });
         return v;
 
+    }
+
+    public void init(View view){
+        txt_title_listings_detail = (TextView)view.findViewById(R.id.txt_title_listings_detail);
+        txt_author_listings_detail = (TextView)view.findViewById(R.id.txt_author_listings_detail);
+        txt_price_listings_detail = (TextView)view.findViewById(R.id.txt_price_listings_detail);
+        txt_time_post_listings = (TextView)view.findViewById(R.id.txt_time_post_listings);
+        txt_genre_listing_detail = (TextView)view.findViewById(R.id.txt_genre_listing_detail);
+        txt_tag = (TextView)view.findViewById(R.id.txt_tag);
+        progressBar = (ProgressBar)view.findViewById(R.id.progressBar);
     }
 
 

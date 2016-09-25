@@ -98,11 +98,14 @@ public class MenuActivity extends AppCompatActivity {
                             startActivity(intent);
                             finish();
                         }else if(i==8){
-                            LogoutAsynTask logoutAsynTask = new LogoutAsynTask();
-                            logoutAsynTask.execute(session_id);
                             Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
                             startActivity(intent);
-
+                            SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
+                            SharedPreferences.Editor editor  = pref.edit();
+                            editor.remove("session_id").commit();
+                            finish();
+                            LogoutAsynTask logoutAsynTask = new LogoutAsynTask();
+                            logoutAsynTask.execute(session_id);
                         }else if(i==9){
                             final Dialog dialog = new Dialog(MenuActivity.this);
                             dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -135,7 +138,7 @@ public class MenuActivity extends AppCompatActivity {
 
     class LogoutAsynTask extends AsyncTask<String,Void,Boolean>{
 
-        ProgressDialog dialog;
+        //ProgressDialog dialog;
 
         @Override
         protected Boolean doInBackground(String... params) {
@@ -147,9 +150,9 @@ public class MenuActivity extends AppCompatActivity {
 
         @Override
         protected void onPreExecute() {
-            dialog = new ProgressDialog(MenuActivity.this);
-            dialog.setMessage("Please waiting...");
-            dialog.show();
+            //dialog = new ProgressDialog(MenuActivity.this);
+           // dialog.setMessage("Please waiting...");
+            //dialog.show();
             super.onPreExecute();
         }
 
@@ -157,15 +160,9 @@ public class MenuActivity extends AppCompatActivity {
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
             if (aBoolean == true){
-                Intent intent= new Intent(MenuActivity.this,SignIn_Activity.class);
-                startActivity(intent);
-                SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
-                SharedPreferences.Editor editor  = pref.edit();
-                editor.remove("session_id");
-                editor.commit();
-                finish();
-                dialog.hide();
+               // dialog.hide();
             }
+            //dialog.dismiss();
         }
     }
 }

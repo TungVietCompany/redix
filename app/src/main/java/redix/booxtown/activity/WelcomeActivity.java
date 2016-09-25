@@ -116,10 +116,10 @@ public class WelcomeActivity extends AppCompatActivity {
         SharedPreferences pref = getApplicationContext().getSharedPreferences("MyPref", MODE_PRIVATE);
         SharedPreferences.Editor editor  = pref.edit();
         String session_id = pref.getString("session_id", null);
-//        if (session_id != null){
-//            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
-//            startActivity(intent);
-//        }
+        if (session_id != null){
+            Intent intent = new Intent(WelcomeActivity.this, MainAllActivity.class);
+            startActivity(intent);
+        }
 
 
     }

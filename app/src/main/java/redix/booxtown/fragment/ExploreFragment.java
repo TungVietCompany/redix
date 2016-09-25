@@ -85,7 +85,7 @@ public class ExploreFragment extends Fragment
     String proximity;
     private  ArrayAdapter<String> dataAdapter;
     EditText editSearch;
-    ListBookAdapter adapter;
+    AdapterExplore adapter;
     public TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
     List<Book> listbook= new ArrayList<>();
     GridView grid;
@@ -149,7 +149,7 @@ public class ExploreFragment extends Fragment
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(1),2);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(1),2);
                 grid=(GridView) view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
@@ -159,7 +159,7 @@ public class ExploreFragment extends Fragment
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(2),2);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(2),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
 
@@ -170,7 +170,7 @@ public class ExploreFragment extends Fragment
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(3),2);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(3),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 adapter.notifyDataSetChanged();
@@ -181,7 +181,7 @@ public class ExploreFragment extends Fragment
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ListBookAdapter adapter = new ListBookAdapter(getActivity(),filterExplore(4),2);
+                final AdapterExplore adapter = new AdapterExplore(getActivity(),filterExplore(4),2);
                 grid=(GridView)view.findViewById(R.id.gridView);
                 grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
@@ -200,21 +200,21 @@ public class ExploreFragment extends Fragment
         }
         else if(type==2){
             for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().equals("100")){
+                if(listbook.get(i).getAction().substring(0,1).equals("1")){
                     list.add(listbook.get(i));
                 }
             }
         }
         else if(type==3){
             for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().equals("010")){
+                if(listbook.get(i).getAction().substring(1,2).equals("1")){
                     list.add(listbook.get(i));
                 }
             }
         }
         else{
             for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().equals("001")){
+                if(listbook.get(i).getAction().substring(2,3).equals("1")){
                     list.add(listbook.get(i));
                 }
             }
@@ -371,7 +371,7 @@ public class ExploreFragment extends Fragment
         Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(1).getCheck()));
         Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(2).getCheck()));
         Log.d("dsgjfgkjsnkfndknkfbd",String.valueOf(filterList.get(3).getCheck()));
-        ListBookAdapter adapter = new ListBookAdapter(getActivity(),lisfilter_temp,2);
+        AdapterExplore adapter = new AdapterExplore(getActivity(),lisfilter_temp,2);
         grid.setAdapter(adapter);
 
     }
@@ -438,12 +438,12 @@ public class ExploreFragment extends Fragment
         @Override
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
-            adapter = new ListBookAdapter(getActivity(),list,2);
+            adapter = new AdapterExplore(getActivity(),list,2);
             grid.setAdapter(adapter);
-            tab_all_count.setText("("+String.valueOf(filterExplore(1).size()+")"));
-            tab_swap_count.setText("("+String.valueOf(filterExplore(2).size()+")"));
-            tab_free_count.setText("("+String.valueOf(filterExplore(3).size()+")"));
-            tab_cart_count.setText("("+String.valueOf(filterExplore(4).size()+")"));
+            tab_all_count.setText("("+filterExplore(1).size()+")");
+            tab_swap_count.setText("("+filterExplore(2).size()+")");
+            tab_free_count.setText("("+filterExplore(3).size()+")");
+            tab_cart_count.setText("("+filterExplore(4).size()+")");
         }
     }
 }

@@ -39,6 +39,9 @@ public class Book implements Serializable{
     private float price;
     @Expose
     private String id;
+    @Expose
+    private String username;
+
 
     private String create_date;
 
@@ -51,7 +54,7 @@ public class Book implements Serializable{
     }
 
 
-    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action, float price, String id, String create_date) {
+    public Book(String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action, float price, String id, String create_date,String username) {
         this.title = title;
         this.author = author;
         this.photo = photo;
@@ -64,6 +67,7 @@ public class Book implements Serializable{
         this.price = price;
         this.id = id;
         this.create_date = create_date;
+        this.username= username;
     }
 
     public Book(String id, String title, String author, String photo, String hash_tag, float location_longitude, float location_latitude, String genre, String b_condition, String b_action,
@@ -82,6 +86,14 @@ public class Book implements Serializable{
     }
 
     public Book() {
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getTitle() {

@@ -25,7 +25,18 @@ public class Thread implements Serializable {
     @Expose
     private String username;
 
-    public Thread(String id, String title, String description, String create_date, String topic_id, String user_id, String is_read, String username) {
+    public int getNum_comment() {
+        return num_comment;
+    }
+
+    public void setNum_comment(int num_comment) {
+        this.num_comment = num_comment;
+    }
+
+    @Expose
+    private int num_comment;
+
+    public Thread(String id, String title, String description, String create_date, String topic_id, String user_id, String is_read, String username, int num_comment) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -34,6 +45,7 @@ public class Thread implements Serializable {
         this.user_id = user_id;
         this.is_read = is_read;
         this.username = username;
+        this.num_comment = num_comment;
     }
 
     public String getUser_id() {

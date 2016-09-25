@@ -52,6 +52,8 @@ import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.crystal.crystalrangeseekbar.interfaces.OnSeekbarChangeListener;
 import com.crystal.crystalrangeseekbar.widgets.CrystalSeekbar;
 import com.google.android.gms.maps.CameraUpdateFactory;
@@ -214,7 +216,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
+                ImageView close = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                Picasso.with(getContext()).load(R.drawable.close_popup).into(close);
                 final ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
                 final CustomListviewGenre adapter = new CustomListviewGenre(getActivity(), genre);
                 listView_genre.setAdapter(adapter);
@@ -250,7 +253,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                 dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                 dialog.setContentView(R.layout.dialog_genre);
                 dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-
+                ImageView close = (ImageView)dialog.findViewById(R.id.img_close_dialoggenre);
+                Picasso.with(getContext()).load(R.drawable.close_popup).into(close);
                 ListView listView_genre = (ListView) dialog.findViewById(R.id.listView_genre);
                 if (s.equals("edit")) {
                     String[] separated = bookedit.getGenre().split(";");
@@ -341,6 +345,7 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
         tb_menu = (TableRow) v.findViewById(R.id.tableRow5);
         imageView_back = (ImageView) getActivity().findViewById(R.id.img_menu);
         if (s.equals("edit")) {
+
             btn_menu_listing_addbook.setVisibility(View.GONE);
             row.setVisibility(View.VISIBLE);
             bookedit = (Book) getArguments().getSerializable("bookedit");
@@ -392,9 +397,18 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
                     edt_editlisting_sell.setText(String.valueOf(0));
                 }
             }
-
-//            seekbar.set(80);
-
+            //add genre
+            if (bookedit.getGenre()!=null){
+                String [] str_genre = bookedit.getGenre().split(";");
+                for (int i = 0; i < genre.size(); i++) {
+                    for (int j =0;j<str_genre.length;j++){
+                        if(genre.get(i).getValue().equals(str_genre[j])){
+                            genre.get(i).ischeck();
+                        }
+                    }
+                }
+            }
+            //end
 
             image = bookedit.getPhoto().split(";");
             arrImage = new ArrayList<>();
@@ -411,33 +425,46 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
             }
             if (image.length != 0) {
                 if (arrImage.size() == 1) {
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook1);
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook1);
                 } else if (arrImage.size() == 2) {
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
+
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook1);
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
-                            placeholder(R.drawable.blank_image).
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook2);
+
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook1);
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook2);
                 } else{
-                    //String tmp= ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "";
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
-                            placeholder(R.drawable.blank_image).
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook1);
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
-                            placeholder(R.drawable.blank_image).
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook2);
-                    Picasso.with(getActivity()).
-                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(2) + "").
-                            placeholder(R.drawable.blank_image).
+                    Glide.with(getActivity()). load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(2) + "").diskCacheStrategy(DiskCacheStrategy.ALL).placeholder(R.drawable.blank_image).
                             into(imagebook3);
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(0) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook1);
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(1) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook2);
+//                    Picasso.with(getActivity()).
+//                            load(ServiceGenerator.API_BASE_URL+"booxtown/rest/getImage?username=" + username + "&image=" + arrImage.get(2) + "").
+//                            placeholder(R.drawable.blank_image).
+//                            into(imagebook3);
                 }
             }
 
@@ -625,8 +652,8 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
     public String getAction() {
         String s = "";
         s += swap.isChecked() == true ? "1" : "0";
-        s += sell.isChecked() == true ? "1" : "0";
         s += free.isChecked() == true ? "1" : "0";
+        s += sell.isChecked() == true ? "1" : "0";
         return s;
     }
 

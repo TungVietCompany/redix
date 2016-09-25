@@ -17,6 +17,7 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterExplore;
 import redix.booxtown.custom.CustomTabbarExplore;
 import redix.booxtown.custom.MenuBottomCustom;
+import redix.booxtown.model.Book;
 import redix.booxtown.model.Explore;
 
 /**
@@ -28,7 +29,7 @@ public class UserProfileActivity extends AppCompatActivity
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
     private LinearLayout linear_cart;
-    ArrayList<Explore> listEx= new ArrayList<>();
+    ArrayList<Book> listEx= new ArrayList<>();
     GridView grid;
     private MenuBottomCustom menu_bottom;
 
@@ -74,32 +75,32 @@ public class UserProfileActivity extends AppCompatActivity
         grid.setAdapter(adapter);
         //---------------------------------------------------------------
 
-        Explore e1= new Explore();
-        e1.setSwap(true);
-        e1.setFree(true);
-        e1.setBuy(false);
-
-        Explore e2= new Explore();
-        e2.setSwap(true);
-        e2.setFree(false);
-        e2.setBuy(true);
-
-        Explore e3= new Explore();
-        e3.setSwap(false);
-        e3.setFree(true);
-        e3.setBuy(false);
-
-
-        Explore e4= new Explore();
-        e4.setSwap(false);
-        e4.setFree(false);
-        e4.setBuy(true);
-
-
-        listEx.add(e1);
-        listEx.add(e2);
-        listEx.add(e3);
-        listEx.add(e4);
+//        Explore e1= new Explore();
+//        e1.setSwap(true);
+//        e1.setFree(true);
+//        e1.setBuy(false);
+//
+//        Explore e2= new Explore();
+//        e2.setSwap(true);
+//        e2.setFree(false);
+//        e2.setBuy(true);
+//
+//        Explore e3= new Explore();
+//        e3.setSwap(false);
+//        e3.setFree(true);
+//        e3.setBuy(false);
+//
+//
+//        Explore e4= new Explore();
+//        e4.setSwap(false);
+//        e4.setFree(false);
+//        e4.setBuy(true);
+//
+//
+//        listEx.add(e1);
+//        listEx.add(e2);
+//        listEx.add(e3);
+//        listEx.add(e4);
 
         //---------------------------------------------------------------
         View view_tab=(View) findViewById(R.id.tab_bar_profile);
@@ -113,9 +114,9 @@ public class UserProfileActivity extends AppCompatActivity
         linear_all.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(1),0);
-                grid=(GridView)findViewById(R.id.grid_view_profile);
-                grid.setAdapter(adapter);
+//                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(1),0);
+//                grid=(GridView)findViewById(R.id.grid_view_profile);
+//                grid.setAdapter(adapter);
                 tab_custom.setDefault(1);
             }
         });
@@ -123,9 +124,9 @@ public class UserProfileActivity extends AppCompatActivity
         linear_swap.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(2),0);
-                grid=(GridView)findViewById(R.id.grid_view_profile);
-                grid.setAdapter(adapter);
+//                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(2),0);
+//                grid=(GridView)findViewById(R.id.grid_view_profile);
+//                grid.setAdapter(adapter);
 
                 tab_custom.setDefault(2);
             }
@@ -134,10 +135,10 @@ public class UserProfileActivity extends AppCompatActivity
         linear_free.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(3),0);
-                grid=(GridView)findViewById(R.id.grid_view_profile);
-                grid.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
+//                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(3),0);
+//                grid=(GridView)findViewById(R.id.grid_view_profile);
+//                grid.setAdapter(adapter);
+//                adapter.notifyDataSetChanged();
                 tab_custom.setDefault(3);
             }
         });
@@ -145,9 +146,9 @@ public class UserProfileActivity extends AppCompatActivity
         linear_cart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(4),0);
-                grid=(GridView)findViewById(R.id.grid_view_profile);
-                grid.setAdapter(adapter);
+//                final AdapterExplore adapter = new AdapterExplore(UserProfileActivity.this,filterExplore(4),0);
+//                grid=(GridView)findViewById(R.id.grid_view_profile);
+//                grid.setAdapter(adapter);
                 tab_custom.setDefault(4);
             }
         });
@@ -155,35 +156,35 @@ public class UserProfileActivity extends AppCompatActivity
 
     }
 
-    public ArrayList<Explore> filterExplore(int type){
-        ArrayList<Explore> list= new ArrayList<>();
-        if(type==1){
-            list=listEx;
-        }
-        else if(type==2){
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isSwap()){
-                    list.add(listEx.get(i));
-                }
-            }
-        }
-        else if(type==3){
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isFree()){
-                    list.add(listEx.get(i));
-                }
-            }
-        }
-        else{
-            for (int i=0; i<listEx.size(); i++){
-                if(listEx.get(i).isBuy()){
-                    list.add(listEx.get(i));
-                }
-            }
-        }
-
-        return list;
-    }
+//    public ArrayList<Explore> filterExplore(int type){
+//        ArrayList<Explore> list= new ArrayList<>();
+//        if(type==1){
+//            list=listEx;
+//        }
+//        else if(type==2){
+//            for (int i=0; i<listEx.size(); i++){
+//                if(listEx.get(i).isSwap()){
+//                    list.add(listEx.get(i));
+//                }
+//            }
+//        }
+//        else if(type==3){
+//            for (int i=0; i<listEx.size(); i++){
+//                if(listEx.get(i).isFree()){
+//                    list.add(listEx.get(i));
+//                }
+//            }
+//        }
+//        else{
+//            for (int i=0; i<listEx.size(); i++){
+//                if(listEx.get(i).isBuy()){
+//                    list.add(listEx.get(i));
+//                }
+//            }
+//        }
+//
+//        return list;
+//    }
 
     @Override
     protected void onRestart() {

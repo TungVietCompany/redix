@@ -45,7 +45,6 @@ android:id="@+id/popup_screen78">
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:id="@+id/img_close_dialoggenre"
-        android:src="@drawable/close_popup"
         android:layout_alignParentTop="true"
         android:layout_marginTop="30dp"
         android:layout_marginRight="0dp"

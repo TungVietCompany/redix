@@ -82,7 +82,7 @@ public class InteractThreadDetailsFragment extends Fragment
 //        txt_count_thread.setText("("+interactThreads.getInteractThreadCount()+")");
         txt_content_thread.setText(threads.getDescription());
         txt_author_thread.setText("Added by "+threads.getUsername());
-
+        txt_count_thread.setText("("+threads.getNum_comment()+")");
 
 //        ArrayList<InteractComment> list= new ArrayList<>();
 //        InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");

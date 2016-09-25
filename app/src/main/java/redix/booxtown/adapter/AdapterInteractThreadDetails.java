@@ -110,7 +110,7 @@ public class AdapterInteractThreadDetails extends BaseAdapter {
 //                hoder.img_rank_three.setVisibility(View.INVISIBLE);
 //            }
 //
-//        hoder.txt_userName.setText(interactComments.getUser_name());
+        hoder.txt_userName.setText(Comments.getUsername());
         hoder.txt_contents.setText(Comments.getContent());
         hoder.txt_datetime.setText(Comments.getCreate_date());
         //hoder.txt_userName.setText(Comments.);
