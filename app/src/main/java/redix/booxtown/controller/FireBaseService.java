@@ -51,7 +51,7 @@ public class FireBaseService extends FirebaseMessagingService {
 
         Uri defaultSoundUri= RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this)
-                .setSmallIcon(R.drawable.icon_buy)
+                .setSmallIcon(getResources().getIdentifier("icon_buy" , "drawable", getPackageName()))
                 .setLargeIcon(((BitmapDrawable)drawable).getBitmap())
                 .setContentTitle("Booxtown Notification")
                 .setContentText(messageBody)
