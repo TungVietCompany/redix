@@ -278,17 +278,20 @@ public class InteractThreadDetailsFragment extends Fragment
         protected void onPostExecute(String user_ID) {
             try {
                 if(!threads.getUser_id().equals(user_ID)) {
+                    SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                    String username = pref.getString("username", null);
                     List<Notification> list = new ArrayList<>();
-                    Notification notification = new Notification(threads.getUser_id(), "Notification thread: "+ threads.getTitle());
+                    Notification notification = new Notification(threads.getUser_id(), "Comment thread "+ threads.getTitle()+" by: "+ username );
                     list.add(notification);
 
                     NotificationController controller = new NotificationController();
                     controller.sendNotification(list);
+
                 }
             }catch (Exception e){
                 Toast.makeText(context,"no data",Toast.LENGTH_LONG).show();
             }
-
+            dialog.dismiss();
         }
     }
 }
