@@ -13,6 +13,7 @@ public class Topic implements Serializable {
             public int is_expire;
             public String user_id;
             public int num_thread;
+            public int is_read;
     public int getNum_thread() {
         return num_thread;
     }
@@ -26,7 +27,7 @@ public class Topic implements Serializable {
     public Topic() {
     }
 
-    public Topic(String id, String title, String description, String create_date, int is_expire, String user_id, int num_thread) {
+    public Topic(String id, String title, String description, String create_date, int is_expire, String user_id, int num_thread, int is_read) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -34,6 +35,15 @@ public class Topic implements Serializable {
         this.is_expire = is_expire;
         this.user_id = user_id;
         this.num_thread = num_thread;
+        this.is_read=is_read;
+    }
+
+    public int getIs_read() {
+        return is_read;
+    }
+
+    public void setIs_read(int is_read) {
+        this.is_read = is_read;
     }
 
     public String getId() {

@@ -1,9 +1,12 @@
 package redix.booxtown.api;
 
+import java.util.List;
+
 import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.CommentResult;
+import redix.booxtown.model.Notification;
 import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.BookResult;
@@ -39,7 +42,10 @@ public interface ServiceInterface {
     Call<ResponseBody> getImage(@Query("username") String username ,@Query("image") String image);
 
     ////////////////////////////////////////////////////////////////////////////////////////////////
-
+    // Notification
+    @POST("/booxtown/rest/user/send_notification")
+    Call<Result> sendNotification(@Body Object lst_notification);
+    // end
     @POST("/booxtown/rest/user/signup")
     Call<Result> addUser(@Body User user);
 
@@ -80,11 +86,27 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/book/book_delete")
     Call<Result> deletebook(@Body Object book);
 
+
+    // topic
     @GET("/booxtown/rest/topic/topic_getall")
     Call<TopicResult> topic_getall();
 
+    @GET("/booxtown/rest/topic/topic_gettop")
+    Call<TopicResult> topic_gettop(@Query("session_id") String session_id,@Query("top") int top,@Query("from") int from);
+
+    @POST("/booxtown/rest/topic/topic_addstatus")
+    Call<Result> changeStatusTopic(@Body Object topic);
+    // end topic
+
+    // Thread
     @GET("/booxtown/rest/thread/thread_getbytopic")
     Call<ThreadResult> getAllThread(@Query("topic_id") String topic_id);
+
+    @GET("/booxtown/rest/thread/thread_gettop")
+    Call<ThreadResult> threadGetTop(@Query("session_id") String session_id,@Query("topic_id") String topic_id,@Query("top") int top,@Query("from") int from);
+
+    @POST("/booxtown/rest/thread/thread_addstatus")
+    Call<Result> changeStatusThread(@Body Object thread);
 
     @POST("/booxtown/rest/thread/thread_insert")
     Call<Result> insertThread(@Body Object thread);
@@ -94,4 +116,5 @@ public interface ServiceInterface {
 
     @POST("/booxtown/rest/comment/comment_insert")
     Call<Result> inser_comment_thread(@Body Object comment);
+    // End Thread
 }

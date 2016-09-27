@@ -40,6 +40,7 @@ public class InteractThreadDetailsFragment extends Fragment
     Thread threads;
     Topic topic;
     TextView txt_title;
+    TextView txt_count_thread;
     AdapterInteractThreadDetails adapter;
     @Nullable
     @Override
@@ -75,29 +76,13 @@ public class InteractThreadDetailsFragment extends Fragment
         topic = (Topic) getArguments().getSerializable("interact");
         //--------------------------------------------------
         TextView txt_title_thread=(TextView) view.findViewById(R.id.txt_title_thread_detail);
-        TextView txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread_detail);
+        txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread_detail);
         TextView txt_content_thread=(TextView) view.findViewById(R.id.txt_contern_thread_details);
         TextView txt_author_thread=(TextView) view.findViewById(R.id.txt_author_interact_thread_detail);
         txt_title_thread.setText(threads.getTitle()+"");
-//        txt_count_thread.setText("("+interactThreads.getInteractThreadCount()+")");
         txt_content_thread.setText(threads.getDescription());
         txt_author_thread.setText("Added by "+threads.getUsername());
         txt_count_thread.setText("("+threads.getNum_comment()+")");
-
-//        ArrayList<InteractComment> list= new ArrayList<>();
-//        InteractComment interactComment1= new InteractComment(2.5f,true,false,true,"Gandalf","If you want to buy best books order us1","June 12 at 5:14 pm");
-//        InteractComment interactComment2= new InteractComment(3.0f,true,true,true,"Gandalf2","If you want to buy best books order us2","June 12 at 5:14 pm");
-//        InteractComment interactComment3= new InteractComment(4.0f,false,false,true,"Gandalf3","If you want to buy best books order us3","June 12 at 5:14 pm");
-//        InteractComment interactComment4= new InteractComment(3.5f,true,false,false,"Gandalf4","If you want to buy best books order us4","June 12 at 5:14 pm");
-//        InteractComment interactComment5= new InteractComment(5.0f,true,false,false,"Gandalf5","If you want to buy best books order us5","June 12 at 5:14 pm");
-//
-//        list.add(interactComment1);
-//        list.add(interactComment2);
-//        list.add(interactComment3);
-//        list.add(interactComment4);
-//        list.add(interactComment5);
-
-
         //-----------------------------------------------------------
 
         listView=(ListView) view.findViewById(R.id.listview_comments);
@@ -165,7 +150,7 @@ public class InteractThreadDetailsFragment extends Fragment
                     listView.setAdapter(adapter);
                     dialog.dismiss();
                 }else {
-                    Toast.makeText(context,"no data",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"no data",Toast.LENGTH_SHORT).show();
                     dialog.dismiss();
                 }
             }catch (Exception e){
@@ -199,6 +184,7 @@ public class InteractThreadDetailsFragment extends Fragment
             try {
                 if(aBoolean == true){
                     Toast.makeText(context,"success",Toast.LENGTH_SHORT).show();
+                    txt_count_thread.setText("("+threads.getNum_comment()+1+")");
                     dialog.dismiss();
                 }else {
                     Toast.makeText(context,"no success",Toast.LENGTH_SHORT).show();

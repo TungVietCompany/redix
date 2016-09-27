@@ -132,7 +132,7 @@ public class ListingsDetailActivity extends Fragment implements View.OnClickList
             txt_time_post_listings.setText(book.getCreate_date());
             txt_genre_listing_detail.setText(book.getGenre());
             txt_tag.setText(book.getHash_tag());
-            progressBar.setProgress(Integer.valueOf(book.getCondition()));
+           // progressBar.setProgress(Integer.valueOf(book.getCondition()));
         }else {
             Book book = (Book) getArguments().getSerializable("bookedit");
             Log.d("dksdksdslkd",book.toString());

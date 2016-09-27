@@ -4,6 +4,7 @@ package redix.booxtown.fragment;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -47,7 +48,11 @@ public class TopicFragment extends Fragment
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
         Picasso.with(getContext()).load(R.drawable.btn_menu_locate).into(imageView_back);
 //        imageView_back.setImageResource(R.drawable.btn_menu_locate);
-        topicSync getalltopic = new topicSync(getContext());
+
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        String session_id = pref.getString("session_id", null);
+        topicSync getalltopic = new topicSync(getContext(),session_id,100,0);
         getalltopic.execute();
         imageView_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -74,8 +79,13 @@ public class TopicFragment extends Fragment
     public class topicSync extends AsyncTask<Void,Void,List<Topic>>{
         ProgressDialog dialog;
         Context context;
-        public topicSync(Context context){
+        String session_id;
+        int top, from;
+        public topicSync(Context context,String session_id,int top, int from){
             this.context = context;
+            this.session_id=session_id;
+            this.top=top;
+            this.from=from;
         }
 
         @Override
@@ -90,7 +100,7 @@ public class TopicFragment extends Fragment
         @Override
         protected List<Topic> doInBackground(Void... params) {
             TopicController topicController = new TopicController();
-            return topicController.getalltopic();
+            return topicController.getALllTopicTop(session_id,top,from);
         }
 
         @Override

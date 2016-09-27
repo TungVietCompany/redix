@@ -27,7 +27,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/icon_buy"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:largeHeap="true"
@@ -87,9 +87,12 @@
         <activity android:name=".activity.RespondActivity" />
         <activity android:name=".activity.SwapActivity" />
         <activity android:name=".activity.AddbookActivity" />
-        <activity android:name=".activity.HomeActivity"></activity>
+        <activity android:name=".activity.HomeActivity"
+            android:launchMode="singleTop"
+            ></activity>
         <service
-            android:name=".controller.FireBaseService">
+            android:name=".controller.FireBaseService"
+            >
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT"/>
             </intent-filter>

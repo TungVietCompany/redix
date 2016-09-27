@@ -58,10 +58,12 @@ import redix.booxtown.adapter.ListBookAdapter;
 import redix.booxtown.controller.BookController;
 import redix.booxtown.controller.GPSTracker;
 import redix.booxtown.controller.IconMapController;
+import redix.booxtown.controller.NotificationController;
 import redix.booxtown.custom.CustomSearch;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Filter;
+import redix.booxtown.model.Notification;
 
 public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
     private CoordinatorLayout coordinatorLayout;
@@ -100,6 +102,14 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         mapFragment.getMapAsync(MainFragment.this);
 
         filterSort(view);
+
+        List<Notification> list= new ArrayList<>();
+        Notification notification= new Notification("22","Thuyết Exception");
+        list.add(notification);
+
+        NotificationController controller= new NotificationController();
+        controller.sendNotification(list);
+
 
         return view;
     }

@@ -39,6 +39,42 @@ public class ThreadController {
         return null;
     }
 
+    public List<Thread> threadGetTop(String session_id,String topic_id, int top, int from){
+        Call<ThreadResult> getTop = service.threadGetTop(session_id, topic_id, top, from);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            ThreadResult str = getTop.execute().body();
+            if (str.getCode()==200){
+                return str.getListThread();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
+    }
+    public Boolean changeStatusThread(String session_id, int thread_id){
+        Hashtable obj= new Hashtable();
+        obj.put("session_id",session_id);
+        obj.put("thread_id",thread_id);
+        Call<Result> changeStatusTopic = service.changeStatusThread(obj);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            Result str = changeStatusTopic.execute().body();
+            if (str.getCode() == 200){
+                success = true;
+            }
+        } catch (Exception ex) {
+            success = false;
+        }
+        return success;
+    }
     public boolean insertThread(String title,String description,String topic_id,String session_id){
         Hashtable obj = new Hashtable();
         obj.put("title",title);

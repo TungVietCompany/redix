@@ -21,7 +21,7 @@ public class Thread implements Serializable {
     @Expose
     private String user_id;
     @Expose
-    private String is_read;
+    private int is_read;
     @Expose
     private String username;
 
@@ -36,7 +36,8 @@ public class Thread implements Serializable {
     @Expose
     private int num_comment;
 
-    public Thread(String id, String title, String description, String create_date, String topic_id, String user_id, String is_read, String username, int num_comment) {
+
+    public Thread(String id, String title, String description, String create_date, String topic_id, String user_id, int is_read, String username, int num_comment) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -56,11 +57,11 @@ public class Thread implements Serializable {
         this.user_id = user_id;
     }
 
-    public String getIs_read() {
+    public int getIs_read() {
         return is_read;
     }
 
-    public void setIs_read(String is_read) {
+    public void setIs_read(int is_read) {
         this.is_read = is_read;
     }
 
