@@ -133,4 +133,7 @@ public interface ServiceInterface {
 
     @POST("/booxtown/rest/post/post_insert")
     Call<Result> insertWishboard(@Body Object wishboard);
+
+    @GET("/booxtown/rest/book/book_gettop")
+    Call<BookResult> book_gettop(@Query("session_id") String session_id,@Query("from") long from,@Query("top") long top);
 }

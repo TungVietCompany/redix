@@ -1,7 +1,9 @@
 package redix.booxtown.fragment;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -23,6 +25,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
+import android.widget.AbsListView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -80,7 +83,7 @@ public class ExploreFragment extends Fragment
     private CrystalRangeSeekbar rangeSeekbar;
     private CrystalSeekbar seekbar;
     List<Book> listfilter;
-    List<Book> listsort;
+    List<Book> listExplore;
     List<Book> lisfilter_temp;
     String proximity;
     private  ArrayAdapter<String> dataAdapter;
@@ -90,6 +93,7 @@ public class ExploreFragment extends Fragment
     List<Book> listbook= new ArrayList<>();
     GridView grid;
     ImageView img_component;
+    String session_id;
     private MenuBottomCustom bottomExplore;
     public static String [] prgmNameList1={"Nearest distance","Price low to high","Price high to low","Recently added"};
 
@@ -98,6 +102,9 @@ public class ExploreFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.explore_fragment, container, false);
 
+        SharedPreferences pref = getActivity().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        session_id = pref.getString("session_id", null);
         ImageView img_menu = (ImageView)getActivity().findViewById(R.id.img_menu);
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,13 +113,15 @@ public class ExploreFragment extends Fragment
                 startActivity(intent);
             }
         });
+        listExplore = new ArrayList<>();
         grid=(GridView)view.findViewById(R.id.gridView);
         View view_search= (View)view.findViewById(R.id.explore_search);
         new CustomSearch(view_search,getActivity());
 
         //-----------------------------------------------------------
-        Getallbook getallbook = new Getallbook();
+        Getallbook getallbook = new Getallbook(session_id,0,100);
         getallbook.execute();
+        grid.setOnScrollListener(new EndlessScrollListener());
         filterSort(view);
         //end-------------------------------------
 
@@ -423,10 +432,19 @@ public class ExploreFragment extends Fragment
 
 
     public class Getallbook extends AsyncTask<Void,Void,List<Book>>{
+        String session_id;
+        long from;
+        long top;
+        public Getallbook(String sessin_id,long from,long top){
+            this.session_id = sessin_id;
+            this.from = from;
+            this.top = top;
+        }
+
         @Override
         protected List<Book> doInBackground(Void... params) {
             BookController bookController = new BookController();
-            listbook  =  bookController.getallbook();
+            listbook  =  bookController.book_gettop(session_id,from,top);
             return listbook;
         }
 
@@ -438,12 +456,84 @@ public class ExploreFragment extends Fragment
         @Override
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
-            adapter = new AdapterExplore(getActivity(),list,2);
+            listExplore.addAll(list);
+            adapter = new AdapterExplore(getActivity(),listExplore,2);
             grid.setAdapter(adapter);
             tab_all_count.setText("("+filterExplore(1).size()+")");
             tab_swap_count.setText("("+filterExplore(2).size()+")");
             tab_free_count.setText("("+filterExplore(3).size()+")");
             tab_cart_count.setText("("+filterExplore(4).size()+")");
+        }
+    }
+
+    public class Getallbook1 extends AsyncTask<Void,Void,List<Book>>{
+        String session_id;
+        long from;
+        long top;
+        public Getallbook1(String sessin_id,long from,long top){
+            this.session_id = sessin_id;
+            this.from = from;
+            this.top = top;
+        }
+
+        @Override
+        protected List<Book> doInBackground(Void... params) {
+            BookController bookController = new BookController();
+            listbook  =  bookController.book_gettop(session_id,from,top);
+            return listbook;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected void onPostExecute(List<Book> list) {
+            super.onPostExecute(list);
+            listExplore.addAll(list);
+            adapter.notifyDataSetChanged();
+        }
+    }
+
+    public class EndlessScrollListener implements AbsListView.OnScrollListener {
+
+        private int visibleThreshold = 5;
+        private int currentPage = 0;
+        private int previousTotal = 0;
+        private boolean loading = true;
+
+        public EndlessScrollListener() {
+        }
+        public EndlessScrollListener(int visibleThreshold) {
+            this.visibleThreshold = visibleThreshold;
+        }
+
+        @Override
+        public void onScroll(AbsListView view, int firstVisibleItem,
+                             int visibleItemCount, int totalItemCount) {
+            if (loading) {
+                if (totalItemCount > previousTotal) {
+                    loading = false;
+                    previousTotal = totalItemCount;
+                    currentPage++;
+                }
+            }
+            if (listExplore.size()>=15){
+                if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
+                    // I load the next page of gigs using a background task,
+                    // but you can call any function here.
+                    Getallbook1 getallbook1 = new Getallbook1(session_id,listExplore.size(),100);
+                    getallbook1.execute();
+                    Log.d("hihihihi","lilil"+listExplore.size());
+                    loading = true;
+                }
+            }
+
+        }
+
+        @Override
+        public void onScrollStateChanged(AbsListView view, int scrollState) {
         }
     }
 }

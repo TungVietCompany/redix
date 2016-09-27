@@ -111,14 +111,6 @@ public class TopicFragment extends Fragment
             try{
                 if(topics.size() >0){
                     //set adapter
-//                    for (int i = 0; i < 20 ; i++) {
-//                        Topic topic = new Topic();
-//                        topic.title = topics.get(1).getTitle();
-//                        topic.num_thread = topics.get(1).getNum_thread();
-//                        topic.create_date = topics.get(1).getCreate_date();
-//                        listtopic.add(topic);
-//                    }
-                    listtopic.addAll(listtopic);
                     listtopic.addAll(topics);
                     interact = new AdapterTopic(context,listtopic,lv_recycler);
                     lv_recycler.setAdapter(interact);
@@ -138,8 +130,9 @@ public class TopicFragment extends Fragment
                                         Log.e("haint", "Load More 2");
 
                                         //Remove loading item
-                                        topicSync getalltopic = new topicSync(getContext(),session_id,100,listtopic.size()-1);
+                                        topicSync1 getalltopic = new topicSync1(getContext(),session_id,100,listtopic.size());
                                         getalltopic.execute();
+                                        interact.setLoaded();
                                     }
                                 }, 2000);
                             }
@@ -167,6 +160,46 @@ public class TopicFragment extends Fragment
 
             }
             dialog.dismiss();
+            super.onPostExecute(topics);
+        }
+    }
+
+    public class topicSync1 extends AsyncTask<Void,Void,List<Topic>>{
+        ProgressDialog dialog;
+        Context context;
+        String session_id;
+        int top, from;
+        public topicSync1(Context context,String session_id,int top, int from){
+            this.context = context;
+            this.session_id=session_id;
+            this.top=top;
+            this.from=from;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<Topic> doInBackground(Void... params) {
+            TopicController topicController = new TopicController();
+            return topicController.getALllTopicTop(session_id,top,from);
+        }
+
+        @Override
+        protected void onPostExecute(final List<Topic> topics) {
+            try{
+                if(topics.size() >0){
+                    //set adapter
+                    listtopic.addAll(topics);
+                    interact.notifyDataSetChanged();
+                }else {
+                    Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+
+            }
             super.onPostExecute(topics);
         }
     }

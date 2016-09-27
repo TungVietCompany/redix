@@ -198,8 +198,9 @@ public class ThreadFragment extends Fragment
                                         Log.e("haint", "Load More 2");
 
                                         //Remove loading item
-                                        threadAsync getalltopic = new threadAsync(getContext(),session_id,100,listThreads.size()-1);
+                                        threadAsync1 getalltopic = new threadAsync1(getContext(),session_id,100,listThreads.size()-1);
                                         getalltopic.execute();
+                                        adapterThread.setLoaded();
                                     }
                                 }, 2000);
                             }
@@ -231,6 +232,54 @@ public class ThreadFragment extends Fragment
             dialog.dismiss();
         }
     }
+
+
+    class threadAsync1 extends AsyncTask<String,Void,List<Thread>>{
+        ProgressDialog dialog;
+        Context context;
+        String session_id;
+        int top, from;
+        int flag;
+        public threadAsync1(Context context, String session_id, int top, int from){
+
+            this.context = context;
+            this.session_id=session_id;
+            this.top=top;
+            this.from=from;
+            //this.flag= flag;
+        }
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<Thread> doInBackground(String... strings) {
+            ThreadController threadController = new ThreadController();
+
+            return threadController.threadGetTop(session_id, strings[0], top, from);
+
+
+        }
+
+        @Override
+        protected void onPostExecute(final List<Thread> threads) {
+            try{
+                if(threads.size()>0){
+                    listThreads.addAll(threads);
+                    adapterThread.notifyDataSetChanged();
+                }else{
+                    //Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();
+                }
+            }catch (Exception e){
+
+            }
+            dialog.dismiss();
+        }
+    }
+
+
+
     public class ThreadSync extends AsyncTask<Void,Void,Boolean> {
         ProgressDialog dialog;
         Context context;

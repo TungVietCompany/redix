@@ -127,6 +127,24 @@ public class BookController {
 
     }
 
+    public List<Book> book_gettop(String session_id,long from,long top){
+        Call<BookResult> getall = service.book_gettop(session_id,from,top);
+        try {
+            if (android.os.Build.VERSION.SDK_INT > 9) {
+                StrictMode.ThreadPolicy policy =
+                        new StrictMode.ThreadPolicy.Builder().permitAll().build();
+                StrictMode.setThreadPolicy(policy);
+            }
+            BookResult str = getall.execute().body();
+            if (str.getCode() == 200){
+                return str.getBook();
+            }
+        } catch (Exception ex) {
+        }
+        return null;
+
+    }
+
     public Comparator<Book> distance = new Comparator<Book>() {
         @Override
         public int compare(Book lhs, Book rhs) {
