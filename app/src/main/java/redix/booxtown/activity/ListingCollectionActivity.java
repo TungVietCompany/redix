@@ -556,8 +556,6 @@ public class ListingCollectionActivity extends Fragment implements OnMapReadyCal
 //                progress = i;
                 //Toast.makeText(getContext(),"p111:"+i,Toast.LENGTH_LONG).show();
                 condition = String.valueOf(i);
-
-                Log.d("hihihihi","valueseeekbar"+i);
             }
 
             @Override

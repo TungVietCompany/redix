@@ -15,6 +15,7 @@ import redix.booxtown.model.ThreadResult;
 import redix.booxtown.model.TopicResult;
 import redix.booxtown.model.User;
 import redix.booxtown.model.UserResult;
+import redix.booxtown.model.WishboardResult;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -54,6 +55,9 @@ public interface ServiceInterface {
 
     @POST("/booxtown/rest/user/login_firebase")
     Call<Result> login(@Body Object user);
+
+    @GET("/booxtown/user/get_userID")
+    Call<Result> getuserID(@Query("session_id") String session_id);
 
     @GET("/booxtown/rest/user/getprofile")
     Call<UserResult> getprofile(@Query("session_id") String session_id);
@@ -123,4 +127,10 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/comment/comment_insert")
     Call<Result> inser_comment_thread(@Body Object comment);
     // End Thread
+
+    @GET("/booxtown/rest/post/post_gettop")
+    Call<WishboardResult> getAllWishboard(@Query("top") int top, @Query("from") int from, @Query("session_id") String session_id);
+
+    @POST("/booxtown/rest/post/post_insert")
+    Call<Result> insertWishboard(@Body Object wishboard);
 }

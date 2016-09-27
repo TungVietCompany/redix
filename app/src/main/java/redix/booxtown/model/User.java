@@ -22,6 +22,8 @@ public class User {
     @Expose
     private String session_id;
 
+
+
     public User(String first_name, String last_name, String username, String email, String birthday, String phone, String password,String session_id) {
         this.first_name = first_name;
         this.last_name = last_name;

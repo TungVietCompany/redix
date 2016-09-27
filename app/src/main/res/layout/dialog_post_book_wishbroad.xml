@@ -25,7 +25,7 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText"
+            android:id="@+id/editText_title_wishboard"
             android:hint="Title"
             android:textColorHint="@color/dot_light_screen2"
             android:layout_below="@+id/textView138"
@@ -37,10 +37,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText12"
+            android:id="@+id/editText_author_wishboard"
             android:hint="Author"
             android:textColorHint="@color/dot_light_screen2"
-            android:layout_below="@+id/editText"
+            android:layout_below="@+id/editText_title_wishboard"
             android:backgroundTint="@color/dot_light_screen2"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp" />
@@ -48,10 +48,10 @@
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/editText13"
+            android:id="@+id/editText_comment_wishboard"
             android:hint="Comment(50 character)"
             android:textColorHint="@color/dot_light_screen2"
-            android:layout_below="@+id/editText12"
+            android:layout_below="@+id/editText_author_wishboard"
             android:layout_marginRight="10dp"
             android:backgroundTint="@color/dot_light_screen2"
             android:layout_marginLeft="10dp" />
@@ -63,7 +63,7 @@
             android:background="@drawable/change_pass"
             android:id="@+id/btn_submit_dialog_post_book_wishbroad"
             android:gravity="center_vertical|center"
-            android:layout_below="@+id/editText13"
+            android:layout_below="@+id/editText_comment_wishboard"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="60dp"
             android:layout_marginTop="30dp" />

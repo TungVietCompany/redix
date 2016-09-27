@@ -39,6 +39,7 @@ import redix.booxtown.model.Explore;
 import redix.booxtown.model.User;
 
 public class MyProfileFragment extends Fragment {
+    public final static String user_id=null;
     private LinearLayout linear_all;
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
@@ -47,10 +48,8 @@ public class MyProfileFragment extends Fragment {
     GridView grid;
     ListBookAdapter adapter;
     ImageView img_component;
-    TextView txt_profile_email;
-    TextView txt_profile_phone;
-    TextView txt_profile_birthday;
-
+    TextView txt_profile_phone,txt_profile_birthday,txt_profile_email,txt_profile_username;
+    String username;
     TextView tab_all_count,tab_swap_count,tab_free_count,tab_cart_count;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +61,12 @@ public class MyProfileFragment extends Fragment {
         img_menu_personal_dashboard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                callFragment(new MyProfileDashboardFragment());
+                MyProfileDashboardFragment profile = new MyProfileDashboardFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("username",username);
+                profile.setArguments(bundle);
+                callFragment(profile);
+
             }
         });
 
@@ -88,6 +92,7 @@ public class MyProfileFragment extends Fragment {
         txt_profile_email = (TextView)view.findViewById(R.id.txt_profile_email);
         txt_profile_phone = (TextView)view.findViewById(R.id.txt_profile_phone);
         txt_profile_birthday = (TextView)view.findViewById(R.id.txt_profile_birthday);
+        txt_profile_username = (TextView)view.findViewById(R.id.txt_profile_username);
         //end
 
         //list book
@@ -227,18 +232,28 @@ public class MyProfileFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<User> bookResult) {
+        protected void onPostExecute(List<User> userResult) {
             try {
-                if(bookResult.size() == 0){
+                if(userResult.size() == 0){
                     Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 }else {
+<<<<<<< HEAD
                     txt_profile_email.setText(bookResult.get(0).getEmail());
                     txt_profile_phone.setText(bookResult.get(0).getPhone());
-                    txt_profile_birthday.setText(bookResult.get(0).getBirthday());
+                    txt_profile_birthday.setText(bookResult.get(0).getBirthday().substring(0,10));
+                    txt_profile_username.setText(bookResult.get(0).getUsername());
+                    username = bookResult.get(0).getUsername();
+=======
+                    txt_profile_email.setText(userResult.get(0).getEmail());
+                    txt_profile_phone.setText(userResult.get(0).getPhone());
+                    txt_profile_birthday.setText(userResult.get(0).getBirthday());
+
+
+>>>>>>> origin/master
                     dialog.dismiss();
                 }
-                super.onPostExecute(bookResult);
+                super.onPostExecute(userResult);
             }catch (Exception e){
                 Toast.makeText(context,"no data",Toast.LENGTH_LONG).show();
             }
