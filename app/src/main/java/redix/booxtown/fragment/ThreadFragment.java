@@ -65,7 +65,7 @@ public class ThreadFragment extends Fragment
         //--------------------------------------------------
         TextView txt_title_thread=(TextView) view.findViewById(R.id.txt_title_thread);
         TextView txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread);
-        txt_title_thread.setText(topic.getTitle());
+        txt_title_thread.setText("Topic Name: "+topic.getTitle());
         txt_count_thread.setText("("+topic.getNum_thread()+")");
 //        txt_count_thread.setText("("+interact.getInteractCount()+")");
         //------------------------------------------------------------------------------
