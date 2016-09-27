@@ -7,12 +7,14 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +28,7 @@ import java.util.List;
 
 import redix.booxtown.R;
 import redix.booxtown.controller.TopicController;
+import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
@@ -108,9 +111,40 @@ public class TopicFragment extends Fragment
             try{
                 if(topics.size() >0){
                     //set adapter
-                    interact = new AdapterTopic(context,topics);
+//                    for (int i = 0; i < 20 ; i++) {
+//                        Topic topic = new Topic();
+//                        topic.title = topics.get(1).getTitle();
+//                        topic.num_thread = topics.get(1).getNum_thread();
+//                        topic.create_date = topics.get(1).getCreate_date();
+//                        listtopic.add(topic);
+//                    }
+                    listtopic.addAll(listtopic);
+                    listtopic.addAll(topics);
+                    interact = new AdapterTopic(context,listtopic,lv_recycler);
                     lv_recycler.setAdapter(interact);
 
+                    if (listtopic.size()>=20){
+                        interact.setOnLoadMoreListener(new OnLoadMoreListener() {
+                            @Override
+                            public void onLoadMore() {
+                                Log.e("haint", "Load More");
+                                listtopic.add(null);
+                                interact.notifyItemInserted(topics.size() - 1);
+
+                                //Load more data for reyclerview
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.e("haint", "Load More 2");
+
+                                        //Remove loading item
+                                        topicSync getalltopic = new topicSync(getContext(),session_id,100,listtopic.size()-1);
+                                        getalltopic.execute();
+                                    }
+                                }, 2000);
+                            }
+                        });
+                    }
                     lv_recycler.addOnItemTouchListener(
                             new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
