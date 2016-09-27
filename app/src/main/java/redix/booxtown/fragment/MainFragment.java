@@ -103,12 +103,12 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
 
         filterSort(view);
 
-        List<Notification> list= new ArrayList<>();
-        Notification notification= new Notification("22","Thuyết Exception");
-        list.add(notification);
-
-        NotificationController controller= new NotificationController();
-        controller.sendNotification(list);
+//        List<Notification> list= new ArrayList<>();
+//        Notification notification= new Notification("22","Thuyết Exception");
+//        list.add(notification);
+//
+//        NotificationController controller= new NotificationController();
+//        controller.sendNotification(list);
 
 
         return view;

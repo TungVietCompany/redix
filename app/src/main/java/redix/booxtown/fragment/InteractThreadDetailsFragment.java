@@ -24,6 +24,7 @@ import redix.booxtown.R;
 import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.controller.CommentController;
+import redix.booxtown.controller.ThreadController;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Comment;
 import redix.booxtown.model.Thread;
@@ -158,7 +159,48 @@ public class InteractThreadDetailsFragment extends Fragment
             }
         }
     }
+    public class ThreadSync extends AsyncTask<Void,Void,Boolean> {
+        ProgressDialog dialog;
+        Context context;
+        String session_id;
+        int thread_id;
+        public ThreadSync(Context context,String session_id,int thread_id){
+            this.context = context;
+            this.session_id=session_id;
+            this.thread_id=thread_id;
 
+        }
+
+        @Override
+        protected void onPreExecute() {
+            dialog = new ProgressDialog(context);
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+            super.onPreExecute();
+        }
+
+        @Override
+        protected Boolean doInBackground(Void... params) {
+            ThreadController topicController = new ThreadController();
+            return topicController.changeStatusUnreadThread(session_id,thread_id);
+        }
+
+        @Override
+        protected void onPostExecute(final Boolean topics) {
+            try{
+                if(topics){
+                    //RecyclerViewHolder holder=  new RecyclerViewHolder(itemView);
+                    // holder.txt_count_interact.setTextColor(context.getResources().getColor(R.color.color_topic_interact));
+                }
+
+            }catch (Exception e){
+
+            }
+            dialog.dismiss();
+
+        }
+    }
     class insertComment extends AsyncTask<String,Void,Boolean>{
 
         Context context;
@@ -184,7 +226,14 @@ public class InteractThreadDetailsFragment extends Fragment
             try {
                 if(aBoolean == true){
                     Toast.makeText(context,"success",Toast.LENGTH_SHORT).show();
-                    txt_count_thread.setText("("+threads.getNum_comment()+1+")");
+                    int count= threads.getNum_comment()+1;
+                    txt_count_thread.setText("("+count+")");
+
+                    SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+                    String session_id = pref.getString("session_id", null);
+                    ThreadSync changeStatus = new ThreadSync(context, session_id, Integer.parseInt(threads.getId()));
+                    changeStatus.execute();
+
                     dialog.dismiss();
                 }else {
                     Toast.makeText(context,"no success",Toast.LENGTH_SHORT).show();

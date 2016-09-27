@@ -108,6 +108,9 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/thread/thread_addstatus")
     Call<Result> changeStatusThread(@Body Object thread);
 
+    @POST("/booxtown/rest/thread/thread_removestatus")
+    Call<Result> changeStatusUnreadThread(@Body Object thread);
+
     @POST("/booxtown/rest/thread/thread_insert")
     Call<Result> insertThread(@Body Object thread);
 
