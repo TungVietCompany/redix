@@ -12,32 +12,34 @@ import android.widget.TextView;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
 import redix.booxtown.R;
 import redix.booxtown.activity.RespondActivity;
+import redix.booxtown.model.Wishboard;
 
 /**
  * Created by thuyetpham94 on 30/08/2016.
  */
 public class AdapterListviewWishboard  extends BaseAdapter {
 
-    String [] title;
-    String [] name;
-    String [] date;
+//    String [] title;
+//    String [] name;
+//    String [] date;
+    List<Wishboard> list;
     Context context;
     private static LayoutInflater inflater=null;
-    public AdapterListviewWishboard(Context context,String []title,String[]name,String[] date) {
+    public AdapterListviewWishboard(Context context,List<Wishboard> list) {
         // TODO Auto-generated constructor stub
-        this.title=title;
         this.context=context;
-        this.name = name;
-        this.date = date;
+        this.list = list;
         inflater = ( LayoutInflater )context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return title.length;
+        return list.size();
     }
 
     @Override
@@ -68,9 +70,9 @@ public class AdapterListviewWishboard  extends BaseAdapter {
         holder.title=(TextView) rowView.findViewById(R.id.txt_title_lisview_wishboard);
         holder.name = (TextView)rowView.findViewById(R.id.txt_name_custom_listview_wishboard);
         holder.date = (TextView)rowView.findViewById(R.id.txt_date_customlistview_wishboard);
-        holder.title.setText(title[position]);
-        holder.name.setText(name[position]);
-        holder.date.setText(date[position]);
+        holder.title.setText(list.get(position).getTitle());
+        holder.name.setText(list.get(position).getUsername());
+        holder.date.setText(list.get(position).getCreate_date().substring(0,10));
 
         ImageView imgv_listview_respond = (ImageView)rowView.findViewById(R.id.imgv_listview_respond);
         Picasso.with(context).load(R.drawable.btn_wishbroad_message).into(imgv_listview_respond);

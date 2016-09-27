@@ -2,16 +2,6 @@ package redix.booxtown.api;
 
 import android.graphics.Bitmap;
 
-import java.io.ByteArrayOutputStream;
-
-import okhttp3.MediaType;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import redix.booxtown.model.Result;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
 
 /**
  * Created by Administrator on 25/06/2016.

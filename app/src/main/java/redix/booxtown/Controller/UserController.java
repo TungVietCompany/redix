@@ -128,8 +128,13 @@ public class UserController {
         return null;
     }
 
+<<<<<<< HEAD
+    public boolean changePassword(String session_id,String pwd_old,String pwd_new){
+        Call<Result> profile = service.changepassword(session_id,pwd_old,pwd_new);
+=======
     public String getUserID(String session_id){
         Call<Result> profile = service.getuserID(session_id);
+>>>>>>> origin/master
         try {
             if (android.os.Build.VERSION.SDK_INT > 9) {
                 StrictMode.ThreadPolicy policy =
@@ -138,6 +143,14 @@ public class UserController {
             }
             Result str = profile.execute().body();
             if (str.getCode() == 200){
+<<<<<<< HEAD
+                return true;
+            }
+        } catch (Exception ex) {
+        }
+        return false;
+    }
+=======
                 return str.getSession_id();
             }
         } catch (Exception ex) {
@@ -145,5 +158,6 @@ public class UserController {
         return null;
     }
 
+>>>>>>> origin/master
 
 }

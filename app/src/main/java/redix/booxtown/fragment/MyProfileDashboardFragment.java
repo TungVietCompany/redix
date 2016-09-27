@@ -23,6 +23,7 @@ public class MyProfileDashboardFragment extends Fragment {
     public static int [] imgoffer={R.drawable.myprofile_buy_come,R.drawable.myprofile_free_back,R.drawable.myprofile_swap,R.drawable.myprofile_swap};
     public static int [] imgstatus={R.drawable.myprofile_tick,R.drawable.myprofile_not,R.drawable.myprofile_all_not,R.drawable.myprofile_not};
     public static String [] txtbook={"Nearest distance","Price low to high","Price high to low","Price high to low"};
+    TextView txt_username;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -62,7 +63,9 @@ public class MyProfileDashboardFragment extends Fragment {
         ImageView imageView27 = (ImageView)view.findViewById(R.id.imageView27);
         Picasso.with(getContext()).load(R.drawable.btn_rank_three).into(imageView27);
 
-
+        txt_username = (TextView)view.findViewById(R.id.txt_profile_username);
+        String username = (String)getArguments().getString("username");
+        txt_username.setText(username);
 
         img_menu.setOnClickListener(new View.OnClickListener() {
             @Override

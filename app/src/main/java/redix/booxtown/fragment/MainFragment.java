@@ -66,7 +66,6 @@ import redix.booxtown.model.Filter;
 import redix.booxtown.model.Notification;
 
 public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickListener, GoogleMap.OnInfoWindowClickListener,OnMapReadyCallback {
-    private CoordinatorLayout coordinatorLayout;
     private GoogleMap mMap;
     final int RQS_GooglePlayServices = 1;
 
@@ -95,7 +94,7 @@ public class MainFragment extends Fragment implements GoogleMap.OnMapLongClickLi
         });
 
 
-        View view_search= (View)view.findViewById(R.id.custom_search);
+        View view_search= view.findViewById(R.id.custom_search);
 //        new CustomSearch(view_search,getActivity());
 
         SupportMapFragment mapFragment = (SupportMapFragment) this.getChildFragmentManager().findFragmentById(R.id.map);
