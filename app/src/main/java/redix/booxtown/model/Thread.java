@@ -3,6 +3,7 @@ package redix.booxtown.model;
 import com.google.gson.annotations.Expose;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by thuyetpham94 on 16/09/2016.
@@ -115,4 +116,13 @@ public class Thread implements Serializable {
     public void setTopic_id(String topic_id) {
         this.topic_id = topic_id;
     }
+
+    public static Comparator<Thread> aseid = new Comparator<Thread>() {
+        @Override
+        public int compare(Thread lhs, Thread rhs) {
+            int dt1 = Integer.parseInt(lhs.getId());
+            int dt2 = Integer.parseInt(rhs.getId());
+            return dt1 - dt2;
+        }
+    };
 }

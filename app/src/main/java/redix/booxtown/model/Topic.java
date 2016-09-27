@@ -1,6 +1,7 @@
 package redix.booxtown.model;
 
 import java.io.Serializable;
+import java.util.Comparator;
 
 /**
  * Created by duong on 9/16/2016.
@@ -93,4 +94,13 @@ public class Topic implements Serializable {
     public void setUser_id(String user_id) {
         this.user_id = user_id;
     }
+
+    public static Comparator<Topic> aseid  = new Comparator<Topic>() {
+        @Override
+        public int compare(Topic lhs, Topic rhs) {
+            int dt1 = Integer.parseInt(lhs.getId());
+            int dt2 = Integer.parseInt(rhs.getId());
+            return dt1 - dt2;
+        }
+    };
 }

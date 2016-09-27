@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import redix.booxtown.R;
@@ -180,6 +181,7 @@ public class ThreadFragment extends Fragment
                 if(threads.size()>0){
                     listThreads.addAll(listThreads);
                     listThreads.addAll(threads);
+                    Collections.sort(listThreads,Thread.aseid);
                     adapterThread = new AdapterThread(context,listThreads,rv_thread);
                     rv_thread.setAdapter(adapterThread);
                     if (listThreads.size()>=20){
@@ -197,7 +199,7 @@ public class ThreadFragment extends Fragment
                                         Log.e("haint", "Load More 2");
 
                                         //Remove loading item
-                                        threadAsync1 getalltopic = new threadAsync1(getContext(),session_id,100,listThreads.size()-1);
+                                        threadAsync1 getalltopic = new threadAsync1(getContext(),session_id,100,Integer.parseInt(listThreads.get(listThreads.size()-1).getId()));
                                         getalltopic.execute();
                                         adapterThread.setLoaded();
                                     }
@@ -266,6 +268,7 @@ public class ThreadFragment extends Fragment
             try{
                 if(threads.size()>0){
                     listThreads.addAll(threads);
+                    Collections.sort(listThreads,Thread.aseid);
                     adapterThread.notifyDataSetChanged();
                 }else{
                     //Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();

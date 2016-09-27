@@ -232,4 +232,13 @@ public class Book implements Serializable{
         }
     };
 
+    public static Comparator<Book> asid = new Comparator<Book>() {
+        @Override
+        public int compare(Book lhs, Book rhs) {
+            int dt1 = Integer.parseInt(lhs.getId());
+            int dt2 = Integer.parseInt(rhs.getId());
+            return dt1 - dt2;
+        }
+    };
+
 }

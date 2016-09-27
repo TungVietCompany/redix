@@ -24,6 +24,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import redix.booxtown.R;
@@ -112,6 +113,7 @@ public class TopicFragment extends Fragment
                 if(topics.size() >0){
                     //set adapter
                     listtopic.addAll(topics);
+                    Collections.sort(listtopic,Topic.aseid);
                     interact = new AdapterTopic(context,listtopic,lv_recycler);
                     lv_recycler.setAdapter(interact);
 
@@ -130,7 +132,7 @@ public class TopicFragment extends Fragment
                                         Log.e("haint", "Load More 2");
 
                                         //Remove loading item
-                                        topicSync1 getalltopic = new topicSync1(getContext(),session_id,100,listtopic.size());
+                                        topicSync1 getalltopic = new topicSync1(getContext(),session_id,100,Integer.parseInt(listtopic.get(listtopic.size()-1).getId()));
                                         getalltopic.execute();
                                         interact.setLoaded();
                                     }
@@ -193,6 +195,7 @@ public class TopicFragment extends Fragment
                 if(topics.size() >0){
                     //set adapter
                     listtopic.addAll(topics);
+//                    Collections.sort(listtopic,Topic.aseid);
                     interact.notifyDataSetChanged();
                 }else {
                     Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();

@@ -205,26 +205,26 @@ public class ExploreFragment extends Fragment
     public List<Book> filterExplore(int type){
         List<Book> list= new ArrayList<>();
         if(type==1){
-            list = listbook;
+            list = listExplore;
         }
         else if(type==2){
-            for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().substring(0,1).equals("1")){
-                    list.add(listbook.get(i));
+            for (int i=0; i<listExplore.size(); i++){
+                if(listExplore.get(i).getAction().substring(0,1).equals("1")){
+                    list.add(listExplore.get(i));
                 }
             }
         }
         else if(type==3){
-            for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().substring(1,2).equals("1")){
-                    list.add(listbook.get(i));
+            for (int i=0; i<listExplore.size(); i++){
+                if(listExplore.get(i).getAction().substring(1,2).equals("1")){
+                    list.add(listExplore.get(i));
                 }
             }
         }
         else{
-            for (int i=0; i<listbook.size(); i++){
-                if(listbook.get(i).getAction().substring(2,3).equals("1")){
-                    list.add(listbook.get(i));
+            for (int i=0; i<listExplore.size(); i++){
+                if(listExplore.get(i).getAction().substring(2,3).equals("1")){
+                    list.add(listExplore.get(i));
                 }
             }
         }
@@ -317,7 +317,7 @@ public class ExploreFragment extends Fragment
                     }
                 });
                 spinner2 = (Spinner) dialog.findViewById(R.id.spinner_dialog_filter);
-                String[] genravalue = {"Architecture", "Business and Economics", "Boy,Mid and Spirit", "Children", "Computers and Technology",
+                String[] genravalue = {"All","Architecture", "Business and Economics", "Boy,Mid and Spirit", "Children", "Computers and Technology",
                         "Crafts and Hobbies", "Education", "Family,Parenting and Relationships", "Fiction and Literature", "Food and Drink",
                         "Health and Fitness","History and Politics","Homes Gaedens and DIY","Humor and Comedy","Languages","Manuals and Guides"
                 };
@@ -341,13 +341,17 @@ public class ExploreFragment extends Fragment
         listfilter = new ArrayList<>();
         LatLng latLngSt = new LatLng(new GPSTracker(getActivity()).getLatitude(),new GPSTracker(getActivity()).getLongitude());
         Double distance = Double.valueOf(proximity);
-        for (int i = 0; i < listbook.size();i++){
-            String[] genrel = listbook.get(i).getGenre().split(";");
-            for (int j = 0;j<genrel.length;j++){
-                if (genrel[j].contains(filter)) {
-                    LatLng latLngEnd = new LatLng(listbook.get(i).getLocation_latitude(),listbook.get(i).getLocation_longitude());
-                    if (CalculationByDistance(latLngSt,latLngEnd)<=distance){
-                        listfilter.add(listbook.get(i));
+        for (int i = 0; i < listExplore.size();i++){
+            String[] genrel = listExplore.get(i).getGenre().split(";");
+            if (filter.equals("All")){
+                listfilter.add(listExplore.get(i));
+            }else {
+                for (int j = 0;j<genrel.length;j++){
+                    if (genrel[j].contains(filter)) {
+                        LatLng latLngEnd = new LatLng(listExplore.get(i).getLocation_latitude(),listExplore.get(i).getLocation_longitude());
+                        if (CalculationByDistance(latLngSt,latLngEnd)<=distance){
+                            listfilter.add(listExplore.get(i));
+                        }
                     }
                 }
             }
@@ -457,6 +461,7 @@ public class ExploreFragment extends Fragment
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
             listExplore.addAll(list);
+            Collections.sort(listExplore,Book.asid);
             adapter = new AdapterExplore(getActivity(),listExplore,2);
             grid.setAdapter(adapter);
             tab_all_count.setText("("+filterExplore(1).size()+")");
@@ -492,7 +497,12 @@ public class ExploreFragment extends Fragment
         protected void onPostExecute(List<Book> list) {
             super.onPostExecute(list);
             listExplore.addAll(list);
+            Collections.sort(listExplore,Book.asid);
             adapter.notifyDataSetChanged();
+            tab_all_count.setText("("+filterExplore(1).size()+")");
+            tab_swap_count.setText("("+filterExplore(2).size()+")");
+            tab_free_count.setText("("+filterExplore(3).size()+")");
+            tab_cart_count.setText("("+filterExplore(4).size()+")");
         }
     }
 
@@ -519,15 +529,15 @@ public class ExploreFragment extends Fragment
                     currentPage++;
                 }
             }
-            if (listExplore.size()>=15){
+//            if (listExplore.size()>=15){
                 if (!loading && (totalItemCount - visibleItemCount) <= (firstVisibleItem + visibleThreshold)) {
                     // I load the next page of gigs using a background task,
                     // but you can call any function here.
-                    Getallbook1 getallbook1 = new Getallbook1(session_id,listExplore.size(),100);
+                    Getallbook1 getallbook1 = new Getallbook1(session_id,Long.parseLong(listExplore.get(listExplore.size()-1).getId()),100);
                     getallbook1.execute();
-                    Log.d("hihihihi","lilil"+listExplore.size());
+                    Log.d("hihihihi","lilil"+listExplore.get(listExplore.size()-1).getId());
                     loading = true;
-                }
+//                }
             }
 
         }
