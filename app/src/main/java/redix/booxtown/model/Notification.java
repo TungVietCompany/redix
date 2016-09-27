@@ -7,29 +7,68 @@ import com.google.gson.annotations.Expose;
  */
 public class Notification {
     @Expose
-    private String user_id;
+    private String id;
     @Expose
-    private String messages;
+    private String content;
+    @Expose
+    private String title_notifi;
+    @Expose
+    private String key_screen;
+    @Expose
+    private int is_read;
 
-    public String getUser_id() {
-        return user_id;
+    public String getId() {
+        return id;
     }
 
-    public void setUser_id(String user_id) {
-        this.user_id = user_id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getMessage() {
-        return messages;
+    public String getContent() {
+        return content;
     }
 
-    public void setMessage(String message) {
-        this.messages = message;
+    public void setContent(String content) {
+        this.content = content;
     }
 
-    public Notification(String user_id, String message) {
-        this.user_id = user_id;
-        this.messages = message;
+    public int getIs_read() {
+        return is_read;
+    }
+
+    public void setIs_read(int is_read) {
+        this.is_read = is_read;
+    }
+
+    public String getTitle_notifi() {
+        return title_notifi;
+    }
+
+    public void setTitle_notifi(String title_notifi) {
+        this.title_notifi = title_notifi;
+    }
+
+    public Notification(String id, String content, String title_notifi, String key_screen, int is_read) {
+        this.id = id;
+        this.content = content;
+        this.title_notifi = title_notifi;
+        this.key_screen = key_screen;
+        this.is_read = is_read;
+    }
+
+    public Notification(String title_notifi, String key_screen) {
+
+        this.title_notifi = title_notifi;
+        this.key_screen = key_screen;
+    }
+
+    public String getKey_screen() {
+        return key_screen;
+    }
+
+    public void setKey_screen(String key_screen) {
+        this.key_screen = key_screen;
     }
 
     public Notification() {
