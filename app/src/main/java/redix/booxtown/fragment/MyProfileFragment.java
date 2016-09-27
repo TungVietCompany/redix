@@ -238,19 +238,15 @@ public class MyProfileFragment extends Fragment {
                     Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 }else {
-<<<<<<< HEAD
-                    txt_profile_email.setText(bookResult.get(0).getEmail());
-                    txt_profile_phone.setText(bookResult.get(0).getPhone());
-                    txt_profile_birthday.setText(bookResult.get(0).getBirthday().substring(0,10));
-                    txt_profile_username.setText(bookResult.get(0).getUsername());
-                    username = bookResult.get(0).getUsername();
-=======
+
                     txt_profile_email.setText(userResult.get(0).getEmail());
                     txt_profile_phone.setText(userResult.get(0).getPhone());
-                    txt_profile_birthday.setText(userResult.get(0).getBirthday());
+                    txt_profile_birthday.setText(userResult.get(0).getBirthday().substring(0,10));
+                    txt_profile_username.setText(userResult.get(0).getUsername());
+                    username = userResult.get(0).getUsername();
 
 
->>>>>>> origin/master
+
                     dialog.dismiss();
                 }
                 super.onPostExecute(userResult);
