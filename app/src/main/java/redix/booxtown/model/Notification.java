@@ -2,6 +2,8 @@ package redix.booxtown.model;
 
 import com.google.gson.annotations.Expose;
 
+import java.util.Comparator;
+
 /**
  * Created by Administrator on 26/09/2016.
  */
@@ -73,4 +75,13 @@ public class Notification {
 
     public Notification() {
     }
+
+    public  static Comparator<Notification> aseid = new Comparator<Notification>() {
+        @Override
+        public int compare(Notification lhs, Notification rhs) {
+            int dt1 = Integer.parseInt(lhs.getId());
+            int dt2 = Integer.parseInt(rhs.getId());
+            return dt1 - dt2;
+        }
+    };
 }

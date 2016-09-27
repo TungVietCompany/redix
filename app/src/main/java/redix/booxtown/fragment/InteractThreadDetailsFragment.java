@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import redix.booxtown.R;
@@ -26,6 +27,7 @@ import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.controller.CommentController;
 import redix.booxtown.controller.NotificationController;
+import redix.booxtown.controller.ObjectCommon;
 import redix.booxtown.controller.ThreadController;
 import redix.booxtown.controller.UserController;
 import redix.booxtown.custom.MenuBottomCustom;

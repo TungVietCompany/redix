@@ -2,12 +2,16 @@ package redix.booxtown.fragment;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +20,14 @@ import android.widget.ListView;
 import android.widget.RelativeLayout;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import redix.booxtown.R;
+import redix.booxtown.controller.NotificationController;
+import redix.booxtown.listener.OnLoadMoreListener;
+import redix.booxtown.model.Notification;
+import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.activity.MenuActivity;
@@ -29,13 +39,13 @@ import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.InteractThread;
 
 public class NotificationFragment extends Fragment {
-    ListView lv1;
-    Context context;
-    RelativeLayout relativeLayout1;
     public static String [] prgmNameList={"Unread","Dominic send a swap request","Dominic want to your book","Dominic reject your swap request"};
     private MenuBottomCustom bottomListings;
     public boolean flag=true;
     HomeActivity main;
+    String session_id;
+    RecyclerView lv_notification;
+    List<Notification> listnoNotifications;
     ArrayList<InteractThread> listInteractThreads= new ArrayList<>();
 
     @Override
@@ -43,6 +53,11 @@ public class NotificationFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         main = (HomeActivity) getActivity();
+
+        SharedPreferences pref = getContext().getSharedPreferences("MyPref", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor  = pref.edit();
+        session_id = pref.getString("session_id", null);
+        listnoNotifications = new ArrayList<>();
         View view = inflater.inflate(R.layout.notification_fragment, container, false);
 
         ImageView imageView_back=(ImageView) getActivity().findViewById(R.id.img_menu);
@@ -55,12 +70,12 @@ public class NotificationFragment extends Fragment {
             }
         });
 
+        Gettop_notifi gettop_notifi = new Gettop_notifi(session_id,100,0);
+        gettop_notifi.execute();
         //listview content notification
-        RecyclerView lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
+        lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getActivity());
         lv_notification.setLayoutManager(layoutManager);
-        Custom_ListView_Notification menu = new Custom_ListView_Notification(getActivity(),prgmNameList,prgmNameList);
-        lv_notification.setAdapter(menu);
         lv_notification.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
@@ -102,6 +117,66 @@ public class NotificationFragment extends Fragment {
         transaction.add(R.id.frame_main_all, fragment);
         transaction.addToBackStack(null);
         transaction.commit();
+    }
+
+    public class Gettop_notifi extends AsyncTask<Void,Void,List<Notification>>{
+
+        String session_id;
+        int top;
+        int from;
+
+        public Gettop_notifi(String session_id,int top,int from){
+            this.session_id = session_id;
+            this.top = top;
+            this.from = from;
+        }
+
+        @Override
+        protected void onPreExecute() {
+
+            super.onPreExecute();
+        }
+
+        @Override
+        protected List<Notification> doInBackground(Void... params) {
+            NotificationController notificationController = new NotificationController();
+
+            return notificationController.getALllNotificationTop(session_id,top,from);
+        }
+
+        @Override
+        protected void onPostExecute(List<Notification> notifications) {
+            if (notifications.size()>0){
+                listnoNotifications.addAll(notifications);
+                Collections.sort(listnoNotifications,Notification.aseid);
+                final Custom_ListView_Notification adapter = new Custom_ListView_Notification(getActivity(),notifications,lv_notification);
+                lv_notification.setAdapter(adapter);
+                if (listnoNotifications.size()>=20){
+                    adapter.setOnLoadMoreListener(new OnLoadMoreListener() {
+                        @Override
+                        public void onLoadMore() {
+                            Log.e("haint", "Load More");
+                            listnoNotifications.add(null);
+                            adapter.notifyItemInserted(listnoNotifications.size() - 1);
+
+                            //Load more data for reyclerview
+                            new Handler().postDelayed(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Log.e("haint", "Load More 2");
+
+                                    //Remove loading item
+                                    Gettop_notifi getalltopic = new Gettop_notifi(session_id,100,Integer.parseInt(listnoNotifications.get(listnoNotifications.size()-1).getId()));
+                                    getalltopic.execute();
+                                    adapter.setLoaded();
+                                }
+                            }, 2000);
+                        }
+                    });
+                }
+            }
+            super.onPostExecute(notifications);
+        }
     }
 
 }
