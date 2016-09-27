@@ -29,7 +29,7 @@ import redix.booxtown.fragment.TopicFragment;
 import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Interact;
 import redix.booxtown.model.Topic;
-import redix.booxtown.recyclerClick.RecyclerItemClickListener;
+import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 
 /**
  * Created by Administrator on 27/08/2016.

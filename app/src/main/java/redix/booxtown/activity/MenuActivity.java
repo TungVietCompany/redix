@@ -21,7 +21,7 @@ import com.squareup.picasso.Picasso;
 import redix.booxtown.controller.ObjectCommon;
 import redix.booxtown.controller.UserController;
 import redix.booxtown.R;
-import redix.booxtown.recyclerClick.RecyclerItemClickListener;
+import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 import redix.booxtown.custom.CustomAdapter;
 
 public class MenuActivity extends AppCompatActivity {

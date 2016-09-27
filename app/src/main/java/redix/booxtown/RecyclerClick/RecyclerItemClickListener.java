@@ -1,4 +1,4 @@
-package redix.booxtown.recyclerClick;
+package redix.booxtown.recyclerclick;
 
 import android.content.Context;
 import android.support.v7.widget.RecyclerView;

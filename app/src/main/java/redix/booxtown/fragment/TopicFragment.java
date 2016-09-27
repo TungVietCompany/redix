@@ -30,7 +30,7 @@ import redix.booxtown.R;
 import redix.booxtown.controller.TopicController;
 import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Topic;
-import redix.booxtown.recyclerClick.RecyclerItemClickListener;
+import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 import redix.booxtown.activity.MenuActivity;
 import redix.booxtown.adapter.AdapterTopic;
 
