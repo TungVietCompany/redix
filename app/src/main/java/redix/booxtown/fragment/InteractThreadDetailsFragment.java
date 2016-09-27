@@ -19,6 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.List;
 
 import redix.booxtown.R;
@@ -26,6 +27,7 @@ import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.controller.CommentController;
 import redix.booxtown.controller.NotificationController;
+import redix.booxtown.controller.ObjectCommon;
 import redix.booxtown.controller.ThreadController;
 import redix.booxtown.controller.UserController;
 import redix.booxtown.custom.MenuBottomCustom;
@@ -281,7 +283,7 @@ public class InteractThreadDetailsFragment extends Fragment
                     SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
                     String username = pref.getString("username", null);
                     List<Hashtable> list = new ArrayList<>();
-                    Notification notification = new Notification("Comment from thread ","thread_comment");
+                    Notification notification = new Notification("Comment from thread ","thread_comment",topic.getId()+"::"+threads.getId());
                     Hashtable obj= ObjectCommon.ObjectDymanic(notification);
                     obj.put("user_id",threads.getUser_id());
                     obj.put("messages","Comment thread "+ threads.getTitle()+" by: "+ username);

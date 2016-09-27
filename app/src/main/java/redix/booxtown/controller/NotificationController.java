@@ -10,6 +10,7 @@ import redix.booxtown.api.ServiceGenerator;
 import redix.booxtown.api.ServiceInterface;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.Notification;
+import redix.booxtown.model.NotificationResult;
 import redix.booxtown.model.Result;
 import retrofit2.Call;
 
