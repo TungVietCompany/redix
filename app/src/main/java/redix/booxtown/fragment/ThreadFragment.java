@@ -9,12 +9,14 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,7 @@ import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterThread;
 import redix.booxtown.controller.ThreadController;
 import redix.booxtown.controller.TopicController;
+import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
@@ -176,8 +179,32 @@ public class ThreadFragment extends Fragment
         protected void onPostExecute(final List<Thread> threads) {
             try{
                 if(threads.size()>0){
-                    adapterThread = new AdapterThread(context,threads);
+                    listThreads.addAll(listThreads);
+                    listThreads.addAll(threads);
+                    adapterThread = new AdapterThread(context,listThreads,rv_thread);
                     rv_thread.setAdapter(adapterThread);
+                    if (listThreads.size()>=20){
+                        adapterThread.setOnLoadMoreListener(new OnLoadMoreListener() {
+                            @Override
+                            public void onLoadMore() {
+                                Log.e("haint", "Load More");
+                                listThreads.add(null);
+                                adapterThread.notifyItemInserted(listThreads.size() - 1);
+
+                                //Load more data for reyclerview
+                                new Handler().postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        Log.e("haint", "Load More 2");
+
+                                        //Remove loading item
+                                        threadAsync getalltopic = new threadAsync(getContext(),session_id,100,listThreads.size()-1);
+                                        getalltopic.execute();
+                                    }
+                                }, 2000);
+                            }
+                        });
+                    }
                     rv_thread.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
