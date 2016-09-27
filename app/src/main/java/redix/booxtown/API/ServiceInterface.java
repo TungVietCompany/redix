@@ -136,4 +136,15 @@ public interface ServiceInterface {
 
     @GET("/booxtown/rest/book/book_gettop")
     Call<BookResult> book_gettop(@Query("session_id") String session_id,@Query("from") long from,@Query("top") long top);
+    
+    // Notification
+    @GET("/booxtown/rest/notification/notification_gettop")
+    Call<NotificationResult> getTopNotification(@Query("session_id") String session_id, @Query("top") int top, @Query("from") int from);
+
+    @POST("/booxtown/rest/notification/notification_addstatus")
+    Call<Result> changeStatusNotification(@Body Object topic);
+
+    @POST("/booxtown/rest/notification/notification_removestatus")
+    Call<Result> changeStatusUnreadNotification(@Body Object thread);
+    // end Notification
 }
