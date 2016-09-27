@@ -283,7 +283,7 @@ public class InteractThreadDetailsFragment extends Fragment
                     SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
                     String username = pref.getString("username", null);
                     List<Hashtable> list = new ArrayList<>();
-                    Notification notification = new Notification("Comment from thread ","thread_comment");
+                    Notification notification = new Notification("Comment from thread ","thread_comment",topic.getId()+"::"+threads.getId());
                     Hashtable obj= ObjectCommon.ObjectDymanic(notification);
                     obj.put("user_id",threads.getUser_id());
                     obj.put("messages","Comment thread "+ threads.getTitle()+" by: "+ username);

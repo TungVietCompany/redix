@@ -7,6 +7,7 @@ import okhttp3.ResponseBody;
 import redix.booxtown.model.Book;
 import redix.booxtown.model.CommentResult;
 import redix.booxtown.model.Notification;
+import redix.booxtown.model.NotificationResult;
 import redix.booxtown.model.Profile;
 import redix.booxtown.model.Result;
 import redix.booxtown.model.BookResult;

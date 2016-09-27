@@ -17,6 +17,8 @@ public class Notification {
     @Expose
     private String key_screen;
     @Expose
+    private String id_screen;
+    @Expose
     private int is_read;
 
     public String getId() {
@@ -59,8 +61,8 @@ public class Notification {
         this.is_read = is_read;
     }
 
-    public Notification(String title_notifi, String key_screen) {
-
+    public Notification(String title_notifi, String key_screen,String id_screen) {
+        this.id_screen=id_screen;
         this.title_notifi = title_notifi;
         this.key_screen = key_screen;
     }
@@ -84,4 +86,12 @@ public class Notification {
             return dt1 - dt2;
         }
     };
+
+    public String getId_screen() {
+        return id_screen;
+    }
+
+    public void setId_screen(String id_screen) {
+        this.id_screen = id_screen;
+    }
 }
