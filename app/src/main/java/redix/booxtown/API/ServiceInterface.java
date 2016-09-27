@@ -55,6 +55,9 @@ public interface ServiceInterface {
     @POST("/booxtown/rest/user/login_firebase")
     Call<Result> login(@Body Object user);
 
+    @GET("/booxtown/user/get_userID")
+    Call<Result> getuserID(@Query("session_id") String session_id);
+
     @GET("/booxtown/rest/user/getprofile")
     Call<UserResult> getprofile(@Query("session_id") String session_id);
 

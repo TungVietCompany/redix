@@ -18,24 +18,29 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.HomeActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.controller.CommentController;
+import redix.booxtown.controller.NotificationController;
 import redix.booxtown.controller.ThreadController;
+import redix.booxtown.controller.UserController;
 import redix.booxtown.custom.MenuBottomCustom;
 import redix.booxtown.model.Comment;
+import redix.booxtown.model.Notification;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
+import redix.booxtown.model.User;
 
 /**
  * Created by Administrator on 28/08/2016.
  */
 public class InteractThreadDetailsFragment extends Fragment
 {
-
+    String user_ID="";
     ListView listView;
     private MenuBottomCustom menu_bottom;
     Thread threads;
@@ -234,6 +239,9 @@ public class InteractThreadDetailsFragment extends Fragment
                     ThreadSync changeStatus = new ThreadSync(context, session_id, Integer.parseInt(threads.getId()));
                     changeStatus.execute();
 
+                    UserID us= new UserID(getContext());
+                    us.execute(session_id);
+
                     dialog.dismiss();
                 }else {
                     Toast.makeText(context,"no success",Toast.LENGTH_SHORT).show();
@@ -242,6 +250,45 @@ public class InteractThreadDetailsFragment extends Fragment
             }catch (Exception e){
                 dialog.dismiss();
             }
+        }
+    }
+    class UserID extends AsyncTask<String,Void,String>{
+        Context context;
+        public UserID(Context context){
+            this.context=context;
+        }
+        ProgressDialog dialog;
+        @Override
+        protected String doInBackground(String... strings) {
+            UserController userController  = new UserController();
+            String user_id = userController.getUserID(strings[0]);
+            return user_id;
+        }
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            dialog = new ProgressDialog(getActivity());
+            dialog.setMessage("Please wait...");
+            dialog.setIndeterminate(true);
+            dialog.show();
+        }
+
+        @Override
+        protected void onPostExecute(String user_ID) {
+            try {
+                if(!threads.getUser_id().equals(user_ID)) {
+                    List<Notification> list = new ArrayList<>();
+                    Notification notification = new Notification(threads.getUser_id(), "Notification thread: "+ threads.getTitle());
+                    list.add(notification);
+
+                    NotificationController controller = new NotificationController();
+                    controller.sendNotification(list);
+                }
+            }catch (Exception e){
+                Toast.makeText(context,"no data",Toast.LENGTH_LONG).show();
+            }
+
         }
     }
 }

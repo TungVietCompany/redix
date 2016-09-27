@@ -39,6 +39,7 @@ import redix.booxtown.model.Explore;
 import redix.booxtown.model.User;
 
 public class MyProfileFragment extends Fragment {
+    public final static String user_id=null;
     private LinearLayout linear_all;
     private LinearLayout linear_swap;
     private LinearLayout linear_free;
@@ -227,18 +228,20 @@ public class MyProfileFragment extends Fragment {
         }
 
         @Override
-        protected void onPostExecute(List<User> bookResult) {
+        protected void onPostExecute(List<User> userResult) {
             try {
-                if(bookResult.size() == 0){
+                if(userResult.size() == 0){
                     Toast.makeText(context,"No data",Toast.LENGTH_LONG).show();
                     dialog.dismiss();
                 }else {
-                    txt_profile_email.setText(bookResult.get(0).getEmail());
-                    txt_profile_phone.setText(bookResult.get(0).getPhone());
-                    txt_profile_birthday.setText(bookResult.get(0).getBirthday());
+                    txt_profile_email.setText(userResult.get(0).getEmail());
+                    txt_profile_phone.setText(userResult.get(0).getPhone());
+                    txt_profile_birthday.setText(userResult.get(0).getBirthday());
+
+
                     dialog.dismiss();
                 }
-                super.onPostExecute(bookResult);
+                super.onPostExecute(userResult);
             }catch (Exception e){
                 Toast.makeText(context,"no data",Toast.LENGTH_LONG).show();
             }
