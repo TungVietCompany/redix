@@ -10,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.location.Geocoder;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.AsyncTask;
 import android.os.Build;
 import android.support.v4.content.ContextCompat;
 import android.os.Bundle;
@@ -19,6 +20,7 @@ import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -60,8 +62,8 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
          * See https://g.co/AppIndexing/AndroidStudio for more information.
          */
         private GoogleApiClient client;
-        private MenuBottomCustom bottomListings;
-
+        EditText editText_change_old,editText_change_new,editText_change_re;
+        Button button_change_pass;
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
@@ -78,6 +80,16 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
                     dialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
                     dialog.show();
 
+                    editText_change_old = (EditText)dialog.findViewById(R.id.editText_change_old);
+                    editText_change_new = (EditText)dialog.findViewById(R.id.editText_change_new);
+                    editText_change_old = (EditText)dialog.findViewById(R.id.editText_change_old);
+                    button_change_pass = (Button)dialog.findViewById(R.id.button_change_pass);
+                    button_change_pass.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+
+                        }
+                    });
                     ImageView imageView = (ImageView) dialog.findViewById(R.id.imv_close_dialog_changepass);
                     imageView.setOnClickListener(new View.OnClickListener() {
                         @Override
@@ -266,5 +278,7 @@ public class SettingFragment extends android.support.v4.app.Fragment implements 
             mMap.getUiSettings().setAllGesturesEnabled(true);
             mMap.setTrafficEnabled(true);
         }
+
+
     }
 

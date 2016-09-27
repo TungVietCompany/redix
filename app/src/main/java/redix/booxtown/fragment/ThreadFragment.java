@@ -38,7 +38,6 @@ import redix.booxtown.controller.TopicController;
 import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
-import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 
 /**
  * Created by Administrator on 27/08/2016.
@@ -205,7 +204,7 @@ public class ThreadFragment extends Fragment
                             }
                         });
                     }
-                    rv_thread.addOnItemTouchListener(new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
+                    rv_thread.addOnItemTouchListener(new redix.booxtown.recyclerclick.RecyclerItemClickListener(getActivity(), new redix.booxtown.recyclerclick.RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
                             final Thread item = (Thread) threads.get(position);
