@@ -32,6 +32,7 @@ import java.util.List;
 import redix.booxtown.R;
 import redix.booxtown.adapter.AdapterThread;
 import redix.booxtown.controller.ThreadController;
+import redix.booxtown.controller.TopicController;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerClick.RecyclerItemClickListener;
@@ -105,6 +106,9 @@ public class ThreadFragment extends Fragment
                         String session_id = pref.getString("session_id", null);
                         threadAsync threadAsync = new threadAsync(getContext(),session_id,100,0);
                         threadAsync.execute(topic.getId());
+
+                        ThreadSync changeStatus = new ThreadSync(getContext(), session_id,Integer.parseInt(topic.getId()),1);
+                        changeStatus.execute();
                         dialog.dismiss();
                     }
                 });
@@ -141,12 +145,14 @@ public class ThreadFragment extends Fragment
         Context context;
         String session_id;
         int top, from;
+        int flag;
         public threadAsync(Context context, String session_id, int top, int from){
 
             this.context = context;
             this.session_id=session_id;
             this.top=top;
             this.from=from;
+            //this.flag= flag;
         }
         @Override
         protected void onPreExecute() {
@@ -160,7 +166,10 @@ public class ThreadFragment extends Fragment
         @Override
         protected List<Thread> doInBackground(String... strings) {
             ThreadController threadController = new ThreadController();
-            return threadController.threadGetTop(session_id,strings[0],top,from);
+
+                return threadController.threadGetTop(session_id, strings[0], top, from);
+
+
         }
 
         @Override
@@ -182,7 +191,7 @@ public class ThreadFragment extends Fragment
 
                             SharedPreferences pref = context.getSharedPreferences("MyPref", Context.MODE_PRIVATE);
                             String session_id = pref.getString("session_id", null);
-                            ThreadSync changeStatus = new ThreadSync(context, session_id, Integer.parseInt(item.getId()));
+                            ThreadSync changeStatus = new ThreadSync(context, session_id, Integer.parseInt(item.getId()),0);
                             changeStatus.execute();
                         }
                     }));
@@ -200,11 +209,12 @@ public class ThreadFragment extends Fragment
         Context context;
         String session_id;
         int thread_id;
-        public ThreadSync(Context context,String session_id,int thread_id){
+        int flag;
+        public ThreadSync(Context context,String session_id,int thread_id, int flag){
             this.context = context;
             this.session_id=session_id;
             this.thread_id=thread_id;
-
+            this.flag= flag;
         }
 
         @Override
@@ -218,8 +228,15 @@ public class ThreadFragment extends Fragment
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            ThreadController topicController = new ThreadController();
-            return topicController.changeStatusThread(session_id,thread_id);
+
+            if(flag==0) {
+                ThreadController topicController = new ThreadController();
+                return topicController.changeStatusThread(session_id, thread_id);
+            }else if(flag==1){
+                TopicController topicController= new TopicController();
+                return topicController.changeStatusUnreadTopic(session_id, thread_id);
+            }
+            return null;
         }
 
         @Override

@@ -96,6 +96,9 @@ public interface ServiceInterface {
 
     @POST("/booxtown/rest/topic/topic_addstatus")
     Call<Result> changeStatusTopic(@Body Object topic);
+
+    @POST("/booxtown/rest/topic/topic_removestatus")
+    Call<Result> changeStatusUnreadTopic(@Body Object thread);
     // end topic
 
     // Thread
