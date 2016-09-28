@@ -37,6 +37,7 @@ import redix.booxtown.adapter.AdapterThread;
 import redix.booxtown.controller.ThreadController;
 import redix.booxtown.controller.TopicController;
 import redix.booxtown.listener.OnLoadMoreListener;
+import redix.booxtown.model.Interact;
 import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
 
@@ -47,6 +48,7 @@ public class ThreadFragment extends Fragment
 {
     AdapterThread adapterThread;
     List<Thread> listThreads= new ArrayList<>();
+    List<Thread> listtemp = new ArrayList<>();
     RecyclerView rv_thread;
     LinearLayoutManager linearLayoutManager;
     Topic topic;
@@ -127,7 +129,7 @@ public class ThreadFragment extends Fragment
 
         SharedPreferences pref = getActivity().getSharedPreferences("MyPref",Context.MODE_PRIVATE);
         SharedPreferences.Editor editor  = pref.edit();
-        String session_id = pref.getString("session_id", null);
+        final String session_id = pref.getString("session_id", null);
         threadAsync threadAsync = new threadAsync(getContext(),session_id,100,0);
         threadAsync.execute(topic.getId());
 
@@ -179,41 +181,47 @@ public class ThreadFragment extends Fragment
         protected void onPostExecute(final List<Thread> threads) {
             try{
                 if(threads.size()>0){
-                    listThreads.addAll(listThreads);
+//                    listThreads.addAll(listThreads);
                     listThreads.addAll(threads);
+                    listtemp.addAll(threads);
                     Collections.sort(listThreads,Thread.aseid);
+                    Collections.sort(listtemp,Thread.aseid);
                     adapterThread = new AdapterThread(context,listThreads,rv_thread);
                     rv_thread.setAdapter(adapterThread);
-                    if (listThreads.size()>=20){
+                    adapterThread.setLoaded();
+                    if (listThreads.size()>=10) {
                         adapterThread.setOnLoadMoreListener(new OnLoadMoreListener() {
                             @Override
                             public void onLoadMore() {
-                                Log.e("haint", "Load More");
                                 listThreads.add(null);
+                                Log.e("haint", "Load More" + listThreads.size());
                                 adapterThread.notifyItemInserted(listThreads.size() - 1);
 
                                 //Load more data for reyclerview
                                 new Handler().postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
-                                        Log.e("haint", "Load More 2");
-
+                                        Log.e("haint", "Load More 2_"+listtemp.get(listtemp.size()-1).getId());
                                         //Remove loading item
-                                        threadAsync1 getalltopic = new threadAsync1(getContext(),session_id,100,Integer.parseInt(listThreads.get(listThreads.size()-1).getId()));
-                                        getalltopic.execute();
-                                        adapterThread.setLoaded();
+                                        listThreads.remove(listThreads.size() - 1);
+                                        adapterThread.notifyItemRemoved(listThreads.size());
+                                        threadAsync1 getalltopic = new threadAsync1(getContext(),topic.getId(), session_id, 100, Integer.valueOf(listtemp.get(listtemp.size()-1).getId()));
+                                        getalltopic.execute(topic.getId());
+                                        adapterThread.notifyDataSetChanged();
                                     }
-                                }, 2000);
+                                }, 500);
                             }
                         });
+
                     }
                     rv_thread.addOnItemTouchListener(new redix.booxtown.recyclerclick.RecyclerItemClickListener(getActivity(), new redix.booxtown.recyclerclick.RecyclerItemClickListener.OnItemClickListener() {
                         @Override
                         public void onItemClick(View view, int position) {
-                            final Thread item = (Thread) threads.get(position);
+                            final Thread item = (Thread) listThreads.get(position);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("thread", item);
                             bundle.putSerializable("interact", topic);
+                            bundle.putString("type_fragment","ThreadFragment");
                             InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();
                             fragment.setArguments(bundle);
                             callFragment(fragment);
@@ -239,14 +247,16 @@ public class ThreadFragment extends Fragment
         ProgressDialog dialog;
         Context context;
         String session_id;
+        String topicid;
         int top, from;
         int flag;
-        public threadAsync1(Context context, String session_id, int top, int from){
+        public threadAsync1(Context context,String topicid, String session_id, int top, int from){
 
             this.context = context;
             this.session_id=session_id;
             this.top=top;
             this.from=from;
+            this.topicid = topicid;
             //this.flag= flag;
         }
         @Override
@@ -257,8 +267,7 @@ public class ThreadFragment extends Fragment
         @Override
         protected List<Thread> doInBackground(String... strings) {
             ThreadController threadController = new ThreadController();
-
-            return threadController.threadGetTop(session_id, strings[0], top, from);
+            return threadController.threadGetTop(session_id, topicid, top, from);
 
 
         }
@@ -268,15 +277,15 @@ public class ThreadFragment extends Fragment
             try{
                 if(threads.size()>0){
                     listThreads.addAll(threads);
+                    listtemp.addAll(threads);
+                    Collections.sort(listtemp,Thread.aseid);
                     Collections.sort(listThreads,Thread.aseid);
-                    adapterThread.notifyDataSetChanged();
                 }else{
                     //Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();
                 }
             }catch (Exception e){
 
             }
-            dialog.dismiss();
         }
     }
 

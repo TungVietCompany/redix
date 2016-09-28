@@ -126,7 +126,7 @@ public class AdapterThread extends RecyclerView.Adapter<RecyclerView.ViewHolder>
 
     @Override
     public int getItemCount() {
-        return listThread.size();
+        return listThread == null ? 0:listThread.size();
     }
 
     public class RecyclerViewHolder extends RecyclerView.ViewHolder{

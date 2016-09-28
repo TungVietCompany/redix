@@ -18,15 +18,18 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import redix.booxtown.R;
+import redix.booxtown.activity.MainAllActivity;
 import redix.booxtown.controller.NotificationController;
 import redix.booxtown.listener.OnLoadMoreListener;
 import redix.booxtown.model.Notification;
+import redix.booxtown.model.Thread;
 import redix.booxtown.model.Topic;
 import redix.booxtown.recyclerclick.RecyclerItemClickListener;
 import redix.booxtown.activity.HomeActivity;
@@ -46,6 +49,7 @@ public class NotificationFragment extends Fragment {
     String session_id;
     RecyclerView lv_notification;
     List<Notification> listnoNotifications;
+    Custom_ListView_Notification adapter;
     ArrayList<InteractThread> listInteractThreads= new ArrayList<>();
 
     @Override
@@ -69,42 +73,60 @@ public class NotificationFragment extends Fragment {
                 startActivity(intent);
             }
         });
-
-        Gettop_notifi gettop_notifi = new Gettop_notifi(session_id,100,0);
-        gettop_notifi.execute();
         //listview content notification
         lv_notification=(RecyclerView) view.findViewById(R.id.lv_content_notification);
         RecyclerView.LayoutManager  layoutManager = new LinearLayoutManager(getActivity());
         lv_notification.setLayoutManager(layoutManager);
+        adapter = new Custom_ListView_Notification(getActivity(),listnoNotifications,lv_notification);
+
+        Gettop_notifi gettop_notifi = new Gettop_notifi(session_id,100,0);
+        gettop_notifi.execute();
         lv_notification.addOnItemTouchListener(
                 new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                     @Override
                     public void onItemClick(View view, int i) {
-                        if(i==0){
-                            InteractThread interact1= new InteractThread();
-                            interact1.setInteractThreadTitle("Thread one text");
-                            interact1.setInteractThreadCount("20");
-                            interact1.setStatus(true);
-                            interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
-                            interact1.setInteractThreadAddBy("Derek Jarma");
-                            listInteractThreads.add(interact1);
-                            InteractThread item = (InteractThread) listInteractThreads.get(0);
-                            InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();
+                        Notification notification = (Notification) adapter.getlist().get(i);
+                        Toast.makeText(getContext(),"djshjdhsj"+notification.getId(),Toast.LENGTH_LONG).show();
+                        if (notification.getKey_screen().equals("BTNotiCommented")){
+                            String[] s = notification.getId_screen().split("::");
+                            Topic topic = new Topic();
+                            Thread item = new Thread();
+                            item.setId(s[1]);
+                            topic.setId(s[0]);
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("thread", item);
+                            bundle.putSerializable("interact", topic);
+                            bundle.putString("type_fragment","NotificationFragment");
+                            InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();
                             fragment.setArguments(bundle);
-                            main.callFragment(fragment);
-
-                        }else if(i==1){
-                            Intent intent = new Intent(getActivity(),NotificationSwapActivity.class);
-                            startActivity(intent);
-                        }else if(i==2){
-                            Intent intent1 = new Intent(getActivity(),NotificationSellActivity.class);
-                            startActivity(intent1);
-                        }else if(i==3){
-                            Intent intent2 = new Intent(getActivity(),NotificationDominicActivity.class);
-                            startActivity(intent2);
+                            HomeActivity mainAllActivity = (HomeActivity) getActivity();
+                            mainAllActivity.callFragment(fragment);
                         }
+//                        if(i==0){
+//                            InteractThread interact1= new InteractThread();
+//                            interact1.setInteractThreadTitle("Thread one text");
+//                            interact1.setInteractThreadCount("20");
+//                            interact1.setStatus(true);
+//                            interact1.setInteractThreadContent("Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.");
+//                            interact1.setInteractThreadAddBy("Derek Jarma");
+//                            listInteractThreads.add(interact1);
+//                            InteractThread item = (InteractThread) listInteractThreads.get(0);
+//                            InteractThreadDetailsFragment fragment= new InteractThreadDetailsFragment();
+//                            Bundle bundle = new Bundle();
+//                            bundle.putSerializable("thread", item);
+//                            fragment.setArguments(bundle);
+//                            main.callFragment(fragment);
+
+//                        }else if(i==1){
+//                            Intent intent = new Intent(getActivity(),NotificationSwapActivity.class);
+//                            startActivity(intent);
+//                        }else if(i==2){
+//                            Intent intent1 = new Intent(getActivity(),NotificationSellActivity.class);
+//                            startActivity(intent1);
+//                        }else if(i==3){
+//                            Intent intent2 = new Intent(getActivity(),NotificationDominicActivity.class);
+//                            startActivity(intent2);
+//                        }
                     }
                 })
         );
@@ -114,8 +136,7 @@ public class NotificationFragment extends Fragment {
         FragmentManager manager = getActivity().getSupportFragmentManager();
         FragmentTransaction transaction = manager.beginTransaction();
         //Khi được goi, fragment truyền vào sẽ thay thế vào vị trí FrameLayout trong Activity chính
-        transaction.add(R.id.frame_main_all, fragment);
-        transaction.addToBackStack(null);
+        transaction.replace(R.id.frame_main_all, fragment);
         transaction.commit();
     }
 
@@ -149,7 +170,7 @@ public class NotificationFragment extends Fragment {
             if (notifications.size()>0){
                 listnoNotifications.addAll(notifications);
                 Collections.sort(listnoNotifications,Notification.aseid);
-                final Custom_ListView_Notification adapter = new Custom_ListView_Notification(getActivity(),notifications,lv_notification);
+                adapter = new Custom_ListView_Notification(getActivity(),notifications,lv_notification);
                 lv_notification.setAdapter(adapter);
                 if (listnoNotifications.size()>=20){
                     adapter.setOnLoadMoreListener(new OnLoadMoreListener() {

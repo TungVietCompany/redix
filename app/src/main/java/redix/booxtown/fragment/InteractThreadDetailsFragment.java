@@ -24,6 +24,7 @@ import java.util.List;
 
 import redix.booxtown.R;
 import redix.booxtown.activity.HomeActivity;
+import redix.booxtown.activity.MainAllActivity;
 import redix.booxtown.adapter.AdapterInteractThreadDetails;
 import redix.booxtown.controller.CommentController;
 import redix.booxtown.controller.NotificationController;
@@ -49,6 +50,7 @@ public class InteractThreadDetailsFragment extends Fragment
     Topic topic;
     TextView txt_title;
     TextView txt_count_thread;
+    String type_fragment;
     AdapterInteractThreadDetails adapter;
     @Nullable
     @Override
@@ -71,8 +73,8 @@ public class InteractThreadDetailsFragment extends Fragment
                     callFragment(fragment);
                 }
                 else {
-                    HomeActivity home= (HomeActivity)getActivity();
-                    home.callFragment(new NotificationFragment());
+                    MainAllActivity mainAllActivity = (MainAllActivity) getActivity();
+                    mainAllActivity.callFragment(new NotificationFragment());
                     txt_title.setText("Notifications");
                 }
 
@@ -82,6 +84,7 @@ public class InteractThreadDetailsFragment extends Fragment
         //----------------------------------------------
         threads = (Thread) getArguments().getSerializable("thread");
         topic = (Topic) getArguments().getSerializable("interact");
+        type_fragment = getArguments().getString("type_fragment");
         //--------------------------------------------------
         TextView txt_title_thread=(TextView) view.findViewById(R.id.txt_title_thread_detail);
         txt_count_thread=(TextView) view.findViewById(R.id.txt_count_thread_detail);

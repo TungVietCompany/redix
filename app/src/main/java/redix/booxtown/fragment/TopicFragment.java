@@ -43,6 +43,7 @@ public class TopicFragment extends Fragment
 
     List<Topic> listtopic= new ArrayList<>();
     RecyclerView lv_recycler;
+    List<Topic> listemp = new ArrayList<>();
     AdapterTopic interact;
     @Nullable
     @Override
@@ -113,17 +114,18 @@ public class TopicFragment extends Fragment
                 if(topics.size() >0){
                     //set adapter
                     listtopic.addAll(topics);
+                    listemp.addAll(topics);
+                    Collections.sort(listemp,Topic.aseid);
                     Collections.sort(listtopic,Topic.aseid);
                     interact = new AdapterTopic(context,listtopic,lv_recycler);
                     lv_recycler.setAdapter(interact);
-
-                    if (listtopic.size()>=20){
+                    if (listtopic.size()>=10){
                         interact.setOnLoadMoreListener(new OnLoadMoreListener() {
                             @Override
                             public void onLoadMore() {
-                                Log.e("haint", "Load More");
-                                listtopic.add(null);
-                                interact.notifyItemInserted(topics.size() - 1);
+//                                listtopic.add(null);
+                                Log.e("haint", "Load More"+Integer.parseInt(listtopic.get(listtopic.size()-1).getId()));
+                                interact.notifyItemInserted(listtopic.size() - 1);
 
                                 //Load more data for reyclerview
                                 new Handler().postDelayed(new Runnable() {
@@ -132,11 +134,12 @@ public class TopicFragment extends Fragment
                                         Log.e("haint", "Load More 2");
 
                                         //Remove loading item
-                                        topicSync1 getalltopic = new topicSync1(getContext(),session_id,100,Integer.parseInt(listtopic.get(listtopic.size()-1).getId()));
+                                        topicSync1 getalltopic = new topicSync1(getContext(),session_id,100,Integer.parseInt(listemp.get(listemp.size()-1).getId()));
                                         getalltopic.execute();
+                                        interact.notifyDataSetChanged();
                                         interact.setLoaded();
                                     }
-                                }, 2000);
+                                }, 500);
                             }
                         });
                     }
@@ -144,7 +147,7 @@ public class TopicFragment extends Fragment
                             new RecyclerItemClickListener(getActivity(), new RecyclerItemClickListener.OnItemClickListener() {
                                 @Override
                                 public void onItemClick(View view, int position) {
-                                    Topic item = (Topic) topics.get(position);
+                                    Topic item = (Topic) listtopic.get(position);
                                     Bundle bundle = new Bundle();
                                     bundle.putSerializable("thread", item);
                                     ThreadFragment fragment= new ThreadFragment();
@@ -195,8 +198,9 @@ public class TopicFragment extends Fragment
                 if(topics.size() >0){
                     //set adapter
                     listtopic.addAll(topics);
-//                    Collections.sort(listtopic,Topic.aseid);
-                    interact.notifyDataSetChanged();
+                    listemp.addAll(topics);
+                    Collections.sort(listemp,Topic.aseid);
+                    Collections.sort(listtopic,Topic.aseid);
                 }else {
                     Toast.makeText(context,"No data",Toast.LENGTH_SHORT).show();
                 }

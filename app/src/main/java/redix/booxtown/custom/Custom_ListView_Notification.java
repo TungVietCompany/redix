@@ -83,6 +83,8 @@ public class Custom_ListView_Notification extends RecyclerView.Adapter<RecyclerV
         if (holder instanceof RecyclerViewHolder) {
             Notification notification = list.get(position);
             ((RecyclerViewHolder) holder).tv.setText(notification.getTitle_notifi());
+            ((RecyclerViewHolder) holder).tv_content.setText(notification.getCreate_date());
+
 
         }else if(holder instanceof LoadingViewHolder){
             LoadingViewHolder loadingViewHolder = (LoadingViewHolder) holder;
@@ -117,6 +119,10 @@ public class Custom_ListView_Notification extends RecyclerView.Adapter<RecyclerV
             tv = (TextView) itemView.findViewById(R.id.txt_title_notification);
             tv_content = (TextView)itemView.findViewById(R.id.txt_content_notification);
         }
+    }
+
+    public List<Notification> getlist(){
+        return list;
     }
 
 }

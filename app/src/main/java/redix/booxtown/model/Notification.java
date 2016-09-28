@@ -13,13 +13,23 @@ public class Notification {
     @Expose
     private String content;
     @Expose
-    private String title_notifi;
+    private String title_notification;
     @Expose
     private String key_screen;
     @Expose
     private String id_screen;
     @Expose
     private int is_read;
+
+    private String create_date;
+
+    public String getCreate_date() {
+        return create_date;
+    }
+
+    public void setCreate_date(String create_date) {
+        this.create_date = create_date;
+    }
 
     public String getId() {
         return id;
@@ -46,24 +56,24 @@ public class Notification {
     }
 
     public String getTitle_notifi() {
-        return title_notifi;
+        return title_notification;
     }
 
     public void setTitle_notifi(String title_notifi) {
-        this.title_notifi = title_notifi;
+        this.title_notification = title_notifi;
     }
 
     public Notification(String id, String content, String title_notifi, String key_screen, int is_read) {
         this.id = id;
         this.content = content;
-        this.title_notifi = title_notifi;
+        this.title_notification = title_notifi;
         this.key_screen = key_screen;
         this.is_read = is_read;
     }
 
     public Notification(String title_notifi, String key_screen,String id_screen) {
         this.id_screen=id_screen;
-        this.title_notifi = title_notifi;
+        this.title_notification = title_notifi;
         this.key_screen = key_screen;
     }
 
